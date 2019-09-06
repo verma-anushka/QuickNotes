@@ -1,0 +1,20 @@
+/* Jumbotron */
+
+.jumbotron{
+    /* ? */
+    background-color: transparent;
+    text-align: center;
+    letter-spacing: 2.5px;
+    padding: 10px;
+    margin-top: 150px;
+}
+
+.btn-color{
+    background-color: rgba(114,190,35,0.8)
+} 
+.btn-color:hover{
+    background-color: rgba(114,190,35,0.8)
+} 
+.sign-up{
+    margin-top: 50px;
+}
