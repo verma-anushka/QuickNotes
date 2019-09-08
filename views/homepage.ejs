@@ -1,0 +1,39 @@
+<% include partials/header.ejs %>
+
+<div class="home-container">
+
+    <div class="row">
+
+        <div class="col-md-offset-2 col-md-8">
+            
+            <!-- Buttons -->
+            <div class="buttons">
+
+                <!-- Add Notes -->
+                <button type="button" id="addNote" class="btn btn-info btn-lg" >Add Note</button>
+
+                <!-- Edit Notes -->
+                <button type="button" id="editNote" class="btn btn-info btn-lg pull-right" >Edit</button>
+
+                <!-- Done -->
+                <button type="button" id="done" class="btn green btn-lg pull-right" >Done</button>
+
+                <!-- All Notes -->
+                <button type="button" id="allNotes" class="btn btn-info btn-lg" >All Notes</button>
+            </div>
+
+            <!-- Notes Area -->
+            <div id="notePad">
+                <textarea name="" id="" rows="10"></textarea>
+            </div>
+
+            <!-- All Notes Container -->
+            <div id="notes" class="notes">
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+
+<% include partials/footer.ejs %>

@@ -1,0 +1,20 @@
+.home-container{
+    margin-top: 120px;
+}
+#notePad, #allNotes, #done{
+    display: none;
+}
+.buttons{
+    margin-bottom: 20px;
+}
+textarea{
+    width: 100%;
+    max-width: 100%;
+    font-size: 16px;
+    line-height: 1.5em;
+    border-left-width: 20px;
+    border-color: #CA3DD9;
+    color: #CA3DD9;
+    background-color: #FBEFFF;
+    padding: 10px;
+}

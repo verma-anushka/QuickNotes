@@ -6,7 +6,7 @@ html{
 body {
   font-family: 'Arvo', serif;
   /* ? */
-  background: url("/images/bg.jpg") no-repeat center center;
+  /* background: url("/images/bg.jpg") no-repeat center center; */
   background-attachment: fixed;
   background-size: cover;
 }
