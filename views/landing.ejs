@@ -9,8 +9,7 @@
 
 
 <!-- SIGNUP -->
-
-<form action="" method="POST" id="signupForm">
+<form action="/" method="POST" id="signupForm" class="signupForm">
     <div class="modal" id="signupModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -20,7 +19,7 @@
 
                     <!-- Close button -->
                     <button class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="myModalLabel"> sjabckjsabck </h4>
+                    <h4 class="myModalLabel"> Sign Up </h4>
                 </div>
 
                 <!-- Body -->
@@ -57,7 +56,8 @@
 
                 <!-- Footer -->
                 <div class="modal-footer">
-                    <input type="submit" class="btn green" name="signup" value="Sign Up">
+                    <button type="submit" class="btn green signUpButton" name="form" value="signUp">Sign Up</button>
+                    <!-- <input type="submit" class="btn green" name="signup" value="Sign Up"> -->
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
@@ -66,3 +66,20 @@
 </form>
 
 <% include partials/footer.ejs %>
+
+<!-- // urlencodedParser, passport.authenticate("local", function(req, err, user, info) {
+    //     console.log("login");
+    //     // console.log(req.body.username);
+    //     // console.log(req.body.password);
+    //     console.log("error: " + err);
+    //     console.log("user: ");        
+    //     console.log(user);
+    //     console.log("info: ");        
+    //     console.log(info);
+    // }
+    // // {
+    // //     successRedirect: "/home",
+    // //     failureRedirect: "/profile"
+    // // }
+    // ) 
+    // ); -->
