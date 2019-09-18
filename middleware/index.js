@@ -18,7 +18,7 @@ middlewareObj.isAuthenticated = function(req, res, next){
 
 middlewareObj.isLogin = function(req, res, err, user, info, next){
 
-    console.log("nodc m vkxcn vkznv k");
+    // console.log("nodc m vkxcn vkznv k");
 
     if(req.body.form == 'login') {
         

@@ -7,7 +7,6 @@
     <button type="button" class="btn btn-lg btn-color sign-up" data-target="#signupModal" data-toggle="modal">Sign-Up</button>
 </div>
 
-
 <!-- SIGNUP -->
 <form action="/" method="POST" id="signupForm" class="signupForm">
     <div class="modal" id="signupModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -40,7 +39,6 @@
                         <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" maxlength="50">
                     </div>
 
-
                     <!-- Password -->
                     <div class="form-group">
                         <label for="password" class="sr-only">Password</label>
@@ -57,29 +55,12 @@
                 <!-- Footer -->
                 <div class="modal-footer">
                     <button type="submit" class="btn green signUpButton" name="form" value="signUp">Sign Up</button>
-                    <!-- <input type="submit" class="btn green" name="signup" value="Sign Up"> -->
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                 </div>
+
             </div>
         </div>
     </div>
 </form>
 
 <% include partials/footer.ejs %>
-
-<!-- // urlencodedParser, passport.authenticate("local", function(req, err, user, info) {
-    //     console.log("login");
-    //     // console.log(req.body.username);
-    //     // console.log(req.body.password);
-    //     console.log("error: " + err);
-    //     console.log("user: ");        
-    //     console.log(user);
-    //     console.log("info: ");        
-    //     console.log(info);
-    // }
-    // // {
-    // //     successRedirect: "/home",
-    // //     failureRedirect: "/profile"
-    // // }
-    // ) 
-    // ); -->

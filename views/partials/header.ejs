@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Notes App</title>
 
-
+    <!-- LINKING THE REQD. STYLESHEETS -->
     <link rel="stylesheet" href="/stylesheets/header.css">
     <link rel="stylesheet" href="/stylesheets/footer.css">
     <link rel="stylesheet" href="/stylesheets/landing.css">
@@ -14,40 +14,68 @@
     <link rel="stylesheet" href="/stylesheets/profile.css">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
     <link href="https://fonts.googleapis.com/css?family=Arvo&display=swap" rel="stylesheet">
 
 </head>
 <body>
 
+    <!-- NAVBAR -->
     <nav role="navigation" class="navbar navbar-custom navbar-fixed-top">
         <div class="container-fluid">
+
+            <!-- LOGO -->
             <div class="navbar-header">
                 <a href="#" class="navbar-brand">Online Notes</a>
                 <button type="button" class="navbar-toggle" data-target="#navbarCollapse" data-toggle="collapse">
-                <!-- <button type="button"> -->
                     <span class="sr-only">Toggle Navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
             </div>
+
+            <!-- LINKS -->
             <div class="navbar-collapse collapse" id="navbarCollapse" >
+
+                <!-- LEFT LINKS -->
                 <ul class="nav navbar-nav">
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Help</a></li>
                     <li><a href="#">Contact</a></li>
                 </ul>
+
+                <!-- RIGHT LINKS -->
                 <ul class="nav navbar-nav navbar-right">
-                    <li><a href="#">Sign-Up</a></li>
-                    <li><a href="#loginModal" data-toggle="modal">Login</a></li>
+                    <% if( !currentUser){ %>
+                        <li><a href="#signupModal" data-toggle="modal">Sign-Up</a></li>
+                        <li><a href="#loginModal" data-toggle="modal">Login</a></li>
+                    <% } else{ %>
+                        <li><a href="#logoutModal" data-toggle="modal">logout</a></li>
+                    <% } %>
                 </ul>
             </div>
-
         </div>
     </nav>
 
-    <!-- LOGIN -->
+    <!-- FLASH MESSAGES -->
+    <div class="container">
+
+        <% if(error && error.length > 0){ %>
+            <div class="alert alert-danger errorMsg" role="alert">
+                <%= error %>
+                <%= console.log(error) %>
+            </div>
+        <% } %>
+        
+        <% if(success && success.length > 0){ %>
+            <div class="alert alert-success successMsg" role="alert">
+                <%= success %>
+                <%= console.log(success) %>
+            </div>
+        <% } %>
+
+    </div>
+    <!-- LOGIN FORM -->
     <form action="/" method="POST" id="loginForm" class="loginForm">
         <div class="modal" id="loginModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
@@ -55,7 +83,6 @@
 
                     <!-- Header -->
                     <div class="modal-header">
-
                         <!-- Close button -->
                         <button class="close" data-dismiss="modal">&times;</button>
                         <h4 id="myModalLabel"> Login: </h4>
@@ -64,19 +91,16 @@
                     <!-- Body -->
                     <div class="modal-body">
 
-                        <!-- Login Messages -->
-                        <div class="loginMsg"></div>
-
                         <!-- Username -->
                         <div class="form-group">
-                            <label for="loginusername" class="sr-only">Username</label>
-                            <input type="text" class="form-control" id="loginusername" name="loginusername" placeholder="Username" maxlength="30">
+                            <label for="username" class="sr-only">Username</label>
+                            <input type="text" class="form-control" id="username" name="username" placeholder="Username" maxlength="30">
                         </div>
 
                         <!-- Password -->
                         <div class="form-group">
-                            <label for="loginpassword" class="sr-only">Password</label>
-                            <input type="password" class="form-control" id="loginpassword" name="loginpassword" placeholder="Password" maxlength="30">
+                            <label for="password" class="sr-only">Password</label>
+                            <input type="password" class="form-control" id="password" name="password" placeholder="Password" maxlength="30">
                         </div>
 
                     </div>
@@ -88,35 +112,55 @@
                             Remember Me
                         </label> 
                         
-                         <!-- Forgot Password -->
+                        <!-- Forgot Password -->
                         <a class="pull-right" style="cursor: pointer" data-dismiss="modal" data-target="#forgotPasswordModal" data-toggle="modal">
                             Forgot Password
                         </a>
                     </div>
-                   
+                    
                     <!-- Footer -->
                     <div class="modal-footer">
                         <button type="submit" class="btn green loginButton" name="form" value="login">Login</button>
-                        <!-- <input type="submit" class="btn green" name="login" value="Login"> -->
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal" data-target="#signupModal" data-toggle="modal">
-                            Register
-                        </button>
                     </div>
+
                 </div>
             </div>
         </div>
     </form>
 
-<!-- Forgot Password -->
-<!-- <form method="POST" id="forgotPasswordForm"> -->
-    <div class="modal" id="forgotPasswordModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <!-- LOGOUT -->
+    <form action="/" method="POST" id="logoutForm" class="logoutForm">
+        <div class="modal" id="logoutModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
 
                     <!-- Header -->
                     <div class="modal-header">
+                        <!-- Close button -->
+                        <button class="close" data-dismiss="modal">&times;</button>
+                        <h4 id="myModalLabel"> Sure? </h4>
+                    </div>
 
+                    <!-- Footer -->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn red logoutButton" name="form" value="logout">Logout</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- FORGIT PASSWORD FORM -->
+    <form method="POST" id="forgotPasswordForm">
+        <div class="modal" id="forgotPasswordModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Header -->
+                    <div class="modal-header">
                         <!-- Close button -->
                         <button class="close" data-dismiss="modal">&times;</button>
                         <h4 id="myModalLabel"> Forgot Password? </h4>
@@ -125,11 +169,8 @@
                     <!-- Body -->
                     <div class="modal-body">
 
-                        <!-- Forgot Password Messages -->
-                        <div class="forgotPasswordMsg"></div>
-
-                        <h6 id="myModalLabel"> Enter Email address:  </h6>
                         <!-- Email Address -->
+                        <h6 id="myModalLabel"> Enter Email address:  </h6>
                         <div class="form-group">
                             <label for="forgotemail" class="sr-only">Email</label>
                             <input type="email" class="form-control" id="forgotemail" name="forgotemail" placeholder="Email Address" maxlength="50">
@@ -140,11 +181,12 @@
                     <div class="modal-footer">
                         <input type="submit" class="btn green" name="forgotPassword" value="Submit">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal" data-target="signupModal" data-toggle="modal">
-                            Register
-                        </button>
                     </div>
+
                 </div>
             </div>
         </div>
     </form>
+
+    
+            
