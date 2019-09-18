@@ -128,16 +128,6 @@ body {
     color: #c0c0c0;
   }
 
-/* .flashMsgs_container{
-  padding-top: 40px;
-    margin-top: 100px;
-} */
-
-/* .errorMsg, .successMsg{
-  height: 40px;
-  width: 90px;
-} */
-
 .errorMsg{
   padding-top: 40px;
     margin-top: 100px;

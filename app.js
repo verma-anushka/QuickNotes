@@ -1,13 +1,18 @@
+require("dotenv").config()
+
 var express                = require("express"),
     bodyParser             = require("body-parser"),
     mongoose               = require("mongoose"),
-    flash                  = require("connect-flash");
+    async                  = require("async"),
+    crypto                 = require("crypto"),
+    nodemailer             = require("nodemailer"),
+    flash                  = require("connect-flash"),
     methodOverride         = require("method-override"),
     passport               = require("passport"),
     LocalStrategy          = require("passport-local"),
     passportLocalMongoose  = require("passport-local-mongoose"),
     middleware             = require("./middleware"),
-    db                     = require('./database.js'); // Connecting database
+    db                     = require('./database.js'), // Connecting database
     User                   = require("./models/user");
 
 var app = express();
@@ -39,14 +44,12 @@ app.use(function(req, res, next){
 });
 
 // LANDING PAGE 
-// LOGOUT
-app.get("/", function(req, res){
-    
+app.get("/", function(req, res){   
     // res.send("Landing Page");
     res.render("landing");
 });
 
-// SIGNUP & LOGIN
+// AUTHENTICATION
 app.post("/", async function(req, res, next){
 
     // console.log(req.body.form);
@@ -69,6 +72,9 @@ app.post("/", async function(req, res, next){
         }
         if(errors.length > 0){
             // console.log(errors.length)
+            for(var i=0; i< errors.length; i++){
+                req.flash('error', errors[i] );                
+            }
             res.render('landing', {errors, username, email, password, password2});
         } else {
             // EMAIL & USERNAME CHECK
@@ -98,7 +104,6 @@ app.post("/", async function(req, res, next){
                         // console.log(err);
                         req.flash("error", err.message);            
                         res.render("landing");
-                        // res.send("error");
                     }
                     passport.authenticate("local")(req, res, function(){
                         // console.log("user in signup check else passpoet authenticate line 169");
@@ -138,7 +143,7 @@ app.post("/", async function(req, res, next){
                     req.flash("error", err.message);            
                     return res.render("landing");
                 }
-                req.flash("success", "Successfully Logged in");            
+                req.flash("success", "Successfully Logged in!");            
                 return res.redirect('/home');
             });
         })(req, res) 
@@ -147,16 +152,150 @@ app.post("/", async function(req, res, next){
         next();
     }
 }, function(req, res, next){
-    console.log(req.body.form);
+
+    // console.log(req.body.form);
+    if(req.body.form == 'forgotPassword'){
+
+        async.waterfall([
+
+            function (done) {
+                crypto.randomBytes(20, function (err, buf) {
+                    var token = buf.toString('hex');
+                    done(err, token);
+                });
+            },
+
+            function (token, done) {
+                User.findOne({ email: req.body.email }, function (err, user) {
+                    if (!user) {
+                        req.flash('error', "Email doesn't exist!");
+                        return res.redirect('/');
+                    }
+    
+                    user.resetPasswordToken = token;
+                    user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+    
+                    user.save(function (err) {
+                        done(err, token, user);
+                    });
+                });
+            },
+            
+            function (token, user, done) {
+                var smtpTransport = nodemailer.createTransport({
+                    service: 'Gmail',
+                    auth:    {
+                                user: 'v.anushka786@gmail.com',
+                                pass: process.env.GMAILPW
+                             }
+                });
+                var mailOptions = {
+                    to:      user.email,
+                    from:    'v.anushka786@gmail.com',
+                    subject: 'QuickNotes Password Reset',
+                    text:    'You are receiving this email because you (or someone else) have requested the reset of the password for your account.\n\n' +
+                             'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
+                             'http://' + req.headers.host + '/reset/' + token + '\n\n' +
+                             'If you did not request this, please ignore this email; your password will remain unchanged.\n'
+                };
+                smtpTransport.sendMail(mailOptions, function (err) {
+                    console.log('mail sent');
+                    req.flash('success', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
+                    done(err, 'done');
+                });
+            }
+        ], function (err) {
+            if (err){
+                return next(err);
+            }
+            res.redirect('/');
+        });
+    
+    }else{
+        console.log("forgotPassword else");
+        next();
+    }
+
+},function(req, res, next){
+    // console.log(req.body.form);
     if(req.body.form == 'logout'){
         req.logout();
-        console.log("logged out");
+        // console.log("logged out");
         req.flash("success", "Successfully Logged out");
         return res.redirect("/");
     }
 }
 
 );
+
+// RESET PASSWORD 
+app.get('/reset/:token', function (req, res) {
+
+    User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function (err, user) {
+        if (!user) {
+            req.flash('error', 'Password reset token invalid or expired. Please try again');
+            return res.redirect('/');
+        }
+        res.render('reset', { token: req.params.token });
+    });
+});
+
+app.post('/reset/:token', function (req, res) {
+
+    async.waterfall([
+        function (done) {
+            User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function (err, user) {
+                
+                if (!user) {
+                    req.flash('error', 'Password reset token invalid or expired. Please try again');
+                    return res.redirect('back');
+                }
+                if (req.body.password === req.body.confirm) {
+
+                    user.setPassword(req.body.password, function (err) {
+                        user.resetPasswordToken = undefined;
+                        user.resetPasswordExpires = undefined;
+                        user.save(function (err) {
+                            req.logIn(user, function (err) {
+                                done(err, user);
+                            });
+                        });
+                    })
+                } else {
+                    req.flash("error", "Passwords do not match.");
+                    return res.redirect('back');
+                }
+            });
+
+        }, function (user, done) {
+
+            var smtpTransport = nodemailer.createTransport({
+                
+                service: 'Gmail',
+                auth:    {
+                            user: 'v.anushka786@gmail.com',
+                            pass: process.env.GMAILPW
+                         }
+            });
+
+            var mailOptions = {
+                to:      user.email,
+                from:    'v.anushka786@mail.com',
+                subject: 'Your password has been changed',
+                text:    'Hello,\n\n' +
+                         'This is a confirmation that the password for your account ' + user.email + ' has been changed.\n'
+            };
+
+            smtpTransport.sendMail(mailOptions, function (err) {
+                // console.log("mail sent");
+                req.flash('success', 'Password successfully changed!');
+                done(err);
+            });
+        }
+    ], function (err) {
+        res.redirect('/home');
+    });
+});
 
 // USER NOTES HOMEPAGE
 app.get("/home", function(req, res){
