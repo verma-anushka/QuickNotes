@@ -6,6 +6,8 @@ var express                = require("express"),
     async                  = require("async"),
     crypto                 = require("crypto"),
     nodemailer             = require("nodemailer"),
+    cookieParser           = require("cookie-parser"),
+    RememberMeStrategy     = require('passport-remember-me-extended').Strategy;
     flash                  = require("connect-flash"),
     methodOverride         = require("method-override"),
     passport               = require("passport"),
@@ -13,7 +15,9 @@ var express                = require("express"),
     passportLocalMongoose  = require("passport-local-mongoose"),
     middleware             = require("./middleware"),
     db                     = require('./database.js'), // Connecting database
-    User                   = require("./models/user");
+    User                   = require("./models/user"),
+    Note                   = require("./models/notes");
+
 
 var app = express();
 
@@ -21,6 +25,9 @@ app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.use(flash());
+
+app.use(express.cookieParser());
+app.use(express.bodyParser());
 
 // PASSPORT CONFIG
 app.use(require("express-session")({
@@ -31,6 +38,8 @@ app.use(require("express-session")({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(passport.authenticate('remember-me'));
+
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
@@ -43,11 +52,38 @@ app.use(function(req, res, next){
     next();
 });
 
+// app.use(express.cookieParser());
+// app.use(express.bodyParser());
+// app.use(express.session({ secret: 'keyboard cat' }));
+// app.use(passport.initialize());
+// app.use(passport.session());
+// app.use(app.router);
+
 // LANDING PAGE 
 app.get("/", function(req, res){   
     // res.send("Landing Page");
     res.render("landing");
 });
+
+passport.use(new RememberMeStrategy(
+    function(token, done) {
+        Token.consume(token, function (err, user) {
+            if (err) { return done(err); }
+            if (!user) { return done(null, false); }
+            return done(null, user);
+        });
+    },
+    function(user, done) {
+        var token = utils.generateToken(64);
+        Token.save(token, { userId: user.id }, function(err) {
+            if (err) { return done(err); }
+            return done(null, token);
+        });
+    }
+));
+
+
+
 
 // AUTHENTICATION
 app.post("/", async function(req, res, next){
@@ -113,13 +149,13 @@ app.post("/", async function(req, res, next){
                         // console.log(user.password, user.password2);
                         console.log("registered");
                         req.flash("success", "Welcome to YelpCamp, " + user.username);
-                        return res.redirect("/home");
+                        return res.redirect('/' + user._id + '/notes');
                     });
                 });
             }
         }
     }else{
-        console.log("signup else");
+        // console.log("signup else");
         next();
     }
 }, function(req, res, next){
@@ -137,18 +173,29 @@ app.post("/", async function(req, res, next){
                 // console.log(user);     
                 return res.redirect('/'); 
             }
+            if (req.body.remember_me) { 
+
+                var token = utils.generateToken(64);
+                Token.save(token, { userId: req.user.id }, function(err) {
+                if (err) { return done(err); }
+                res.cookie('remember_me', token, { path: '/', httpOnly: true, maxAge: 604800000 }); // 7 days
+                return next();
+                });
+            }
             req.logIn(user, function(err) {
                 if (err) { 
                     // console.log(err);
                     req.flash("error", err.message);            
                     return res.render("landing");
                 }
-                req.flash("success", "Successfully Logged in!");            
-                return res.redirect('/home');
+                req.flash("success", "Successfully Logged in!"); 
+                // console.log("user");
+                // console.log(user._id);
+                return res.redirect('/' + user._id + '/notes');
             });
         })(req, res) 
     }else{
-        console.log("login else");
+        // console.log("login else");
         next();
     }
 }, function(req, res, next){
@@ -180,7 +227,7 @@ app.post("/", async function(req, res, next){
                     });
                 });
             },
-            
+
             function (token, user, done) {
                 var smtpTransport = nodemailer.createTransport({
                     service: 'Gmail',
@@ -199,7 +246,7 @@ app.post("/", async function(req, res, next){
                              'If you did not request this, please ignore this email; your password will remain unchanged.\n'
                 };
                 smtpTransport.sendMail(mailOptions, function (err) {
-                    console.log('mail sent');
+                    // console.log('mail sent');
                     req.flash('success', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
                     done(err, 'done');
                 });
@@ -212,7 +259,7 @@ app.post("/", async function(req, res, next){
         });
     
     }else{
-        console.log("forgotPassword else");
+        // console.log("forgotPassword else");
         next();
     }
 
@@ -293,13 +340,104 @@ app.post('/reset/:token', function (req, res) {
             });
         }
     ], function (err) {
-        res.redirect('/home');
+        res.redirect('/' + user._id + '/notes');
     });
 });
 
 // USER NOTES HOMEPAGE
-app.get("/home", function(req, res){
-    res.render("homepage");
+// middleware.isAuthenticated,
+app.get("/:id/notes",  async function(req, res){
+
+    Note.find({}, function(error, allNotes){
+        if(error){
+            console.log(error);
+        }else{
+            res.render("homepage", {notes:allNotes});            
+        }
+    });
+});
+
+// ADD NEW NOTE
+// middleware.isLoggedIn,
+app.post("/:id/notes", function(req,res){
+    // res.send("POST Req");
+    User.findById(req.params.id, function(error, user){
+        if(error){
+            req.flash("error", "Something went wrong!" );
+            console.log(error);
+        }else{           
+            Note.create(req.body.note, function(error, note){
+                if(error){
+                    console.log(error);
+                }else{
+                    note.author.id = req.user._id;
+                    note.author.username = req.user.username;
+                    note.save();
+
+                    user.notes.push(note);
+                    user.save();
+                    // console.log(comment);
+                    req.flash("success", "Successfully added note!" );
+                    res.redirect(user._id + "/notes/" );
+                }
+            });
+        }
+    });
+});
+
+app.get("/:id/notes/new", function(req, res){
+
+    User.findById(req.params.id, function(error, user){
+        if(error){
+            console.log(error);
+        }else{
+            // console.log(req.params.id);
+            res.render("new", {user: user});
+        }
+    });
+});
+
+// EDIT
+//  middleware.checkNoteOwnership,
+app.get("/:id/notes/:note_id/edit", function(req, res){
+
+    Note.findById(req.params.note_id, function(error, foundNote){
+        if(error){
+            res.redirect("back");
+        }else{
+            res.render("edit", {user_id: req.params.id, note: foundNote}); 
+        }
+    });
+   
+});
+
+// UPDATE
+// middleware.checkNoteOwnership,
+app.put("/:id/notes/:note_id", function(req, res){
+
+    // req.body.blog.body = req.sanitize(req.body.blog.body);
+    Note.findByIdAndUpdate(req.params.note_id, req.body.note, function(error, updatedNote){
+        if(error){
+            res.redirect("back");
+        }else{
+            req.flash("success", "Successfully updated note!" );
+            res.redirect(req.params.id + "/notes/" );
+        }
+    });    
+});
+
+// DESTROY
+// middleware.checkNoteOwnership,
+app.delete("/:id/notes/:note_id", function(req, res){
+    
+    Note.findByIdAndRemove(req.params.note_id, function(error){
+        if(error){
+            res.redirect("back");
+        }else{
+            req.flash("success", "Note deleted!" );
+            res.redirect(req.params.id + "/notes/" );
+        }
+    });
 });
 
 // USER PROFILE

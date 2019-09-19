@@ -11,7 +11,7 @@ middlewareObj.isAuthenticated = function(req, res, next){
     }
     
     // req.flash('error_msg', 'Not Authorized.');
-    // req.flash("error", "You need to be logged in!" );
+    req.flash("error", "You need to be logged in!" );
     res.redirect("/");
 
 };

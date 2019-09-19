@@ -19,6 +19,12 @@ var UserSchema = new mongoose.Schema({
                 type: String, 
                 // required: true 
                 },
+    notes: [
+                {
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: "Note" 
+                }
+              ],
     resetPasswordToken: String,
     resetPasswordExpires:Date,
                          

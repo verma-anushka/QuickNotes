@@ -4,36 +4,80 @@
 
     <div class="row">
 
-        <div class="col-md-offset-2 col-md-8">
+        <% if(currentUser && notes.length > 0 ){ %>
+
+            <div class="row text-center">
+
+                <% notes.forEach(function(note){ %>
+        
+                    <% if( note.author.id.equals(currentUser._id) ){ %>
+
+                        <div class="col-md-3 col-sm-6">
+                            <div class="thumbnail">
+                                <h4><%= note.title %></h4>
+                            </div>
+                            <p>
+                                <%= note.description %>                            
+                            </p>
+                        </div>
+
+                        <div>
+                            <!-- Edit Notes -->
+                            <a class="btn btn-warning" href="/<%= currentUser._id %>/notes/<%= note._id %>/edit">EDIT</a>            
+                            <!-- <button type="button" id="editNote" class="btn btn-info btn-lg pull-right" >Edit</button> -->
+
+                            <!-- Delete -->
+                            <form id="delete-form" action="/<%= currentUser._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
+                                <button class="btn btn-danger">DELETE</button>
+                            </form>
+                        </div>                    
+                    <% } else{ %>
+
+                        <!-- <% console.log("no notes yet"); %>         -->
+                        <div class="col-md-offset-2 col-md-8">
+                            <!-- <div class="card-body"> -->
+                            <h1>Hello, <%= currentUser.username %></h1>
+                            <p class="lead">You haven't created any notes yet!</p>
+                            <a href="/<%= currentUser._id %>/notes/new" class="btn btn-success btn-block">Create Now!</a>
+                        </div>
+                    
+                    <% } %>   
+                              
+                <% }); %>
+
+            </div>
             
-            <!-- Buttons -->
-            <div class="buttons">
-
-                <!-- Add Notes -->
-                <button type="button" id="addNote" class="btn btn-info btn-lg" >Add Note</button>
-
-                <!-- Edit Notes -->
-                <button type="button" id="editNote" class="btn btn-info btn-lg pull-right" >Edit</button>
-
-                <!-- Done -->
-                <button type="button" id="done" class="btn green btn-lg pull-right" >Done</button>
-
-                <!-- All Notes -->
-                <button type="button" id="allNotes" class="btn btn-info btn-lg" >All Notes</button>
-            </div>
-
-            <!-- Notes Area -->
-            <div id="notePad">
-                <textarea name="" id="" rows="10"></textarea>
-            </div>
-
-            <!-- All Notes Container -->
-            <div id="notes" class="notes">
-            </div>
-            
-        </div>
+            <div class="col-md-offset-2 col-md-8">
+        
+                <!-- Buttons -->
+                <div class="buttons">
+    
+                    <!-- Add Notes -->
+                    <a href="/<%= currentUser._id %>/notes/new" class="btn btn-success btn-block">Create Now!</a>
+                    <!-- <button type="button" id="addNote" class="btn btn-info btn-lg" >Add Note</button> -->
+    
+                    <!-- Done -->
+                    <button type="button" id="done" class="btn green btn-lg pull-right" >Done</button>
+    
+                    <!-- All Notes -->
+                    <button type="button" id="allNotes" class="btn btn-info btn-lg" >All Notes</button>
+                </div>
+    
+                <!-- Notes Area -->
+                <div id="notePad">
+                    <textarea name="" id="" rows="10"></textarea>
+                </div>
+    
+                <!-- All Notes Container -->
+                <div id="notes" class="notes">
+                    all notes
+                </div>
+                
+            </div>     
+        
+        <% } %>
+        
     </div>
 </div>
-
 
 <% include partials/footer.ejs %>
