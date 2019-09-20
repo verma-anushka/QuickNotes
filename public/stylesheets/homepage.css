@@ -1,20 +1,94 @@
 .home-container{
-    margin-top: 120px;
+    margin-top: 70px;
 }
-#notePad, #allNotes, #done{
+.notes-container{
+    text-align: center;
+}
+
+/* .notes-container div{
+    float: left;
+} */
+/* #notePad, #allNotes, #done{
     display: none;
 }
 .buttons{
     margin-bottom: 20px;
+} */
+#delete{
+    float: left; 
+}
+ul{
+    list-style: none;
+}
+.allNotes li{
+    text-align: left;
+    float: left; 
+    width: 100%;
+    max-width: 100%;
+    font-size: 10px;
+    line-height: 1.5em;
+    border-left-width: 90px;
+    border-color: #CA3DD9;
+    color: #CA3DD9;
+    background-color: #FBEFFF;
+
+    margin-bottom: 10px;
+}
+.allNotes li div{
+    padding-left: 40px; 
+    height: 1px;
+}
+/* span button i{
+    display: none;
+} */
+span button{
+
+    background: #E74C3C;
+    height: 30px;
+    width: 1%;
+    /* display: none; */
+    outline: none;
+    border: #E74C3C;
+    text-align: center;
+    color: #FFF;
+    display: inline-block;
+    opacity: 0;
+    transition: 0.5s linear;
+}
+li:hover span button{
+    opacity: 1;
+    width: 30px;
+    height: 30px;
+    /* padding-left: 30px; */
+}
+span a{
+
+    background: green;
+    height: 30px;
+    width: 0px;
+    outline: none;
+    /* border: ; */
+    /* margin-right: 20px; */
+    line-height: 2;
+    text-align: center;
+    color: #FFF;
+    display: inline-block;
+    transition: 0.3s linear;
+
+}
+li:hover span a{
+    width: 30px;
 }
 textarea{
+    float: left; 
     width: 100%;
     max-width: 100%;
     font-size: 16px;
-    line-height: 1.5em;
+    /* line-height: 1.5em; */
     border-left-width: 20px;
     border-color: #CA3DD9;
     color: #CA3DD9;
     background-color: #FBEFFF;
-    padding: 10px;
+    /* padding: 10px; */
+    
 }

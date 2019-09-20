@@ -5,41 +5,74 @@
     <div class="row">
 
         <% if(currentUser && notes.length > 0 ){ %>
+            
+            <div class="row">
+                <div class="notes-container">
+                    <p>Your Notes!! </p>
+                    <div>
+                        <a href="/<%= currentUser._id %>/notes/new"><i class="fa fa-plus"></i></a>
+                    </div>
 
-            <div class="row text-center">
+                </div>
 
                 <% notes.forEach(function(note){ %>
-        
                     <% if( note.author.id.equals(currentUser._id) ){ %>
 
-                        <div class="col-md-3 col-sm-6">
-                            <div class="thumbnail">
-                                <h4><%= note.title %></h4>
+                        <div class="col-md-offset-2 col-md-8 col-sm-6 allNotes">
+
+                            <div class="row">
+
+                            <div class="col-md-12 col-sm-6 ">
+
+                            <ul>
+                                <li>
+                                <!-- <div class="col-md-1"> -->
+                                    <!-- Delete Notes -->
+                                    <span id="delete">
+                                        <form id="delete-form" action="/<%= currentUser._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
+                                            <button >
+                                                <!-- <span> -->
+                                                        <i class="fa fa-trash"></i>
+                                                        <!-- <i class="fa fa-trash-alt"></i> -->
+                                                <!-- </span> -->
+                                            </button>
+                                        </form>                                    
+                                    </span>
+                                <!-- </div> -->
+
+                                <!-- <div class="col-md-10">
+                                    <textarea name="" id="" rows="1"> -->
+                                    <div>
+
+                                        <%= note.title %>
+                                        <br />
+                                        <%= note.description %>
+
+                                    </div>
+
+                                    <!-- </textarea> 
+                                </div> -->
+
+                                <!-- <div class="col-md-1"> -->
+                                    <span id="edit" class="pull-right">
+                                        <a href="/<%= currentUser._id %>/notes/<%= note._id %>/edit">
+                                            <i class="fa fa-edit"></i>
+                                        </a>            
+                                    </span>
+                                <!-- </div> -->
+                                </li>
+                            </ul>
                             </div>
-                            <p>
-                                <%= note.description %>                            
-                            </p>
+                            </div>
                         </div>
-
-                        <div>
-                            <!-- Edit Notes -->
-                            <a class="btn btn-warning" href="/<%= currentUser._id %>/notes/<%= note._id %>/edit">EDIT</a>            
-                            <!-- <button type="button" id="editNote" class="btn btn-info btn-lg pull-right" >Edit</button> -->
-
-                            <!-- Delete -->
-                            <form id="delete-form" action="/<%= currentUser._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
-                                <button class="btn btn-danger">DELETE</button>
-                            </form>
-                        </div>                    
                     <% } else{ %>
 
                         <!-- <% console.log("no notes yet"); %>         -->
-                        <div class="col-md-offset-2 col-md-8">
-                            <!-- <div class="card-body"> -->
-                            <h1>Hello, <%= currentUser.username %></h1>
-                            <p class="lead">You haven't created any notes yet!</p>
-                            <a href="/<%= currentUser._id %>/notes/new" class="btn btn-success btn-block">Create Now!</a>
-                        </div>
+                        <!-- <div class="col-md-offset-5 col-md-2">
+                            <h1>Hello, <%= currentUser.username %></h1> -->
+                            <!-- <p class="lead">You haven't created any notes yet!</p>
+                            <a href="/<%= currentUser._id %>/notes/new" class="btn btn-success">Create Now!</a>
+                        </div> -->
                     
                     <% } %>   
                               
@@ -47,37 +80,45 @@
 
             </div>
             
-            <div class="col-md-offset-2 col-md-8">
+            <!-- <div class="col-md-offset-2 col-md-8"> -->
         
                 <!-- Buttons -->
-                <div class="buttons">
+                <!-- <div class="buttons"> -->
     
                     <!-- Add Notes -->
-                    <a href="/<%= currentUser._id %>/notes/new" class="btn btn-success btn-block">Create Now!</a>
+                    <!-- <a href="/<%= currentUser._id %>/notes/new" class="btn btn-success btn-block">Create Now!</a> -->
                     <!-- <button type="button" id="addNote" class="btn btn-info btn-lg" >Add Note</button> -->
     
                     <!-- Done -->
-                    <button type="button" id="done" class="btn green btn-lg pull-right" >Done</button>
+                    <!-- <button type="button" id="done" class="btn green btn-lg pull-right" >Done</button> -->
     
                     <!-- All Notes -->
-                    <button type="button" id="allNotes" class="btn btn-info btn-lg" >All Notes</button>
-                </div>
+                    <!-- <button type="button" id="allNotes" class="btn btn-info btn-lg" >All Notes</button> -->
+                <!-- </div> -->
     
                 <!-- Notes Area -->
-                <div id="notePad">
-                    <textarea name="" id="" rows="10"></textarea>
-                </div>
     
                 <!-- All Notes Container -->
-                <div id="notes" class="notes">
+                <!-- <div id="notes" class="notes">
                     all notes
-                </div>
+                </div> -->
                 
-            </div>     
+            <!-- </div>      -->
         
-        <% } %>
+        <% } else{ %>
+
+            <!-- <% console.log("no notes yet"); %>         -->
+            <div class="col-md-offset-2 col-md-8">
+                <!-- <div class="card-body"> -->
+                <h1>Hello, <%= currentUser.username %></h1>
+                <p class="lead">You haven't created any notes yet!</p>
+                <a href="/<%= currentUser._id %>/notes/new" class="btn btn-success btn-block">Create Now!</a>
+            </div>
+        
+        <% } %> 
         
     </div>
 </div>
 
+<script src="/js/notes.js"></script>
 <% include partials/footer.ejs %>
