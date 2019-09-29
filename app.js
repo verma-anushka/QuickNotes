@@ -23,6 +23,7 @@ var app = express();
 
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
+app.use(express.static(__dirname + "/images"));
 app.use(methodOverride("_method"));
 app.use(flash());
 
@@ -88,7 +89,7 @@ passport.use(new RememberMeStrategy(
 // AUTHENTICATION
 app.post("/", async function(req, res, next){
 
-    // console.log(req.body.form);
+    // SIGN UP
     if (req.body.form == 'signUp'){
         
         let errors = [];
@@ -160,8 +161,9 @@ app.post("/", async function(req, res, next){
     }
 }, function(req, res, next){
 
-    // console.log(req.body.form);
+    // LOGIN
     if(req.body.form == 'login'){
+
         passport.authenticate('local', function( err, user, info) {
             if (err) { 
                 // console.log(err);
@@ -170,7 +172,8 @@ app.post("/", async function(req, res, next){
             }
             if (!user) { 
                 // console.log( "user" + user);     
-                // console.log(user);     
+                // console.log(user);  
+                req.flash("error", "!Please enter a username");            
                 return res.redirect('/'); 
             }
             if (req.body.remember_me) { 
@@ -264,7 +267,8 @@ app.post("/", async function(req, res, next){
     }
 
 },function(req, res, next){
-    // console.log(req.body.form);
+
+    // LOGOUT
     if(req.body.form == 'logout'){
         req.logout();
         // console.log("logged out");

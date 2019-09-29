@@ -1,20 +1,94 @@
 /* Jumbotron */
+*{
+    /* background-image: url("../images/bg.jpg"); */
+    margin: 0;
+    padding: 0;
+}
+.home-slider{
+    background-repeat: no repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 100vh;
+    animation: slide 25s infinite;
+}
+.home-slider .load{
+    animation: slide 2s;
+}
+.home-slider .content{
+    color: #000;
+    width: 100%;
+    height: 100%;
+}
+.home-slider .principal{
+    left: 52%;
+    top: 52%;
+    transform: translate(-50%, -50%);
+    position: absolute;
+    letter-spacing: 2px;
+    text-align: center;
+}
+.home-slider h1{
+    font-size: 50px;
+    font-weight: 600;
+}
+.home-slider p{
+    font-size: 16px;
+    font-weight: 200;
+}
 
-.jumbotron{
-    /* ? */
+@keyframes slide{
+    0%{
+        background-image: url("../images/bg.jpg");
+    }
+    20%{
+        background-image: url("../images/bg.jpg");
+    }
+    20.01%{
+        background-image: url("../images/bg2.jpg");
+    }
+    40%{
+        background-image: url("../images/bg2.jpg");
+    }
+    40.01%{
+        background-image: url("../images/bg3.jpg");
+    }
+    60%{
+        background-image: url("../images/bg3.jpg");
+    }
+    60.01%{
+        background-image: url("../images/bg4.jpg");
+    }
+    80%{
+        background-image: url("../images/bg4.jpg");
+    }
+    80.01%{
+        background-image: url("../images/bg5.jpg");
+    }
+    100%{
+        background-image: url("../images/bg5.jpg");
+    }
+}
+/* .jumbotron{
     background-color: transparent;
     text-align: center;
     letter-spacing: 2.5px;
     padding: 10px;
-    margin-top: 150px;
-}
+    margin-top: 10em;
+} */
 
 .btn-color{
-    background-color: rgba(114,190,35,0.8)
+    color: #FFF;
+    background-color: #3f2414;
+    /* background-color: rgba(114,190,35,0.8); */
 } 
 .btn-color:hover{
-    background-color: rgba(114,190,35,0.8)
+    background-color: #a7795b;
+    border: solid 1px #3f2414; 
+    /* background-color: #724b1200; */
+
+    /* background-color: rgba(30, 58, 2, 0.8); */
 } 
-.sign-up{
+/* .sign-up{
     margin-top: 50px;
-}
+} */

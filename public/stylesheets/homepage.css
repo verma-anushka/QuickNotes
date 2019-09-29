@@ -90,5 +90,11 @@ textarea{
     color: #CA3DD9;
     background-color: #FBEFFF;
     /* padding: 10px; */
-    
 }
+div .content{
+    /* white-space: nowrap;  */
+    width: 700px; 
+    /* overflow: hidden; */
+    text-overflow: ellipsis; 
+    border: 1px solid #000000;
+  }
