@@ -67,15 +67,15 @@
         background-image: url("../images/bg5.jpg");
     }
 }
-.btn-color{
+.btn{
     color: #FFF;
-    background-color: #3f2414;
+    background-color: rgb(63, 36, 20);
     outline: none;
     /* background-color: rgba(114,190,35,0.8); */
 } 
-.btn-color:hover{
-    background-color: #a7795b;
-    border: solid 1px #3f2414; 
-    /* background-color: #724b1200; */
+.btn:hover{
+
+    color: #FFF;
+    background-color: rgb(168, 1, 1);
     outline: none;
 }

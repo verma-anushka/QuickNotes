@@ -27,48 +27,58 @@
             <div class="modal-content">
 
                 <!-- Header -->
-                <div class="modal-header">
-
+                <div class="m-header">
                     <!-- Close button -->
                     <button class="close" data-dismiss="modal">&times;</button>
                     <h4 class="myModalLabel"> Sign Up </h4>
+                    <br />
                 </div>
 
                 <!-- Body -->
-                <div class="modal-body">
-
-                    <!-- Signup Messages -->
-                    <div class="signupMsg"></div>
+                <div class="inputs">
 
                     <!-- Username -->
-                    <div class="form-group">
+                    <div class="form-group input-group">
                         <label for="username" class="sr-only">Username</label>
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
                         <input type="text" class="form-control" id="username" name="username" placeholder="Username" maxlength="30">
                     </div>
 
                     <!-- Email Address -->
-                    <div class="form-group">
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
                         <label for="email" class="sr-only">Email</label>
                         <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" maxlength="50">
                     </div>
 
                     <!-- Password -->
-                    <div class="form-group">
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                         <label for="password" class="sr-only">Password</label>
                         <input type="password" class="form-control" id="password" name="password" placeholder="Choose a password" maxlength="30">
                     </div>
 
                     <!-- Confirm Password -->
-                    <div class="form-group">
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                         <label for="password2" class="sr-only">Confirm Password</label>
                         <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm password" maxlength="30">
                     </div>
                 </div>
 
                 <!-- Footer -->
-                <div class="modal-footer">
-                    <button type="submit" class="btn green signUpButton" name="form" value="signUp">Sign Up</button>
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                <div class="footer">
+                    <button type="submit" class="btn green signUpButton" name="form" value="signUp">
+                        Sign Up    
+                        <i class="fa fa-user-plus"></i>
+                    </button>
+                    <p>
+                        Already have an account?! 
+                        <a href="">
+                            Login!
+                        </a>
+                    </p>
+                    <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> -->
                 </div>
 
             </div>
