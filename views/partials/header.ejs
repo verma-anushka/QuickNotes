@@ -88,46 +88,66 @@
                 <div class="modal-content">
 
                     <!-- Header -->
-                    <div class="modal-header">
+                    <div class="m-header">
                         <!-- Close button -->
                         <button class="close" data-dismiss="modal">&times;</button>
-                        <h4 id="myModalLabel"> Login: </h4>
+                        <h4 id="myModalLabel"> Login </h4>
+                        <br />
                     </div>
 
-                    <!-- Body -->
-                    <div class="modal-body">
+                    
 
+                    <!-- Body -->
+                    <!-- <div class="modal-body"> -->
+                    <div class="inputs">
                         <!-- Username -->
-                        <div class="form-group">
+                        <div class="form-group input-group">
                             <label for="username" class="sr-only">Username</label>
+                            <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                            
                             <input type="text" class="form-control" id="username" name="username" placeholder="Username" maxlength="30">
                         </div>
 
                         <!-- Password -->
-                        <div class="form-group">
+                        <div class="form-group input-group" >
                             <label for="password" class="sr-only">Password</label>
+                            <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                             <input type="password" class="form-control" id="password" name="password" placeholder="Password" maxlength="30">
                         </div>
-
                     </div>
+                        
+
+                    <!-- </div> -->
 
                     <div class="checkbox">
                         <!-- Remember Me -->
-                        <label>
+                        <label class="pull-left">
                             <input type="checkbox" name="rememberMe" id="rememberMe">
                             Remember Me
                         </label> 
                         
                         <!-- Forgot Password -->
-                        <a class="pull-right" style="cursor: pointer" data-dismiss="modal" data-target="#forgotPasswordModal" data-toggle="modal">
-                            Forgot Password
+                        <a class="pull-right forgot" style="cursor: pointer" data-dismiss="modal" data-target="#forgotPasswordModal" data-toggle="modal">
+                            Forgot Password?!
                         </a>
+
                     </div>
                     
                     <!-- Footer -->
-                    <div class="modal-footer">
-                        <button type="submit" class="btn green loginButton" name="form" value="login">Login</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <div class="footer">
+                        <button type="submit" class="btn green loginButton" name="form" value="login">
+                            Login
+                            <i class="fa fa-angle-double-right"></i>
+                            <!-- <i class="fa fa-sign-in-alt"></i> -->
+                        </button>
+                        <br />
+                        <p>
+                            Don't have an account?! 
+                            <a href="">
+                                Sign-Up!
+                            </a>
+                        </p>
+                        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> -->
                     </div>
 
                 </div>
@@ -159,7 +179,7 @@
         </div>
     </form>
 
-    <!-- FORGIT PASSWORD FORM -->
+    <!-- FORGOT PASSWORD FORM -->
     <form method="POST" id="forgotPasswordForm">
         <div class="modal" id="forgotPasswordModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
