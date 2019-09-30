@@ -2,7 +2,6 @@ html{
   position: relative;
   min-height: 100%;
 }
-
 body {
   font-family: 'Arvo', serif;
   /* ? */
@@ -10,7 +9,6 @@ body {
   background-attachment: fixed;
   background-size: cover;
 }
-
 /* Navigation Bar */
 .navbar-custom {
  
@@ -130,12 +128,42 @@ body {
 
 .container{
   margin-bottom: none;
+
+}
+.alert{
+  z-index: 1;
+  position: absolute;
+  
 }
 .errorMsg{
-  padding-top: 40px;
-    margin-top: 100px;
+  /* padding-top: 20px;
+    margin-top: 60px; */
+    left: 85%;
+    top: 85%;
+    animation: fade 15s;
+    animation-fill-mode: forwards;
 }
 .successMsg{
-  padding-top: 40px;
-    margin-top: 100px;
+  /* padding-top: 20px;
+    margin-top: 60px; */
+    left: 85%;
+    top: 85%;
+    animation: fade 1s5s;
+    animation-fill-mode: forwards;
+}
+@-webkit-keyframes fade{
+  0%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+@keyframes fade{
+  0%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
 }

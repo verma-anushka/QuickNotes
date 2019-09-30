@@ -1,10 +1,9 @@
-/* Jumbotron */
 *{
-    /* background-image: url("../images/bg.jpg"); */
     margin: 0;
     padding: 0;
 }
 .home-slider{
+    position: relative;
     background-repeat: no repeat;
     background-size: cover;
     background-position: center;
@@ -36,7 +35,6 @@
     font-size: 16px;
     font-weight: 200;
 }
-
 @keyframes slide{
     0%{
         background-image: url("../images/bg.jpg");
@@ -69,26 +67,15 @@
         background-image: url("../images/bg5.jpg");
     }
 }
-/* .jumbotron{
-    background-color: transparent;
-    text-align: center;
-    letter-spacing: 2.5px;
-    padding: 10px;
-    margin-top: 10em;
-} */
-
 .btn-color{
     color: #FFF;
     background-color: #3f2414;
+    outline: none;
     /* background-color: rgba(114,190,35,0.8); */
 } 
 .btn-color:hover{
     background-color: #a7795b;
     border: solid 1px #3f2414; 
     /* background-color: #724b1200; */
-
-    /* background-color: rgba(30, 58, 2, 0.8); */
-} 
-/* .sign-up{
-    margin-top: 50px;
-} */
+    outline: none;
+}

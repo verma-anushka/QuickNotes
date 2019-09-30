@@ -65,12 +65,16 @@
 
         <% if(error && error.length > 0){ %>
             <div class="alert alert-danger errorMsg" role="alert">
+                <i class="fa fa-times-circle"></i>
                 <%= error %>
             </div>
         <% } %>
         
+        <!-- <i class="fa fa-info-circle"></i> -->
+        <!-- <i class="fa fa-warning"></i> -->
         <% if(success && success.length > 0){ %>
             <div class="alert alert-success successMsg" role="alert">
+                <i class="fa fa-check"></i>
                 <%= success %>
             </div>
         <% } %>
