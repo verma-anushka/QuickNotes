@@ -1,159 +1,89 @@
 <% include partials/header.ejs %>
-
-<div class="profile-container">
-
-    <div class="row">
-
-        <div class="col-md-offset-2 col-md-8">
-            
-            <h2>General Account Settings</h2>
-
-            <div class="table-responsive">
-                <table class="table table-hover table-condensed table-bordered">
-                    <tr data-target="#updateUsername" data-toggle="modal">
-                        <td>Username</td>
-                        <td>Value</td>
-                    </tr>
-                    <tr data-target="#updateEmail" data-toggle="modal">
-                        <td>Email</td>
-                        <td>Value</td>
-                    </tr>
-                    <tr data-target="#updatePassword" data-toggle="modal">
-                        <td>Password</td>
-                        <td>********</td>
-                    </tr>
-                </table>
+<div class="user-profile">
+    <div class="hero-image">
+        <div class=" container">
+            <div class="row">               
+                <form action="/<%= user._id %>/profile/profileImg" method="POST" enctype="multipart/form-data">     
+                    <div class="col-md-offset-1 col-md-4 profile">
+                        <div class="thumbnail">
+                            <div class="img-container">
+                                <img class="avatar" src="<%=user.image%>" alt="Avatar">
+                                
+                            </div>
+                        </div>
+                        <!-- <div class="caption">
+                            Hi, <%= user.username%>
+                        </div> -->
+                        <div class="form-group">
+                            <!-- <p> -->
+                            <!-- <% if(user.image === "https://previews.123rf.com/images/tanyastock/tanyastock1803/tanyastock180300490/97923644-user-icon-avatar-login-sign-circle-button-with-soft-color-gradient-background-vector-.jpg"){%>
+                                    Add profile image!
+                            <% } else{ %>
+                                    Change profile image!
+                            <% } %> -->
+                            <br />
+                            <label for="image" >
+                                <input type="file" id="image" name="image" accept="image/*" capture class="hidden">
+                                <img src="http://macgroup.org/blog/wp-content/uploads/2011/10/iphone-camera-icon-150x150.jpg" alt="">        
+                                <br />
+                                <span id="filename">
+                                    Choose a file...
+                                </span>
+                            </label>
+                            <!-- </p> -->
+                        </div>
+                    </div>
+                    <div class="col-md-7 inputs">
+                        <div class="header">
+                            <h1>My Profile</h1>
+                            <i class="fa fa-id-card pull-right"></i>
+                        </div>
+                        <div class="form-group">
+                            <label for="username">Username </label>
+                            <input class="form-control" type="text" id="username" name="user[username]" placeholder="Username" value="<%= user.username%>">
+                        </div>
+                        <div class="form-group">
+                            <label for="firstName">First Name</label>
+                            <input class="form-control" type="text" id="firstName" name="user[firstName]" placeholder="First Name" value="<%= user.firstName%>">
+                        </div>
+                        <div class="form-group">
+                            <label for="lastName">Last Name</label>
+                            <input class="form-control" type="text" id="lastName" name="user[lastName]" placeholder="Last Name" value="<%= user.lastName%>">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input class="form-control" type="email" id="email" name="user[email]" placeholder="email" value="<%= user.email%>">
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Gender</label>
+                            <select class="form-control" name="user[email]" id="gender">
+                                <option disabled selected value> -- select an option -- </option>
+                                <option value="male">Male</option>
+                                <option value="female">Female</option>
+                                <option value="none">Prefer not to say</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="contact">Contact</label>
+                            <input class="form-control" type="number" id="contact" name="user[email]" placeholder="Contact Number" value="<%= user.contact%>">
+                        </div>
+                        <div class="form-group">
+                            <label for="bio">Bio</label>
+                            <textarea class="form-control bio" id="bio" name="user[bio]" placeholder="Tell us about yourself!" rows="10" maxlength="500"><%= user.bio%></textarea>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-offset-5 col-md-2">
+                                <div class="form-group submit">
+                                    <button class="btn">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <a href="/<%= user._id %>/notes">Go BACK</a> -->
+                    </div>
+                </form>
             </div>
-            
         </div>
+
     </div>
 </div>
-
-<!-- Update Username -->
-<!-- <form method="POST" id="updateUsernameForm"> -->
-    <div class="modal" id="updateUsername" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <!-- Header -->
-                <div class="modal-header">
-
-                    <!-- Close button -->
-                    <button class="close" data-dismiss="modal">&times;</button>
-                    <h4 id="myModalLabel"> Edit Username: </h4>
-                </div>
-
-                <!-- Body -->
-                <div class="modal-body">
-
-                    <!-- Update Username Messages -->
-                    <div class="updateUsernameMsg"></div>
-
-                    <!-- Username -->
-                    <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" class="form-control" id="username" name="username" value="Username value" maxlength="30">
-                    </div>
-                
-                </div>
-
-                <!-- Footer -->
-                <div class="modal-footer">
-                    <input type="submit" class="btn green" name="updateUsername" value="Submit">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-        </div>
-    </div>
-<!-- </form> -->
-
-<!-- Update Email -->
-<!-- <form method="POST" id="updateEmailForm"> -->
-    <div class="modal" id="updateEmail" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <!-- Header -->
-                <div class="modal-header">
-
-                    <!-- Close button -->
-                    <button class="close" data-dismiss="modal">&times;</button>
-                    <h4 id="myModalLabel"> Enter new email: </h4>
-                </div>
-
-                <!-- Body -->
-                <div class="modal-body">
-
-                    <!-- Update Username Messages -->
-                    <div class="updateUsernameMsg"></div>
-
-                    <!-- Username -->
-                    <div class="form-group">
-                        <label for="username">Email:</label>
-                        <input type="email" class="form-control" id="email" name="email" value="Email value" maxlength="50">
-                    </div>
-                
-                </div>
-
-                <!-- Footer -->
-                <div class="modal-footer">
-                    <input type="submit" class="btn green" name="updateUsername" value="Submit">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                </div>
-            </div>
-        </div>
-    </div>
-<!-- </form> -->
-
-<!-- Update Password -->
-<!-- <form method="POST" id="updatePasswordForm"> -->
-    <div class="modal" id="updatePassword" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-
-                <!-- Header -->
-                <div class="modal-header">
-
-                    <!-- Close button -->
-                    <button class="close" data-dismiss="modal">&times;</button>
-                    <h4 id="myModalLabel"> Change Password </h4>
-                </div>
-
-                <!-- Body -->
-                <div class="modal-body">
-
-                    <!-- Update Password Messages -->
-                    <div class="updatePasswordMsg"></div>
-
-                    <!-- Current Password -->
-                    <div class="form-group">
-                        <label for="currentPassword" class="sr-only">Current Password</label>
-                        <input type="password" class="form-control" id="currentPassword" name="currentPassword" placeholder="Current Password" maxlength="30">
-                    </div>
-
-                    <!-- New Password -->
-                    <div class="form-group">
-                        <label for="password" class="sr-only">New Password</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="New Password" maxlength="30">
-                    </div>
-
-                    <!-- Confirm Password -->
-                    <div class="form-group">
-                        <label for="password2" class="sr-only">Confirm Password</label>
-                        <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm Password" maxlength="30">
-                    </div>
-                
-                </div>
-
-                <!-- Footer -->
-                <div class="modal-footer">
-                    <input type="submit" class="btn green" name="updateUsername" value="Submit">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                </div>
-
-            </div>
-        </div>
-    </div>
-<!-- </form> -->
-
 <% include partials/footer.ejs %>

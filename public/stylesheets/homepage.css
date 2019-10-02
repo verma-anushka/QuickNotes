@@ -4,16 +4,6 @@
 .notes-container{
     text-align: center;
 }
-
-/* .notes-container div{
-    float: left;
-} */
-/* #notePad, #allNotes, #done{
-    display: none;
-}
-.buttons{
-    margin-bottom: 20px;
-} */
 #delete{
     float: left; 
 }

@@ -125,15 +125,12 @@ body {
 .navbar-custom .navbar-link:hover {
   color: #c0c0c0;
 }
-
 .container{
   margin-bottom: none;
-
 }
 .alert{
   z-index: 1;
   position: absolute;
-  
 }
 .errorMsg{
   /* padding-top: 20px;
@@ -167,12 +164,10 @@ body {
     opacity: 0;
   }
 }
-
 .modal {
   text-align: center;
   padding: 0!important;
 }
-
 .modal:before {
   content: '';
   display: inline-block;
@@ -180,7 +175,6 @@ body {
   vertical-align: middle;
   margin-right: -4px;
 }
-
 .modal-dialog {
   display: inline-block;
   text-align: left;
@@ -207,8 +201,6 @@ body {
   color: #000;
 }
 .modal .m-header button{
-  /* top: -10%;
-  left: -10%; */
   height: 25px;
   width: 25px;
   color: #3a2113;

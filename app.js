@@ -6,8 +6,8 @@ var express                = require("express"),
     async                  = require("async"),
     crypto                 = require("crypto"),
     nodemailer             = require("nodemailer"),
-    cookieParser           = require("cookie-parser"),
-    RememberMeStrategy     = require('passport-remember-me-extended').Strategy;
+    // cookieParser           = require("cookie-parser"),
+    // RememberMeStrategy     = require('passport-remember-me-extended').Strategy;
     flash                  = require("connect-flash"),
     methodOverride         = require("method-override"),
     passport               = require("passport"),
@@ -16,19 +16,51 @@ var express                = require("express"),
     middleware             = require("./middleware"),
     db                     = require('./database.js'), // Connecting database
     User                   = require("./models/user"),
-    Note                   = require("./models/notes");
+    Note                   = require("./models/notes"),
+    multer                 = require('multer');
+    var $ = require("jquery");
+// var storage = multer.diskStorage({
+//     destination: function(req, file, cb) {
+//         cb(null, './public/uploads/'); // Make sure this folder exists
+//     },
+//     filename: function(req, file, cb) {
+//         var ext = file.originalname.split('.').pop();
+//         cb(null, file.fieldname + '-' + Date.now() + '.' + ext);
+//     }
+// }),
+// upload = multer({ storage: storage }).single('image');
 
-
+var storage = multer.diskStorage({
+    filename: function(req, file, callback) {
+        callback(null, Date.now() + file.originalname);
+    }
+});
+var imageFilter = function (req, file, cb) {
+    // accept image files only
+    if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/i)) {
+        return cb(new Error('Only image files are allowed!'), false);
+    }
+    cb(null, true);
+};
+var upload = multer({ storage: storage, fileFilter: imageFilter});
+var cloudinary = require('cloudinary');
+cloudinary.config({ 
+    cloud_name: "dd0evlwdl", 
+    api_key: 576296943363917,
+    api_secret: "6qJhRW0-qQZkkLMr_ZhI0a4SQaE"
+});
+// CLOUDINARY_API_KEY = 576296943363917
+// CLOUDINARY_API_SECRET = 6qJhRW0-qQZkkLMr_ZhI0a4SQaE
 var app = express();
 
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
-app.use(express.static(__dirname + "/images"));
+// app.use(express.static(__dirname + "/js"));
 app.use(methodOverride("_method"));
 app.use(flash());
 
-app.use(express.cookieParser());
-app.use(express.bodyParser());
+// app.use(express.cookieParser());
+// app.use(express.bodyParser());
 
 // PASSPORT CONFIG
 app.use(require("express-session")({
@@ -39,7 +71,7 @@ app.use(require("express-session")({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(passport.authenticate('remember-me'));
+// app.use(passport.authenticate('remember-me'));
 
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
@@ -52,7 +84,6 @@ app.use(function(req, res, next){
     res.locals.success = req.flash("success");
     next();
 });
-
 // app.use(express.cookieParser());
 // app.use(express.bodyParser());
 // app.use(express.session({ secret: 'keyboard cat' }));
@@ -66,22 +97,22 @@ app.get("/", function(req, res){
     res.render("landing");
 });
 
-passport.use(new RememberMeStrategy(
-    function(token, done) {
-        Token.consume(token, function (err, user) {
-            if (err) { return done(err); }
-            if (!user) { return done(null, false); }
-            return done(null, user);
-        });
-    },
-    function(user, done) {
-        var token = utils.generateToken(64);
-        Token.save(token, { userId: user.id }, function(err) {
-            if (err) { return done(err); }
-            return done(null, token);
-        });
-    }
-));
+// passport.use(new RememberMeStrategy(
+//     function(token, done) {
+//         Token.consume(token, function (err, user) {
+//             if (err) { return done(err); }
+//             if (!user) { return done(null, false); }
+//             return done(null, user);
+//         });
+//     },
+//     function(user, done) {
+//         var token = utils.generateToken(64);
+//         Token.save(token, { userId: user.id }, function(err) {
+//             if (err) { return done(err); }
+//             return done(null, token);
+//         });
+//     }
+// ));
 
 
 
@@ -150,7 +181,7 @@ app.post("/", async function(req, res, next){
                         // console.log(user.password, user.password2);
                         console.log("registered");
                         req.flash("success", "Welcome to YelpCamp, " + user.username);
-                        return res.redirect('/' + user._id + '/notes');
+                        return res.redirect('/' + user._id + '/profile');
                     });
                 });
             }
@@ -194,7 +225,7 @@ app.post("/", async function(req, res, next){
                 req.flash("success", "Successfully Logged in!"); 
                 // console.log("user");
                 // console.log(user._id);
-                return res.redirect('/' + user._id + '/notes');
+                return res.redirect('/' + user._id + '/profile');
             });
         })(req, res) 
     }else{
@@ -445,8 +476,68 @@ app.delete("/:id/notes/:note_id", function(req, res){
 });
 
 // USER PROFILE
-app.get("/profile", function(req, res){
-    res.render("profile");
+app.get("/:id/profile", function(req, res){
+
+    User.findById(req.params.id, function(error, foundUser){
+
+        // console.log(foundUser);
+        if(error){
+            req.flash("error", "Something went wrong!" );
+            console.log(error);
+        }else{
+            res.render("profile", {user: foundUser});            
+        }
+    });
+});
+
+// ADD NEW NOTE
+// app.post("/:id/profile/edit", function(req,res){
+//     User.findByIdAndUpdate(req.params.id, req.body.user, function(error, updatedProfile){
+//         if(error){
+//             req.flash("error", "Something went wrong!" );
+//             res.redirect("back");
+//         }else{
+//             req.flash("success", "Successfully updated note!" );
+//             res.redirect(req.params.id + "/profile/" );
+//         }
+//     });   
+    
+// });
+app.post("/:id/profile/profileImg", upload.single('image'), function(req,res){
+    // res.send("POST Req");
+    User.findById(req.params.id, async function(error, user){
+        if(error){
+            req.flash("error", "Something went wrong!" );
+            console.log(error);
+        }else{
+            if(req.file){
+                try{
+                    var result = await cloudinary.v2.uploader.upload(req.file.path);
+                    user.imageId = result.public_id;
+                    user.image = result.secure_url;
+                }catch(err){
+                    req.flash("error", "Something went wrong!" );
+                    console.log(err);
+                    return res.redirect("back");
+                }
+            }
+        }
+        // user.save();
+        // console.log("req.body.user");
+        // console.log(req.body);
+        // console.log(req.body.user.firstName);
+        // console.log(req.body.user.lastName);
+        if(req.body.user.firstName.length > 0)
+            user.firstName = req.body.user.firstName;
+        if(req.body.user.lastName.length > 0)
+            user.lastName = req.body.user.lastName;
+        user.save();
+        req.flash("success", "Successfully Updated!" );
+        
+        console.log("user");
+        console.log(user);
+        res.redirect('/' + req.params.id + "/profile");
+    });
 });
 
 app.set('port', process.env.PORT || 3000);
