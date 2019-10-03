@@ -67,15 +67,90 @@
         background-image: url("../images/bg5.jpg");
     }
 }
-.btn{
+.signUpButton{
+    border-radius: 5px;
+    display: inline-block;
+    font-family: "Montserrat", "Trebuchet MS", Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    /* padding: .8em 1.4em;
+    padding-right: 4.7em; */
+    text-transform: uppercase;
+    padding-top: 12px;
+    padding-left: 25px;
+    padding-right: 40px;
+    padding-bottom: 12px;
+    /* margin-bottom: 14px; */
+    text-align: center;
+
     color: #FFF;
     background-color: rgb(63, 36, 20);
     outline: none;
-    /* background-color: rgba(114,190,35,0.8); */
-} 
-.btn:hover{
+    border: none;
+    transition: .2s;
+    
+}
+.signUpButton:before,
+.signUpButton:after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    padding-top: inherit;
+    padding-bottom: inherit;
+    padding-right: 20px;
+    content: "\00a0";
+    font-family: 'FontAwesome', sans-serif;
+    /* font-size: 1.2em; */
+    text-align: center;
+    transition: .2s;
+    transform-origin: 50% 60%;
+}
+.signUpButton:before {
+    background:  fadeout(#000, 90%);
+}
+.signUpButton:hover {
+    background: darken(rgb(63, 36, 20), 10%);
+}
+.signUpButton:active,
+.signUpButton:focus {
+    background: darken(rgb(63, 36, 20), 30%);
+    outline: none;
+}
+.arrow {
+    background: rgb(63, 36, 20);   
+}
+.arrow:hover {
+    background: darken(rgb(63, 36, 20), 10%);
+}
+.arrow:active,
+.arrow:focus {
+    background: darken(rgb(63, 36, 20), 30%);
+}
+.arrow:after {
+    content: "\F054";
+}
+.arrow:hover:after {
+    -webkit-animation: bounceright .3s alternate ease infinite;
+    animation: bounceright .3s alternate ease infinite;
+}
+@-webkit-keyframes bounceright {
+	from { -webkit-transform: translateX(0); }
+	to   { -webkit-transform: translateX(3px); }
+}
+@keyframes bounceright {
+	from { transform: translateX(0); }
+	to   { transform: translateX(3px); }
+}
+/* .btn{
+    color: #FFF;
+    background-color: rgb(63, 36, 20);
+    outline: none;
+    background-color: rgba(114,190,35,0.8);
+}  */
+/* .btn:hover{
 
     color: #FFF;
     background-color: rgb(168, 1, 1);
     outline: none;
-}
+} */

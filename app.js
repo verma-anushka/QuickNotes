@@ -381,7 +381,7 @@ app.post('/reset/:token', function (req, res) {
 
 // USER NOTES HOMEPAGE
 // middleware.isAuthenticated,
-app.get("/:id/notes",  async function(req, res){
+app.get("/:id/notes", middleware.isAuthenticated, async function(req, res){
 
     Note.find({}, function(error, allNotes){
         if(error){
@@ -394,7 +394,7 @@ app.get("/:id/notes",  async function(req, res){
 
 // ADD NEW NOTE
 // middleware.isLoggedIn,
-app.post("/:id/notes", function(req,res){
+app.post("/:id/notes", middleware.isAuthenticated, function(req,res){
     // res.send("POST Req");
     User.findById(req.params.id, function(error, user){
         if(error){
@@ -420,7 +420,7 @@ app.post("/:id/notes", function(req,res){
     });
 });
 
-app.get("/:id/notes/new", function(req, res){
+app.get("/:id/notes/new", middleware.isAuthenticated, function(req, res){
 
     User.findById(req.params.id, function(error, user){
         if(error){
@@ -434,7 +434,7 @@ app.get("/:id/notes/new", function(req, res){
 
 // EDIT
 //  middleware.checkNoteOwnership,
-app.get("/:id/notes/:note_id/edit", function(req, res){
+app.get("/:id/notes/:note_id/edit", middleware.isAuthenticated, function(req, res){
 
     Note.findById(req.params.note_id, function(error, foundNote){
         if(error){
@@ -448,7 +448,7 @@ app.get("/:id/notes/:note_id/edit", function(req, res){
 
 // UPDATE
 // middleware.checkNoteOwnership,
-app.put("/:id/notes/:note_id", function(req, res){
+app.put("/:id/notes/:note_id", middleware.isAuthenticated, function(req, res){
 
     // req.body.blog.body = req.sanitize(req.body.blog.body);
     Note.findByIdAndUpdate(req.params.note_id, req.body.note, function(error, updatedNote){
@@ -463,7 +463,7 @@ app.put("/:id/notes/:note_id", function(req, res){
 
 // DESTROY
 // middleware.checkNoteOwnership,
-app.delete("/:id/notes/:note_id", function(req, res){
+app.delete("/:id/notes/:note_id", middleware.isAuthenticated, function(req, res){
     
     Note.findByIdAndRemove(req.params.note_id, function(error){
         if(error){
@@ -476,7 +476,7 @@ app.delete("/:id/notes/:note_id", function(req, res){
 });
 
 // USER PROFILE
-app.get("/:id/profile", function(req, res){
+app.get("/:id/profile", middleware.isAuthenticated, function(req, res){
 
     User.findById(req.params.id, function(error, foundUser){
 
@@ -503,7 +503,7 @@ app.get("/:id/profile", function(req, res){
 //     });   
     
 // });
-app.post("/:id/profile/profileImg", upload.single('image'), function(req,res){
+app.post("/:id/profile/profileImg", middleware.isAuthenticated, upload.single('image'), function(req,res){
     // res.send("POST Req");
     User.findById(req.params.id, async function(error, user){
         if(error){

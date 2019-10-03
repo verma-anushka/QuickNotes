@@ -293,7 +293,7 @@ input#gText:focus{
 .modal .checkbox{
   height: 30px;
 }
-.modal button{
+.modal .btn{
   text-transform: uppercase;
   background-color: #3a2113;
   color: #FFF;
@@ -302,11 +302,11 @@ input#gText:focus{
   padding-right: 30px;
   margin-bottom: 14px;
 }
-.modal button:hover{
+.modal .btn:hover{
   background-color: rgb(58, 33, 19, 0.8);
   color: #FFF;
 }
-.modal button i{
+.modal .btn i{
   margin-left: 3px;
   height: 18px;
   width: 18px;

@@ -1,4 +1,3 @@
-
 var passport               = require("passport"),
 LocalStrategy          = require("passport-local"),
 passportLocalMongoose  = require("passport-local-mongoose");
@@ -9,37 +8,19 @@ middlewareObj.isAuthenticated = function(req, res, next){
     if (req.isAuthenticated()) {
         return next();
     }
-    
-    // req.flash('error_msg', 'Not Authorized.');
     req.flash("error", "You need to be logged in!" );
     res.redirect("/");
-
 };
 
-middlewareObj.isLogin = function(req, res, err, user, info, next){
+// // middleware
+// middlewareObj.isLoggedIn = function(req, res, next){
 
-    // console.log("nodc m vkxcn vkznv k");
-
-    if(req.body.form == 'login') {
-        
-        console.log(req.body.form);
-        passport.authenticate("local",{
-            // console.log("ccd kdcd");
-            successRedirect: "/home",
-            failureRedirect: "/profile"
-        });
-
-        console.log("no");
-        console.log("error");
-        console.log(err);
-        console.log("user");
-        console.log(user);
-        console.log("info");
-        console.log(info);
-        // return next();
-    }
-
-};
-
+//     if(req.isAuthenticated()){
+//         // console.log("logged in");
+//         return next();
+//     }
+//     req.flash("error", "You need to be logged in!" );
+//     res.redirect("/login");
+// }
 
 module.exports = middlewareObj;
