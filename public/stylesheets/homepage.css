@@ -1,4 +1,4 @@
-.home-container{
+/* .home-container{
     margin-top: 70px;
 }
 .notes-container{
@@ -28,15 +28,11 @@ ul{
     padding-left: 40px; 
     height: 1px;
 }
-/* span button i{
-    display: none;
-} */
 span button{
 
     background: #E74C3C;
     height: 30px;
     width: 1%;
-    /* display: none; */
     outline: none;
     border: #E74C3C;
     text-align: center;
@@ -49,7 +45,6 @@ li:hover span button{
     opacity: 1;
     width: 30px;
     height: 30px;
-    /* padding-left: 30px; */
 }
 span a{
 
@@ -57,8 +52,7 @@ span a{
     height: 30px;
     width: 0px;
     outline: none;
-    /* border: ; */
-    /* margin-right: 20px; */
+    margin-right: 20px;
     line-height: 2;
     text-align: center;
     color: #FFF;
@@ -74,15 +68,163 @@ textarea{
     width: 100%;
     max-width: 100%;
     font-size: 16px;
-    /* line-height: 1.5em; */
+    line-height: 1.5em;
     border-left-width: 20px;
     border-color: #CA3DD9;
     color: #CA3DD9;
     background-color: #FBEFFF;
-    /* padding: 10px; */
+    padding: 10px;
 }
-/* div .content{
-    width: 700px; 
-    text-overflow: ellipsis; 
-    border: 1px solid #000000;
-} */
+ */
+ @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+
+.new-note {
+    margin-top: 60px;
+    position: relative;
+    height: 550px;
+    /* width: 1200px; */
+    border: #000 solid 5px;
+    /* background: #0c0440; */
+    /* color: #fff; */
+}
+.new-note div {
+    position: absolute;
+    /* bottom: 10px; */
+    left: 20px;
+    /* -webkit-transition: 3s ease-in;
+    -moz-transition: 3s ease-in;
+    -o-transition: 3s ease-in; */
+    transition: 3s ease-in;
+}
+.new-note .blank {
+    top: 20px;
+}
+.new-note .meeting {
+    top: 80px;
+}
+.new-note .to-do {
+    top: 140px;
+}
+.new-note .weekly-planner {
+    top: 200px;
+}
+    .new-note .project-plan {
+    top: 260px;
+    }
+    .new-note .lecture {
+    top: 320px;
+    }
+    .new-note div i{
+    color: #000;
+    width: 40px;
+    height: 40px;
+    }
+    .new-note div.note div {
+        text-align: center;
+    width: 40px;
+    height: 40px;
+    border: #000 solid 5px;
+    /* -webkit-transition: 2s ease-in-out;
+    -moz-transition: 2s ease-in-out;
+    -o-transition: 2s ease-in-out; */
+    transition: 2.7s ease-in;
+    }
+
+    /* hover final state */
+    .blank:hover {
+    /* -webkit-transform: translate(540px,-200px);
+    -moz-transform: translate(540px,-200px);
+    -o-transform: translate(540px,-200px);
+    -ms-transform: translate(540px,-200px); */
+    transform: translate(940px,-380px);
+    }
+    .blank:hover div {
+    /* -webkit-transform: rotate(70deg);
+    -moz-transform: rotate(70deg);
+    -o-transform: rotate(70deg);
+    -ms-transform: rotate(70deg); */
+    transform: rotate(90deg);
+    }
+
+.to-do-container .completed {
+    color: gray;
+    text-decoration: line-through;
+}
+.to-do-container {
+    margin: 150px auto;
+    width: 400px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+}
+.to-do-container h1 {
+    background-color: rgb(58, 33, 19, 0.85);
+    margin: 0;
+    padding: 10px;
+    color:white;
+    font-weight: normal;
+    font-size: 30px;
+}
+.to-do-container .fa-plus {
+    float: right;
+}
+.to-do-container input[type=text]{
+    width: 100%;
+    padding: 15px 15px 15px 20px;
+    color: rgb(58, 33, 19, 0.85);
+    font-size: 25px;
+    box-sizing: border-box;
+    background-color: #ecf0f1;
+    border: 3px solid rgba(0,0,0,0);
+}
+.to-do-container input:focus {
+    border: 1px solid rgb(58, 33, 19, 0.85);
+}
+.to-do-container ul {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+}
+.to-do-container li {
+    background-color: #fff;
+    height: 40px;
+    line-height: 40px;
+    cursor: pointer;
+}
+.to-do-container li:nth-child(2n){
+    background-color:rgb(58, 33, 19, 0.15);
+}
+.to-do-container span {
+    width: 0px;
+    color: #fff;
+    background-color: #e74c3c;
+    display: inline-block;
+    text-align: center;
+    margin-right: 20px;
+    transition: 0.5s;
+    opacity: 0.5;
+}
+.to-do-container li:hover span {
+    width: 40px;
+    transition: 0.5s;
+    opacity: 1.0;
+}
+
+.to-do-container .btn{
+    text-transform: uppercase;
+    background-color: #3a2113;
+    color: #FFF;
+    padding-top: 12px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-bottom: 14px;
+  }
+  .to-do-container .btn:hover{
+    background-color: rgb(58, 33, 19, 0.8);
+    color: #FFF;
+  }
+  .to-do-container .btn i{
+    margin-left: 3px;
+    height: 18px;
+    width: 18px;
+    color: #FFF;
+  }

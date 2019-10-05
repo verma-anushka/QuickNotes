@@ -181,7 +181,7 @@ app.post("/", async function(req, res, next){
                         // console.log(user.password, user.password2);
                         console.log("registered");
                         req.flash("success", "Welcome to YelpCamp, " + user.username);
-                        return res.redirect('/' + user._id + '/profile');
+                        return res.redirect('/' + user._id + '/notes');
                     });
                 });
             }
@@ -225,7 +225,7 @@ app.post("/", async function(req, res, next){
                 req.flash("success", "Successfully Logged in!"); 
                 // console.log("user");
                 // console.log(user._id);
-                return res.redirect('/' + user._id + '/profile');
+                return res.redirect('/' + user._id + '/notes');
             });
         })(req, res) 
     }else{
@@ -381,23 +381,44 @@ app.post('/reset/:token', function (req, res) {
 
 // USER NOTES HOMEPAGE
 // middleware.isAuthenticated,
+// app.get("/:id/notes", middleware.isAuthenticated, async function(req, res){
+
+//     Note.find({}, function(error, allNotes){
+//         if(error){
+//             console.log(error);
+//         }else{
+//             res.render("homepage", {notes:allNotes});            
+//         }
+//     });
+// });
 app.get("/:id/notes", middleware.isAuthenticated, async function(req, res){
 
-    Note.find({}, function(error, allNotes){
+    User.findById(req.params.id, function(error, user){
         if(error){
+            req.flash("error", "Something went wrong! User not found!" );
             console.log(error);
         }else{
-            res.render("homepage", {notes:allNotes});            
+            Note.find({}, function(error, allNotes){
+                if(error){
+                    req.flash("error", "Something went wrong! Notes not found!" );
+                    console.log(error);
+                }else{
+                    res.render("homepage", {user: user, notes:allNotes});            
+                }
+            });
         }
     });
+    
 });
-
+    
 // ADD NEW NOTE
 // middleware.isLoggedIn,
 app.post("/:id/notes", middleware.isAuthenticated, function(req,res){
     // res.send("POST Req");
+    console.log("post");
     User.findById(req.params.id, function(error, user){
         if(error){
+            
             req.flash("error", "Something went wrong!" );
             console.log(error);
         }else{           
@@ -405,6 +426,8 @@ app.post("/:id/notes", middleware.isAuthenticated, function(req,res){
                 if(error){
                     console.log(error);
                 }else{
+
+                    console.log("Note create else 1");
                     note.author.id = req.user._id;
                     note.author.username = req.user.username;
                     note.save();
@@ -412,8 +435,10 @@ app.post("/:id/notes", middleware.isAuthenticated, function(req,res){
                     user.notes.push(note);
                     user.save();
                     // console.log(comment);
+                    console.log("Note create else 2");
+
                     req.flash("success", "Successfully added note!" );
-                    res.redirect(user._id + "/notes/" );
+                    res.redirect(req.params.id + "/notes" );
                 }
             });
         }

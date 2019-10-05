@@ -229,11 +229,6 @@ body {
   outline: none;
   border: none;
 }
-input#gText:focus{
-  outline: none;
-  /* box-shadow: #60391c; */
-  /* border: none; */
-}
 .modal .input-group span{
   text-align: center;
   outline: none;
