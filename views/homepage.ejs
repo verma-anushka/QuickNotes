@@ -1,71 +1,119 @@
 <% include partials/header.ejs %>
+<div class="home-container">
 
-<div class="notes-container">
-    <div class="container">
         <div class="row">
-            <div class="col-md-4 new-note">
-                    
-                <div class="note blank">
-                    <div>
-                        <i class="fa fa-sticky-note"></i>
-                    </div>
-                </div>
-                <div class="note meeting">
-                    <div>
-                        <i class="fa fa-handshake"></i>
-                    </div>
-                </div>
-                <div class="note to-do">
-                    <div>
-                        <i class="fa fa-clipboard-list"></i>
-                    </div>
-                </div>
-                <div class="note weekly-planner">
-                    <div>
-                        <i class="fa fa-calendar-alt"></i>
-                    </div>
-                </div>
-                <div class="note project-plan">
-                    <div>
-                        <i class="far fa-file-word"></i>
-                    </div>
-                </div>
-
-                <div class="note lecture">
-                    <div>
-                        <i class="fa fa-id-card"></i>
-                    </div>
-                </div>
-
-            </div>
-
-            <div class="col-md-8">
-
-                <form action="/<%= user._id %>/notes" method="POST">
-
-                    <!-- <% console.log(user._id) %> -->
-                    <div class="to-do-container">
-                        <h1 >TO DO LIST<i class="fa fa-plus"></i></h1>
-                        <div class="form-group">
-                            <input class="form-control to-do-input" type="text" name="note[title]" placeholder="Add Do List" autofocus>
+    
+            <% if(currentUser && notes.length > 0 ){ %>
+                
+                <div class="row">
+                    <div class="notes-container">
+                        <p>Your Notes!! </p>
+                        <div>
+                            <a href="/<%= currentUser._id %>/notes/new"><i class="fa fa-plus"></i></a>
                         </div>
-                        <ul class="to-do-ul">
-                            <li class="to-do-li"><span class="to-do-span"><i class="fa fa-trash"></i></span> GO TO HELL</li>
-                            <li class="to-do-li"><span class="to-do-span"><i class="fa fa-trash"></i></span> Go to school</li>
-                            <li class="to-do-li"><span class="to-do-span"><i class="fa fa-trash"></i></span> Go to lord</li>
-                        </ul>
-
-                        <div class="form-group">
-                            <button class="btn">
-                                Save!
-                            </button>
-                        </div>
+    
                     </div>
+    
+                    <% notes.forEach(function(note){ %>
+                        <% if( note.author.id.equals(currentUser._id) ){ %>
+    
+                            <div class="col-md-offset-2 col-md-8 col-sm-6 allNotes">
+    
+                                <div class="row">
+    
+                                <div class="col-md-12 col-sm-6 ">
+    
+                                <ul>
+                                    <li>
+                                    <!-- <div class="col-md-1"> -->
+                                        <!-- Delete Notes -->
+                                        <span id="delete">
+                                            <form id="delete-form" action="/<%= currentUser._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
+                                                <button >
+                                                    <!-- <span> -->
+                                                            <i class="fa fa-trash"></i>
+                                                            <!-- <i class="fa fa-trash-alt"></i> -->
+                                                    <!-- </span> -->
+                                                </button>
+                                            </form>                                    
+                                        </span>
+                                    <!-- </div> -->
+    
+                                    <!-- <div class="col-md-10">
+                                        <textarea name="" id="" rows="1"> -->
+                                        <div class="content" maxlength="40">
+                                            <%= note.title %>
+                                            <br />
+                                            <%= note.description %>
+                                        </div>
+                                        <!-- </textarea> 
+                                    </div> -->
+    
+                                    <!-- <div class="col-md-1"> -->
+                                        <span id="edit" class="pull-right">
+                                            <a href="/<%= currentUser._id %>/notes/<%= note._id %>/edit">
+                                                <i class="fa fa-edit"></i>
+                                            </a>            
+                                        </span>
+                                    <!-- </div> -->
+                                    </li>
+                                </ul>
+                                </div>
+                                </div>
+                            </div>
+                        <% } else{ %>
+    
+                            
+                            <!-- <div class="col-md-offset-5 col-md-2">
+                                <h1>Hello, <%= currentUser.username %></h1> -->
+                                <!-- <p class="lead">You haven't created any notes yet!</p>
+                                <a href="/<%= currentUser._id %>/notes/new" class="btn btn-success">Create Now!</a>
+                            </div> -->
+                        
+                        <% } %>   
+                                  
+                    <% }); %>
+    
+                </div>
+                
+                <!-- <div class="col-md-offset-2 col-md-8"> -->
+            
+                    <!-- Buttons -->
+                    <!-- <div class="buttons"> -->
+        
+                        <!-- Add Notes -->
+                        <!-- <a href="/<%= currentUser._id %>/notes/new" class="btn btn-success btn-block">Create Now!</a> -->
+                        <!-- <button type="button" id="addNote" class="btn btn-info btn-lg" >Add Note</button> -->
+        
+                        <!-- Done -->
+                        <!-- <button type="button" id="done" class="btn green btn-lg pull-right" >Done</button> -->
+        
+                        <!-- All Notes -->
+                        <!-- <button type="button" id="allNotes" class="btn btn-info btn-lg" >All Notes</button> -->
+                    <!-- </div> -->
+        
+                    <!-- Notes Area -->
+        
+                    <!-- All Notes Container -->
+                    <!-- <div id="notes" class="notes">
+                        all notes
+                    </div> -->
                     
-                </form>
-            </div>
+                <!-- </div>      -->
+            
+            <% } else{ %>
+    
+                <!-- <% console.log("no notes yet"); %>         -->
+                <div class="col-md-offset-2 col-md-8">
+                    <!-- <div class="card-body"> -->
+                    <h1>Hello, <%= currentUser.username %></h1>
+                    <p class="lead">You haven't created any notes yet!</p>
+                    <a href="/<%= currentUser._id %>/notes/new" class="btn btn-success btn-block">Create Now!</a>
+                </div>
+            
+            <% } %> 
+            
         </div>
     </div>
-</div>
 
-<% include partials/footer.ejs %>
+    <% include partials/footer.ejs %>
