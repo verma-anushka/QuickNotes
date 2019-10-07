@@ -61,6 +61,19 @@
 
             </div>
 
+            <div class="col-md-8 blank-section" >
+
+                <form action="/<%= user._id %>/notes" method="POST">
+                    <textarea class="js--trumbowyg" name="note[description]" placeholder="Start typing here...">
+                            Start typing here...
+                    </textarea>
+                    <div class="row">
+                        <button class="btn" type="submit">Save</button>
+                    </div> 
+                </form>
+                          
+            </div>
+
             <div class="col-md-8 to-do-section" style="display: none;">
 
                 <form action="/<%= user._id %>/notes" method="POST">
@@ -75,69 +88,36 @@
                                 </div>
                                 <ul class="to-do-ul">
                                     <!-- <li class="to-do-li"><span class="to-do-span"><i class="fa fa-trash"></i></span> GO TO HELL</li>
-                                    <li class="to-do-li"><span class="to-do-span"><i class="fa fa-trash"></i></span> Go to school</li>
                                     <li class="to-do-li"><span class="to-do-span"><i class="fa fa-trash"></i></span> Go to lord</li> -->
                                 </ul>
                         </div>
 
                         <div class="form-group">
-                            <button class="btn">
-                                Save!
-                            </button>
+                            <button class="btn">Save!</button>
                         </div>
                     </div>
                     
                 </form>
             </div>
 
-
-            <div class="col-md-8 lecture-section" >
+            <div class="col-md-8 lecture-section" style="display: none;" >
 
                 <form action="/<%= user._id %>/notes" method="POST">
-
-                    <div>
-                        <div class="lecture-container">
-                            <h1 >Lecture Notes!</h1>
-
-                            <div class="form-group">
-                                <label for="notes" class="sr-only">Lecture Notes</label>
-                                <textarea class="form-control" name="note[description]"  placeholder="Start adding notes..." id="notes" cols="30" rows="10">
-                                    Title:
-                                    Course:
-                                    Professor:
-                                    Notes:
-                                </textarea>
-                                <!-- <textarea class="form-control bio" id="bio" name="user[bio]" placeholder="Tell us about yourself!" rows="10" maxlength="500"><%= user.bio%></textarea> -->
-                            </div>
-                            
-                            
-                            <!-- <div class="form-group">
-                                <label for="lecture-title">Topic:</label>
-                                <input class="form-control lecture-input" id="lecture-title" type="text" name="note[title]" placeholder="">
-                            </div>
-                            <div class="form-group">
-                                <label for="lecture-course">Course:</label>
-                                <input class="form-control lecture-input" id="lecture-course" type="text" name="note[course]" placeholder="">
-                            </div>
-                            <div class="form-group">
-                                <label for="lecture-professor">Professor:</label>
-                                <input class="form-control lecture-input" id="lecture-professor" type="text" name="note[professor]" placeholder="">
-                            </div>
-                            <div class="form-group">
-                                <label for="lecture-professor">Notes:</label>
-                                <input class="form-control lecture-input" id="lecture-professor" type="text" name="note[professor]" placeholder="">
-                            </div>
-                             -->
-                        </div>
-
-                        <div class="form-group">
-                            <button class="btn">
-                                Save!
-                            </button>
-                        </div>
-                    </div>
-                    
+                    <!-- <trix-editor input="x"></trix-editor> -->
+                    <!-- <input id="x" value="Editor <span style='text-decoration: underline;'>content</span> goes here" type="hidden" name="note[description]" > -->
+                    <!-- <input id="x" type="hidden" name="note[description]" /> -->
+                    <textarea class="js--trumbowyg" name="note[description]">
+                        <!-- <Title></Title> -->
+                        Title:
+                        Course:
+                        Professor:
+                    </textarea>
+                
+                <div class="row">
+                    <button class="btn" type="submit">Save</button>
+                </div> 
                 </form>
+                          
             </div>
         </div>
     </div>

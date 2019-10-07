@@ -432,8 +432,8 @@ app.post("/:id/notes", middleware.isAuthenticated, function(req,res){
                     note.save();
 
                     user.notes.push(note);
-                    console.log("note");
-                    console.log(note);
+                    // console.log("note");
+                    // console.log(note);
                     user.save();
                     // console.log("Note create else 2");
 

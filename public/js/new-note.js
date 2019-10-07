@@ -72,6 +72,82 @@ $(document).ready(function(){
       $('.fa-plus').click(function(){
         $('.to-do-input').fadeToggle(1000);
       });
+
+
+
+
+
+
+
+
+
+
+      // LECTURE NOTES
+      // $('.lecture-textarea').click(function(){
+      //   $(this).val($('.lecture-textarea').val() +
+      //               '<h6> Title: </h6>' +
+      //               '<strong> Course: </strong>' + 
+      //               '<strong> Professor: </strong>' + 
+      //               '<strong> Notes: </strong>' 
+      //               ); 
+      // });
     
+  //     $('.lecture-textarea').val(
+  //                   '<h6> Title: </h6>' +
+  //                   '<strong> Course: </strong>' + 
+  //                   '<strong> Professor: </strong>' + 
+  //                   '<strong> Notes: </strong>' 
+  //     ); 
+
+      
+  // $('.ql-bold').on('click',function(event){
+  //   console.log("disable");
+  //   event.preventDefault();
+  //   $(".bold").attr("disabled", true);
+  // });
+
+
+  // var quill = new Quill('#lecture-textarea', {
+  //   modules: {
+  //     toolbar: [
+  //       ['bold', 'italic'],
+  //       ['link', 'blockquote', 'code-block', 'image'],
+  //       [{ list: 'ordered' }, { list: 'bullet' }]
+  //     ]
+  //   },
+  //   placeholder: 'Compose an epic...',
+  //   theme: 'snow'
+  // });
+  
+  // var form = document.querySelector('form');
+  // // var form = $("form");
+  // form.onsubmit = function() {
+  //   // Populate hidden form on submit
+  //   var note = document.querySelector('textarea');
+  //   note.value = JSON.stringify(quill.getContents());
+    
+  //   console.log("Submitted", $(form).serialize(), $(form).serializeArray());
+    
+  //   // No back end to actually submit to!
+  //   alert('Open the console to see the submit data!')
+  //   return false;
+  // };
+
+
+
+  // (function() {
+  //   Trix.config.textAttributes.underline = {
+  //     style: { "textDecoration": "underline" },
+  //     inheritable: true,
+  //     parser: function(element) {
+  //       var style = window.getComputedStyle(element);
+  //       return style.textDecoration === "underline";
+  //     }
+  //   }
+    
+  //   var buttonHTML = '<button type="button" class="underline" data-trix-attribute="underline" title="underline">U</button>'
+  //   var groupElement = Trix.config.toolbar.note[description].querySelector(".text_tools")
+  //   groupElement.insertAdjacentHTML("beforeend", buttonHTML)
+  // }).call(this);
 
 });
