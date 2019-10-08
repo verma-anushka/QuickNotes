@@ -1,9 +1,10 @@
 <% include partials/header.ejs %>
-<div class="home-container">
 
-        <div class="row">
     
             <% if(currentUser && notes.length > 0 ){ %>
+                <div class="home-container">
+
+                        <div class="row">
                 
                 <div class="row">
                     <div class="notes-container">
@@ -76,6 +77,8 @@
                     <% }); %>
     
                 </div>
+            </div>
+                </div>
                 
                 <!-- <div class="col-md-offset-2 col-md-8"> -->
             
@@ -103,57 +106,59 @@
                 <!-- </div>      -->
             
             <% } else{ %>
-                <div class="col-md-offset-2 col-md-8 no-notes">
-                    <h1>Hello, <%= currentUser.username %> !</h1>
-                    <div class="thumbnail">
-
-                        <div class="img-container">
-                            <img class="avatar" src="<%= currentUser.image%>" alt="Avatar">
+                <div class="no-notes">
+                    <div class="hero-image">
+                        <div class="col-md-offset-2 col-md-8 no-notes-container">
+                            <h1>Hello, <%= currentUser.username %> !</h1>
+                            <div class="thumbnail">
+                                <div class="img-container">
+                                    <img class="avatar" src="<%= currentUser.image%>" alt="Avatar">
+                                </div>
+                            </div>
+                            <h3>You haven't created any notes yet!</h3>
+                            <a href="/<%= currentUser._id %>/notes/new" class="btn">Create Now!</a>
+                            <br />
+                            <button class="pulse-button-hover">
+                                <a href="">
+                                    <i class="fa fa-sticky-note"></i>
+                                </a>
+                            </button>
+                            <button class="pulse-button-hover">
+                                <a href="">
+                                    <i class="fa fa-handshake"></i>
+                                </a>
+                            </button>
+                            <button class="pulse-button-hover">
+                                <a href="">
+                                    <i class="fa fa-clipboard-list"></i>
+                                </a>
+                            </button>
+                            <button class="pulse-button-hover">
+                                <a href="">
+                                    <i class="fa fa-calendar-alt"></i>
+                                </a>
+                            </button>
+                            <button class="pulse-button-hover">
+                                <a href="">
+                                    <i class="fa fa-file-word"></i>
+                                </a>
+                            </button>
+                            <button class="pulse-button-hover">
+                                <a href="">
+                                    <i class="fa fa-id-card"></i>
+                                </a>
+                            </button>
+                            <!-- <button class="pulse-button-hover">
+                                <a href="">
+                                    <i class="fa fa-sticky-note"></i>
+                                </a>
+                            </button> -->
                         </div>
                     </div>
-                    <h3>You haven't created any notes yet!</h3>
-                    <a href="/<%= currentUser._id %>/notes/new" class="btn">Create Now!</a>
-                    <br />
-                    <button class="pulse-button-hover">
-                        <a href="">
-                            <i class="fa fa-sticky-note"></i>
-                        </a>
-                    </button>
-                    <button class="pulse-button-hover">
-                        <a href="">
-                            <i class="fa fa-sticky-note"></i>
-                        </a>
-                    </button>
-                    <button class="pulse-button-hover">
-                        <a href="">
-                            <i class="fa fa-sticky-note"></i>
-                        </a>
-                    </button>
-                    <button class="pulse-button-hover">
-                        <a href="">
-                            <i class="fa fa-sticky-note"></i>
-                        </a>
-                    </button>
-                    <button class="pulse-button-hover">
-                        <a href="">
-                            <i class="fa fa-sticky-note"></i>
-                        </a>
-                    </button>
-                    <button class="pulse-button-hover">
-                        <a href="">
-                            <i class="fa fa-sticky-note"></i>
-                        </a>
-                    </button>
-                    <button class="pulse-button-hover">
-                        <a href="">
-                            <i class="fa fa-sticky-note"></i>
-                        </a>
-                    </button>
                 </div>
             <% } %> 
             
-        </div>
-    </div>
+
 
     <% include partials/footer.ejs %>
 
