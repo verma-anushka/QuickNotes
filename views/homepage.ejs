@@ -8,10 +8,10 @@
                 <div class="row">
                     <div class="notes-container">
                         <p>Your Notes!! </p>
+                        
                         <div>
                             <a href="/<%= currentUser._id %>/notes/new"><i class="fa fa-plus"></i></a>
                         </div>
-    
                     </div>
     
                     <% notes.forEach(function(note){ %>
@@ -65,9 +65,10 @@
     
                             
                             <!-- <div class="col-md-offset-5 col-md-2">
-                                <h1>Hello, <%= currentUser.username %></h1> -->
-                                <!-- <p class="lead">You haven't created any notes yet!</p>
-                                <a href="/<%= currentUser._id %>/notes/new" class="btn btn-success">Create Now!</a>
+                                <h1>Hello, <%= currentUser.username %></h1>
+                                    
+                                <p class="lead">You haven't created any notes yet!</p>
+                                <a href="/<%= currentUser._id %>/notes/new" class="btn">Create Now!</a>
                             </div> -->
                         
                         <% } %>   
@@ -102,18 +103,57 @@
                 <!-- </div>      -->
             
             <% } else{ %>
-    
-                <!-- <% console.log("no notes yet"); %>         -->
-                <div class="col-md-offset-2 col-md-8">
-                    <!-- <div class="card-body"> -->
-                    <h1>Hello, <%= currentUser.username %></h1>
-                    <p class="lead">You haven't created any notes yet!</p>
-                    <a href="/<%= currentUser._id %>/notes/new" class="btn btn-success btn-block">Create Now!</a>
+                <div class="col-md-offset-2 col-md-8 no-notes">
+                    <h1>Hello, <%= currentUser.username %> !</h1>
+                    <div class="thumbnail">
+
+                        <div class="img-container">
+                            <img class="avatar" src="<%= currentUser.image%>" alt="Avatar">
+                        </div>
+                    </div>
+                    <h3>You haven't created any notes yet!</h3>
+                    <a href="/<%= currentUser._id %>/notes/new" class="btn">Create Now!</a>
+                    <br />
+                    <button class="pulse-button-hover">
+                        <a href="">
+                            <i class="fa fa-sticky-note"></i>
+                        </a>
+                    </button>
+                    <button class="pulse-button-hover">
+                        <a href="">
+                            <i class="fa fa-sticky-note"></i>
+                        </a>
+                    </button>
+                    <button class="pulse-button-hover">
+                        <a href="">
+                            <i class="fa fa-sticky-note"></i>
+                        </a>
+                    </button>
+                    <button class="pulse-button-hover">
+                        <a href="">
+                            <i class="fa fa-sticky-note"></i>
+                        </a>
+                    </button>
+                    <button class="pulse-button-hover">
+                        <a href="">
+                            <i class="fa fa-sticky-note"></i>
+                        </a>
+                    </button>
+                    <button class="pulse-button-hover">
+                        <a href="">
+                            <i class="fa fa-sticky-note"></i>
+                        </a>
+                    </button>
+                    <button class="pulse-button-hover">
+                        <a href="">
+                            <i class="fa fa-sticky-note"></i>
+                        </a>
+                    </button>
                 </div>
-            
             <% } %> 
             
         </div>
     </div>
 
     <% include partials/footer.ejs %>
+
