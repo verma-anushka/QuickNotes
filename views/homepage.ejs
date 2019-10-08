@@ -1,164 +1,106 @@
 <% include partials/header.ejs %>
 
     
-            <% if(currentUser && notes.length > 0 ){ %>
-                <div class="home-container">
+<% if(currentUser && notes.length > 0 ){ %>
 
-                        <div class="row">
-                
-                <div class="row">
-                    <div class="notes-container">
-                        <p>Your Notes!! </p>
-                        
-                        <div>
-                            <a href="/<%= currentUser._id %>/notes/new"><i class="fa fa-plus"></i></a>
-                        </div>
+    <div class="home-container">
+        <div class="row">
+            <div class="row">
+                <div class="notes-container">
+                    <div>
+                        <p>Your Notes!!</p>
+                        <a href="/<%= currentUser._id %>/notes/new"><i class="fa fa-plus"></i></a>
                     </div>
-    
-                    <% notes.forEach(function(note){ %>
-                        <% if( note.author.id.equals(currentUser._id) ){ %>
-    
-                            <div class="col-md-offset-2 col-md-8 col-sm-6 allNotes">
-    
-                                <div class="row">
-    
+                </div>
+
+                <% notes.forEach(function(note){ %>
+                    <% if( note.author.id.equals(currentUser._id) ){ %>
+                        <div class="col-md-offset-2 col-md-8 col-sm-6 allNotes">
+                            <div class="row">
                                 <div class="col-md-12 col-sm-6 ">
-    
-                                <ul>
-                                    <li>
-                                    <!-- <div class="col-md-1"> -->
-                                        <!-- Delete Notes -->
-                                        <span id="delete">
-                                            <form id="delete-form" action="/<%= currentUser._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
-                                                <button >
-                                                    <!-- <span> -->
-                                                            <i class="fa fa-trash"></i>
-                                                            <!-- <i class="fa fa-trash-alt"></i> -->
-                                                    <!-- </span> -->
-                                                </button>
-                                            </form>                                    
-                                        </span>
-                                    <!-- </div> -->
-    
-                                    <!-- <div class="col-md-10">
-                                        <textarea name="" id="" rows="1"> -->
-                                        <div class="content" maxlength="40">
-                                            <%= note.title %>
-                                            <br />
-                                            <%- note.description %>
-                                        </div>
-                                        <!-- </textarea> 
-                                    </div> -->
-    
-                                    <!-- <div class="col-md-1"> -->
-                                        <span id="edit" class="pull-right">
-                                            <a href="/<%= currentUser._id %>/notes/<%= note._id %>/edit">
-                                                <i class="fa fa-edit"></i>
-                                            </a>            
-                                        </span>
-                                    <!-- </div> -->
-                                    </li>
-                                </ul>
-                                </div>
+                                    <ul>
+                                        <li>
+                                            <!-- Delete Notes -->
+                                            <span id="delete">
+                                                <form id="delete-form" action="/<%= currentUser._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
+                                                    <button >
+                                                        <i class="fa fa-trash"></i>
+                                                        <!-- <i class="fa fa-trash-alt"></i> -->
+                                                    </button>
+                                                </form>                                    
+                                            </span>
+                                            <div class="content" maxlength="40">
+                                                <%= note.title %>
+                                                <br />
+                                                <%- note.description %>
+                                            </div>
+                                            <span id="edit" class="pull-right">
+                                                <a href="/<%= currentUser._id %>/notes/<%= note._id %>/edit">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>            
+                                            </span>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
-                        <% } else{ %>
-    
-                            
-                            <!-- <div class="col-md-offset-5 col-md-2">
-                                <h1>Hello, <%= currentUser.username %></h1>
-                                    
-                                <p class="lead">You haven't created any notes yet!</p>
-                                <a href="/<%= currentUser._id %>/notes/new" class="btn">Create Now!</a>
-                            </div> -->
-                        
-                        <% } %>   
-                                  
-                    <% }); %>
-    
-                </div>
-            </div>
-                </div>
-                
-                <!-- <div class="col-md-offset-2 col-md-8"> -->
-            
-                    <!-- Buttons -->
-                    <!-- <div class="buttons"> -->
-        
-                        <!-- Add Notes -->
-                        <!-- <a href="/<%= currentUser._id %>/notes/new" class="btn btn-success btn-block">Create Now!</a> -->
-                        <!-- <button type="button" id="addNote" class="btn btn-info btn-lg" >Add Note</button> -->
-        
-                        <!-- Done -->
-                        <!-- <button type="button" id="done" class="btn green btn-lg pull-right" >Done</button> -->
-        
-                        <!-- All Notes -->
-                        <!-- <button type="button" id="allNotes" class="btn btn-info btn-lg" >All Notes</button> -->
-                    <!-- </div> -->
-        
-                    <!-- Notes Area -->
-        
-                    <!-- All Notes Container -->
-                    <!-- <div id="notes" class="notes">
-                        all notes
-                    </div> -->
-                    
-                <!-- </div>      -->
-            
-            <% } else{ %>
-                <div class="no-notes">
-                    <div class="hero-image">
-                        <div class="col-md-offset-2 col-md-8 no-notes-container">
-                            <h1>Hello, <%= currentUser.username %> !</h1>
-                            <div class="thumbnail">
-                                <div class="img-container">
-                                    <img class="avatar" src="<%= currentUser.image%>" alt="Avatar">
-                                </div>
-                            </div>
-                            <h3>You haven't created any notes yet!</h3>
-                            <a href="/<%= currentUser._id %>/notes/new" class="btn">Create Now!</a>
-                            <br />
-                            <button class="pulse-button-hover">
-                                <a href="">
-                                    <i class="fa fa-sticky-note"></i>
-                                </a>
-                            </button>
-                            <button class="pulse-button-hover">
-                                <a href="">
-                                    <i class="fa fa-handshake"></i>
-                                </a>
-                            </button>
-                            <button class="pulse-button-hover">
-                                <a href="">
-                                    <i class="fa fa-clipboard-list"></i>
-                                </a>
-                            </button>
-                            <button class="pulse-button-hover">
-                                <a href="">
-                                    <i class="fa fa-calendar-alt"></i>
-                                </a>
-                            </button>
-                            <button class="pulse-button-hover">
-                                <a href="">
-                                    <i class="fa fa-file-word"></i>
-                                </a>
-                            </button>
-                            <button class="pulse-button-hover">
-                                <a href="">
-                                    <i class="fa fa-id-card"></i>
-                                </a>
-                            </button>
-                            <!-- <button class="pulse-button-hover">
-                                <a href="">
-                                    <i class="fa fa-sticky-note"></i>
-                                </a>
-                            </button> -->
                         </div>
+                    <% } else{ %>
+                        <!-- <div class="col-md-offset-5 col-md-2">
+                            <p class="lead">You haven't created any notes yet!</p>
+                        </div> -->  
+                    <% } %>   
+                <% }); %>
+            </div>
+        </div>
+    </div>
+ 
+<% } else{ %>
+    <div class="no-notes">
+        <div class="hero-image">
+            <div class="col-md-offset-2 col-md-8 no-notes-container">
+                <h1>Hello, <%= currentUser.username %> !</h1>
+                <div class="thumbnail">
+                    <div class="img-container">
+                        <img class="avatar" src="<%= currentUser.image%>" alt="Avatar">
                     </div>
                 </div>
-            <% } %> 
-            
+                <h3>You haven't created any notes yet!</h3>
+                <a href="/<%= currentUser._id %>/notes/new" class="btn">Create Now!</a>
+                <br />
+                <button class="pulse-button-hover">
+                    <a href="">
+                        <i class="fa fa-sticky-note"></i>
+                    </a>
+                </button>
+                <button class="pulse-button-hover">
+                    <a href="">
+                        <i class="fa fa-handshake"></i>
+                    </a>
+                </button>
+                <button class="pulse-button-hover">
+                    <a href="">
+                        <i class="fa fa-clipboard-list"></i>
+                    </a>
+                </button>
+                <button class="pulse-button-hover">
+                    <a href="">
+                        <i class="fa fa-calendar-alt"></i>
+                    </a>
+                </button>
+                <button class="pulse-button-hover">
+                    <a href="">
+                        <i class="fa fa-file-word"></i>
+                    </a>
+                </button>
+                <button class="pulse-button-hover">
+                    <a href="">
+                        <i class="fa fa-id-card"></i>
+                    </a>
+                </button>
+            </div>
+        </div>
+    </div>
+<% } %> 
 
-
-    <% include partials/footer.ejs %>
+<% include partials/footer.ejs %>
 
