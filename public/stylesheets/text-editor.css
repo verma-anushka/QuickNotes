@@ -32,7 +32,7 @@
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  padding: 3% 2%;
+  padding: 3% 4.5%;
   min-height: 300px;
   width: 100%;
   border-style: none;
@@ -594,7 +594,7 @@
   position: absolute;
   text-indent: 0;
   font-family: 'FontAwesome';
-  font-size:1.25rem;
+  font-size:1.75rem;
   top: 0.5rem;
   left: 0.5rem;
   color:#000;
@@ -604,17 +604,14 @@
   content: "\f121";
 }
 .trumbowyg-button-pane li button.trumbowyg-formatting-button:before {
-/* //textheight */
-  content: "\f034"; 
-  
+  /* textheight */
+  content: "\f034";  
 }
-
 .trumbowyg-button-pane li button.trumbowyg-bold-button:before,
 .trumbowyg-button-pane li button.trumbowyg-strong-button:before {
   /* bold */
   content: "\f032"; 
 }
-
 .trumbowyg-button-pane li button.trumbowyg-italic-button:before ,
 .trumbowyg-button-pane li button.trumbowyg-em-button:before {
   /* italics */

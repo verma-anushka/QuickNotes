@@ -159,7 +159,7 @@
 .blank-section textarea{
   text-align: left;
 }
-.blank-section .btn{
+.btn{
     text-transform: uppercase;
     background-color: #3a2113;
     color: #FFF;
@@ -168,11 +168,11 @@
     padding-right: 30px;
     margin-bottom: 14px;
 }
-.blank-section .btn:hover{
+.btn:hover{
     background-color: rgb(58, 33, 19, 0.8);
     color: #FFF;
 }
-.blank-section .btn i{
+.btn i{
     margin-left: 3px;
     height: 18px;
     width: 18px;
@@ -184,5 +184,11 @@
     vertical-align: bottom;
     text-decoration: underline;
   } */
+.lecture-section{
+    margin-top: 80px; 
+}
+.lecture-section textarea{
+    margin-top: 8px; 
+}
 
 
