@@ -159,6 +159,25 @@
 .blank-section textarea{
   text-align: left;
 }
+.blank-section .btn{
+    text-transform: uppercase;
+    background-color: #3a2113;
+    color: #FFF;
+    padding-top: 12px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-bottom: 14px;
+}
+.blank-section .btn:hover{
+    background-color: rgb(58, 33, 19, 0.8);
+    color: #FFF;
+}
+.blank-section .btn i{
+    margin-left: 3px;
+    height: 18px;
+    width: 18px;
+    color: #FFF;
+}
 /* lecture notes */
   /* trix-toolbar button.underline {
     font-size: 18px;

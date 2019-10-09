@@ -219,7 +219,9 @@
                 italic: {
                     key: 'I'
                 },
-                underline: {},
+                underline: {
+                    key: 'U'
+                },
                 strikethrough: {},
 
                 strong: {
@@ -229,6 +231,10 @@
                 em: {
                     func: 'italic',
                     key: 'I'
+                },
+                u: {
+                    func: 'underline',
+                    key: 'U'
                 },
                 del: {
                     func: 'strikethrough'

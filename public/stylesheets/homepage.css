@@ -5,8 +5,11 @@
   margin-right: 0;
   margin-left: 0;
 }
-.notes-container{
+.notes-container {
     text-align: center;
+}
+.notes-container textarea {
+    text-align: left;
 }
 #delete{
     float: left; 

@@ -26,11 +26,13 @@
 }
 .trumbowyg-editor,
 .trumbowyg-textarea {
+  line-height: 15px;
+  text-align: left;
   position: relative;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  padding: 1% 2%;
+  padding: 3% 2%;
   min-height: 300px;
   width: 100%;
   border-style: none;
@@ -52,13 +54,14 @@
   white-space: normal;
 }
 .trumbowyg-box.trumbowyg-editor-visible .trumbowyg-textarea {
-  position: absolute;
-  top: 37px;
+  display: none;
+  /* position: absolute; */
+  /* top: 37px;
   height: 1px !important;
   width: 25%;
   min-height: 0 !important;
   padding: 0;
-  background: none;
+  background: none; */
 }
 .trumbowyg-box.trumbowyg-editor-hidden .trumbowyg-textarea {
   display: block;
@@ -77,149 +80,133 @@
   margin: 0;
   padding: 0;
   list-style-type: none;
-  line-height: 10px;
+  /* line-height: 10px; */
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
- 
- .trumbowyg-button-pane li {
-   display: inline-block;
-   text-align: center;
-   overflow: hidden;
- }
- 
- .trumbowyg-button-pane li.trumbowyg-separator {
-   width: 1px;
-   background: #fff;
-   height: auto;
- }
- 
- .trumbowyg-button-pane.trumbowyg-disable li:not(.trumbowyg-not-disable) button:not(.trumbowyg-active) {
-   opacity: 0.2;
-   cursor: default;
- }
- 
- .trumbowyg-button-pane.trumbowyg-disable li.trumbowyg-separator {
- 
- }
- 
- .trumbowyg-button-pane:not(.trumbowyg-disable) li button:hover,
- .trumbowyg-button-pane:not(.trumbowyg-disable) li button:focus,
- .trumbowyg-button-pane li button.trumbowyg-active,
- .trumbowyg-button-pane li.trumbowyg-not-disable button:hover,
- .trumbowyg-button-pane li.trumbowyg-not-disable button:focus {
-   background-color: #FFF;
-   outline: none;
- }
- 
- .trumbowyg-button-pane li .trumbowyg-open-dropdown:after {
-   display: block;
-   content: " ";
-   position: absolute;
-   top: 1rem;
-   right: 0.25rem;
-   height: 0;
-   width: 0;
-   border: 3px solid transparent;
-   border-top-color: #555;
- }
- 
- .trumbowyg-button-pane .trumbowyg-buttons-right {
-   float: right;
-   width: auto;
- }
- 
- .trumbowyg-button-pane .trumbowyg-buttons-right button {
-   float: left;
- }
- 
- .trumbowyg-dropdown {
-   width: auto;
-   max-width: 15rem;
-   border: 1px solid #ecf0f1;
-   padding: 5px 0;
-   border-top: none;
-   background: #FFF;
-   margin-left: -1px;
-   -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0 2px 3px;
-   box-shadow: rgba(0, 0, 0, 0.1) 0 2px 3px;
- }
- 
- .trumbowyg-dropdown button {
-   display: block;
-   width: 100%;
-   height: 35px;
-   line-height: 35px;
-   text-decoration: none;
-   background: #FFF;
-   padding: 0 14px;
-   color: #333;
-   border: none;
-   cursor: pointer;
-   text-align: left;
-   font-size: 15px;
-   -webkit-transition: all 0.15s;
-   transition: all 0.15s;
- }
- 
- .trumbowyg-dropdown button:hover,
- .trumbowyg-dropdown button:focus {
-   background: #efefef;
- }
- /* Modal box */
- 
- .trumbowyg-modal {
-   position: absolute;
-   top: 0;
-   left: 50%;
-   margin-left: -260px;
-   width: 520px;
-   height: 290px;
-   overflow: hidden;
- }
- 
- .trumbowyg-modal-box {
-   position: absolute;
-   top: 0;
-   left: 50%;
-   margin-left: -250px;
-   width: 500px;
-   height: 275px;
-   z-index: 1;
-   background-color: #FFF;
-   /* text-align: center; */
-   -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 2px 3px;
-   box-shadow: rgba(0, 0, 0, 0.2) 0 2px 3px;
-   -webkit-backface-visibility: hidden;
-   backface-visibility: hidden;
- }
- 
- .trumbowyg-modal-box .trumbowyg-modal-title {
-   font-size: 2rem;
-   font-weight: bold;
-   margin: 0 0 20px;
-   padding: 15px 0 13px;
-   display: block;
-   border-bottom: 1px solid #EEE;
-   color: #333;
-   background: #fbfcfc;
- }
- 
- .trumbowyg-modal-box .trumbowyg-progress {
-   width: 100%;
-   background: #F00;
-   height: 3px;
-   position: absolute;
-   top: 58px;
- }
- 
- .trumbowyg-modal-box .trumbowyg-progress .trumbowyg-progress-bar {
-   background: #2BC06A;
-   height: 100%;
-   -webkit-transition: width 0.15s linear;
-   transition: width 0.15s linear;
- }
- 
+.trumbowyg-button-pane li {
+  display: inline-block;
+  text-align: center;
+  overflow: hidden;
+}
+.trumbowyg-button-pane li.trumbowyg-separator {
+  text-align: center; 
+  width: 1px;
+  background: #fff;
+  height: auto;
+}
+.trumbowyg-button-pane.trumbowyg-disable li:not(.trumbowyg-not-disable) button:not(.trumbowyg-active) {
+  opacity: 0.2;
+  cursor: default;
+}
+/* .trumbowyg-button-pane.trumbowyg-disable li.trumbowyg-separator {
+} */
+.trumbowyg-button-pane:not(.trumbowyg-disable) li button:hover,
+.trumbowyg-button-pane:not(.trumbowyg-disable) li button:focus,
+.trumbowyg-button-pane li button.trumbowyg-active,
+.trumbowyg-button-pane li.trumbowyg-not-disable button:hover,
+.trumbowyg-button-pane li.trumbowyg-not-disable button:focus {
+  background-color: #FFF;
+  outline: none;
+}
+.trumbowyg-button-pane li .trumbowyg-open-dropdown:after {
+  display: block;
+  content: " ";
+  position: absolute;
+  top: 1rem;
+  right: 0.25rem;
+  height: 0;
+  width: 0;
+  border: 3px solid transparent;
+  border-top-color: #555;
+}
+.trumbowyg-button-pane .trumbowyg-buttons-right {
+  float: right;
+  width: auto;
+}
+.trumbowyg-button-pane .trumbowyg-buttons-right button {
+  float: left;
+}
+.trumbowyg-dropdown {
+  width: auto;
+  max-width: 15rem;
+  border: 1px solid #ecf0f1;
+  padding: 5px 0;
+  border-top: none;
+  background: #FFF;
+  margin-left: -1px;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.1) 0 2px 3px;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 2px 3px;
+}
+.trumbowyg-dropdown button {
+  display: block;
+  width: 100%;
+  height: 35px;
+  line-height: 35px;
+  text-decoration: none;
+  background: #FFF;
+  padding: 0 14px;
+  color: #333;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  font-size: 15px;
+  -webkit-transition: all 0.15s;
+  transition: all 0.15s;
+}
+.trumbowyg-dropdown button:hover,
+.trumbowyg-dropdown button:focus {
+  background: #efefef;
+}
+/* Modal box */
+.trumbowyg-modal {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -260px;
+  width: 520px;
+  height: 290px;
+  overflow: hidden;
+}
+.trumbowyg-modal-box {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  margin-left: -250px;
+  width: 500px;
+  height: 275px;
+  z-index: 1;
+  background-color: #FFF;
+  text-align: center;
+  -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 2px 3px;
+  box-shadow: rgba(0, 0, 0, 0.2) 0 2px 3px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.trumbowyg-modal-box .trumbowyg-modal-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin: 0 0 20px;
+  padding: 15px 0 13px;
+  display: block;
+  border-bottom: 1px solid #EEE;
+  color: #333;
+  background: #fbfcfc;
+}
+.trumbowyg-modal-box .trumbowyg-progress {
+  width: 100%;
+  background: #F00;
+  height: 3px;
+  position: absolute;
+  top: 58px;
+}
+.trumbowyg-modal-box .trumbowyg-progress .trumbowyg-progress-bar {
+  background: #2BC06A;
+  height: 100%;
+  -webkit-transition: width 0.15s linear;
+  transition: width 0.15s linear;
+}
+
  .trumbowyg-modal-box label {
    display: block;
    position: relative;
@@ -348,9 +335,7 @@
    left: 0;
    display: none;
  }
- /**
-  * Fullscreen
-  */
+ /* Fullscreen */
  
  body.trumbowyg-body-fullscreen {
    overflow: hidden;
@@ -588,161 +573,120 @@
  .trumbowyg-black .trumbowyg-overlay {
    background-color: rgba(0, 0, 0, 0.5);
  }
- /*
-  * Buttons icons
-  */
- 
- .trumbowyg-button-pane li button {
-   display: block;
-   position: relative;
-   background-color:#fff;
-   font-weight: 900;
-   margin:1px;
-   text-indent: -9999px;
-   width: 35px;
-   height: 35px;
-   overflow: hidden;
-   border: none;
-   cursor: pointer;
-   -webkit-transition: background-color 0.15s, background-image 0.15s, opacity 0.15s;
-   transition: background-color 0.15s, background-image 0.15s, opacity 0.15s;
-   /* English and others */
-   
-   
- }
+/* Buttons icons */
+.trumbowyg-button-pane li button {
+  display: block;
+  position: relative;
+  background-color:#fff;
+  font-weight: 900;
+  line-height: 30px;
+  margin:1px;
+  text-indent: -9999px;
+  width: 35px;
+  height: 35px;
+  overflow: hidden;
+  border: none;
+  cursor: pointer;
+  -webkit-transition: background-color 0.15s, background-image 0.15s, opacity 0.15s;
+  transition: background-color 0.15s, background-image 0.15s, opacity 0.15s;
+}
+.trumbowyg-button-pane li button:before {
+  position: absolute;
+  text-indent: 0;
+  font-family: 'FontAwesome';
+  font-size:1.25rem;
+  top: 0.5rem;
+  left: 0.5rem;
+  color:#000;
+}
+.trumbowyg-button-pane li button.trumbowyg-viewHTML-button:before { 
+  /* code */
+  content: "\f121";
+}
+.trumbowyg-button-pane li button.trumbowyg-formatting-button:before {
+/* //textheight */
+  content: "\f034"; 
+  
+}
 
- .trumbowyg-button-pane li button::before {
-    position: absolute;
-    text-indent: 0;
-    font-family: 'FontAwesome';
-    font-size:1.25rem;
-    top: 0.5rem;
-    left: 0.5rem;
-    color:#000;
-  }
- 
- .trumbowyg-button-pane li button.trumbowyg-viewHTML-button ::before {
-   
-    /* code */
-   content: "\f121"; 
-   
- }
- 
- .trumbowyg-button-pane li button.trumbowyg-formatting-button::before {
-  /* //textheight */
-    content: "\f034"; 
-   
- }
- 
- .trumbowyg-button-pane li button.trumbowyg-bold-button::before,
- .trumbowyg-button-pane li button.trumbowyg-strong-button::before {
-   /* bold */
-   content: "\f032"; 
- }
- 
- .trumbowyg-button-pane li button.trumbowyg-italic-button::before ,
- .trumbowyg-button-pane li button.trumbowyg-em-button::before {
-   /* italics */
-    content: "\f033"; 
- }
- 
- .trumbowyg-button-pane li button.trumbowyg-underline-button::before {
+.trumbowyg-button-pane li button.trumbowyg-bold-button:before,
+.trumbowyg-button-pane li button.trumbowyg-strong-button:before {
+  /* bold */
+  content: "\f032"; 
+}
+
+.trumbowyg-button-pane li button.trumbowyg-italic-button:before ,
+.trumbowyg-button-pane li button.trumbowyg-em-button:before {
+  /* italics */
+  content: "\f033"; 
+} 
+.trumbowyg-button-pane li button.trumbowyg-underline-button {
   /* underline */
-    content: "\f0cd"; 
-     
- }
- 
- .trumbowyg-button-pane li button.trumbowyg-strikethrough-button::before ,
- .trumbowyg-button-pane li button.trumbowyg-del-button::before {
-     /*underline  */
+  content: "\f0cd";
+}
+ .trumbowyg-button-pane li button.trumbowyg-strikethrough-button:before ,
+ .trumbowyg-button-pane li button.trumbowyg-del-button:before {
+   /* strikethrough */
     content: "\f0cc"; 
-     
  }
- 
- .trumbowyg-button-pane li button.trumbowyg-link-button ::before {
+.trumbowyg-button-pane li button.trumbowyg-link-button:before {
   /* link */
-   content: "\f0c1";
-   
- }
- 
- .trumbowyg-button-pane li button.trumbowyg-insertImage-button ::before {
-     /*pic  */
-    content: "\f03e";
-   
- }
- 
- .trumbowyg-button-pane li button.trumbowyg-justifyLeft-button::before {
-     /*align left  */
-    content: "\f036";
-
- }
- 
- .trumbowyg-button-pane li button.trumbowyg-justifyCenter-button ::before {
-     /*align cneter  */
-    content: "\f037";
-   
- }
- 
- .trumbowyg-button-pane li button.trumbowyg-justifyRight-button::before {
-     /*align right  */
-    content: "\f038";
-   
- }
- 
- .trumbowyg-button-pane li button.trumbowyg-justifyFull-button::before {
-     /*justilfy full  */
-    content: "\f039"; 
-   
- }
- 
- .trumbowyg-button-pane li button.trumbowyg-unorderedList-button ::before {
-     /*list ul  */
-    content: "\f0ca";
-   
- }
- 
- .trumbowyg-button-pane li button.trumbowyg-orderedList-button::before {
-     /*list ol  */
-    content: "\f0cb";
-   }
- 
- 
- .trumbowyg-button-pane li button.trumbowyg-horizontalRule-button::before {
-     /* pic */
-    content: "\f068"; 
-    }
- 
- .trumbowyg-button-pane li button.trumbowyg-removeformat-button::before {
-     /*times circle  */
-    content: "\f057"; 
-   
- }
- 
- .trumbowyg-button-pane li button.trumbowyg-fullscreen-button::before {
-     /*expand  */
-    content: "\f065"; 
- }
- 
- .trumbowyg-button-pane li button.trumbowyg-close-button::before {
-     
-    /* times */
-    content: "\f00d";
-   
- }
- 
- .trumbowyg-fullscreen .trumbowyg-button-pane li button.trumbowyg-fullscreen-button::before {
-    /* pictures */
-    content: "\f066"; 
-   
- }
- 
- .trumbowyg-button-pane li:first-child button {
-   margin-left: 0.25rem;
- }
- 
- .trumbowyg-button-pane li:last-child button {
-   margin-right: 0rem;
- }
+  content: "\f0c1";
+}
+.trumbowyg-button-pane li button.trumbowyg-insertImage-button:before {
+  /* pic  */
+  content: "\f03e";
+}
+.trumbowyg-button-pane li button.trumbowyg-justifyLeft-button:before {
+  /* align left */
+  content: "\f036";
+}
+.trumbowyg-button-pane li button.trumbowyg-justifyCenter-button:before {
+  /* align cneter */
+  content: "\f037";
+}
+.trumbowyg-button-pane li button.trumbowyg-justifyRight-button:before {
+  /* align right */
+  content: "\f038";
+}
+.trumbowyg-button-pane li button.trumbowyg-justifyFull-button:before {
+  /* justilfy full */
+  content: "\f039";  
+}
+.trumbowyg-button-pane li button.trumbowyg-unorderedList-button:before {
+  /* list ul */
+  content: "\f0ca";
+}
+.trumbowyg-button-pane li button.trumbowyg-orderedList-button:before {
+  /* list ol */
+  content: "\f0cb";
+}
+.trumbowyg-button-pane li button.trumbowyg-horizontalRule-button:before {
+  /* pic */
+  content: "\f068"; 
+  }
+.trumbowyg-button-pane li button.trumbowyg-removeformat-button:before {
+  /* times circle */
+  content: "\f057";  
+}
+.trumbowyg-button-pane li button.trumbowyg-fullscreen-button:before {
+  /* expand */
+  content: "\f065"; 
+}
+.trumbowyg-button-pane li button.trumbowyg-close-button:before {
+  /* times */
+  content: "\f00d"; 
+}
+.trumbowyg-fullscreen .trumbowyg-button-pane li button.trumbowyg-fullscreen-button:before {
+  /* pictures */
+  content: "\f066";  
+}
+.trumbowyg-button-pane li:first-child button {
+  margin-left: 0.25rem;
+}
+.trumbowyg-button-pane li:last-child button {
+  margin-right: 0rem;
+}
  /* French */
  
  .trumbowyg-fr .trumbowyg-button-pane li button.trumbowyg-bold-button,
@@ -762,9 +706,11 @@
  .trumbowyg-black {
    /* French */
  }
- 
+ .trumbowyg-button-pane li{
+  text-align: center;
+ }
  .trumbowyg-black .trumbowyg-button-pane li button {
-   background-image: url("https://github.com/Alex-D/Trumbowyg/blob/master/plugins/preformatted/ui/images/icons-white/preformatted.png");
+   /* background-image: url("https://github.com/Alex-D/Trumbowyg/blob/master/plugins/preformatted/ui/images/icons-white/preformatted.png"); */
    /* English and others */
  }
  

@@ -183,6 +183,19 @@ body {
 .modal .modal-content{
   text-align: center;
   padding: 20px 20px 20px 20px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-animation-name: modal-animation; /* Chrome, Safari, Opera */
+  -webkit-animation-duration: 0.5s; /* Chrome, Safari, Opera */
+  animation-name: modal-animation;
+  animation-duration: 0.5s;
+}
+@-webkit-keyframes modal-animation {
+  from {top:-100px;opacity: 0;}
+  to {top:0px;opacity:1;}
+}
+@keyframes modal-animation {
+  from {top:-100px;opacity: 0;}
+  to {top:0px;opacity:1;}
 }
 .modal .m-header h4{
   font-size: 44px;

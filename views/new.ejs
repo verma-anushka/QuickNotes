@@ -59,11 +59,12 @@
             </div>
 
             <!-- BLANK NOTES -->
-            <div class="col-md-8 blank-section" >
+            <div class="col-md-8 blank-section" style="display: none;">
                 <form action="/<%= user._id %>/notes" method="POST">
                     <h1 >NOTES...</h1>
-                    <textarea class="js--trumbowyg" name="note[description]" placeholder="Start typing here...">
-                        Start typing here...
+                    <textarea class="js--trumbowyg" name="note[description]" placeholder="Start typing here..." style="text-align: left;">
+                        &lt;placeholder&gt;Start typing here...&lt;/placeholder&gt;
+                        
                     </textarea>
                     <div class="row">
                         <button class="btn" type="submit">Save</button>
@@ -92,16 +93,16 @@
             </div>
 
             <!-- LECTURE NOTES -->
-            <div class="col-md-8 lecture-section" style="display: none;" >
+            <div class="col-md-8 lecture-section"  >
                 <form action="/<%= user._id %>/notes" method="POST">
                     <!-- <trix-editor input="x"></trix-editor> -->
                     <!-- <input id="x" value="Editor <span style='text-decoration: underline;'>content</span> goes here" type="hidden" name="note[description]" > -->
                     <!-- <input id="x" type="hidden" name="note[description]" /> -->
                     <h1 >LECTURE NOTES</i></h1>
                     <textarea class="js--trumbowyg" name="note[description]">
-                        Title:
-                        Course:
-                        Professor:
+                        &lt;h2&gt;Title:&lt;/h2&gt;
+                        &lt;strong&gt;Course:&lt;/strong&gt;
+                        &lt;strong&gt;Professor:&lt;/strong&gt;
                     </textarea>
                     <div class="row">
                         <button class="btn" type="submit">Save</button>
