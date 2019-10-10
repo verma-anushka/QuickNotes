@@ -133,19 +133,15 @@ body {
   position: absolute;
 }
 .errorMsg{
-  /* padding-top: 20px;
-    margin-top: 60px; */
     left: 85%;
     top: 85%;
     animation: fade 15s;
     animation-fill-mode: forwards;
 }
 .successMsg{
-  /* padding-top: 20px;
-    margin-top: 60px; */
     left: 85%;
     top: 85%;
-    animation: fade 1s5s;
+    animation: fade 15s;
     animation-fill-mode: forwards;
 }
 @-webkit-keyframes fade{

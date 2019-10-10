@@ -21,11 +21,98 @@
         </div>
     </div>
 </div> -->
-
 <div class="notes-container">
+<div id="body-row">
+    <div id="sidebar-container" class="sidebar-collapsed d-none d-md-block">
+        <ul class="list-group">
+            <!-- <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
+            </li> -->
+            <a href="#" id="collapse-container" data-toggle="sidebar-colapse" class="bg-dark list-group-item list-group-item-action d-flex align-items-center">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <span id="collapse-icon" class="fa fa-2x mr-3"></span>
+                    <span id="collapse-text" class="menu-collapsed">Collapse</span>
+                </div>
+            </a>
+            <a href="#submenu1" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                <div class="d-flex w-100 justify-content-start align-items-center">
+                    <span class="fa fa-clipboard fa-fw mr-3"></span> 
+                    <span class="menu-collapsed new-note-dropdown show-text">New Note</span>
+                    <span class="submenu-icon ml-auto"></span>
+                </div>
+            </a>
+            <div id='submenu1' class="collapse sidebar-submenu">
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed">
+                        <div class="note blank">
+                            <div>
+                                <!-- BLANK NOTE -->
+                                <i class="fa fa-sticky-note"></i>
+                                <br />
+                                <span class="note-type">Blank</span>
+                                <!-- <span class="menu-collapsed new-note-dropdown show-text">Blank Note</span> -->
+                            </div>
+                        </div>
+                    </span>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed">
+                        <div class="note meeting">
+                            <div>
+                                <!-- MEETING NOTE -->
+                                <i class="fa fa-handshake"></i>
+                            </div>
+                        </div>
+                    </span>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed">
+                        <div class="note to-do">
+                            <div>
+                                <!-- TO-DO LIST -->
+                                <i class="fa fa-clipboard-list"></i>
+                            </div>
+                        </div>
+                    </span>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed">
+                        <div class="note weekly-planner">
+                            <div>
+                                <!-- WEEKLY PLANNER -->
+                                <i class="fa fa-calendar-alt"></i>
+                            </div>
+                        </div>
+                    </span>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed">
+                        <div class="note project-plan">
+                            <div>
+                                <!-- PROJECT PLANNER -->
+                                <i class="fa fa-file-word"></i>
+                            </div>
+                        </div>
+                    </span>
+                </a>
+                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <span class="menu-collapsed">
+                        <div class="note lecture">
+                            <div>
+                                <!-- LECTURE NOTES -->
+                                <i class="fa fa-id-card"></i>
+                            </div>
+                        </div>
+                    </span>
+                </a>
+            </div>
+        </ul>
+    </div>
+</div>
+
     <div class="container">
-        <div class="row">
-            <div class="col-md-4 new-note">
+            
+        <!-- <div class="row"> -->
+            <!-- <div class="col-md-1 new-note">
                 <div class="note blank">
                     <div>
                         <i class="fa fa-sticky-note"></i>
@@ -56,15 +143,14 @@
                         <i class="fa fa-id-card"></i>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
             <!-- BLANK NOTES -->
-            <div class="col-md-8 blank-section" style="display: none;">
+            <div class="col-md-offset-2 col-md-9 blank-section" style="display: none;">
                 <form action="/<%= user._id %>/notes" method="POST">
                     <h1 >NOTES...</h1>
                     <textarea class="js--trumbowyg" name="note[description]" placeholder="Start typing here..." style="text-align: left;">
                         &lt;placeholder&gt;Start typing here...&lt;/placeholder&gt;
-                        
                     </textarea>
                     <div class="row">
                         <button class="btn" type="submit">Save</button>
@@ -93,7 +179,7 @@
             </div>
 
             <!-- LECTURE NOTES -->
-            <div class="col-md-8 lecture-section"  >
+            <div class="col-md-8 lecture-section" style="display: none;" >
                 <form action="/<%= user._id %>/notes" method="POST">
                     <!-- <trix-editor input="x"></trix-editor> -->
                     <!-- <input id="x" value="Editor <span style='text-decoration: underline;'>content</span> goes here" type="hidden" name="note[description]" > -->
@@ -111,7 +197,7 @@
                 </form>               
             </div>
 
-        </div>
+        <!-- </div> -->
     </div>
 </div>
 

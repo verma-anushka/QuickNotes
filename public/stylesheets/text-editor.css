@@ -700,16 +700,14 @@
    background-position: 5px -295px;
  }
  
- .trumbowyg-black {
-   /* French */
- }
+ /* .trumbowyg-black {
+ } */
  .trumbowyg-button-pane li{
   text-align: center;
  }
- .trumbowyg-black .trumbowyg-button-pane li button {
-   /* background-image: url("https://github.com/Alex-D/Trumbowyg/blob/master/plugins/preformatted/ui/images/icons-white/preformatted.png"); */
-   /* English and others */
- }
+ /* .trumbowyg-black .trumbowyg-button-pane li button {
+   background-image: url("https://github.com/Alex-D/Trumbowyg/blob/master/plugins/preformatted/ui/images/icons-white/preformatted.png");
+ } */
  
  .trumbowyg-black .trumbowyg-button-pane li button.trumbowyg-viewHTML-button {
    background-position: 5px -570px;
@@ -821,10 +819,9 @@
    /* French */
    /* Black theme */
    
-   .trumbowyg-button-pane li button {
-     
-     /* English and others */
-   }
+   /* .trumbowyg-button-pane li button {
+  
+   } */
    .trumbowyg-button-pane li button.trumbowyg-viewHTML-button {
      background-position: 5px -570px;
    }
@@ -896,9 +893,8 @@
    .trumbowyg-fr .trumbowyg-button-pane li button.trumbowyg-del-button {
      background-position: 5px -295px;
    }
-   .trumbowyg-black {
-     /* French */
-   }
+   /* .trumbowyg-black {
+   } */
    .trumbowyg-black .trumbowyg-button-pane li button {
      -webkit-background-size: 25px 600px !important;
      background-size: 25px 600px !important;
