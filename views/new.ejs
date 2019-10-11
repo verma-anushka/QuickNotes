@@ -1,280 +1,258 @@
 <% include partials/header.ejs %>
 
-<!-- <div class="container">
-    <div class="row">
-        <h1 style="text-align: center"><%= user.username%>, add new notes!</h1>
-        <div style="width: 30%; margin: 25px auto;">
-            <form action="/<%= user._id %>/notes" method="POST">
-                <div class="form-group">
-                    <input class="form-control" type="text" name="note[title]" placeholder="Title" autofocus>
+<div class="notes-container">
+    <div id="body-row">
+        <div id="sidebar-container" class="sidebar-collapsed d-none d-md-block">
+            <ul class="list-group">
+                <a href="#" id="collapse-container" data-toggle="sidebar-colapse" class="bg-dark list-group-item list-group-item-action d-flex align-items-center">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span id="collapse-icon" class="fa fa-2x mr-3"></span>
+                        <span id="collapse-text" class="menu-collapsed">Collapse</span>
+                    </div>
+                </a>
+                <a href="#submenu1" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
+                    <div class="d-flex w-100 justify-content-start align-items-center">
+                        <span class="fa fa-clipboard fa-fw mr-3"></span> 
+                        <span class="menu-collapsed new-note-dropdown show-text">New Note</span>
+                        <span class="submenu-icon ml-auto"></span>
+                    </div>
+                </a>
+                <div id='submenu1' class="collapse sidebar-submenu">
+                    <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                        <span class="menu-collapsed">
+                            <div class="note blank">
+                                <div>
+                                    <!-- BLANK NOTE -->
+                                    <i class="fa fa-sticky-note"></i>
+                                    <!-- <br /> -->
+                                    <!-- <span class="note-type">Blank</span> -->
+                                    <!-- <span class="menu-collapsed new-note-dropdown show-text">Blank Note</span> -->
+                                </div>
+                            </div>
+                        </span>
+                    </a>
+                    <!-- <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                        <span class="menu-collapsed">
+                            <div class="note meeting">
+                                <div>
+                                    <i class="fa fa-handshake"></i>
+                                </div>
+                            </div>
+                        </span>
+                    </a> -->
+                    <!-- <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                        <span class="menu-collapsed">
+                            <div class="note to-do">
+                                <div>
+                                    TO-DO LIST
+                                    <i class="fa fa-clipboard-list"></i>
+                                </div>
+                            </div>
+                        </span>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                        <span class="menu-collapsed">
+                            <div class="note weekly-planner">
+                                <div>
+                                    WEEKLY PLANNER
+                                    <i class="fa fa-calendar-alt"></i>
+                                </div>
+                            </div>
+                        </span>
+                    </a>
+                    <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                        <span class="menu-collapsed">
+                            <div class="note project-plan">
+                                <div>
+                                    PROJECT PLANNER
+                                    <i class="fa fa-file-word"></i>
+                                </div>
+                            </div>
+                        </span>
+                    </a> -->
+                    <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                        <span class="menu-collapsed">
+                            <div class="note lecture">
+                                <div>
+                                    <!-- LECTURE NOTES -->
+                                    <i class="fa fa-id-card"></i>
+                                </div>
+                            </div>
+                        </span>
+                    </a>
                 </div>
-                <div class="form-group">
-                    <textarea class="form-control" name="note[description]"  placeholder="Description"></textarea>
-                </div>
-                <div class="form-group">
-                    <button class="btn btn-lg btn-primary btn-block">
-                        Save!
-                    </button>
-                </div>
-            </form>
-            <a href="/<%= user._id %>/notes">GO Back</a>
+            </ul>
         </div>
     </div>
-</div> -->
-<div class="notes-container">
-<div id="body-row">
-    <div id="sidebar-container" class="sidebar-collapsed d-none d-md-block">
-        <ul class="list-group">
-            <!-- <li class="list-group-item sidebar-separator-title text-muted d-flex align-items-center menu-collapsed">
-            </li> -->
-            <a href="#" id="collapse-container" data-toggle="sidebar-colapse" class="bg-dark list-group-item list-group-item-action d-flex align-items-center">
-                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span id="collapse-icon" class="fa fa-2x mr-3"></span>
-                    <span id="collapse-text" class="menu-collapsed">Collapse</span>
-                </div>
-            </a>
-            <a href="#submenu1" data-toggle="collapse" aria-expanded="false" class="bg-dark list-group-item list-group-item-action flex-column align-items-start">
-                <div class="d-flex w-100 justify-content-start align-items-center">
-                    <span class="fa fa-clipboard fa-fw mr-3"></span> 
-                    <span class="menu-collapsed new-note-dropdown show-text">New Note</span>
-                    <span class="submenu-icon ml-auto"></span>
-                </div>
-            </a>
-            <div id='submenu1' class="collapse sidebar-submenu">
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                    <span class="menu-collapsed">
-                        <div class="note blank">
-                            <div>
-                                <!-- BLANK NOTE -->
-                                <i class="fa fa-sticky-note"></i>
-                                <br />
-                                <span class="note-type">Blank</span>
-                                <!-- <span class="menu-collapsed new-note-dropdown show-text">Blank Note</span> -->
-                            </div>
-                        </div>
-                    </span>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                    <span class="menu-collapsed">
-                        <div class="note meeting">
-                            <div>
-                                <!-- MEETING NOTE -->
-                                <i class="fa fa-handshake"></i>
-                            </div>
-                        </div>
-                    </span>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                    <span class="menu-collapsed">
-                        <div class="note to-do">
-                            <div>
-                                <!-- TO-DO LIST -->
-                                <i class="fa fa-clipboard-list"></i>
-                            </div>
-                        </div>
-                    </span>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                    <span class="menu-collapsed">
-                        <div class="note weekly-planner">
-                            <div>
-                                <!-- WEEKLY PLANNER -->
-                                <i class="fa fa-calendar-alt"></i>
-                            </div>
-                        </div>
-                    </span>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                    <span class="menu-collapsed">
-                        <div class="note project-plan">
-                            <div>
-                                <!-- PROJECT PLANNER -->
-                                <i class="fa fa-file-word"></i>
-                            </div>
-                        </div>
-                    </span>
-                </a>
-                <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                    <span class="menu-collapsed">
-                        <div class="note lecture">
-                            <div>
-                                <!-- LECTURE NOTES -->
-                                <i class="fa fa-id-card"></i>
-                            </div>
-                        </div>
-                    </span>
-                </a>
-            </div>
-        </ul>
-    </div>
-</div>
 
     <div class="container">
-            
-        <!-- <div class="row"> -->
-            <!-- <div class="col-md-1 new-note">
-                <div class="note blank">
-                    <div>
-                        <i class="fa fa-sticky-note"></i>
-                    </div>
-                </div>
-                <div class="note meeting">
-                    <div>
-                        <i class="fa fa-handshake"></i>
-                    </div>
-                </div>
-                <div class="note to-do">
-                    <div>
-                        <i class="fa fa-clipboard-list"></i>
-                    </div>
-                </div>
-                <div class="note weekly-planner">
-                    <div>
-                        <i class="fa fa-calendar-alt"></i>
-                    </div>
-                </div>
-                <div class="note project-plan">
-                    <div>
-                        <i class="far fa-file-word"></i>
-                    </div>
-                </div>
-                <div class="note lecture">
-                    <div>
-                        <i class="fa fa-id-card"></i>
-                    </div>
-                </div>
-            </div> -->
 
-            <!-- BLANK NOTES -->
-            <div class="col-md-offset-2 col-md-9 blank-section" >
-                <form action="/<%= user._id %>/notes" method="POST">
-                    <h1 >NOTES...</h1>
-                    <textarea class="js--trumbowyg" name="note[description]" placeholder="Start typing here..." style="text-align: left;">
-                        &lt;placeholder&gt;Start typing here...&lt;/placeholder&gt;
-                    </textarea>
-                    <div class="row">
-                        <button class="btn" type="submit">Save</button>
-                    </div> 
-                </form>           
-            </div>
+        <!-- BLANK NOTES -->
+        <div class="col-md-offset-2 col-md-9 blank-section">
+            <form action="/<%= user._id %>/notes" method="POST">
+                <h1 >NOTES...</h1>
+                <textarea class="js--trumbowyg" name="note[description]" placeholder="Start typing here..." style="text-align: left;">
+                    &lt;placeholder&gt;Start typing here...&lt;/placeholder&gt;
+                </textarea>
+                <div class="row">
+                    <button class="btn" type="submit">Save</button>
+                </div> 
+            </form>           
+        </div>
 
-            <!-- TODO LIST -->
-            <div class="col-md-8 to-do-section" style="display: none;">
-                <form action="/<%= user._id %>/notes" method="POST">
-                    <div>
-                        <div class="to-do-container">
-                            <h1 >TO DO LIST<i class="fa fa-plus"></i></h1>
-                            <div class="form-group">
-                                <input class="form-control to-do-input" type="text" name="note[title]" placeholder="Add Do List" autofocus>
-                            </div>
-                            <ul class="to-do-ul">
-                                <!-- <li class="to-do-li"><span class="to-do-span"><i class="fa fa-trash"></i></span> GO TO HELL</li> -->
-                            </ul>
-                        </div>
+        <!-- TODO LIST -->
+        <div class="col-md-offset-2 col-md-9 to-do-section" style="display: none;">
+            <form action="/<%= user._id %>/notes" method="POST">
+                <div>
+                    <div class="to-do-container">
+                        <h1 >TO DO LIST<i class="fa fa-plus"></i></h1>
                         <div class="form-group">
-                            <button class="btn">Save!</button>
+                            <input class="form-control to-do-input" type="text" name="note[title]" placeholder="Add Do List" autofocus>
                         </div>
+                        <ul class="to-do-ul">
+                            <!-- <li class="to-do-li"><span class="to-do-span"><i class="fa fa-trash"></i></span> GO TO HELL</li> -->
+                        </ul>
                     </div>
-                </form>
-            </div>
-
-            <!-- LECTURE NOTES -->
-            <div class="col-md-8 lecture-section" style="display: none;" >
-                <form action="/<%= user._id %>/notes" method="POST">
-                    <!-- <trix-editor input="x"></trix-editor> -->
-                    <!-- <input id="x" value="Editor <span style='text-decoration: underline;'>content</span> goes here" type="hidden" name="note[description]" > -->
-                    <!-- <input id="x" type="hidden" name="note[description]" /> -->
-                    <h1>LECTURE NOTES</i></h1>
-                    <textarea class="js--trumbowyg" name="note[description]">
-                        &lt;h3&gt;Title:&lt;/h3&gt;
-                        &lt;strong&gt;Course:&lt;/strong&gt;
-                        &lt;br /&gt;
-                        &lt;strong&gt;Professor:&lt;/strong&gt;
-                    </textarea>
-                    <div class="row">
-                        <button class="btn" type="submit">Save</button>
-                    </div> 
-                </form>               
-            </div>
-
-            <!-- <en-table>
-                <div class="container">
-                    <table style="width: 671px;">
-                        <colgroup>
-                            <col style="width: 160px;">
-                            <col style="width: 511px;">
-                        </colgroup>
-                        <tbody>
-                            <tr>
-                                <td colwidth="160" backgroundcolor="rgb(234, 234, 234)" bordercolor="rgb(187, 187, 187)" style="background-color:rgb(234, 234, 234);border-color:rgb(187, 187, 187);">
-                                    <div class="para">
-                                        <b>Date &amp; Time</b>
-                                    </div>
-                                </td>
-                                <td colwidth="511" bordercolor="rgb(204, 204, 204)" style="border-color:rgb(204, 204, 204);">
-                                    <div class="para">cscx</div>
-                                    <div class="para">
-                                        <br>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colwidth="160" backgroundcolor="rgb(234, 234, 234)" bordercolor="rgb(187, 187, 187)" style="background-color:rgb(234, 234, 234);border-color:rgb(187, 187, 187);">
-                                    <div class="para"><b>Goal</b></div>
-                                </td>
-                                <td colwidth="511" bordercolor="rgb(204, 204, 204)" style="border-color:rgb(204, 204, 204);">
-                                    <div class="para">c s</div><div class="para"><br></div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colwidth="160" backgroundcolor="rgb(234, 234, 234)" bordercolor="rgb(187, 187, 187)" style="background-color:rgb(234, 234, 234);border-color:rgb(187, 187, 187);">
-                                    <div class="para"><b>Attendees</b></div>
-                                </td>
-                                <td colwidth="511" bordercolor="rgb(204, 204, 204)" style="border-color:rgb(204, 204, 204);">
-                                    <div class="para">
-                                        <en-todo checked="true" contenteditable="false"></en-todo>
-                                        Me
-                                    </div>
-                                    <div class="para">
-                                        <en-todo checked="false" contenteditable="false"></en-todo>
-                                        <br>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                <div class="outline" contenteditable="false" style="max-width: 671px;">
-                </div>
-                <ui-table contenteditable="false">
-                    <div draggable="true" class="tablebutton _2G_zw">
-                        <svg viewBox="0 0 14 14">
-                            <use xlink:href="#5jqQY"></use>
-                        </svg>
+                    <div class="form-group">
+                        <button class="btn">Save!</button>
                     </div>
-                    <div class="columns _2rWq9">
-                        <div class="_1DRYz">
-                            <div class="handles kaAGM" style="width: 672px; transform: translateX(0px);">
-                                <div draggable="true" class="handle _34WsT" style="width: 160px;">
+                </div>
+            </form>
+        </div>
+
+        <!-- LECTURE NOTES -->
+        <div class="col-md-offset-2 col-md-9 lecture-section" style="display: none;" >
+            <form action="/<%= user._id %>/notes" method="POST">
+                <!-- <trix-editor input="x"></trix-editor> -->
+                <!-- <input id="x" value="Editor <span style='text-decoration: underline;'>content</span> goes here" type="hidden" name="note[description]" > -->
+                <!-- <input id="x" type="hidden" name="note[description]" /> -->
+                <h1>LECTURE NOTES</h1>
+                <textarea class="js--trumbowyg" name="note[description]">
+                    &lt;h3&gt;Title:&lt;/h3&gt;
+                    &lt;strong&gt;Course:&lt;/strong&gt;
+                    &lt;br /&gt;
+                    &lt;strong&gt;Professor:&lt;/strong&gt;
+                </textarea>
+                <div class="row">
+                    <button class="btn" type="submit">Save</button>
+                </div> 
+            </form>               
+        </div>
+
+        <!-- WEEKLY PLANNER -->
+        <div class="col-md-offset-2 col-md-9 planner-section"  style="display: none;">
+                <h1>PLANNER NOTES</h1>
+                <div mbsc-page class="demo-add-delete-event">
+                        <div mbsc-form>
+                            <div class="mbsc-grid md-add-event-demo">
+                                <div class="mbsc-row mbsc-no-padding">
+                                    <div class="mbsc-col-md-4 mbsc-col-12">
+                                        <div id="demo-add-event-month"></div>
+                                        <div class="mbsc-btn-group-block">
+                                            <button mbsc-button id="showAddEventPopup">Add New Event</button>
+                                        </div>
+                                    </div>
+                                    <div class="mbsc-col-md-8 mbsc-col-12 md-col-right">
+                                        <div id="demo-add-event-day"></div>
+                                    </div>
                                 </div>
-                                <div draggable="true" class="handle _34WsT" style="width: 511px;"></div>
                             </div>
                         </div>
-                        <div class="insertion _2q5om _3Fu4N">
-                            <div class="_23N0b"></div>
-                        </div>
-                        <div class="gW0mj">
-                            <div class="insertions yotXa" style="width: 672px; transform: translateX(0px);">
-                                <div class="insertion _2q5om" style="margin-left: 142px;"><div class="_23N0b"></div>
+                        
+                        <div id="demo-add-event-popup" class="md-add-event-popup">
+                            <div mbsc-form>
+                                <div class="mbsc-form-group">
+                                    <label>
+                                        Title
+                                        <input mbsc-input id="eventText">
+                                    </label>
+                                    <label>
+                                        Description
+                                        <textarea mbsc-textarea id="eventDesc"></textarea>
+                                    </label>
+                                </div>
+                                <div class="mbsc-form-group">
+                                    <label for="allDay">
+                                        All-day
+                                        <input mbsc-switch id="allDay" type="checkbox">
+                                    </label>
+                                    <label for="eventDate">
+                                        Starts
+                                        <input mbsc-input id="eventDate">
+                                    </label>
+                                    <label>
+                                        Ends
+                                        <input mbsc-input id="endInput">
+                                    </label>
+                                    <label>
+                                        Show as busy
+                                        <input mbsc-segmented type="radio" name="free" value="false" checked>
+                                    </label>
+                                    <label>
+                                        Show as free
+                                        <input mbsc-segmented type="radio" name="free" value="true">
+                                    </label>
+                                </div>
                             </div>
-                            <div class="insertion _2q5om" style="margin-left: 493px;">
-                                <div class="_23N0b"></div>
+                        </div>
+                    </div>
+                <div mbsc-page class="demo-view-update-event">
+                    <div mbsc-form>
+                        <div class="mbsc-grid md-view-update-demo">
+                            <div class="mbsc-row mbsc-no-padding">
+                                <div class="mbsc-col-md-4 mbsc-col-12">
+                                    <div id="demo-view-update-event"></div>
+                                </div>
+                                <div class="mbsc-col-md-8 mbsc-col-12 md-col-right">
+                                    <div id="demo-view-update-event-list"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="demo-view-update-popup" class="md-view-update-popup">
+                        <div mbsc-form>
+                            <div class="mbsc-form-group">
+                                <label>
+                                    Title
+                                    <input mbsc-input id="updateEventText">
+                                </label>
+                                <label>
+                                    Description
+                                    <textarea id="updateEventDesc"></textarea>
+                                </label>
+                            </div>
+                            <div class="mbsc-form-group">
+                                <label for="updateAllDay">
+                                    All-day
+                                    <input mbsc-switch id="updateAllDay" type="checkbox">
+                                </label>
+                                <label for="updateEventDate">
+                                    Starts
+                                    <input mbsc-input id="updateEventDate">
+                                </label>
+                                <label>
+                                    Ends
+                                    <input mbsc-input id="updateEndInput">
+                                </label>
+                                <label>
+                                    Show as busy
+                                    <input mbsc-segmented type="radio" name="updateFree" value="false">
+                                </label>
+                                <label>
+                                    Show as free
+                                    <input mbsc-segmented type="radio" name="updateFree" value="true">
+                                </label>
+                                <div id="updateEventColor"></div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="rows ox0lH"><div class="_1DRYz"><div class="handles kaAGM" style="height: 196px;"><div draggable="true" class="handle _34WsT" style="height: 65px;"></div><div draggable="true" class="handle _34WsT" style="height: 65px;"></div><div draggable="true" class="handle _34WsT" style="height: 65px;"></div></div></div><div class="insertion _2q5om _3Fu4N"><div class="_23N0b"></div></div><div class="gW0mj"><div class="insertions yotXa" style="height: 196px;"><div class="insertion _2q5om" style="margin-top: 47px;"><div class="_23N0b"></div></div><div class="insertion _2q5om" style="margin-top: 47px;"><div class="_23N0b"></div></div><div class="insertion _2q5om" style="margin-top: 47px;"><div class="_23N0b"></div></div></div></div></div><div class="contentcontainer _2buAs" style="height: 196px;"><div style="width: 671px; height: 195px; transform: translateX(0px);"><div class="rowline _3Bahd" style="top: -5px;"></div><div class="colline _3IUT0" style="left: -5px;"></div><div class="cellbutton _2c6us" style="display: none;"></div></div><div class="lscroll _1407s" style="opacity: 0;"></div><div class="rscroll _165og" style="opacity: 0;"></div></div></ui-table></en-table> -->
-        <!-- </div> -->
+                <div class="row">
+                    <button class="btn" type="submit">Save</button>
+                </div> 
+        </div>
+        -->
     </div>
 </div>
 

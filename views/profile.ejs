@@ -40,7 +40,11 @@
                         </div>
                         <div class="form-group">
                             <label for="username">Username </label>
-                            <input class="form-control" type="text" id="username" name="user[username]" placeholder="Username" value="<%= user.username%>">
+                            <input class="form-control" type="text" id="username" name="user[username]" placeholder="Username" value="<%= user.username%>" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input class="form-control" type="email" id="email" name="user[email]" placeholder="email" value="<%= user.email%>" disabled>
                         </div>
                         <div class="form-group">
                             <label for="firstName">First Name</label>
@@ -49,10 +53,6 @@
                         <div class="form-group">
                             <label for="lastName">Last Name</label>
                             <input class="form-control" type="text" id="lastName" name="user[lastName]" placeholder="Last Name" value="<%= user.lastName%>">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input class="form-control" type="email" id="email" name="user[email]" placeholder="email" value="<%= user.email%>">
                         </div>
                         <div class="form-group">
                             <label for="gender">Gender</label>

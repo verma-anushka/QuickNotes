@@ -656,7 +656,6 @@
   margin-right: 0rem;
 }
  /* French */
- 
  .trumbowyg-fr .trumbowyg-button-pane li button.trumbowyg-bold-button,
  .trumbowyg-fr .trumbowyg-button-pane li button.trumbowyg-strong-button {
    background-position: 5px -195px;
@@ -670,9 +669,7 @@
  .trumbowyg-fr .trumbowyg-button-pane li button.trumbowyg-del-button {
    background-position: 5px -295px;
  }
- 
- /* .trumbowyg-black {
- } */
+
  .trumbowyg-button-pane li{
   text-align: center;
  }

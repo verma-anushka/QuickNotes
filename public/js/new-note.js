@@ -22,11 +22,10 @@ $(document).ready(function(){
   }
 
   $('#collapse-container').click(function() {
+
     if ($('#sidebar-container').hasClass('sidebar-collapsed')){
-      console.log("if");
       $('.new-note-dropdown').addClass('show-text');
     } else if ($('#sidebar-container').hasClass('sidebar-expanded')){
-      console.log("else");
       $('.new-note-dropdown').removeClass('show-text');
     }
   });
@@ -98,9 +97,27 @@ $(document).ready(function(){
     //                   "animation": "size-animation 3s forwards" 
     //                 });
     // $(".blank div").css({"transform": "rotate(180deg)"});
+    $(".to-do-section").css({ "display": "none" });
+    $(".lecture-section").css({ "display": "none" });
     $(".blank-section").css({"animation": "o 5s",
                               "display": "block"
                             });
   });
 
+  $(".to-do").click(function() {
+    $(".blank-section").css({ "display": "none" });
+    $(".lecture-section").css({ "display": "none" });
+    $(".to-do-section").css({"animation": "o 5s",
+                              "display": "block"
+                            });
+  });
+  $(".lecture").click(function() {
+    $(".blank-section").css({ "display": "none" });
+    $(".to-do-section").css({ "display": "none" });
+    $(".lecture-section").css({"animation": "o 5s",
+                              "display": "block"
+                            });
+  });
+
+  
 });

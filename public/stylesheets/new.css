@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
-@import url("https://use.fontawesome.com/releases/v5.8.1/css/all.css");
 
 .new-note {
     margin-top: 60px;
@@ -10,9 +9,9 @@
 .new-note div {
     position: absolute;
     left: 20px;
-    /* -webkit-transition: 3s ease-in;
+    -webkit-transition: 3s ease-in;
     -moz-transition: 3s ease-in;
-    -o-transition: 3s ease-in; */
+    -o-transition: 3s ease-in;
     transition: 3s ease-in;
 }
 .new-note .blank {
@@ -42,23 +41,6 @@
     margin: 0 auto;
     border: #000 solid 1px;
 }
-/* .blank:hover {
-    -webkit-transform: translate(540px,-200px);
-    -moz-transform: translate(540px,-200px);
-    -o-transform: translate(540px,-200px);
-    -ms-transform: translate(540px,-200px); 
-    transform: translate(500px, 10px) scaleX(5.5) scaleY(5.5);
-    animation-name: size-animation;
-    animation-duration: 3s;
-    animation-fill-mode: forwards;
-}
-.blank:hover div {
-    -webkit-transform: rotate(70deg);
-    -moz-transform: rotate(70deg);
-    -o-transform: rotate(70deg);
-    -ms-transform: rotate(70deg); 
-    transform: rotate(90deg);
-} */
 @keyframes size-animation {
     0%{
         opacity: 1;
@@ -88,25 +70,114 @@
         opacity: 1;
     }  
 }
-/* @keyframes rotating {
-    from {
-      -ms-transform: rotate(0deg);
-      -moz-transform: rotate(0deg);
-      -webkit-transform: rotate(0deg);
-      -o-transform: rotate(0deg);
-      transform: rotate(0deg);
-    }
-    to {
-      -ms-transform: rotate(360deg);
-      -moz-transform: rotate(360deg);
-      -webkit-transform: rotate(360deg);
-      -o-transform: rotate(360deg);
-      transform: rotate(1080deg);
-    }
-  } */
-/* .show{
-    display: none;
-} */
+
+/* SIDEBAR */
+#body-row {
+    margin-left:0;
+    margin-right:0;
+    float: left;
+}
+#sidebar-container {
+    position:fixed;
+    left:0;
+    top:20%; 
+    height: 370px;
+    margin: auto 0;
+    background-image: linear-gradient(to right, rgb(0, 0, 0), rgba(58, 33, 19, 0.9));
+    filter: drop-shadow(7px 7px 4px rgba(58, 33, 19, 0.5));
+    border-radius: 5px;
+    padding: 0;
+    /* -webkit-transition: ease-in-out 0.5s;
+    transition: ease-in-out 0.5s; */
+}
+.sidebar-expanded {
+    overflow: hidden;
+    width: 150px;
+}
+.sidebar-collapsed {
+    overflow: hidden;
+    width: 60px;
+}
+#sidebar-container .list-group a {
+    height: 50px;
+    color: white;
+    border: none;
+    padding: 10px 5px;
+    background-image: linear-gradient(to right, rgb(22, 9, 1), rgba(58, 33, 19, 0.9));
+}
+#sidebar-container .list-group a:hover {
+  background:#121213;
+  -webkit-transition: background 0.5s;
+  transition: background 0.5s;
+}
+#sidebar-container .fa {
+    padding-top: 2.5px;
+    padding-bottom: 5px;
+    font-size: 26px;
+    text-align: center;
+    color: #FFF;
+    border: none;
+    /* float: left; */
+}
+#sidebar-container #collapse-text{
+    /* text-align: center; */
+    font-size: 20px;
+}
+#sidebar-container .new-note-dropdown {
+    font-size: 18px;
+    padding-right: 0;
+}
+#sidebar-container .list-group .sidebar-submenu a {
+    height: 45px;
+    background-image: linear-gradient(to right, rgb(22, 9, 1), rgba(58, 33, 19, 0.9));  
+    /* padding-left: 30px; */
+}
+.sidebar-submenu {
+    font-size: 0.9rem;
+}
+.sidebar-separator-title {
+    background-color: #3a2113;
+    height: 35px;
+}
+.sidebar-separator {
+    background-color: #3a2113;
+    height: 25px;
+}
+.logo-separator {
+    background-color: #3a2113;    
+    height: 60px;
+}
+#sidebar-container .fa-clipboard{
+    padding-left: 3px;
+}
+.note i::before{
+    font-size: 20px;
+}
+.show-text{
+    display: none !important;
+}
+#sidebar-container .list-group .list-group-item[aria-expanded="false"] .submenu-icon::after{
+    content: " \f0da";
+    font-family: FontAwesome;
+    text-align: right;
+    padding-left: 1px;
+}
+#sidebar-container .list-group .list-group-item[aria-expanded="false"] .submenu-icon::after {
+  content: " \f0d7";
+  font-family: FontAwesome;
+  display: inline;
+  text-align: right;
+  padding-left: 1px;
+}
+#sidebar-container .list-group .list-group-item[aria-expanded="true"] .submenu-icon::after {
+  content: " \f0da";
+  font-family: FontAwesome;
+  display: inline;
+  text-align: right;
+  padding-left: 1px;
+}
+
+/* TO-DO LIST */
 .to-do-container .completed {
     color: gray;
     text-decoration: line-through;
@@ -205,6 +276,56 @@
     margin-top: 8px; 
 }
 
+/* PLANNER SECTION */
+.planner-section{
+    margin-top: 100px;
+}
+.planner-section .btn{
+    margin-top: 300px;
+}
+
+.mbsc-grid .mbsc-col-md-8{
+    min-height: 400px;
+}
+.md-add-event-demo {
+    position: absolute;
+    height: 100%;
+}
+.md-add-event-demo .mbsc-row {
+    height: 100%;
+}
+.md-add-event-demo .md-col-right {
+    overflow: auto;
+    height: 100%;
+    border-left: 1px solid #ccc;
+}
+.md-add-event-demo .md-delete-btn {
+    margin: 0;
+    position: absolute;
+    right: 10px;
+    top: 8px;
+    z-index: 1;
+    transition: background-color .3s ease-out;
+}
+.mbsc-material .md-add-event-demo .md-delete-btn {
+    top: 6px;
+}
+.mbsc-windows .md-add-event-demo .md-delete-btn {
+    top: 10px;
+}
+.md-add-event-demo .md-delete-btn.mbsc-btn-outline.mbsc-btn:not(:disabled):not(.mbsc-active):hover:hover {
+    background: #f5504e;
+    color: #fff;
+}
+.mbsc-rtl .md-add-event-demo .md-delete-btn {
+    right: auto;
+    left: 10px;
+}
+.md-add-event-popup {
+    max-width: 400px;
+}
+
+
 .btn{
     text-transform: uppercase;
     background-color: #3a2113;
@@ -223,114 +344,4 @@
     height: 18px;
     width: 18px;
     color: #FFF;
-}
-
-#body-row {
-    margin-left:0;
-    margin-right:0;
-    float: left;
-}
-#sidebar-container {
-    position:fixed;
-    left:0;
-    top:20%; 
-    height: 370px;
-    margin: auto 0;
-    background-image: linear-gradient(to right, rgb(0, 0, 0), rgba(58, 33, 19, 0.9));
-    filter: drop-shadow(7px 7px 4px rgba(58, 33, 19, 0.5));
-    border-radius: 5px;
-    padding: 0;
-	/* -webkit-transition: margin 2s;
-    transition: margin 2s; */
-}
-.sidebar-expanded {
-    /* text-align: center; */
-    /* overflow: visible; */
-    width: 150px;
-}
-.sidebar-collapsed {
-    overflow: hidden;
-    width: 60px;
-}
-#sidebar-container .list-group a {
-    height: 50px;
-    color: white;
-    border: none;
-    padding: 10px 5px;
-    background-image: linear-gradient(to right, rgb(22, 9, 1), rgba(58, 33, 19, 0.9));
-}
-#sidebar-container .fa {
-    padding-top: 2.5px;
-    padding-bottom: 5px;
-    font-size: 26px;
-    text-align: center;
-    color: #FFF;
-    border: none;
-    /* float: left; */
-}
-#sidebar-container #collapse-text{
-    /* text-align: center; */
-    font-size: 20px;
-}
-#sidebar-container .new-note-dropdown {
-    font-size: 18px;
-    padding-right: 0;
-}
-#sidebar-container .list-group .sidebar-submenu a {
-    height: 45px;
-    /* padding-left: 30px; */
-}
-/* #sidebar-container .list-group[aria-expanded="true"]{
-    background: floralwhite;
-} */
-.sidebar-submenu {
-    font-size: 0.9rem;
-}
-.sidebar-separator-title {
-    background-color: #3a2113;
-    height: 35px;
-}
-.sidebar-separator {
-    background-color: #3a2113;
-    height: 25px;
-}
-.logo-separator {
-    background-color: #3a2113;    
-    height: 60px;
-}
-#sidebar-container .fa-clipboard{
-    padding-left: 3px;
-}
-.note i::before{
-    font-size: 20px;
-}
-/* .note-type{
-    font-size: 20px;
-    color: #FFF;
-} */
-.show-text{
-    display: none !important;
-}
-#sidebar-container .list-group .list-group-item[aria-expanded="false"] .submenu-icon::after{
-    content: " \f0da";
-    font-family: FontAwesome;
-    text-align: right;
-    padding-left: 1px;
-}
-/* #sidebar-container .list-group .list-group-item[aria-expanded="true"] .submenu-icon{
-    display: inline;
-} */
-#sidebar-container .list-group .list-group-item[aria-expanded="false"] .submenu-icon::after {
-  content: " \f0d7";
-  font-family: FontAwesome;
-  display: inline;
-  text-align: right;
-  padding-left: 1px;
-}
-#sidebar-container .list-group .list-group-item[aria-expanded="true"] .submenu-icon::after {
-  content: " \f0da";
-  font-family: FontAwesome;
-  display: inline;
-  text-align: right;
-  padding-left: 1px;
 }

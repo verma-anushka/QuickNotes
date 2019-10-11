@@ -12,15 +12,4 @@ middlewareObj.isAuthenticated = function(req, res, next){
     res.redirect("/");
 };
 
-// // middleware
-// middlewareObj.isLoggedIn = function(req, res, next){
-
-//     if(req.isAuthenticated()){
-//         // console.log("logged in");
-//         return next();
-//     }
-//     req.flash("error", "You need to be logged in!" );
-//     res.redirect("/login");
-// }
-
 module.exports = middlewareObj;
