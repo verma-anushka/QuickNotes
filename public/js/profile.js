@@ -9,4 +9,9 @@ $(document).ready(function(){
             $('span#filename').text("Choose a file...");
         }  
     });
+
+    // $(function() {
+    //     var temp="a"; 
+    //     $("#MySelect").val(temp);
+    // });
 });

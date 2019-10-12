@@ -39,35 +39,35 @@ span button{
 
     background: #E74C3C;
     height: 30px;
-    width: 1%;
+    width: 30px;
     outline: none;
     border: #E74C3C;
     text-align: center;
     color: #FFF;
     display: inline-block;
-    opacity: 0;
+    /* opacity: 0; */
     transition: 0.5s linear;
 }
-li:hover span button{
+/* .cbp-l-caption-body:hover span button{
     opacity: 1;
     width: 30px;
     height: 30px;
-}
+} */
 span a{
     background: green;
     height: 30px;
-    width: 0px;
+    width: 30px;
     outline: none;
-    margin-right: 20px;
+    /* margin-right: 20px; */
     line-height: 2;
     text-align: center;
     color: #FFF;
     display: inline-block;
     transition: 0.3s linear;
 }
-li:hover span a{
+/* li:hover span a{
     width: 30px;
-}
+} */
 /* textarea{
     float: left; 
     width: 100%;

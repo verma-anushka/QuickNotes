@@ -17,17 +17,12 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/0.9.7/trix.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <!-- <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/fontawesome.css"> -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/fontawesome.min.css"> -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Arvo&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-    <!-- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.css">
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.print.css"> -->
-    <!-- <link href='fullcalendar/core/main.css' rel='stylesheet' /> -->
-    <!-- <link href='fullcalendar/daygrid/main.css' rel='stylesheet' /> -->
-    <!-- Mobiscroll JS and CSS Includes -->
     <link rel="stylesheet" href="/stylesheets/mobiscroll.jquery.min.css">
+    <link rel="stylesheet" href="/stylesheets/cubeportfolio.min.css">
+
   
 </head>
 <body>
@@ -53,16 +48,18 @@
                 <!-- LEFT LINKS -->
                 <ul class="nav navbar-nav">
                     <li><a href="#">Profile</a></li>
-                    <li><a href="#">Help</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <!-- <li><a href="#">Help</a></li>
+                    <li><a href="#">Contact</a></li> -->
                 </ul>
 
                 <!-- RIGHT LINKS -->
                 <ul class="nav navbar-nav navbar-right">
-                    <% if( !currentUser){ %>
+                    <% if( !user){ %>
                         <li><a href="#signupModal" data-toggle="modal">Sign-Up</a></li>
                         <li><a href="#loginModal" data-toggle="modal">Login</a></li>
                     <% } else{ %>
+                        <%= console.log( "user" ) %>
+                        <%= console.log( user ) %>
                         <li><a href="#logoutModal" data-toggle="modal">Logout</a></li>
                     <% } %>
                 </ul>

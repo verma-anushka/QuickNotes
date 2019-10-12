@@ -24,7 +24,8 @@ var UserSchema = new mongoose.Schema({
               },
     gender:   { 
                 type: String,
-                default: ""
+                enum: ["male", "female", "prefer not to say"],
+                default: "prefer not to say"
               },
     contact:  { 
                 type: Number,

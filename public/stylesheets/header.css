@@ -4,14 +4,11 @@ html{
 }
 body {
   font-family: 'Arvo', serif;
-  /* ? */
-  /* background: url("/images/bg.jpg") no-repeat center center; */
   background-attachment: fixed;
   background-size: cover;
 }
 /* Navigation Bar */
 .navbar-custom {
- 
   background-color: #3a2113;
   border-color: #eedcc1;
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#60391c), to(#3a2113));
@@ -125,6 +122,8 @@ body {
 .navbar-custom .navbar-link:hover {
   color: #c0c0c0;
 }
+
+/* FLASH MSGS */
 .container{
   margin-bottom: none;
 }
@@ -132,15 +131,12 @@ body {
   z-index: 1;
   position: absolute;
 }
-.errorMsg{
-    left: 85%;
-    top: 85%;
-    animation: fade 15s;
-    animation-fill-mode: forwards;
-}
-.successMsg{
-    left: 85%;
-    top: 85%;
+.errorMsg, .successMsg{
+  text-align: center;
+    width: 100%;
+    margin: 0;
+    left: 0;
+    margin-top: 50px;
     animation: fade 15s;
     animation-fill-mode: forwards;
 }
@@ -274,7 +270,6 @@ body {
 
 }
 .modal input[type=email] {
-  
   border-radius: 0;
   border-left: none;
   outline: none;

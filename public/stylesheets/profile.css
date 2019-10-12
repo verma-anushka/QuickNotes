@@ -111,6 +111,9 @@
 .user-profile .input{
     margin-left:0;
 }
+.user-profile .select{
+    color: #000;
+}
 .user-profile .btn{
     color: #FFF;
     background-color: rgb(63, 36, 20);

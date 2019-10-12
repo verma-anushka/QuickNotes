@@ -49,8 +49,7 @@ cloudinary.config({
     api_key: 576296943363917,
     api_secret: "6qJhRW0-qQZkkLMr_ZhI0a4SQaE"
 });
-// CLOUDINARY_API_KEY = 576296943363917
-// CLOUDINARY_API_SECRET = 6qJhRW0-qQZkkLMr_ZhI0a4SQaE
+
 var app = express();
 
 app.set("view engine", "ejs");
@@ -65,7 +64,6 @@ app.use(flash());
 // PASSPORT CONFIG
 app.use(require("express-session")({
     secret: "anything",
-    // store: store,
     resave: false,
     saveUninitialized: false
 }));
@@ -79,17 +77,11 @@ passport.deserializeUser(User.deserializeUser());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(function(req, res, next){
-    res.locals.currentUser = req.user || null;
+    res.locals.user = req.user || null;
     res.locals.error = req.flash("error");
     res.locals.success = req.flash("success");
     next();
 });
-// app.use(express.cookieParser());
-// app.use(express.bodyParser());
-// app.use(express.session({ secret: 'keyboard cat' }));
-// app.use(passport.initialize());
-// app.use(passport.session());
-// app.use(app.router);
 
 // LANDING PAGE 
 app.get("/", function(req, res){   
@@ -114,9 +106,6 @@ app.get("/", function(req, res){
 //     }
 // ));
 
-
-
-
 // AUTHENTICATION
 app.post("/", async function(req, res, next){
 
@@ -138,10 +127,10 @@ app.post("/", async function(req, res, next){
             // console.log('Passwords must be at least 4 characters.')
             errors.push({text: 'Passwords must be at least 4 characters!'})
         }
-        if(errors.length > 0){
+        if(password && errors.length > 0){
             // console.log(errors.length)
             for(var i=0; i< errors.length; i++){
-                req.flash('error', errors[i] );                
+                req.flash('error', errors[i] );     
             }
             res.render('landing', {errors, username, email, password, password2});
         } else {
@@ -170,17 +159,16 @@ app.post("/", async function(req, res, next){
                 User.register(user, req.body.password, function(err,user){
                     if(err){
                         // console.log(err);
-                        req.flash("error", err.message);            
+                        req.flash("error", "Something went wrong!");            
                         res.render("landing");
                     }
                     passport.authenticate("local")(req, res, function(){
-                        // console.log("user in signup check else passpoet authenticate line 169");
                         // console.log(user);
                         // console.log(user.username);
                         // console.log(user.email);
                         // console.log(user.password, user.password2);
-                        console.log("registered");
-                        req.flash("success", "Welcome to YelpCamp, " + user.username);
+                        console.log("New user registered");
+                        req.flash("success", "Welcome to QuickNotes, " + user.username + "!");
                         return res.redirect('/' + user._id + '/notes');
                     });
                 });
@@ -198,13 +186,13 @@ app.post("/", async function(req, res, next){
         passport.authenticate('local', function( err, user, info) {
             if (err) { 
                 // console.log(err);
-                req.flash("error", err.message);            
+                req.flash("error",  "Something went wrong!");            
                 return res.render("landing");
             }
             if (!user) { 
                 // console.log( "user" + user);     
                 // console.log(user);  
-                req.flash("error", "!Please enter a username");            
+                req.flash("error", "Invalid Username!");            
                 return res.redirect('/'); 
             }
             if (req.body.remember_me) { 
@@ -219,7 +207,7 @@ app.post("/", async function(req, res, next){
             req.logIn(user, function(err) {
                 if (err) { 
                     // console.log(err);
-                    req.flash("error", err.message);            
+                    req.flash("error", "Something went wrong!");            
                     return res.render("landing");
                 }
                 req.flash("success", "Successfully Logged in!"); 
@@ -303,7 +291,7 @@ app.post("/", async function(req, res, next){
     if(req.body.form == 'logout'){
         req.logout();
         // console.log("logged out");
-        req.flash("success", "Successfully Logged out");
+        req.flash("success", "Successfully Logged out!");
         return res.redirect("/");
     }
 }
@@ -380,7 +368,6 @@ app.post('/reset/:token', function (req, res) {
 });
 
 // USER NOTES HOMEPAGE
-// middleware.isAuthenticated,
 app.get("/:id/notes", middleware.isAuthenticated, async function(req, res){
 
     Note.find({}, function(error, allNotes){
@@ -432,8 +419,8 @@ app.post("/:id/notes", middleware.isAuthenticated, function(req,res){
                     note.save();
 
                     user.notes.push(note);
-                    // console.log("note");
-                    // console.log(note);
+                    console.log("note");
+                    console.log(note);
                     user.save();
                     // console.log("Note create else 2");
 
@@ -511,8 +498,6 @@ app.delete("/:id/notes/:note_id", middleware.isAuthenticated, function(req, res)
 app.get("/:id/profile", middleware.isAuthenticated, function(req, res){
 
     User.findById(req.params.id, function(error, foundUser){
-
-        // console.log(foundUser);
         if(error){
             req.flash("error", "Something went wrong!" );
             console.log(error);
@@ -563,6 +548,19 @@ app.post("/:id/profile/profileImg", middleware.isAuthenticated, upload.single('i
             user.firstName = req.body.user.firstName;
         if(req.body.user.lastName.length > 0)
             user.lastName = req.body.user.lastName;
+        // if(req.body.user.gender.length > 0)
+            user.gender = req.body.user.gender;
+        console.log("req.body.user");
+        console.log(req.body);
+        console.log(req.body.user.gender);
+
+        console.log("user.gender");
+        console.log(user.gender);
+
+        if(req.body.user.contact.length > 0)
+            user.contact = req.body.user.contact;
+        if(req.body.user.bio.length > 0)
+            user.bio = req.body.user.bio;
         user.save();
         req.flash("success", "Successfully Updated!" );
         

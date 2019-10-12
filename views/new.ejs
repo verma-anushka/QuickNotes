@@ -91,7 +91,8 @@
         <div class="col-md-offset-2 col-md-9 blank-section">
             <form action="/<%= user._id %>/notes" method="POST">
                 <h1 >NOTES...</h1>
-                <textarea class="js--trumbowyg" name="note[description]" placeholder="Start typing here..." style="text-align: left;">
+                <input type="text" name="note[type]" value="blank" style="display: none;">
+                <textarea class="js--trumbowyg" name="note[description]" placeholder="Start typing here..."s style="text-align: left;">
                     &lt;placeholder&gt;Start typing here...&lt;/placeholder&gt;
                 </textarea>
                 <div class="row">
