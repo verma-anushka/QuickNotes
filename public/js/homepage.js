@@ -1,6 +1,8 @@
 (function($, window, document, undefined) {
     'use strict';
 
+    // var type = ${note.type};
+
         // init cubeportfolio
         $('#grid-container').cubeportfolio({
             filters: '#filters-container',
@@ -59,5 +61,13 @@
                 //     });
             },
         });
+
+        // console.log(user.username);
+        // $(document).ready(function(){
+        //     $("img").click(function(){
+        //         // Change src attribute of image
+        //         $(this).attr("src", "images/card-front.jpg");
+        //     });    
+        // });
 
     })(jQuery, window, document);

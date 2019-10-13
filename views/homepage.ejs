@@ -1,6 +1,14 @@
 <% include partials/header.ejs %>
 
-<% if(user && notes.length > 0 ){ %>
+<% var found = "false"; %>
+
+<% notes.forEach(function(note){ %>
+    <% if( note.author.id.equals(user._id) ){ %>
+        <% found = "true"; %>
+    <% } %>
+<% }); %>
+
+<% if( found == "true" ){ %>
 
     <div class="home-container">
         <div class="row">
@@ -22,10 +30,10 @@
                     <div data-filter=".lecture" class="cbp-filter-item">
                         LECTURE NOTES <div class="cbp-filter-counter"></div>
                     </div> /
-                    <div data-filter=".graphic" class="cbp-filter-item">
+                    <div data-filter=".to-do" class="cbp-filter-item">
                         TO-DO LIST <div class="cbp-filter-counter"></div>
                     </div> /
-                    <div data-filter=".logos" class="cbp-filter-item">
+                    <div data-filter=".meeting" class="cbp-filter-item">
                         MEETING NOTES <div class="cbp-filter-counter"></div>
                     </div> /
                     <div data-filter=".motion" class="cbp-filter-item">
@@ -42,36 +50,90 @@
                             <% notes.forEach(function(note){ %>
                                 <% if( note.author.id.equals(user._id) ){ %>
 
-                                    <div class="cbp-item blank">
-                            
-                                        <a class="cbp-caption" style="float: left;">
-                                            <div class="cbp-caption-defaultWrap">
-                                                <img src="/images/blank.jpg" alt="">
-                                            </div>
-                                            <div class="cbp-caption-activeWrap">
-                                                <div class="cbp-l-caption-alignLeft">
-                                                    <div class="cbp-l-caption-body">
-                                                            
-                                                        <div class="cbp-l-caption-title"><%- note.title %></div>
-                                                        <div class="cbp-l-caption-desc"><%- note.description %></div>
+                                    <% if( note.type == "blank" ){ %>
+                                        <div class="cbp-item blank">
+                                            <a href="" class="cbp-caption" style="float: left;">
+                                                <div class="cbp-caption-defaultWrap">
+                                                    <img src="/images/blank.jpg" alt="">
+                                                </div>
+                                                <div class="cbp-caption-activeWrap">
+                                                    <div class="cbp-l-caption-alignLeft">
+                                                        <div class="cbp-l-caption-body">
+                                                            <div class="cbp-l-caption-title"><%- note.title %></div>
+                                                            <div class="cbp-l-caption-desc"><%- note.description %></div>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <!-- <br /> -->
-                                        </a>
-                                        <span id="delete">
-                                            <form id="delete-form" action="/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
-                                                <button >
-                                                    <i class="fa fa-trash"></i>
-                                                </button>
-                                            </form>                                    
-                                        </span>
-                                        <span id="edit" class="pull-right">
-                                            <a href="/<%= user._id %>/notes/<%= note._id %>/edit">
-                                                <i class="fa fa-edit"></i>
-                                            </a>            
-                                        </span>
-                                    </div>
+                                            </a>
+                                            <span id="delete">
+                                                <form id="delete-form" action="/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
+                                                    <button >
+                                                        <i class="fa fa-trash"></i>
+                                                    </button>
+                                                </form>                                    
+                                            </span>
+                                            <span id="edit" class="pull-right">
+                                                <a href="/<%= user._id %>/notes/<%= note._id %>/edit">
+                                                    <i class="fa fa-edit"></i>
+                                                </a>            
+                                            </span>
+                                        </div>
+                                    <% } else if( note.type == "lecture" ){ %>
+                                        <div class="cbp-item lecture">
+                                            <a href="" class="cbp-caption" style="float: left;">
+                                                <div class="cbp-caption-defaultWrap">
+                                                    <img src="/images/lecture.jpg" alt="">
+                                                </div>
+                                                <div class="cbp-caption-activeWrap">
+                                                    <div class="cbp-l-caption-alignLeft">
+                                                        <div class="cbp-l-caption-body">
+                                                            <div class="cbp-l-caption-title"><%- note.title %></div>
+                                                            <div class="cbp-l-caption-desc"><%- note.description %></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    <% } else if( note.type == "to-do" ){ %>
+
+                                        <div class="cbp-item to-do">
+                                            <a href="" class="cbp-caption" style="float: left;">
+                                                <div class="cbp-caption-defaultWrap">
+                                                    <img src="/images/todo.jpg" alt="">
+                                                </div>
+                                                <div class="cbp-caption-activeWrap">
+                                                    <div class="cbp-l-caption-alignLeft">
+                                                        <div class="cbp-l-caption-body">
+                                                            <div class="cbp-l-caption-title"><%- note.title %></div>
+                                                            <div class="cbp-l-caption-desc"><%- note.description %></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    <% } else if( note.type == "meeting" ){ %>
+                                        <div class="cbp-item meeting">
+                                            <a href="" class="cbp-caption" style="float: left;">
+                                                <div class="cbp-caption-defaultWrap">
+                                                    <img src="/images/meeting.jpg" alt="">
+                                                </div>
+                                                <div class="cbp-caption-activeWrap">
+                                                    <div class="cbp-l-caption-alignLeft">
+                                                        <div class="cbp-l-caption-body">
+                                                            <div class="cbp-l-caption-title"><%- note.title %></div>
+                                                            <div class="cbp-l-caption-desc"><%- note.meetingDate %></div>
+                                                            <div class="cbp-l-caption-desc"><%- note.meetingAgenda %></div>
+                                                            <div class="cbp-l-caption-desc"><%- note.meetingAttendees %></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </div>
+
+
+                                    <% } else if( note.type == "planner" ){ %>
+                                    <% } %>
+
                                 <% } %>
                             <% }); %>
                         </div> 
