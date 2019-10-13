@@ -16,6 +16,27 @@ var NoteSchema = new mongoose.Schema({
           // required: true
         },
   
+
+  // MEETING 
+  meetingDate: {
+    type: Date,
+  },
+  meetingAgenda: {
+    type: Date,
+  },
+  meetingAttendees: {
+    type: Date,
+  },
+  meetingAction: {
+    type: String,
+  },
+  meetingAssignee: {
+    type: String,
+  },
+  meetingStatus: {
+    type: String,
+  },
+
   date: {
           type: Date,
           default: Date.now
@@ -28,6 +49,9 @@ var NoteSchema = new mongoose.Schema({
             },
             username: String
           }
+},
+{
+  timestamps: true
 });
 
 module.exports = mongoose.model("Note", NoteSchema);

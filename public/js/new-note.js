@@ -90,6 +90,35 @@ $(document).ready(function(){
     $('.to-do-input').fadeToggle(1000);
   });
 
+
+  // MEETING NOTES
+  $('#btnAdd').click(function(){
+    $("#tblData tbody").append(
+        "<tr>"+
+        "<td><span class='btnDelete'><i class='fa fa-trash'></i></span><input type='text' name='note[meetingAction]' /></td>"+
+        "<td><input type='text' name='note[meetingAssignee]' /></td>"+
+        "<td><input type='text' name='note[meetingStatus]' /></td>"+
+        "</tr>");
+     
+        // $(".btnSave").bind("click", Save);      
+        $(".btnDelete").bind("click", Delete);
+  });  
+
+
+  $('.btnDelete').click(function Delete(){
+    console.log("delete1");
+    var par = $(this).parent().parent(); //tr
+    par.remove();
+  });
+  
+  function Delete(){
+    console.log("delete2");
+    var par = $(this).parent().parent(); //tr
+    par.remove();
+  }; 
+
+
+
   $(".blank").click(function() {
     // console.log("clicked");
     // $(".blank").css({"transform": "translate(500px, 10px) scaleX(10) scaleY(10)",
@@ -115,6 +144,14 @@ $(document).ready(function(){
     $(".blank-section").css({ "display": "none" });
     $(".to-do-section").css({ "display": "none" });
     $(".lecture-section").css({"animation": "o 5s",
+                              "display": "block"
+                            });
+  });
+  $(".meeting").click(function() {
+    $(".blank-section").css({ "display": "none" });
+    $(".to-do-section").css({ "display": "none" });
+    $(".lecture-section").css({ "display": "none" });
+    $(".meeting-section").css({"animation": "o 5s",
                               "display": "block"
                             });
   });

@@ -1,4 +1,14 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+/* html,
+body {
+	height: 100%;
+}
+body {
+	margin: 0;
+	background: linear-gradient(45deg, #49a09d, #5f2c82);
+	font-family: sans-serif;
+	font-weight: 100;
+} */
 
 .new-note {
     margin-top: 60px;
@@ -232,12 +242,12 @@
     display: inline-block;
     text-align: center;
     margin-right: 20px;
-    transition: 0.5s;
+    transition: 0.5s linear;
     opacity: 0.5;
 }
 .to-do-container li:hover span {
     width: 40px;
-    transition: 0.5s;
+    transition: 0.5s linear;
     opacity: 1.0;
 }
 .to-do-section .btn{
@@ -250,7 +260,7 @@
     margin-bottom: 14px;
 }
 .to-do-section .btn:hover{
-    background-color: rgb(58, 33, 19, 0.8);
+    background-color: rgba(58, 33, 19, 0.8);
     color: #FFF;
 }
 .to-do-section .btn i{
@@ -274,6 +284,177 @@
 }
 .lecture-section textarea{
     margin-top: 8px; 
+}
+
+/* MEETING SECTION */
+.meeting-section{
+  margin-top: 90px;
+}
+.meeting-section div.title-container{
+    height: 60px;
+    /* text-align: center; */
+      /* position: relative; */
+  /* top: 50%; */
+  /* left: 50%; */
+  /* transform: translate(-50%, -50%); */
+}
+.meeting-section label{
+    font-family: Georgia, "Times New Roman", Times, serif;
+    /* padding: 3px; */
+    font-size: 18px;
+    color: #333;
+    height: 30px;
+    width: 130px;   
+    text-align: left;
+    clear: both;
+    float:left;
+    margin-top: 10px;
+    margin-left: 10px;
+    /* margin-right: 15px; */
+}
+.meeting-section .inputs{
+    /* margin-bottom: 25px; */
+    outline: none;
+    border: none;
+}
+.meeting-section input#meetingDate,
+.meeting-section input#title,
+.meeting-section textarea {
+    height: 30px;
+    width: 78%;
+    max-width: 100%;
+    border: none;
+    float: left;
+    text-align: left;
+    padding: 5px;
+    margin-top: 10px;
+    /* margin-bottom: 10px; */
+    margin-left: 10px;
+    /* margin-right: 15px; */
+    outline: none;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    /* font-size: 16px; */
+}
+.meeting-section textarea#meetingAttendees {
+    margin-bottom: 20px;
+}
+.meeting-section input#title {
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    height: 50px;
+    font-size: 40px;
+    font-weight: 800;
+}
+.meeting-section input#meetingDate:focus,
+.meeting-section input#title:focus,
+.meeting-section textarea:focus {
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    /* box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(58, 33, 19, 0.6); */
+    outline: none;
+    /* border-top: 2px solid #3a2113;
+    border-right: 1px solid rgb(58, 33, 19, 0.6);
+    border-bottom: 1px solid rgb(58, 33, 19, 0.6); */
+}
+.meeting-section table {
+	width: 800px;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    overflow: hidden;
+    position: relative;
+
+    /* background: linear-gradient(45deg, rgb(236, 232, 230), rgb(58, 33, 19)); */
+	box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+.meeting-section table tbody tr:nth-child(odd) {
+    background: rgba(122, 120, 120, 0.1);
+}
+.meeting-section table tbody tr:nth-child(even) {
+    background-color: rgba(58, 33, 19, 0.5);
+    /* background: linear-gradient(rgb(58, 33, 19), rgb(236, 232, 230)); */
+}
+.meeting-section th,
+.meeting-section td {
+    /* padding: 15px; */
+    padding-left: 0;
+	/* background-color: rgba(255,255,255,0.2); */
+	color: #fff;
+}
+.meeting-section th {
+	text-align: left;
+}
+.meeting-section thead th {
+    /* position: relative; */
+    padding: 15px;
+    text-align: center;
+    text-transform: uppercase;
+	background-color: rgb(58, 33, 19);
+}
+.meeting-section thead tr th div{
+	background: #FFF;
+    /* z-index: 10; */
+    /* display: inline-block; */
+    position: absolute;
+    /* left: -1%;
+    top: -1%;  */
+    height: 22px;
+    width: 22px;
+    border-radius: 50%;
+}
+.meeting-section thead th a{
+    /* text-align: center; */
+	color: rgb(58, 33, 19) ;
+    
+    /* color: #FFF; */
+}
+/* .meeting-section */
+.meeting-section span {
+    float: left;
+    width: 0px;
+    color: #fff;
+    background-color: #e74c3c;
+    /* display: inline-block; */
+    text-align: center;
+    margin-left: 0px;
+    transition: 0.5s linear;
+    opacity: 0;
+}
+.meeting-section tbody tr:hover span {
+    float: left;
+    width: 40px;
+    transition: 0.5s linear;
+    opacity: 1.0;
+}
+.meeting-section tbody tr:hover {
+	background-color: rgba(255,255,255,0.3);
+}
+.meeting-section tbody td {
+    border-right: 0.5px double rgba(58, 33, 19, 0.5);
+    border-bottom: 0.5px solid rgba(58, 33, 19, 0.5);
+    /* background: linear-gradient(45deg, rgb(236, 232, 230), rgb(58, 33, 19)); */
+    position: relative;
+}
+.meeting-section tbody td input{
+    /* padding-left: 10px; */
+    margin: 0;
+    width: 82%;
+    background: transparent;
+    outline: none;
+    border: none;
+}
+.meeting-section tbody td:hover::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -9999px;
+    bottom: -9999px;
+    background-color: rgba(255,255,255,0.9);
+    z-index: -1;
 }
 
 /* PLANNER SECTION */

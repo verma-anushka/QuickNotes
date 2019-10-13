@@ -31,25 +31,27 @@
                             </div>
                         </span>
                     </a>
-                    <!-- <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
-                        <span class="menu-collapsed">
-                            <div class="note meeting">
-                                <div>
-                                    <i class="fa fa-handshake"></i>
-                                </div>
-                            </div>
-                        </span>
-                    </a> -->
-                    <!-- <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                    <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
                         <span class="menu-collapsed">
                             <div class="note to-do">
                                 <div>
-                                    TO-DO LIST
+                                    <!-- TO-DO LIST -->
                                     <i class="fa fa-clipboard-list"></i>
                                 </div>
                             </div>
                         </span>
                     </a>
+                    <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
+                        <span class="menu-collapsed">
+                            <div class="note meeting">
+                                <div>
+                                    <!-- MEETING NOTES -->
+                                    <i class="fa fa-handshake"></i>
+                                </div>
+                            </div>
+                        </span>
+                    </a>
+                    <!-- 
                     <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
                         <span class="menu-collapsed">
                             <div class="note weekly-planner">
@@ -88,11 +90,15 @@
     <div class="container">
 
         <!-- BLANK NOTES -->
-        <div class="col-md-offset-2 col-md-9 blank-section">
+        <div class="col-md-offset-2 col-md-9 blank-section" style="display: none;">
             <form action="/<%= user._id %>/notes" method="POST">
-                <h1 >NOTES...</h1>
+                <!-- <h1 >NOTES...</h1> -->
                 <input type="text" name="note[type]" value="blank" style="display: none;">
-                <textarea class="js--trumbowyg" name="note[description]" placeholder="Start typing here..."s style="text-align: left;">
+                <div class="form-group">
+                    <label for="title" class="sr-only"></label>
+                    <input class="form-control" id="title" type="text" name="note[title]" placeholder="Meeting Title" maxlength="50">
+                </div> 
+                <textarea class="js--trumbowyg" name="note[description]" placeholder="Start typing here..." style="text-align: left;">
                     &lt;placeholder&gt;Start typing here...&lt;/placeholder&gt;
                 </textarea>
                 <div class="row">
@@ -107,16 +113,18 @@
                 <div>
                     <div class="to-do-container">
                         <h1 >TO DO LIST<i class="fa fa-plus"></i></h1>
+                        <input type="text" name="note[type]" value="to-do" style="display: none;">
                         <div class="form-group">
                             <input class="form-control to-do-input" type="text" name="note[title]" placeholder="Add Do List" autofocus>
+                            <ul class="to-do-ul">
+                                <!-- <li class="to-do-li"><span class="to-do-span"><i class="fa fa-trash"></i></span> GO TO HELL</li> -->
+                            </ul>
                         </div>
-                        <ul class="to-do-ul">
-                            <!-- <li class="to-do-li"><span class="to-do-span"><i class="fa fa-trash"></i></span> GO TO HELL</li> -->
-                        </ul>
                     </div>
                     <div class="form-group">
                         <button class="btn">Save!</button>
                     </div>
+
                 </div>
             </form>
         </div>
@@ -127,7 +135,12 @@
                 <!-- <trix-editor input="x"></trix-editor> -->
                 <!-- <input id="x" value="Editor <span style='text-decoration: underline;'>content</span> goes here" type="hidden" name="note[description]" > -->
                 <!-- <input id="x" type="hidden" name="note[description]" /> -->
-                <h1>LECTURE NOTES</h1>
+                <!-- <h1>LECTURE NOTES</h1> -->
+                <input type="text" name="note[type]" value="lecture" style="display: none;">
+                <div class="form-group">
+                    <label for="title" class="sr-only"></label>
+                    <input class="form-control" id="title" type="text" name="note[title]" placeholder="Meeting Title" maxlength="50">
+                </div> 
                 <textarea class="js--trumbowyg" name="note[description]">
                     &lt;h3&gt;Title:&lt;/h3&gt;
                     &lt;strong&gt;Course:&lt;/strong&gt;
@@ -140,6 +153,134 @@
             </form>               
         </div>
 
+
+        <!-- MEETING NOTE -->
+        <div class="col-md-offset-2 col-md-9 meeting-section" >
+
+            <% console.log( "note" )%>    
+            <% console.log( note )%>    
+
+            <form action="/<%= user._id %>/notes" method="POST">
+
+                <!-- <h1>MEETING NOTES</h1> -->
+                <input type="text" name="note[type]" value="meeting" style="display: none;">
+                
+                <div class="form-group title-container">
+                    <label for="title" class="sr-only"></label>
+                    <input class="form-control" id="title" type="text" name="note[title]" placeholder="Meeting Title" maxlength="80">
+                </div>           
+                <div class="form-group">
+                    <label for="meetingDate">Date & Time: </label>
+                    <input class="form-control" id="meetingDate" type="text" name="note[meetingDate]" placeholder="Date and Time of the meeting">
+                </div>
+                <div class="form-group">                
+                    <label for="meetingAgenda">Agenda:</label>
+                    <textarea class="form-control" id="meetingAgenda" name="note[meetingAgenda]" placeholder="What's the meeting agenda?!"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="meetingAttendees">Attendees:</label>
+                    <textarea class="form-control" id="meetingAttendees" name="note[meetingAttendees]" placeholder="Attendees at the meeting..."></textarea>
+                </div>
+
+                <table id="tblData">          
+                    <thead>
+                        <tr>
+                            <th>
+                                <div>
+                                    <a id="btnAdd"><i class="fa fa-plus"></i></a>
+                                </div>
+                                Action Item
+                            </th>
+                            <th>Assignee</th>
+                            <th>Status</th>
+                            <!-- <th></th> -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>
+                                <span class="btnDelete"><i class="fa fa-trash"></i></span>
+                                <input type='text' name='note[meetingAction]' />
+                            </td>
+                            <td><input type='text' name='note[meetingAssignee]' /></td>
+                            <td><input type='text' name='note[meetingStatus]' /></td>
+                        </tr>
+                        <!-- <tr>
+                            <td>
+                                <span class="btnDelete"><i class="fa fa-trash"></i></span>
+                                <input type='text' name='note[meetingAction]' />
+                            </td>
+                            <td><input type='text' name='note[meetingAssignee]' /></td>
+                            <td><input type='text' name='note[meetingStatus]' /></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="btnDelete"><i class="fa fa-trash"></i></span>
+                                <input type='text' name='note[meetingAction]' />
+                            </td>
+                            <td><input type='text' name='note[meetingAssignee]' /></td>
+                            <td><input type='text' name='note[meetingStatus]' /></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="btnDelete"><i class="fa fa-trash"></i></span>
+                                <input type='text' name='note[meetingAction]' />
+                            </td>
+                            <td><input type='text' name='note[meetingAssignee]' /></td>
+                            <td><input type='text' name='note[meetingStatus]' /></td>
+                        </tr> -->
+                    </tbody>
+                </table>
+
+                <div class="row">
+                    <button class="btn" type="submit">Save</button>
+                </div> 
+
+            </form>
+
+            <!-- <table>
+                <thead>
+                    <tr>
+                        <th>Column 1</th>
+                        <th>Column 2</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Cell 1</td>
+                        <td>Cell 2</td>
+                        
+                    </tr>
+                    <tr>
+                        <td>Cell 1</td>
+                        <td>Cell 2</td>
+                        
+                    </tr>
+                    <tr>
+                        <td>Cell 1</td>
+                        <td>Cell 2</td>
+                        
+                    </tr>
+                    <tr>
+                        <td>Cell 1</td>
+                        <td>Cell 2</td>
+                        
+                    </tr>
+                    <tr>
+                        <td>Cell 1</td>
+                        <td>Cell 2</td>
+                    </tr>
+                    <tr>
+                        <td>Cell 1</td>
+                        <td>Cell 2</td>
+                    </tr>
+                    <tr>
+                        <td>Cell 1</td>
+                        <td>Cell 2</td>
+                    </tr>
+                </tbody>
+            </table> -->
+        </div>
         <!-- WEEKLY PLANNER -->
         <div class="col-md-offset-2 col-md-9 planner-section"  style="display: none;">
                 <h1>PLANNER NOTES</h1>
