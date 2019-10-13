@@ -1,7 +1,17 @@
+html{
+    height: 100%;
+}
+
+body{
+    height: 100%;
+}
+
 footer{
+    display: inline-block;
     color: #FFF;
     position: absolute;
     bottom: 0;
+    /* margin-bottom: 0; */
     text-align: center;
     padding-top: 10px;
     width: 100%;

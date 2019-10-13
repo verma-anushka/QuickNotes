@@ -53,6 +53,7 @@ cloudinary.config({
 var app = express();
 
 app.set("view engine", "ejs");
+// app.set("view engine", "js");
 app.use(express.static(__dirname + "/public"));
 // app.use(express.static(__dirname + "/js"));
 app.use(methodOverride("_method"));
@@ -78,6 +79,7 @@ passport.deserializeUser(User.deserializeUser());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(function(req, res, next){
     res.locals.user = req.user || null;
+    res.locals.note = req.note || null;
     res.locals.error = req.flash("error");
     res.locals.success = req.flash("success");
     next();
@@ -370,13 +372,32 @@ app.post('/reset/:token', function (req, res) {
 // USER NOTES HOMEPAGE
 app.get("/:id/notes", middleware.isAuthenticated, async function(req, res){
 
-    Note.find({}, function(error, allNotes){
+    User.findById(req.params.id, function(error, user){
         if(error){
             console.log(error);
+            req.flash("error", "Something went wrong! User not found!" );
         }else{
-            res.render("homepage", {notes:allNotes});            
+            // console.log("req.params");
+            // console.log(req.params);
+            Note.find(req.params.note_id, function(error, allNotes){
+                // console.log(req.params);
+
+                if(error){
+                    req.flash("error", "Something went wrong! Notes not found!" );
+                    console.log(error);
+                }else{
+                    res.render("homepage", {user: user, notes: allNotes});
+                }
+            });
         }
     });
+    // Note.find({}, function(error, allNotes){
+    //     if(error){
+    //         console.log(error);
+    //     }else{
+    //         res.render("homepage", {notes:allNotes});            
+    //     }
+    // });
 });
 // app.get("/:id/notes", middleware.isAuthenticated, async function(req, res){
 
@@ -419,8 +440,8 @@ app.post("/:id/notes", middleware.isAuthenticated, function(req,res){
                     note.save();
 
                     user.notes.push(note);
-                    console.log("note");
-                    console.log(note);
+                    // console.log("note");
+                    // console.log(note);
                     user.save();
                     // console.log("Note create else 2");
 
@@ -483,15 +504,33 @@ app.put("/:id/notes/:note_id", middleware.isAuthenticated, function(req, res){
 // DESTROY
 // middleware.checkNoteOwnership,
 app.delete("/:id/notes/:note_id", middleware.isAuthenticated, function(req, res){
-    
-    Note.findByIdAndRemove(req.params.note_id, function(error){
+
+    User.findById(req.params.id, function(error, user){
         if(error){
-            res.redirect("back");
+            console.log(error);
+            req.flash("error", "Something went wrong! User not found!" );
         }else{
-            req.flash("success", "Note deleted!" );
-            res.redirect("/" + req.params.id + "/notes/" );
+            Note.findByIdAndRemove(req.params.note_id, function(error){
+                if(error){
+                    req.flash("error", "Something went wrong! Notes not found!" );
+                    console.log(error);
+                    res.redirect("back");
+                }else{
+                    req.flash("success", "Note deleted!" );
+                    res.redirect("/" + req.params.id + "/notes/" );
+                }
+            });
         }
     });
+    
+    // Note.findByIdAndRemove(req.params.note_id, function(error){
+    //     if(error){
+    //         res.redirect("back");
+    //     }else{
+    //         req.flash("success", "Note deleted!" );
+    //         res.redirect("/" + req.params.id + "/notes/" );
+    //     }
+    // });
 });
 
 // USER PROFILE

@@ -1,23 +1,125 @@
-<h1>Notes Edit Form</h1>
-
 <% include partials/header %>
 
 <div class="container">
     <div class="row">
-        <h1 style="text-align: center">Edit NOTES</h1>
-        <div style="width: 30%; margin: 25px auto;">
-            <form action="/<%=  user_id %>/notes/<%= note._id %>?_method=PUT" method="POST">
-                <div class="form-group">
-                    <input class="form-control" type="text" name="note[title]" value="<%= note.title %>">
+        <!-- <h1 style="text-align: center">Edit NOTES</h1> -->
+        <div>
+            <% console.log( note.type )%>
+            <% if( note.type == "blank" ){ %>
+                <div class="col-md-offset-2 col-md-9 blank-section">
+                    <form action="/<%= user_id %>/notes/<%= note._id %>?_method=PUT" method="POST">
+                        <h1 >NOTES...</h1>
+                        <input type="text" name="note[type]" value="blank" style="display: none;">
+                        <div class="form-group">
+                            <textarea class="js--trumbowyg" name="note[description]" placeholder="Start typing here..." style="text-align: left;">
+                                <!-- &lt;placeholder&gt;Start typing here...&lt;/placeholder&gt; -->
+                                <%= note.description %>
+                            </textarea>
+                        </div>
+                        <div class="row form-group">
+                            <button class="btn" type="submit">Save</button>
+                        </div> 
+                    </form>           
                 </div>
-                <div class="form-group">
-                    <textarea class="form-control" name="note[description]"><%= note.description %></textarea>
+
+            <% } else if( note.type == "to-do" ){%>
+                <div class="col-md-offset-2 col-md-9 to-do-section">
+                    <form action="/<%= user_id %>/notes/<%= note._id %>?_method=PUT" method="POST">
+                        <div>
+                            <div class="to-do-container">
+                                <h1 >TO DO LIST<i class="fa fa-plus"></i></h1>
+                                <input type="text" name="note[type]" value="to-do" style="display: none;">
+                                <div class="form-group">
+                                    <input class="form-control to-do-input" type="text" name="note[title]" placeholder="Add Do List" value="<%= note.description %>" autofocus>
+                                    <ul class="to-do-ul">
+                                        <!-- <li class="to-do-li"><span class="to-do-span"><i class="fa fa-trash"></i></span> GO TO HELL</li> -->
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn">Save!</button>
+                            </div>
+        
+                        </div>
+                    </form>
                 </div>
-                <div class="form-group">
-                    <button class="btn btn-lg btn-primary btn-block">Save!</button>
+            <% } else if( note.type == "lecture" ){%>
+                <div class="col-md-offset-2 col-md-9 lecture-section" >
+                        <form action="/<%= user_id %>/notes/<%= note._id %>?_method=PUT" method="POST">
+                        <input type="text" name="note[type]" value="lecture" style="display: none;">
+                        <div class="form-group">
+                            <label for="title" class="sr-only"></label>
+                            <input class="form-control" id="title" type="text" name="note[title]" placeholder="Lecture Title" value="<%= note.title %>" maxlength="50">
+                        </div> 
+                        <textarea class="js--trumbowyg" name="note[description]">
+                            <%= note.description %>
+                        </textarea>
+                        <div class="row">
+                            <button class="btn" type="submit">Save</button>
+                        </div> 
+                    </form>               
                 </div>
-            </form>
-            <a href="/<%= user_id %>/notes">GO Back</a>
+            <% } else if( note.type == "meeting" ){%>
+
+                <div class="col-md-offset-2 col-md-9 meeting-section" >
+        
+                    <form action="/<%= user_id %>/notes/<%= note._id %>?_method=PUT" method="POST">
+        
+                        <!-- <h1>MEETING NOTES</h1> -->
+                        <input type="text" name="note[type]" value="meeting" style="display: none;">
+                        
+                        <div class="form-group title-container">
+                            <label for="title" class="sr-only"></label>
+                            <input class="form-control" id="title" type="text" name="note[title]" placeholder="Meeting Title" value="<%= note.title %>" maxlength="80">
+                        </div>           
+                        <div class="form-group">
+                            <label for="meetingDate">Date & Time: </label>
+                            <input class="form-control" id="meetingDate" type="text" name="note[meetingDate]" value="<%= note.title %>" placeholder="Date and Time of the meeting">
+                        </div>
+                        <div class="form-group">                
+                            <label for="meetingAgenda">Agenda:</label>
+                            <textarea class="form-control" id="meetingAgenda" name="note[meetingAgenda]" placeholder="What's the meeting agenda?!"><%= note.title %></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="meetingAttendees">Attendees:</label>
+                            <textarea class="form-control" id="meetingAttendees" name="note[meetingAttendees]" placeholder="Attendees at the meeting..."><%= note.title %></textarea>
+                        </div>
+        
+                        <table id="tblData">          
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <div>
+                                            <a id="btnAdd"><i class="fa fa-plus"></i></a>
+                                        </div>
+                                        Action Item
+                                    </th>
+                                    <th>Assignee</th>
+                                    <th>Status</th>
+                                    <!-- <th></th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="btnDelete"><i class="fa fa-trash"></i></span>
+                                        <input type='text' name='note[meetingAction]' value="<%= note.title %>" />
+                                    </td>
+                                    <td><input type='text' name='note[meetingAssignee]' value="<%= note.title %>" /></td>
+                                    <td><input type='text' name='note[meetingStatus]' value="<%= note.title %>" /></td>
+                                </tr>
+                            </tbody>
+                        </table>
+        
+                        <div class="row">
+                            <button class="btn" type="submit">Save</button>
+                        </div> 
+        
+                    </form>
+                </div>
+            <% } %>
+            <!-- <br /> -->
+            <!-- <a href="/<%= user_id %>/notes"> <= </a> -->
         </div>
     </div>
 </div>

@@ -22,10 +22,10 @@ var NoteSchema = new mongoose.Schema({
     type: Date,
   },
   meetingAgenda: {
-    type: Date,
+    type: String,
   },
   meetingAttendees: {
-    type: Date,
+    type: String,
   },
   meetingAction: {
     type: String,

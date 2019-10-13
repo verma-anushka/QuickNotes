@@ -33,7 +33,11 @@
 
             <!-- LOGO -->
             <div class="navbar-header">
-                <a href="#" class="navbar-brand">QuickNotes</a>
+                <% if(user){ %>
+                    <a href="/<%= user.id %>/notes" class="navbar-brand">QuickNotes</a>
+                <% } else { %>
+                    <a href="/" class="navbar-brand">QuickNotes</a>
+                <% } %>
                 <button type="button" class="navbar-toggle" data-target="#navbarCollapse" data-toggle="collapse">
                     <span class="sr-only">Toggle Navigation</span>
                     <span class="icon-bar"></span>
@@ -47,7 +51,9 @@
 
                 <!-- LEFT LINKS -->
                 <ul class="nav navbar-nav">
-                    <li><a href="#">Profile</a></li>
+                    <% if(user){ %>
+                        <li><a href="/<%= user.id %>/profile">Profile</a></li>
+                    <% } %>
                     <!-- <li><a href="#">Help</a></li>
                     <li><a href="#">Contact</a></li> -->
                 </ul>
@@ -58,8 +64,7 @@
                         <li><a href="#signupModal" data-toggle="modal">Sign-Up</a></li>
                         <li><a href="#loginModal" data-toggle="modal">Login</a></li>
                     <% } else{ %>
-                        <%= console.log( "user" ) %>
-                        <%= console.log( user ) %>
+                        
                         <li><a href="#logoutModal" data-toggle="modal">Logout</a></li>
                     <% } %>
                 </ul>
