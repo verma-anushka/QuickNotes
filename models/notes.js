@@ -15,7 +15,6 @@ var NoteSchema = new mongoose.Schema({
           type: String,
           // required: true
         },
-  
 
   // MEETING 
   meetingDate: {

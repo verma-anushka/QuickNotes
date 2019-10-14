@@ -99,7 +99,6 @@ $(document).ready(function(){
         "<td><input type='text' name='note[meetingAssignee]' /></td>"+
         "<td><input type='text' name='note[meetingStatus]' /></td>"+
         "</tr>");
-     
         // $(".btnSave").bind("click", Save);      
         $(".btnDelete").bind("click", Delete);
   });  
@@ -116,8 +115,6 @@ $(document).ready(function(){
     var par = $(this).parent().parent(); //tr
     par.remove();
   }; 
-
-
 
   $(".blank").click(function() {
     // console.log("clicked");
@@ -155,6 +152,4 @@ $(document).ready(function(){
                               "display": "block"
                             });
   });
-
-  
 });

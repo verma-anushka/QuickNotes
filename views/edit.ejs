@@ -4,7 +4,6 @@
     <div class="row">
         <!-- <h1 style="text-align: center">Edit NOTES</h1> -->
         <div>
-            <% console.log( note.type )%>
             <% if( note.type == "blank" ){ %>
                 <div class="col-md-offset-2 col-md-9 blank-section">
                     <form action="/<%= user_id %>/notes/<%= note._id %>?_method=PUT" method="POST">
@@ -74,17 +73,16 @@
                         </div>           
                         <div class="form-group">
                             <label for="meetingDate">Date & Time: </label>
-                            <input class="form-control" id="meetingDate" type="text" name="note[meetingDate]" value="<%= note.title %>" placeholder="Date and Time of the meeting">
+                            <input class="form-control" id="meetingDate" type="text" name="note[meetingDate]" value="<%= note.meetingDate %>" placeholder="Date and Time of the meeting">
                         </div>
                         <div class="form-group">                
                             <label for="meetingAgenda">Agenda:</label>
-                            <textarea class="form-control" id="meetingAgenda" name="note[meetingAgenda]" placeholder="What's the meeting agenda?!"><%= note.title %></textarea>
+                            <textarea class="form-control" id="meetingAgenda" name="note[meetingAgenda]" placeholder="What's the meeting agenda?!"><%= note.meetingAgenda %></textarea>
                         </div>
                         <div class="form-group">
                             <label for="meetingAttendees">Attendees:</label>
-                            <textarea class="form-control" id="meetingAttendees" name="note[meetingAttendees]" placeholder="Attendees at the meeting..."><%= note.title %></textarea>
+                            <textarea class="form-control" id="meetingAttendees" name="note[meetingAttendees]" placeholder="Attendees at the meeting..."><%= note.meetingAttendees %></textarea>
                         </div>
-        
                         <table id="tblData">          
                             <thead>
                                 <tr>
@@ -100,13 +98,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>
-                                        <span class="btnDelete"><i class="fa fa-trash"></i></span>
-                                        <input type='text' name='note[meetingAction]' value="<%= note.title %>" />
+                                <tr >
+                                    <td style="color: #000;">
+                                        <!-- <span class="btnDelete"><i class="fa fa-trash"></i></span> -->
+                                        <input type='text' name='note[meetingAction]' value="<%= note.meetingAction %>" />
                                     </td>
-                                    <td><input type='text' name='note[meetingAssignee]' value="<%= note.title %>" /></td>
-                                    <td><input type='text' name='note[meetingStatus]' value="<%= note.title %>" /></td>
+                                    <td style="color: #000;"><input type='text' name='note[meetingAssignee]' value="<%= note.meetingAssignee %>" /></td>
+                                    <td style="color: #000;"><input type='text' name='note[meetingStatus]' value="<%= note.meetingStatus %>" /></td>
                                 </tr>
                             </tbody>
                         </table>
