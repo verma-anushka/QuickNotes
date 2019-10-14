@@ -8,6 +8,16 @@
 .notes-container {
     text-align: center;
 }
+/* .notes-container div{
+  margin-left: 10%;
+}
+.notes-container h1{
+  text-align: left;
+} */
+.notes-container h1 a{
+  right: 10%;
+  color: #000;
+}
 .notes-container textarea {
     text-align: left;
 }

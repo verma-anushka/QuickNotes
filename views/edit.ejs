@@ -110,14 +110,19 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr >
-                                    <td style="color: #000;">
-                                        <!-- <span class="btnDelete"><i class="fa fa-trash"></i></span> -->
-                                        <input type='text' name='note[meetingAction]' value="<%= note.meetingAction %>" />
-                                    </td>
-                                    <td style="color: #000;"><input type='text' name='note[meetingAssignee]' value="<%= note.meetingAssignee %>" /></td>
-                                    <td style="color: #000;"><input type='text' name='note[meetingStatus]' value="<%= note.meetingStatus %>" /></td>
-                                </tr>
+
+                                <% for(var i=0; i < note.meetingAction.length; i++){ %>
+                                    <tr >
+                                        <td>
+                                            <!-- <span class="btnDelete"><i class="fa fa-trash"></i></span> -->
+                                            <input type='text' name='note[meetingAction]' value="<%= note.meetingAction[i] %>" />
+                                        </td>
+                                        <td><input type='text' name='note[meetingAssignee]' value="<%= note.meetingAssignee[i] %>" /></td>
+                                        <td><input type='text' name='note[meetingStatus]' value="<%= note.meetingStatus[i] %>" /></td>
+                                    </tr>
+
+                                <% } %>
+
                             </tbody>
                         </table>
         

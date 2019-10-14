@@ -30,15 +30,35 @@ var NoteSchema = new mongoose.Schema({
   meetingAttendees: {
     type: String,
   },
-  meetingAction: {
+  meetingAction: [{
     type: String,
-  },
-  meetingAssignee: {
+  }],
+  meetingAssignee: [{
     type: String,
-  },
-  meetingStatus: {
+  }],
+  meetingStatus: [{
     type: String,
-  },
+  }],
+  // meetingTable: [{
+  //   meetingAction: [{
+  //     type: String,
+  //   }],
+  //   meetingAssignee: [{
+  //     type: String,
+  //   }],
+  //   meetingStatus: [{
+  //     type: String,
+  //   }]
+  // }],
+  // meetingAttendees: {
+  //   type: String,
+  // },
+  // meetingAction: {
+  //   type: String,
+  // },
+  // meetingAssignee: {
+  //   type: String,
+  // },
 
   date: {
           type: Date,

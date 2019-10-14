@@ -108,7 +108,7 @@
         </div>
 
         <!-- TODO LIST -->
-        <div class="col-md-offset-2 col-md-9 to-do-section">
+        <div class="col-md-offset-2 col-md-9 to-do-section" style="display: none;">
             <form action="/<%= user._id %>/notes" method="POST">
                 <div class="to-do-container">
                     <h1 >TO DO LIST<i class="fa fa-plus"></i></h1>
@@ -152,12 +152,12 @@
         </div>
 
         <!-- MEETING NOTE -->
-        <div class="col-md-offset-2 col-md-9 meeting-section" style="display: none;" >
+        <div class="col-md-offset-2 col-md-9 meeting-section">
 
             <form action="/<%= user._id %>/notes" method="POST">
 
                 <!-- <h1>MEETING NOTES</h1> -->
-                <input type="text" name="note[type]" value="meeting" style="display: none;">
+                <input type="text" name="note[type]" value="meeting"  style="display: none;" >
                 
                 <div class="form-group title-container">
                     <label for="title" class="sr-only"></label>
