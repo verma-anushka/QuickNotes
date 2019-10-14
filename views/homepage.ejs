@@ -15,8 +15,9 @@
             <div class="row">
                 <div class="notes-container">
                     <div>
-                        <h1>Your Notes!!</h1>
+                        <h1>Welcome back, <%= user.username %> ! Your Notes!!
                         <a href="/<%= user._id %>/notes/new"><i class="fa fa-plus"></i></a>
+                        </h1>
                     </div>
                 </div>
 
@@ -42,7 +43,7 @@
                 </div>
 
                 
-                <div class="col-md-offset-2 col-md-8 col-sm-6 allNotes">
+                <div class="col-md-offset-1 col-md-10 col-sm-6 allNotes">
                     <section id="works" class="page-content">
 
                         <div id="grid-container" class="cbp">
@@ -52,7 +53,7 @@
 
                                     <% if( note.type == "blank" ){ %>
                                         <div class="cbp-item blank">
-                                            <a href="" class="cbp-caption" style="float: left;">
+                                            <div class="cbp-caption" style="float: left;">
                                                 <div class="cbp-caption-defaultWrap">
                                                     <img src="/images/blank.jpg" alt="">
                                                 </div>
@@ -63,24 +64,24 @@
                                                             <div class="cbp-l-caption-desc"><%- note.description %></div>
                                                         </div>
                                                     </div>
+                                                    <span id="delete">
+                                                        <form id="delete-form" action="/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
+                                                            <button >
+                                                                <i class="fa fa-trash"></i>
+                                                            </button>
+                                                        </form>                                    
+                                                    </span>
+                                                    <span id="edit" class="pull-right">
+                                                        <a href="/<%= user._id %>/notes/<%= note._id %>/edit">
+                                                            <i class="fa fa-edit"></i>
+                                                        </a>            
+                                                    </span> 
                                                 </div>
-                                            </a>
-                                            <span id="delete">
-                                                <form id="delete-form" action="/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
-                                                    <button >
-                                                        <i class="fa fa-trash"></i>
-                                                    </button>
-                                                </form>                                    
-                                            </span>
-                                            <span id="edit" class="pull-right">
-                                                <a href="/<%= user._id %>/notes/<%= note._id %>/edit">
-                                                    <i class="fa fa-edit"></i>
-                                                </a>            
-                                            </span>
+                                            </div>
                                         </div>
                                     <% } else if( note.type == "lecture" ){ %>
                                         <div class="cbp-item lecture">
-                                            <a href="" class="cbp-caption" style="float: left;">
+                                            <div class="cbp-caption" style="float: left;">
                                                 <div class="cbp-caption-defaultWrap">
                                                     <img src="/images/lecture.jpg" alt="">
                                                 </div>
@@ -91,53 +92,58 @@
                                                             <div class="cbp-l-caption-desc"><%- note.description %></div>
                                                         </div>
                                                     </div>
+                                                    <span id="delete">
+                                                        <form id="delete-form" action="/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
+                                                            <button >
+                                                                <i class="fa fa-trash"></i>
+                                                            </button>
+                                                        </form>                                    
+                                                    </span>
+                                                    <span id="edit" class="pull-right">
+                                                        <a href="/<%= user._id %>/notes/<%= note._id %>/edit">
+                                                            <i class="fa fa-edit"></i>
+                                                        </a>            
+                                                    </span>
                                                 </div>
-                                            </a>
-                                            <span id="delete">
-                                                    <form id="delete-form" action="/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
-                                                        <button >
-                                                            <i class="fa fa-trash"></i>
-                                                        </button>
-                                                    </form>                                    
-                                                </span>
-                                                <span id="edit" class="pull-right">
-                                                    <a href="/<%= user._id %>/notes/<%= note._id %>/edit">
-                                                        <i class="fa fa-edit"></i>
-                                                    </a>            
-                                                </span>
+                                            </div>
                                         </div>
                                     <% } else if( note.type == "to-do" ){ %>
-
                                         <div class="cbp-item to-do">
-                                            <a href="" class="cbp-caption" style="float: left;">
+                                            <div class="cbp-caption" style="float: left;">
                                                 <div class="cbp-caption-defaultWrap">
                                                     <img src="/images/todo.jpg" alt="">
                                                 </div>
                                                 <div class="cbp-caption-activeWrap">
                                                     <div class="cbp-l-caption-alignLeft">
                                                         <div class="cbp-l-caption-body">
-                                                            <div class="cbp-l-caption-title"><%- note.title %></div>
-                                                            <div class="cbp-l-caption-desc"><%- note.description %></div>
+                                                            <div class="cbp-l-caption-title">TO-DO LIST!</div>
+                                                            <% note.todos.forEach(function(todo){ %>
+                                                                <li class="cbp-l-caption-desc"><%= todo %></li>
+                                                            <% }) %>
                                                         </div>
                                                     </div>
+                                                    <div class="formatting">
+                                                        <span id="delete">
+                                                                <form id="delete-form" action="/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
+                                                                    <button >
+                                                                        <i class="fa fa-trash"></i>
+                                                                    </button>
+                                                                </form>                                    
+                                                            </span>
+                                                            <span id="edit">
+                                                                <a href="/<%= user._id %>/notes/<%= note._id %>/edit">
+                                                                    <i class="fa fa-edit"></i>
+                                                                </a>            
+                                                            </span>
+                                                    </div>
+                                                    
                                                 </div>
-                                            </a>
-                                            <span id="delete">
-                                                    <form id="delete-form" action="/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
-                                                        <button >
-                                                            <i class="fa fa-trash"></i>
-                                                        </button>
-                                                    </form>                                    
-                                                </span>
-                                                <span id="edit" class="pull-right">
-                                                    <a href="/<%= user._id %>/notes/<%= note._id %>/edit">
-                                                        <i class="fa fa-edit"></i>
-                                                    </a>            
-                                                </span>
+                                            </div>
+                                            
                                         </div>
                                     <% } else if( note.type == "meeting" ){ %>
                                         <div class="cbp-item meeting">
-                                            <a href="" class="cbp-caption" style="float: left;">
+                                            <div class="cbp-caption" style="float: left;">
                                                 <div class="cbp-caption-defaultWrap">
                                                     <img src="/images/meeting.jpg" alt="">
                                                 </div>
@@ -150,22 +156,21 @@
                                                             <div class="cbp-l-caption-desc"><%- note.meetingAttendees %></div>
                                                         </div>
                                                     </div>
+                                                    <span id="delete">
+                                                        <form id="delete-form" action="/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
+                                                            <button >
+                                                                <i class="fa fa-trash"></i>
+                                                            </button>
+                                                        </form>                                    
+                                                    </span>
+                                                    <span id="edit" class="pull-right meeting-edit">
+                                                        <a href="/<%= user._id %>/notes/<%= note._id %>/edit">
+                                                            <i class="fa fa-edit"></i>
+                                                        </a>            
+                                                    </span>
                                                 </div>
-                                            </a>
-                                            <span id="delete">
-                                                <form id="delete-form" action="/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
-                                                    <button >
-                                                        <i class="fa fa-trash"></i>
-                                                    </button>
-                                                </form>                                    
-                                            </span>
-                                            <span id="edit" class="pull-right meeting-edit">
-                                                <a href="/<%= user._id %>/notes/<%= note._id %>/edit">
-                                                    <i class="fa fa-edit"></i>
-                                                </a>            
-                                            </span>
+                                            </div>
                                         </div>
-
 
                                     <% } else if( note.type == "planner" ){ %>
                                     <% } %>

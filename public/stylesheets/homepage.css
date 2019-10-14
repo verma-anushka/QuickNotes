@@ -35,51 +35,39 @@ ul{
     padding-left: 40px; 
     height: 1px;
 }
-span button{
-
-    background: #E74C3C;
+.cbp-caption-activeWrap{
+  position: relative;
+}
+.formatting{
+  margin: 0 auto;
+  position: absolute;
+  left: 40%;
+  bottom: 5%;
+}
+span button,
+span a{
+    background: rgb(63, 36, 20);
     height: 30px;
     width: 30px;
     outline: none;
-    border: #E74C3C;
+    border: none;
+    border-radius: 50%;
     text-align: center;
     color: #FFF;
     display: inline-block;
-    /* opacity: 0; */
     transition: 0.5s linear;
 }
-/* .cbp-l-caption-body:hover span button{
-    opacity: 1;
-    width: 30px;
-    height: 30px;
-} */
-span a{
-    background: green;
-    height: 30px;
-    width: 30px;
-    outline: none;
-    /* margin-right: 20px; */
-    line-height: 2;
-    text-align: center;
-    color: #FFF;
-    display: inline-block;
-    transition: 0.3s linear;
+span button{
+  margin-right: 20px;
 }
-/* li:hover span a{
-    width: 30px;
-} */
-/* textarea{
-    float: left; 
-    width: 100%;
-    max-width: 100%;
-    font-size: 16px;
-    line-height: 1.5em;
-    border-left-width: 20px;
-    border-color: #CA3DD9;
-    color: #CA3DD9;
-    background-color: #FBEFFF;
-    padding: 10px;
-} */
+span a{
+    line-height: 2;
+}
+span:hover button,
+span:hover a{
+  color: rgb(63, 36, 20);
+  background-color: #FFF;
+}
 .no-notes{
   text-align: center;
 }
@@ -170,4 +158,39 @@ span a{
   color: rgb(63, 36, 20);
   background-color: rgb(255,255,255);
   outline: none;
+}
+
+
+
+/* <div id="grid-container" class="cbp cbp-caption-active cbp-caption-minimal cbp-ready cbp-cols-2" style="height: 280px;"><div class="cbp-wrapper-outer"><div class="cbp-wrapper"> */
+
+/* .allNotes .cbp,
+.allNotes .cbp-wrapper-outer,
+.allNotes .cbp-wrapper,
+.allNotes .cbp-item{
+  width: 334px;
+  max-width: 334px;
+} */
+/* .allNotes .cbp-caption-activeWrap,
+.allNotes .cbp-caption-defaultWrap{
+  width: 334px;
+  height: 334px;
+  max-width: 334px;
+  max-height: 250px;
+} */
+
+.allNotes .cbp{
+  margin-bottom: 50px;
+}
+.allNotes .cbp-caption-activeWrap .cbp-l-caption-title{
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+
+.allNotes .to-do li{
+  background: transparent;
+  color: #FFF;
+  margin-bottom: 1px;
 }

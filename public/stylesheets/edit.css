@@ -1,0 +1,12 @@
+.to-do-container-edit span{
+    float: left;
+}
+.to-do-container-edit li:first-child span{
+    display: none;
+
+    padding-left: 3px;
+    margin-right: 0;
+}
+.to-do-container-edit input[type=text]:first-child{
+    width: 100%;
+}

@@ -193,7 +193,8 @@ body {
     text-decoration: line-through;
 }
 .to-do-container {
-    margin: 150px auto;
+    margin: 50px auto;
+    margin-top: 150px;
     width: 400px;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
     background-color: #fff;
@@ -203,23 +204,59 @@ body {
     margin: 0;
     padding: 10px;
     color:white;
-    font-weight: normal;
+    text-align: center;
+    font-weight: 700;
     font-size: 30px;
 }
+.to-do-container span{
+    float: left;
+}
 .to-do-container .fa-plus {
+    padding-right: 7px;
+    margin-top: 5px;
+    text-align: center;
+    font-size: 24px;
     float: right;
 }
-.to-do-container input[type=text]{
-    width: 100%;
-    padding: 15px 15px 15px 20px;
-    color: rgb(58, 33, 19, 0.85);
-    font-size: 25px;
-    box-sizing: border-box;
-    background-color: #ecf0f1;
-    border: 3px solid rgba(0,0,0,0);
+.to-do-container .fa-plus:hover {
+    cursor: pointer;
 }
-.to-do-container input:focus {
-    border: 1px solid rgb(58, 33, 19, 0.85);
+.to-do-container input[type=text]{
+    width: 81%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    /* padding: 15px 15px 15px 20px; */
+    /* color: rgb(58, 33, 19, 0.85); */
+    font-size: 25px;
+    /* box-sizing: border-box; */
+    /* background-color: #ecf0f1; */
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    outline: none;
+    /* border: 3px solid rgba(0,0,0,0); */
+}
+.to-do-container input[type=text]:first-child{
+    width: 100%;
+}
+/* .to-do-container li:firs{
+    background-color:#e5c0bc;
+}
+.to-do-container input[type=text]:nth-child(2n-1){
+    background-color:#FFF;
+    border: none;
+    box-shadow: none;
+    outline: none;
+} */
+.to-do-container input[type=text]:focus {
+    border: none;
+    box-shadow: none;
+    outline: none;
+}
+.to-do-container input[type=text]::placeholder{
+    text-align: center;
+    font-size: large;
 }
 .to-do-container ul {
     margin: 0;
@@ -232,9 +269,13 @@ body {
     line-height: 40px;
     cursor: pointer;
 }
-.to-do-container li:nth-child(2n){
-    background-color:rgb(58, 33, 19, 0.15);
+.to-do-container li:nth-child(2n-1){
+    background-color:#FFF;
 }
+.to-do-container li:nth-child(2n){
+    background-color: rgb(175, 134, 115);
+}
+
 .to-do-container span {
     width: 0px;
     color: #fff;
@@ -243,7 +284,7 @@ body {
     text-align: center;
     margin-right: 20px;
     transition: 0.5s linear;
-    opacity: 0.5;
+    opacity: 0;
 }
 .to-do-container li:hover span {
     width: 40px;

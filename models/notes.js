@@ -15,6 +15,10 @@ var NoteSchema = new mongoose.Schema({
           type: String,
           // required: true
         },
+  // TO DO
+  todos: [{
+    type: String
+  }],
 
   // MEETING 
   meetingDate: {
