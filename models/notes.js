@@ -10,7 +10,6 @@ var NoteSchema = new mongoose.Schema({
           type: String,
           // required: true
         },
-
   description: {
           type: String,
           // required: true
@@ -60,6 +59,32 @@ var NoteSchema = new mongoose.Schema({
   //   type: String,
   // },
 
+
+  eventTitle: [{
+    type: String,
+    // required: true
+  }],
+  eventDescription: [{
+      type: String,
+      // required: true
+    }],
+  eventAllDay: [{
+      type: Boolean,
+      // required: true
+    }],
+  eventStart: [{
+                type: Date,
+                default: Date.now
+            }],
+  eventEnd: [{
+                type: Date,
+                // default: Date.now
+              }],
+eventAvailability: [{
+            type: String,
+            possibleValues: ['true', 'false']
+            // default: Date.now
+          }],
   date: {
           type: Date,
           default: Date.now

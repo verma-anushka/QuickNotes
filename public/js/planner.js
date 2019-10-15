@@ -12,7 +12,7 @@ $(function () {
       dateInst,
       preventSet,
       now = new Date(),
-      btn = '<button class="mbsc-btn mbsc-btn-outline mbsc-btn-danger md-delete-btn mbsc-ios">Delete</button>',
+      btn = '<a class="mbsc-btn mbsc-btn-outline mbsc-btn-danger md-delete-btn mbsc-ios">Delete</a>',
       myData = [
       //   {
       //     start: new Date(now.getFullYear(), now.getMonth(), 8, 13),
@@ -70,9 +70,12 @@ $(function () {
           navigate(monthInst, day);
           dateInst.setVal([day, new Date(day.getFullYear(), day.getMonth(), day.getDate(), day.getHours() + 2)], true);
       },
-      onEventSelect: function (event, inst) {  // More info about onEventSelect: https://docs.mobiscroll.com/4-8-3/eventcalendar#event-onEventSelect
-          if ($(event.domEvent.target).hasClass('md-delete-btn')) {
-              mobiscroll.confirm({ 
+      onEventSelect: function (event, inst) {
+            // More info about onEventSelect: https://docs.mobiscroll.com/4-8-3/eventcalendar#event-onEventSelect
+
+        // event.preventdefault();
+        if ($(event.domEvent.target).hasClass('md-delete-btn')) {
+            mobiscroll.confirm({ 
                   
                   title: 'Confirm Deletion',
                   message: 'Are you sure you want to delete this item?',
@@ -150,5 +153,29 @@ $(function () {
   $('#showAddEventPopup').click(function () {
       popupInst.show();
   });
+
+
+//   $(function() {
+//     // By default deny the submit
+//     var allowSubmit = false;
+
+//     $(".planner-form").on("submit", function(event) {
+
+//         if (!allowSubmit) {
+//             event.preventDefault();
+
+//             // Your code logic in here (maybe form validation or something)
+//             // Then you set allowSubmit to true so this code is bypassed
+//             console.log("save!");
+
+//             allowSubmit = true;
+//         }
+
+//     });
+// });
+//   $('.planner-btn').click(function () {
+//       console.log("save!");
+//     // popupInst.show();
+// });
 
 });

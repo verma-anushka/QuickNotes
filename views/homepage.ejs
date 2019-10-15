@@ -1,7 +1,6 @@
 <% include partials/header.ejs %>
 
 <% var found = "false"; %>
-
 <% notes.forEach(function(note){ %>
     <% if( note.author.id.equals(user._id) ){ %>
         <% found = "true"; %>
@@ -9,13 +8,13 @@
 <% }); %>
 
 <% if( found == "true" ){ %>
-
+    
     <div class="home-container">
         <div class="row">
             <div class="row">
                 <div class="notes-container">
                     <div>
-                        <h1 >Welcome back, <%= user.username %> ! Your Notes!!
+                        <h1 >Welcome back, <%= user.username %> !
                             <a href="/<%= user._id %>/notes/new"><i class="fa fa-plus"></i></a>
                         </h1>
                     </div>
@@ -26,23 +25,28 @@
                         ALL NOTES<div class="cbp-filter-counter"></div>
                     </div> /
                     <div data-filter=".blank" class="cbp-filter-item">
-                        BLANK NOTES <div class="cbp-filter-counter"></div>
+                        BLANK<div class="cbp-filter-counter"></div>
                     </div> /
                     <div data-filter=".lecture" class="cbp-filter-item">
-                        LECTURE NOTES <div class="cbp-filter-counter"></div>
+                        LECTURE<div class="cbp-filter-counter"></div>
                     </div> /
                     <div data-filter=".to-do" class="cbp-filter-item">
-                        TO-DO LIST <div class="cbp-filter-counter"></div>
+                        TO-DO LIST<div class="cbp-filter-counter"></div>
                     </div> /
                     <div data-filter=".meeting" class="cbp-filter-item">
-                        MEETING NOTES <div class="cbp-filter-counter"></div>
+                        MEETING<div class="cbp-filter-counter"></div>
                     </div> /
-                    <div data-filter=".motion" class="cbp-filter-item">
-                        PLANNER <div class="cbp-filter-counter"></div>
+                    <div data-filter=".planner" class="cbp-filter-item">
+                        PLANNER<div class="cbp-filter-counter"></div>
+                    </div> /
+                    <div data-filter=".daily-reflection" class="cbp-filter-item">
+                        DAILY REFLECTION<div class="cbp-filter-counter"></div>
+                    </div> /
+                    <div data-filter=".plan" class="cbp-filter-item">
+                        PROJECT PLAN<div class="cbp-filter-counter"></div>
                     </div>
                 </div>
 
-                
                 <div class="col-md-offset-1 col-md-10 col-sm-6 allNotes">
                     <section id="works" class="page-content">
 
@@ -51,6 +55,8 @@
                             <% notes.forEach(function(note){ %>
                                 <% if( note.author.id.equals(user._id) ){ %>
 
+                                    <% console.log( "note" )%>
+                                    <% console.log( note )%> 
                                     <% if( note.type == "blank" ){ %>
                                         <div class="cbp-item blank">
                                             <div class="cbp-caption" style="float: left;">
@@ -142,7 +148,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
                                         </div>
                                     <% } else if( note.type == "meeting" ){ %>
                                         <div class="cbp-item meeting">
@@ -178,6 +183,43 @@
                                         </div>
 
                                     <% } else if( note.type == "planner" ){ %>
+
+                                        <div class="cbp-item planner">
+                                            <div class="cbp-caption" style="float: left;">
+                                                <div class="cbp-caption-defaultWrap">
+                                                    <img src="/images/planner.jpg" alt="">
+                                                </div>
+                                                <div class="cbp-caption-activeWrap">
+                                                    <div class="cbp-l-caption-alignLeft">
+                                                        <div class="cbp-l-caption-body">
+                                                            <div class="cbp-l-caption-title"><%- note.title %></div>
+                                                            <div class="cbp-l-caption-desc"><%- note.description %></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="formatting">
+                                                        <span id="delete">
+                                                            <form id="delete-form" action="/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
+                                                                <button >
+                                                                    <i class="fa fa-trash"></i>
+                                                                </button>
+                                                            </form>                                    
+                                                        </span>
+                                                        <span id="edit">
+                                                            <a href="/<%= user._id %>/notes/<%= note._id %>/edit">
+                                                                <i class="fa fa-edit"></i>
+                                                            </a>            
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
                                     <% } %>
 
                                 <% } %>
