@@ -151,9 +151,9 @@
         </div>
 
         <!-- MEETING NOTE -->
-        <div class="col-md-offset-2 col-md-9 meeting-section">
+        <div class="col-md-offset-2 col-md-9 meeting-section" style="display: none;">
 
-            <form action="/<%= user._id %>/notes" method="POST" style="display: none;">
+            <form action="/<%= user._id %>/notes" method="POST" >
 
                 <!-- <h1>MEETING NOTES</h1> -->
                 <input type="text" name="note[type]" value="meeting"  style="display: none;" >
@@ -205,6 +205,8 @@
                 </div> 
             </form>
         </div>
+
+
         <!-- WEEKLY PLANNER -->
         <div class="col-md-offset-2 col-md-9 planner-section"  style="display: none;">
             <!-- <h1>PLANNER NOTES</h1> -->
@@ -282,7 +284,7 @@
 
 
         <!-- DAILY REFLECTION -->
-        <div class="col-md-offset-2 col-md-9 daily-reflection-section">
+        <div class="col-md-offset-2 col-md-9 daily-reflection-section" style="display: none;">
             <form action="/<%= user._id %>/notes" method="POST">
                 <h1 >DAILY REFLECTION...</h1>
                 <input type="text" name="note[type]" value="daily-reflection" style="display: none;">
@@ -311,6 +313,83 @@
                 </div> 
             </form>           
         </div>
+
+        <!-- MEAL PLANNER -->
+        <div class="col-md-offset-2 col-md-9 meal-planner-section">
+
+            <form action="/<%= user._id %>/notes" method="POST">
+
+                <input type="text" name="note[type]" value="meal-planner"  style="display: none;" >
+                
+                <div class="form-group title-container">
+                    <label for="title" class="sr-only"></label>
+                    <input class="form-control" id="title" type="text" name="note[title]" placeholder="Meeting Title" maxlength="80">
+                </div>           
+
+                <table id="tblData">          
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Breakfast</th>
+                            <th>Lunch</th>
+                            <th>Dinner</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="day">Sunday</td>
+                            <td><input type='text' name='note[meal1]' /></td>
+                            <td><input type='text' name='note[meal2]' /></td>
+                            <td><input type='text' name='note[meal3]' /></td>
+                        </tr>
+                        <tr>
+                            <td class="day">Monday</td>
+                            <td><input type='text' name='note[meal1]' /></td>
+                            <td><input type='text' name='note[meal2]' /></td>
+                            <td><input type='text' name='note[meal3]' /></td>
+                        </tr>
+                        <tr>
+                            <td class="day">Tuesday</td>
+                            <td><input type='text' name='note[meal1]' /></td>
+                            <td><input type='text' name='note[meal2]' /></td>
+                            <td><input type='text' name='note[meal3]' /></td>
+                        </tr>
+                        <tr>
+                            <td class="day">Wednesday</td>
+                            <td><input type='text' name='note[meal1]' /></td>
+                            <td><input type='text' name='note[meal2]' /></td>
+                            <td><input type='text' name='note[meal3]' /></td>
+                        </tr>
+                        <tr>
+                            <td class="day">Thursday</td>
+                            <td><input type='text' name='note[meal1]' /></td>
+                            <td><input type='text' name='note[meal2]' /></td>
+                            <td><input type='text' name='note[meal3]' /></td>
+                        </tr>
+                        <tr>
+                            <td class="day">Friday</td>
+                            <td><input type='text' name='note[meal1]' /></td>
+                            <td><input type='text' name='note[meal2]' /></td>
+                            <td><input type='text' name='note[meal3]' /></td>
+                        </tr>
+
+                        <tr>
+                            <td class="day">Saturday</td>
+                            <td><input type='text' name='note[meal1]' /></td>
+                            <td><input type='text' name='note[meal2]' /></td>
+                            <td><input type='text' name='note[meal3]' /></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="row">
+                    <button class="btn" type="submit">Save</button>
+                </div> 
+            </form>
+        </div>
+
+
+
     </div>
 </div>
 

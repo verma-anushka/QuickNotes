@@ -86,11 +86,22 @@ var NoteSchema = new mongoose.Schema({
             // default: Date.now
           }],
 
-  // Daily Reflection
+  // DAILY REFLECTION
   dailyReflection: [{
     type: String,
   }],
 
+  // MEAL PLANNER
+  meal1: [{
+    type: String,
+  }],
+  meal2: [{
+    type: String,
+  }],
+  meal3: [{
+    type: String,
+  }],
+  
   date: {
           type: Date,
           default: Date.now

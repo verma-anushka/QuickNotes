@@ -42,8 +42,8 @@
                     <div data-filter=".daily-reflection" class="cbp-filter-item">
                         DAILY REFLECTION<div class="cbp-filter-counter"></div>
                     </div> /
-                    <div data-filter=".plan" class="cbp-filter-item">
-                        PROJECT PLAN<div class="cbp-filter-counter"></div>
+                    <div data-filter=".meal-planner" class="cbp-filter-item">
+                        MEAL PLANNER<div class="cbp-filter-counter"></div>
                     </div>
                 </div>
 
@@ -181,9 +181,7 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     <% } else if( note.type == "planner" ){ %>
-
                                         <div class="cbp-item planner">
                                             <div class="cbp-caption" style="float: left;">
                                                 <div class="cbp-caption-defaultWrap">
@@ -224,9 +222,52 @@
                                                     <div class="cbp-l-caption-alignLeft">
                                                         <div class="cbp-l-caption-body">
                                                             <div class="cbp-l-caption-title">DAILY REFLECTION...</div>
-                                                            <% note.dailyReflection.forEach(function(reflection){ %>
-                                                                <div class="cbp-l-caption-desc"><%= reflection %></div>
-                                                            <% }) %>
+
+                                                            <% var reflections = ["What went well today?!", "What didn't go as planned?!", "What can be improved upon?!", "What's on your mind?!"] %>
+                                                            <% for(var i=0; i < note.dailyReflection.length; i++){ %>
+                                                                <div class="cbp-l-caption-title"><%= reflections[i] %></div>
+                                                                <div class="cbp-l-caption-desc"><%= note.dailyReflection[i] %></div>
+                                                            <% } %>
+                                                        </div>
+                                                    </div>
+                                                    <div class="formatting">
+                                                        <span id="delete">
+                                                            <form id="delete-form" action="/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
+                                                                <button >
+                                                                    <i class="fa fa-trash"></i>
+                                                                </button>
+                                                            </form>                                    
+                                                        </span>
+                                                        <span id="edit">
+                                                            <a href="/<%= user._id %>/notes/<%= note._id %>/edit">
+                                                                <i class="fa fa-edit"></i>
+                                                            </a>            
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    <% } else if( note.type == "meal-planner" ){ %>
+                                        <div class="cbp-item planner">
+                                            <div class="cbp-caption" style="float: left;">
+                                                <div class="cbp-caption-defaultWrap">
+                                                    <img src="/images/meal-planner.jpg" alt="">
+                                                </div>
+                                                <div class="cbp-caption-activeWrap">
+                                                    <div class="cbp-l-caption-alignLeft">
+                                                        <div class="cbp-l-caption-body">
+                                                            <div class="cbp-l-caption-title">MEAL PLANNER...</div>
+                                                            <% for(var i=0; i < note.meal1.length; i++){ %>
+                                                                <div class="cbp-l-caption-desc">
+                                                                    <%= note.meal1[i] %>
+                                                                         
+                                                                    <%= note.meal2[i] %> 
+                                                                        
+                                                                    <%= note.meal3[i] %> 
+
+                                                                </div>
+                                                            <% } %>
                                                         </div>
                                                     </div>
                                                     <div class="formatting">

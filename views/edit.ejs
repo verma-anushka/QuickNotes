@@ -135,7 +135,7 @@
             <% } else if( note.type == "daily-reflection" ){%>
 
                 <div class="col-md-offset-2 col-md-9 daily-reflection-section">
-                    <form action="/<%= user._id %>/notes" method="POST">
+                    <form action="/<%= user_id %>/notes/<%= note._id %>?_method=PUT" method="POST">
                         <h1 >DAILY REFLECTION...</h1>
                         <input type="text" name="note[type]" value="daily-reflection" style="display: none;">
 
@@ -151,6 +151,87 @@
                         </div> 
                     </form>           
                 </div>
+
+            <% } else if( note.type == "meal-planner" ){%>
+
+                <div class="col-md-offset-2 col-md-9 meal-planner-section">
+
+                    <form action="/<%= user_id %>/notes/<%= note._id %>?_method=PUT" method="POST">
+            
+                            <!-- <h1>MEETING NOTES</h1> -->
+                            <input type="text" name="note[type]" value="meal-planner" style="display: none;" >
+                            
+                            <div class="form-group title-container">
+                                <label for="title" class="sr-only"></label>
+                                <input class="form-control" id="title" type="text" name="note[title]" placeholder="Meeting Title" maxlength="80">
+                            </div>           
+            
+                            <table id="tblData">          
+                                <thead>
+                                    <tr>
+                                        <th></th>
+                                        <th>Breakfast</th>
+                                        <th>Lunch</th>
+                                        <th>Dinner</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <% var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] %>
+                                    <% for(var i=0; i < note.meal1.length; i++){ %>
+                                        <tr>
+                                            <td class="day"><%= days[i] %></td>
+                                            <td><input type='text' name='note[meal1]' value="<%= note.meal1[i] %>"/></td>
+                                            <td><input type='text' name='note[meal2]' value="<%= note.meal2[i] %>"/></td>
+                                            <td><input type='text' name='note[meal3]' value="<%= note.meal3[i] %>"/></td>
+                                        </tr>
+                                    <% } %>
+
+                                    <!-- <tr>
+                                        <td class="day">Monday</td>
+                                        <td><input type='text' name='note[meal1]' /></td>
+                                        <td><input type='text' name='note[meal2]' /></td>
+                                        <td><input type='text' name='note[meal3]' /></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="day">Tuesday</td>
+                                        <td><input type='text' name='note[meal1]' /></td>
+                                        <td><input type='text' name='note[meal2]' /></td>
+                                        <td><input type='text' name='note[meal3]' /></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="day">Wednesday</td>
+                                        <td><input type='text' name='note[meal1]' /></td>
+                                        <td><input type='text' name='note[meal2]' /></td>
+                                        <td><input type='text' name='note[meal3]' /></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="day">Thursday</td>
+                                        <td><input type='text' name='note[meal1]' /></td>
+                                        <td><input type='text' name='note[meal2]' /></td>
+                                        <td><input type='text' name='note[meal3]' /></td>
+                                    </tr>
+                                    <tr>
+                                        <td class="day">Friday</td>
+                                        <td><input type='text' name='note[meal1]' /></td>
+                                        <td><input type='text' name='note[meal2]' /></td>
+                                        <td><input type='text' name='note[meal3]' /></td>
+                                    </tr>
+            
+                                    <tr>
+                                        <td class="day">Saturday</td>
+                                        <td><input type='text' name='note[meal1]' /></td>
+                                        <td><input type='text' name='note[meal2]' /></td>
+                                        <td><input type='text' name='note[meal3]' /></td>
+                                    </tr> -->
+                                </tbody>
+                            </table>
+            
+                            <div class="row">
+                                <button class="btn" type="submit">Save</button>
+                            </div> 
+                        </form>
+                    </div>
             <% } %>
             <!-- <br /> -->
             <!-- <a href="/<%= user_id %>/notes"> <= </a> -->
