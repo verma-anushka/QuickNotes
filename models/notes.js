@@ -80,11 +80,17 @@ var NoteSchema = new mongoose.Schema({
                 type: Date,
                 // default: Date.now
               }],
-eventAvailability: [{
+  eventAvailability: [{
             type: String,
             possibleValues: ['true', 'false']
             // default: Date.now
           }],
+
+  // Daily Reflection
+  dailyReflection: [{
+    type: String,
+  }],
+
   date: {
           type: Date,
           default: Date.now

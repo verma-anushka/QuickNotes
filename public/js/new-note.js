@@ -101,14 +101,19 @@ $(document).ready(function(){
     // $(".blank div").css({"transform": "rotate(180deg)"});
     $(".to-do-section").css({ "display": "none" });
     $(".lecture-section").css({ "display": "none" });
+    $(".meeting-section").css({ "display": "none" });
+    $(".planner-section").css({ "display": "none" });
+    
     $(".blank-section").css({"animation": "o 5s",
                               "display": "block"
                             });
   });
-
   $(".to-do").click(function() {
     $(".blank-section").css({ "display": "none" });
     $(".lecture-section").css({ "display": "none" });
+    $(".meeting-section").css({ "display": "none" });
+    $(".planner-section").css({ "display": "none" });
+
     $(".to-do-section").css({"animation": "o 5s",
                               "display": "block"
                             });
@@ -116,16 +121,32 @@ $(document).ready(function(){
   $(".lecture").click(function() {
     $(".blank-section").css({ "display": "none" });
     $(".to-do-section").css({ "display": "none" });
+    $(".meeting-section").css({ "display": "none" });
+    $(".planner-section").css({ "display": "none" });
+
     $(".lecture-section").css({"animation": "o 5s",
                               "display": "block"
                             });
   });
   $(".meeting").click(function() {
+    console.log("meeting");
     $(".blank-section").css({ "display": "none" });
     $(".to-do-section").css({ "display": "none" });
     $(".lecture-section").css({ "display": "none" });
+    $(".planner-section").css({ "display": "none" });
+
     $(".meeting-section").css({"animation": "o 5s",
                               "display": "block"
                             });
   });
+  $(".planner").click(function() {
+    $(".blank-section").css({ "display": "none" });
+    $(".to-do-section").css({ "display": "none" });
+    $(".lecture-section").css({ "display": "none" });
+    $(".meeting-section").css({ "display": "none" });
+    $(".planner-section").css({"animation": "o 5s",
+                              "display": "block"
+                            });
+  });
+
 });

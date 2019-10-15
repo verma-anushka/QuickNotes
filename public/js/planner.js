@@ -129,7 +129,7 @@ $(function () {
           },
           'cancel'
       ],
-      headerText: 'Add new event',             // More info about headerText: https://docs.mobiscroll.com/4-8-3/eventcalendar#opt-headerText
+    //   headerText: 'Add new event',             // More info about headerText: https://docs.mobiscroll.com/4-8-3/eventcalendar#opt-headerText
       onSet: function (event, inst) {
           var eventDates = dateInst.getVal(),
               events = {

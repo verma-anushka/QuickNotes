@@ -214,12 +214,38 @@
                                             </div>
                                         </div>
 
-
-
-
-
-
-
+                                    <% } else if( note.type == "daily-reflection" ){ %>
+                                        <div class="cbp-item planner">
+                                            <div class="cbp-caption" style="float: left;">
+                                                <div class="cbp-caption-defaultWrap">
+                                                    <img src="/images/daily-reflection.jpg" alt="">
+                                                </div>
+                                                <div class="cbp-caption-activeWrap">
+                                                    <div class="cbp-l-caption-alignLeft">
+                                                        <div class="cbp-l-caption-body">
+                                                            <div class="cbp-l-caption-title">DAILY REFLECTION...</div>
+                                                            <% note.dailyReflection.forEach(function(reflection){ %>
+                                                                <div class="cbp-l-caption-desc"><%= reflection %></div>
+                                                            <% }) %>
+                                                        </div>
+                                                    </div>
+                                                    <div class="formatting">
+                                                        <span id="delete">
+                                                            <form id="delete-form" action="/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
+                                                                <button >
+                                                                    <i class="fa fa-trash"></i>
+                                                                </button>
+                                                            </form>                                    
+                                                        </span>
+                                                        <span id="edit">
+                                                            <a href="/<%= user._id %>/notes/<%= note._id %>/edit">
+                                                                <i class="fa fa-edit"></i>
+                                                            </a>            
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     <% } %>
 
                                 <% } %>
