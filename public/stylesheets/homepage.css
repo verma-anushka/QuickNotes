@@ -170,8 +170,6 @@ span:hover a{
   outline: none;
 }
 
-
-
 /* <div id="grid-container" class="cbp cbp-caption-active cbp-caption-minimal cbp-ready cbp-cols-2" style="height: 280px;"><div class="cbp-wrapper-outer"><div class="cbp-wrapper"> */
 
 /* .allNotes .cbp,
@@ -203,4 +201,14 @@ span:hover a{
   background: transparent;
   color: #FFF;
   margin-bottom: 1px;
+}
+
+.allNotes .daily-reflection .cbp-l-caption-desc li{
+  background: transparent;
+  color: #FFF;
+  margin-bottom: 0;
+}
+.allNotes .daily-reflection .cbp-l-caption-desc{
+  font-size: 10px;
+  margin-bottom: 10px;
 }

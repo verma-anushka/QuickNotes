@@ -213,7 +213,7 @@
                                         </div>
 
                                     <% } else if( note.type == "daily-reflection" ){ %>
-                                        <div class="cbp-item planner">
+                                        <div class="cbp-item daily-reflection">
                                             <div class="cbp-caption" style="float: left;">
                                                 <div class="cbp-caption-defaultWrap">
                                                     <img src="/images/daily-reflection.jpg" alt="">
@@ -225,7 +225,7 @@
 
                                                             <% var reflections = ["What went well today?!", "What didn't go as planned?!", "What can be improved upon?!", "What's on your mind?!"] %>
                                                             <% for(var i=0; i < note.dailyReflection.length; i++){ %>
-                                                                <div class="cbp-l-caption-title"><%= reflections[i] %></div>
+                                                                <div class="cbp-l-caption-desc"><li><%= reflections[i] %></li></div>
                                                                 <div class="cbp-l-caption-desc"><%= note.dailyReflection[i] %></div>
                                                             <% } %>
                                                         </div>
@@ -249,7 +249,7 @@
                                         </div>
 
                                     <% } else if( note.type == "meal-planner" ){ %>
-                                        <div class="cbp-item planner">
+                                        <div class="cbp-item meal-planner">
                                             <div class="cbp-caption" style="float: left;">
                                                 <div class="cbp-caption-defaultWrap">
                                                     <img src="/images/meal-planner.jpg" alt="">

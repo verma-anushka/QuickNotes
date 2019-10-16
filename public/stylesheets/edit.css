@@ -30,3 +30,7 @@
 .to-do-container-edit input[type=text]:first-child{
     width: 100%;
 }
+
+.edit .meal-planner-section input#date{
+    margin-bottom: 15px;
+}

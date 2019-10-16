@@ -55,7 +55,7 @@
                         <span class="menu-collapsed">
                             <div class="note weekly-planner">
                                 <div>
-                                    WEEKLY PLANNER
+                                    <!-- WEEKLY PLANNER -->
                                     <i class="fa fa-calendar-alt"></i>
                                 </div>
                             </div>
@@ -65,7 +65,7 @@
                         <span class="menu-collapsed">
                             <div class="note project-plan">
                                 <div>
-                                    PROJECT PLANNER
+                                    <!-- PROJECT PLANNER -->
                                     <i class="fa fa-file-word"></i>
                                 </div>
                             </div>
@@ -283,48 +283,56 @@
 
 
         <!-- DAILY REFLECTION -->
-        <div class="col-md-offset-2 col-md-9 daily-reflection-section" style="display: none;">
+        <div class="col-md-offset-2 col-md-9 daily-reflection-section">
             <form action="/<%= user._id %>/notes" method="POST">
                 <h1 >DAILY REFLECTION...</h1>
                 <input type="text" name="note[type]" value="daily-reflection" style="display: none;">
+                <div class="form-group title-container">
+                    <label id="dateLabel" for="date">Date:</label>
+                    <input class="form-control" id="date" type="date" name="note[date]" maxlength="80">
+                </div> 
                 <div class="form-group">
-                    <label for="dailyReflection">What went well today?!</label>
+                    <label for="dailyReflection">
+                        <i class="fas fa-grin-beam"></i>
+                        What went well today?!
+                    </label>
                     <textarea class="form-control" id="dailyReflection" name="note[dailyReflection]" placeholder="Start typing..." style="text-align: left;"></textarea>
                 </div>
-
                 <div class="form-group">
-                    <label for="dailyReflection">What didn't go as planned?!</label>
+                    <label for="dailyReflection">
+                        <i class="fas fa-meh"></i>
+                        What didn't go as planned?!
+                    </label>
                     <textarea class="form-control" id="dailyReflection" name="note[dailyReflection]" placeholder="Start typing..." style="text-align: left;"></textarea>
                 </div>
-
                 <div class="form-group">
-                    <label for="dailyReflection">What can be improved upon?!</label>
+                    <label for="dailyReflection">
+                        <i class="fas fa-meh-rolling-eyes"></i>
+                        What can be improved upon?!
+                    </label>
                     <textarea class="form-control" id="dailyReflection" name="note[dailyReflection]" placeholder="Start typing..." style="text-align: left;"></textarea>
                 </div>
-
                 <div class="form-group">
-                    <label for="dailyReflection">What's on your mind?!</label>
+                    <label for="dailyReflection">
+                        <i class="fas fa-graduation-cap"></i>
+                        What's on your mind?!</label>
                     <textarea class="form-control" id="dailyReflection" name="note[dailyReflection]" placeholder="Start typing..." style="text-align: left;"></textarea>
                 </div>
-                
-                <div class="row">
+                <div class="form-group">
                     <button class="btn" type="submit">Save</button>
                 </div> 
             </form>           
         </div>
 
         <!-- MEAL PLANNER -->
-        <div class="col-md-offset-2 col-md-9 meal-planner-section">
-
+        <div class="col-md-offset-2 col-md-9 meal-planner-section" style="display: none;">
             <form action="/<%= user._id %>/notes" method="POST">
                 <h1 >MEAL PLANNER...</h1>
                 <input type="text" name="note[type]" value="meal-planner"  style="display: none;" >
-                
                 <div class="form-group title-container">
                     <label id="dateLabel" for="date">Week Start Date:</label>
                     <input class="form-control" id="date" type="date" name="note[date]" maxlength="80">
                 </div>           
-
                 <table id="tblData">          
                     <thead>
                         <tr>
@@ -380,7 +388,6 @@
                         </tr>
                     </tbody>
                 </table>
-
                 <div class="form-group">
                     <button class="btn" type="submit">Save</button>
                 </div> 
