@@ -240,15 +240,6 @@ body {
 .to-do-container input[type=text]:first-child{
     width: 100%;
 }
-/* .to-do-container li:firs{
-    background-color:#e5c0bc;
-}
-.to-do-container input[type=text]:nth-child(2n-1){
-    background-color:#FFF;
-    border: none;
-    box-shadow: none;
-    outline: none;
-} */
 .to-do-container input[type=text]:focus {
     border: none;
     box-shadow: none;
@@ -275,7 +266,6 @@ body {
 .to-do-container li:nth-child(2n){
     background-color: rgb(175, 134, 115);
 }
-
 .to-do-container span {
     width: 0px;
     color: #fff;
@@ -344,7 +334,8 @@ input#title{
     font-weight: 800;
 }
 /* MEETING SECTION */
-.meeting-section{
+.meeting-section,
+.meal-planner-section{
   margin-top: 90px;
 }
 .meeting-section div.title-container{
@@ -410,11 +401,9 @@ input#title{
     box-shadow: none;
     /* box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(58, 33, 19, 0.6); */
     outline: none;
-    /* border-top: 2px solid #3a2113;
-    border-right: 1px solid rgb(58, 33, 19, 0.6);
-    border-bottom: 1px solid rgb(58, 33, 19, 0.6); */
 }
-.meeting-section table {
+.meeting-section table,
+.meal-planner-section table {
 	width: 800px;
     border-collapse: collapse;
     margin-bottom: 30px;
@@ -423,51 +412,58 @@ input#title{
     /* background: linear-gradient(45deg, rgb(236, 232, 230), rgb(58, 33, 19)); */
 	box-shadow: 0 0 20px rgba(0,0,0,0.1);
 }
-.meeting-section table tbody tr:nth-child(odd) {
+.meal-planner-section table{
+    width: 900px;
+}
+.meeting-section table tbody tr:nth-child(odd),
+.meal-planner-section table tbody tr:nth-child(odd) {
     background: rgba(122, 120, 120, 0.1);
 }
-.meeting-section table tbody tr:nth-child(even) {
+.meeting-section table tbody tr:nth-child(even),
+.meal-planner-section table tbody tr:nth-child(even) {
     background-color: rgba(58, 33, 19, 0.5);
     /* background: linear-gradient(rgb(58, 33, 19), rgb(236, 232, 230)); */
 }
 .meeting-section th,
-.meeting-section td {
+.meeting-section td,
+.meal-planner-section th,
+.meal-planner-section td {
     padding-left: 0;
-	/* background-color: rgba(255,255,255,0.2); */
 	color: #FFF;
 }
 .meeting-section tr,
-.meeting-section td {
+.meeting-section td,
+.meal-planner-section tr,
+.meal-planner-section td {
     padding-left: 0;
-	/* background-color: rgba(255,255,255,0.2); */
 	color: #000;
 }
-.meeting-section th {
+.meeting-section th,
+.meal-planner-section th {
 	text-align: left;
 }
-.meeting-section thead th {
+.meeting-section thead th,
+.meal-planner-section thead th {
     /* position: relative; */
     padding: 15px;
     text-align: center;
     text-transform: uppercase;
 	background-color: rgb(58, 33, 19);
 }
-.meeting-section thead tr th div{
+.meeting-section thead tr th div,
+.meal-planner-section thead tr th div{
 	background: #FFF;
     /* z-index: 10; */
     /* display: inline-block; */
     position: absolute;
-    /* left: -1%;
-    top: -1%;  */
     height: 22px;
     width: 22px;
     border-radius: 50%;
 }
-.meeting-section thead th a{
+.meeting-section thead th a,
+.meal-planner-section thead th a{
     /* text-align: center; */
 	color: rgb(58, 33, 19) ;
-    
-    /* color: #FFF; */
 }
 /* .meeting-section */
 .meeting-section span {
@@ -481,30 +477,34 @@ input#title{
     transition: 0.5s linear;
     opacity: 0;
 }
-.meeting-section tbody tr:hover span {
+.meeting-section tbody tr:hover span,
+.meal-planner-section tbody tr:hover span {
     float: left;
     width: 40px;
     transition: 0.5s linear;
     opacity: 1.0;
 }
-.meeting-section tbody tr:hover {
+.meeting-section tbody tr:hover,
+.meal-planner-section tbody tr:hover {
 	background-color: rgba(255,255,255,0.3);
 }
-.meeting-section tbody td {
+.meeting-section tbody td,
+.meal-planner-section tbody td {
     border-right: 0.5px double rgba(58, 33, 19, 0.5);
     border-bottom: 0.5px solid rgba(58, 33, 19, 0.5);
     /* background: linear-gradient(45deg, rgb(236, 232, 230), rgb(58, 33, 19)); */
     position: relative;
 }
-.meeting-section tbody td input{
-    /* padding-left: 10px; */
+.meeting-section tbody td input,
+.meal-planner-section tbody td input{
     margin: 0;
     width: 82%;
     background: transparent;
     outline: none;
     border: none;
 }
-.meeting-section tbody td:hover::before {
+.meeting-section tbody td:hover::before,
+.meal-planner-section tbody td:hover::before {
     content: "";
     position: absolute;
     left: 0;
@@ -514,7 +514,32 @@ input#title{
     background-color: rgba(255,255,255,0.9);
     z-index: -1;
 }
-
+.meal-planner-section #date{
+    height: 20px;
+    width: 620px;
+    max-width: 100%;
+    border: none;
+    float: left;
+    text-align: right;
+    padding: 15px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 15px;
+    box-shadow: none;
+}
+.meal-planner-section #dateLabel{
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 18px;
+    color: #333;
+    height: 20px;
+    width: 250px;   
+    text-align: left;
+    clear: both;
+    float:left;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 15px;
+}
 /* PLANNER SECTION */
 .planner-section{
     margin-top: 100px;

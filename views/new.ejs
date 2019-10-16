@@ -51,7 +51,6 @@
                             </div>
                         </span>
                     </a>
-                    <!-- 
                     <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
                         <span class="menu-collapsed">
                             <div class="note weekly-planner">
@@ -71,7 +70,7 @@
                                 </div>
                             </div>
                         </span>
-                    </a> -->
+                    </a>
                     <a href="#" class="list-group-item list-group-item-action bg-dark text-white">
                         <span class="menu-collapsed">
                             <div class="note lecture">
@@ -101,7 +100,7 @@
                 <textarea class="js--trumbowyg" name="note[description]" placeholder="Start typing here..." style="text-align: left;">
                     &lt;placeholder&gt;Start typing here...&lt;/placeholder&gt;
                 </textarea>
-                <div class="row">
+                <div class="form-group">
                     <button class="btn" type="submit">Save</button>
                 </div> 
             </form>           
@@ -318,12 +317,12 @@
         <div class="col-md-offset-2 col-md-9 meal-planner-section">
 
             <form action="/<%= user._id %>/notes" method="POST">
-
+                <h1 >MEAL PLANNER...</h1>
                 <input type="text" name="note[type]" value="meal-planner"  style="display: none;" >
                 
                 <div class="form-group title-container">
-                    <label for="title" class="sr-only"></label>
-                    <input class="form-control" id="title" type="text" name="note[title]" placeholder="Meeting Title" maxlength="80">
+                    <label id="dateLabel" for="date">Week Start Date:</label>
+                    <input class="form-control" id="date" type="date" name="note[date]" maxlength="80">
                 </div>           
 
                 <table id="tblData">          
@@ -382,7 +381,7 @@
                     </tbody>
                 </table>
 
-                <div class="row">
+                <div class="form-group">
                     <button class="btn" type="submit">Save</button>
                 </div> 
             </form>

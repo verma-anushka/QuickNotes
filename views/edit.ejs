@@ -154,18 +154,18 @@
 
             <% } else if( note.type == "meal-planner" ){%>
 
-                <div class="col-md-offset-2 col-md-9 meal-planner-section">
+                <div class="col-md-offset-1 col-md-10 meal-planner-section">
 
                     <form action="/<%= user_id %>/notes/<%= note._id %>?_method=PUT" method="POST">
             
                             <!-- <h1>MEETING NOTES</h1> -->
-                            <input type="text" name="note[type]" value="meal-planner" style="display: none;" >
+                            <h1 >MEAL PLANNER...</h1>
+                            <input type="text" name="note[type]" value="meal-planner"  style="display: none;" >
                             
                             <div class="form-group title-container">
-                                <label for="title" class="sr-only"></label>
-                                <input class="form-control" id="title" type="text" name="note[title]" placeholder="Meeting Title" maxlength="80">
-                            </div>           
-            
+                                <label id="dateLabel" for="date">Week Start Date:</label>
+                                <input class="form-control" id="date" type="date" name="note[date]" maxlength="80">
+                            </div>         
                             <table id="tblData">          
                                 <thead>
                                     <tr>
@@ -176,7 +176,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
                                     <% var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] %>
                                     <% for(var i=0; i < note.meal1.length; i++){ %>
                                         <tr>
@@ -186,44 +185,6 @@
                                             <td><input type='text' name='note[meal3]' value="<%= note.meal3[i] %>"/></td>
                                         </tr>
                                     <% } %>
-
-                                    <!-- <tr>
-                                        <td class="day">Monday</td>
-                                        <td><input type='text' name='note[meal1]' /></td>
-                                        <td><input type='text' name='note[meal2]' /></td>
-                                        <td><input type='text' name='note[meal3]' /></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="day">Tuesday</td>
-                                        <td><input type='text' name='note[meal1]' /></td>
-                                        <td><input type='text' name='note[meal2]' /></td>
-                                        <td><input type='text' name='note[meal3]' /></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="day">Wednesday</td>
-                                        <td><input type='text' name='note[meal1]' /></td>
-                                        <td><input type='text' name='note[meal2]' /></td>
-                                        <td><input type='text' name='note[meal3]' /></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="day">Thursday</td>
-                                        <td><input type='text' name='note[meal1]' /></td>
-                                        <td><input type='text' name='note[meal2]' /></td>
-                                        <td><input type='text' name='note[meal3]' /></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="day">Friday</td>
-                                        <td><input type='text' name='note[meal1]' /></td>
-                                        <td><input type='text' name='note[meal2]' /></td>
-                                        <td><input type='text' name='note[meal3]' /></td>
-                                    </tr>
-            
-                                    <tr>
-                                        <td class="day">Saturday</td>
-                                        <td><input type='text' name='note[meal1]' /></td>
-                                        <td><input type='text' name='note[meal2]' /></td>
-                                        <td><input type='text' name='note[meal3]' /></td>
-                                    </tr> -->
                                 </tbody>
                             </table>
             
