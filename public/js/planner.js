@@ -84,8 +84,7 @@ $(function () {
                       if (res) {
                           inst.removeEvent([event.event._id]);
                           monthInst.removeEvent([event.event._id]);
-                          mobiscroll.toast({ 
-                              
+                          mobiscroll.toast({       
                               message: 'Deleted'
                           });
                       }
@@ -124,7 +123,7 @@ $(function () {
       display: 'center',                       // Specify display mode like: display: 'bottom' or omit setting to use default
       cssClass: 'mbsc-no-padding',
       buttons: [{                              // More info about buttons: https://docs.mobiscroll.com/4-8-3/eventcalendar#opt-buttons
-              text: 'Add event',
+              text: 'Submit',
               handler: 'set'
           },
           'cancel'
@@ -154,6 +153,11 @@ $(function () {
       popupInst.show();
   });
 
+//   var title = $("#demo-add-event-popup input").attr('name');
+//   console.log( title );
+
+//   title.append($('#eventText').val());
+//   console.log(title);
 
 //   $(function() {
 //     // By default deny the submit

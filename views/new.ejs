@@ -222,12 +222,12 @@
                             <div class="mbsc-col-md-4 mbsc-col-12">
                                 <div id="demo-add-event-month"></div>
                                 <div class="mbsc-btn-group-block">
-                                    <a id="showAddEventPopup">Add New Event</a>
+                                    <a id="showAddEventPopup" class="btn">Add Event</a>
                                 </div>
                             </div>
                             <div class="mbsc-col-md-8 mbsc-col-12 md-col-right">
                                 <div id="demo-add-event-day"></div>
-                                <button mbsc-button type="submit">Submit</button>
+                                <button type="submit" class="btn">Save</button>
                             </div>
                         </div>
                     </div>
@@ -235,7 +235,7 @@
                         <div>
                             <div class="form-group title-container">
                                 <label for="title" class="sr-only"></label>
-                                <input class="form-control" id="title" type="text" name="note[eventTitle]" placeholder="Event Title" maxlength="80">
+                                <input class="form-control eventTitle" id="title" type="text" name="note[eventTitle]" placeholder="Event Title" maxlength="80">
                             </div>
                             <div class="form-group">
                                 <label for="description" class="sr-only"></label>
@@ -256,7 +256,7 @@
                             <div class="form-group">
                                 <label>
                                     Show as busy
-                                    <input mbsc-segmented type="radio" name="note[eventAvailability]" value="false" checked>
+                                    <input type="radio" name="note[eventAvailability]" value="false" checked>
                                 </label>
                                 <label>
                                     Show as free
@@ -305,7 +305,7 @@
                         What's on your mind?!</label>
                     <textarea class="form-control" id="dailyReflection" name="note[dailyReflection]" placeholder="Start typing..." style="text-align: left;"></textarea>
                 </div>
-                <div class="form-group">
+                <div class="form-group submit-btn">
                     <button class="btn" type="submit">Save</button>
                 </div> 
             </form>           
