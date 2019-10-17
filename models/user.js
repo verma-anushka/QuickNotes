@@ -33,11 +33,11 @@ var UserSchema = new mongoose.Schema({
               },       
     image:    {
                 type: String, 
-                default: "https://previews.123rf.com/images/tanyastock/tanyastock1803/tanyastock180300490/97923644-user-icon-avatar-login-sign-circle-button-with-soft-color-gradient-background-vector-.jpg"
+                default: "https://cdn.pixabay.com/photo/2014/04/02/16/26/figure-307268_960_720.png"
               },
     imageId:  {
                  type: String, 
-                 default: "https://previews.123rf.com/images/tanyastock/tanyastock1803/tanyastock180300490/97923644-user-icon-avatar-login-sign-circle-button-with-soft-color-gradient-background-vector-.jpg".public_id
+                 default: "https://cdn.pixabay.com/photo/2014/04/02/16/26/figure-307268_960_720.png".public_id
     },
     bio:      {
                 type: String,

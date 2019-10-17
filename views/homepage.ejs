@@ -12,6 +12,7 @@
     <div class="home-container">
         <div class="row">
             <div class="row">
+                
                 <div class="notes-container">
                     <div>
                         <h1 >Welcome back, <%= user.username %> !
@@ -27,11 +28,11 @@
                     <div data-filter=".blank" class="cbp-filter-item">
                         BLANK<div class="cbp-filter-counter"></div>
                     </div> /
-                    <div data-filter=".lecture" class="cbp-filter-item">
-                        LECTURE<div class="cbp-filter-counter"></div>
-                    </div> /
                     <div data-filter=".to-do" class="cbp-filter-item">
                         TO-DO LIST<div class="cbp-filter-counter"></div>
+                    </div> /
+                    <div data-filter=".lecture" class="cbp-filter-item">
+                        LECTURE<div class="cbp-filter-counter"></div>
                     </div> /
                     <div data-filter=".meeting" class="cbp-filter-item">
                         MEETING<div class="cbp-filter-counter"></div>
@@ -55,9 +56,8 @@
                             <% notes.forEach(function(note){ %>
                                 <% if( note.author.id.equals(user._id) ){ %>
 
-                                    <% console.log( "note" )%>
-                                    <% console.log( note )%> 
                                     <% if( note.type == "blank" ){ %>
+
                                         <div class="cbp-item blank">
                                             <div class="cbp-caption" style="float: left;">
                                                 <div class="cbp-caption-defaultWrap">
@@ -87,7 +87,9 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                     <% } else if( note.type == "lecture" ){ %>
+
                                         <div class="cbp-item lecture">
                                             <div class="cbp-caption" style="float: left;">
                                                 <div class="cbp-caption-defaultWrap">
@@ -117,7 +119,9 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                     <% } else if( note.type == "to-do" ){ %>
+
                                         <div class="cbp-item to-do">
                                             <div class="cbp-caption" style="float: left;">
                                                 <div class="cbp-caption-defaultWrap">
@@ -148,8 +152,12 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                        
+                                        
                                         </div>
+
                                     <% } else if( note.type == "meeting" ){ %>
+
                                         <div class="cbp-item meeting">
                                             <div class="cbp-caption" style="float: left;">
                                                 <div class="cbp-caption-defaultWrap">
@@ -181,7 +189,9 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                     <% } else if( note.type == "planner" ){ %>
+
                                         <div class="cbp-item planner">
                                             <div class="cbp-caption" style="float: left;">
                                                 <div class="cbp-caption-defaultWrap">
@@ -213,6 +223,7 @@
                                         </div>
 
                                     <% } else if( note.type == "daily-reflection" ){ %>
+
                                         <div class="cbp-item daily-reflection">
                                             <div class="cbp-caption" style="float: left;">
                                                 <div class="cbp-caption-defaultWrap">
@@ -249,6 +260,7 @@
                                         </div>
 
                                     <% } else if( note.type == "meal-planner" ){ %>
+
                                         <div class="cbp-item meal-planner">
                                             <div class="cbp-caption" style="float: left;">
                                                 <div class="cbp-caption-defaultWrap">
@@ -285,6 +297,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                     <% } %>
 
                                 <% } %>
@@ -309,61 +322,42 @@
                 <h3>You haven't created any notes yet!</h3>
                 <a href="/<%= user._id %>/notes/new" class="btn">Create Now!</a>
                 <br />
-                <a href="/<%= user._id %>/notes/new">
-                    <button class="pulse-button-hover">
+                <a class="notes-buttons" href="/<%= user._id %>/notes/new">
+                    <button class="pulse-button-hover tool" data-tip="Blank Note" tabindex="1">
                         <i class="fa fa-sticky-note"></i>
                     </button>
                 </a>
                 <a href="/<%= user._id %>/notes/new">
-                    <button class="pulse-button-hover">
-                        <i class="fa fa-handshake"></i>
+                    <button class="pulse-button-hover tool" data-tip="To-Do List" tabindex="2">
+                        <i class="fa fa-clipboard-list"></i>
                     </button>
                 </a>
                 <a href="/<%= user._id %>/notes/new">
-                    <button class="pulse-button-hover">
-                        <i class="fa fa-id-card"></i>
-                    </button>
-                </a>
-                <a href="/<%= user._id %>/notes/new">
-                    <button class="pulse-button-hover">
+                    <button class="pulse-button-hover tool" data-tip="Lecture Note" tabindex="3">
                         <i class="fa fa-file-word"></i>
                     </button>
                 </a>
                 <a href="/<%= user._id %>/notes/new">
-                    <button class="pulse-button-hover">
+                    <button class="pulse-button-hover tool" data-tip="Meeting Note" tabindex="4">
+                        <i class="fa fa-handshake"></i>
+                    </button>
+                </a>
+                <a href="/<%= user._id %>/notes/new">
+                    <button class="pulse-button-hover tool schedule" data-tip="Schedule Planner" tabindex="5">
                         <i class="fa fa-calendar-alt"></i>
                     </button>
                 </a>
                 <a href="/<%= user._id %>/notes/new">
-                    <button class="pulse-button-hover">
-                        <i class="fa fa-clipboard-list"></i>
+                    <button class="pulse-button-hover tool daily" data-tip="Daily Reflection" tabindex="6">
+                        <i class="fas fa-cloud-sun"></i>
                     </button>
                 </a>
-                <!-- <button class="pulse-button-hover">
-                    <a href="/<%= user._id %>/notes/new">
-                        <i class="fa fa-handshake"></i>
-                    </a>
-                </button>
-                <button class="pulse-button-hover">
-                    <a href="/<%= user._id %>/notes/new">
-                        <i class="fa fa-clipboard-list"></i>
-                    </a>
-                </button>
-                <button class="pulse-button-hover">
-                    <a href="/<%= user._id %>/notes/new">
-                        <i class="fa fa-calendar-alt"></i>
-                    </a>
-                </button>
-                <button class="pulse-button-hover">
-                    <a href="/<%= user._id %>/notes/new">
-                        <i class="fa fa-file-word"></i>
-                    </a>
-                </button>
-                <button class="pulse-button-hover">
-                    <a href="/<%= user._id %>/notes/new">
-                        <i class="fa fa-id-card"></i>
-                    </a>
-                </button> -->
+                <a href="/<%= user._id %>/notes/new">
+                    <button class="pulse-button-hover tool" data-tip="Meal Planner" tabindex="7"> 
+                        <i class="fas fa-utensils"></i>
+                    </button>
+                </a>
+                
             </div>
         </div>
     </div>

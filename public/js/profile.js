@@ -4,14 +4,8 @@ $(document).ready(function(){
         if( fileName ){
             $('span#filename').text(fileName);
             console.log( $('span#filename').text());
-            // alert(fileName);
         }else{
             $('span#filename').text("Choose a file...");
         }  
     });
-
-    // $(function() {
-    //     var temp="a"; 
-    //     $("#MySelect").val(temp);
-    // });
 });
