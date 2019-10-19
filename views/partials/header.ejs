@@ -4,30 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Notes App</title>
+    <title>QuickNotes</title>
+
+    <link rel="stylesheet" href="/stylesheets/mobiscroll.jquery.min.css">
+
+    <!-- LINKING THE REQD. STYLESHEETS -->
+    <link rel="stylesheet" href="/stylesheets/header.css">
+    <link rel="stylesheet" href="/stylesheets/landing.css">
+    <link rel="stylesheet" href="/stylesheets/homepage.css">
+    <link rel="stylesheet" href="/stylesheets/new.css">
+    <link rel="stylesheet" href="/stylesheets/edit.css">
+    <link rel="stylesheet" href="/stylesheets/text-editor.css">
+    <link rel="stylesheet" href="/stylesheets/profile.css">
+    <link rel="stylesheet" href="/stylesheets/footer.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/0.9.7/trix.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
     <link href="https://fonts.googleapis.com/css?family=Arvo&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
-    <link rel="stylesheet" href="/stylesheets/mobiscroll.jquery.min.css">
     <link rel="stylesheet" href="/stylesheets/cubeportfolio.min.css">
-    <!-- LINKING THE REQD. STYLESHEETS -->
-    <link rel="stylesheet" href="/stylesheets/header.css">
-    <link rel="stylesheet" href="/stylesheets/footer.css">
-    <link rel="stylesheet" href="/stylesheets/landing.css">
-    <link rel="stylesheet" href="/stylesheets/homepage.css">
-    <link rel="stylesheet" href="/stylesheets/new.css">
-    <!-- <link rel="stylesheet" href="/stylesheets/new.css"> -->
-    <link rel="stylesheet" href="/stylesheets/edit.css">
-    <link rel="stylesheet" href="/stylesheets/text-editor.css">
-    <link rel="stylesheet" href="/stylesheets/profile.css">
-
 
   
 </head>
-<body>
+<body onload="myFunction()">
+
+    <!-- PRELOADER -->
+    <!-- <div class="preloader"></div> -->
+    <div id="loading" class="loading"></div>
 
     <!-- NAVBAR -->
     <nav role="navigation" class="navbar navbar-custom navbar-fixed-top">
@@ -50,7 +54,6 @@
 
             <!-- LINKS -->
             <div class="navbar-collapse collapse" id="navbarCollapse" >
-
                 <!-- LEFT LINKS -->
                 <ul class="nav navbar-nav">
                     <% if(user){ %>
@@ -66,7 +69,6 @@
                         <li><a href="#signupModal" data-toggle="modal">Sign-Up</a></li>
                         <li><a href="#loginModal" data-toggle="modal">Login</a></li>
                     <% } else{ %>
-                        
                         <li><a href="#logoutModal" data-toggle="modal">Logout</a></li>
                     <% } %>
                 </ul>
@@ -77,15 +79,15 @@
     <!-- FLASH MESSAGES -->
     <div class="container">
 
+        <!-- ERROR MESSAGE -->
         <% if(error && error.length > 0){ %>
             <div class="alert alert-danger errorMsg" role="alert">
                 <i class="fa fa-times-circle"></i>
                 <%= error %>
             </div>
         <% } %>
-        
-        <!-- <i class="fa fa-info-circle"></i> -->
-        <!-- <i class="fa fa-warning"></i> -->
+
+        <!-- SUCCESS MESSAGE -->
         <% if(success && success.length > 0){ %>
             <div class="alert alert-success successMsg" role="alert">
                 <i class="fa fa-check"></i>
@@ -94,7 +96,7 @@
         <% } %>
 
     </div>
-    
+ 
     <!-- LOGIN FORM -->
     <form action="/" method="POST" id="loginForm" class="loginForm">
         <div class="modal" id="loginModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

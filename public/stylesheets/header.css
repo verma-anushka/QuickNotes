@@ -1,16 +1,40 @@
 html{
   position: relative;
   min-height: 100%;
+  
 }
 body {
   font-family: 'Arvo', serif;
   background-attachment: fixed;
   background-size: cover;
+  background: hsl(270, 30, 5);
+  color: #FFF;
 }
+
+/* .preloader {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+} */
+
+#loading{
+  position:fixed;
+  width: 100%;
+  height: 100vh;
+  background:rgb(24, 3, 3) url('https://giphy.com/gifs/hand-bored-waiting-xTkcEQACH24SMPxIQg/tile') no-repeat center;
+  z-index: 99999; 
+}
+
 /* Navigation Bar */
 .navbar-custom {
   background-color: #3a2113;
-  border-color: #eedcc1;
+  border-color: #ac926b;
   background-image: -webkit-gradient(linear, left 0%, left 100%, from(#60391c), to(#3a2113));
   background-image: -webkit-linear-gradient(top, #60391c, 0%, #3a2113, 100%);
   background-image: -moz-linear-gradient(top, #60391c 0%, #3a2113 100%);
