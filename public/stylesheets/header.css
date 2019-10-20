@@ -27,7 +27,7 @@ body {
   position:fixed;
   width: 100%;
   height: 100vh;
-  background:rgb(24, 3, 3) url('https://giphy.com/gifs/hand-bored-waiting-xTkcEQACH24SMPxIQg/tile') no-repeat center;
+  background:rgb(24, 3, 3) url('https://media.giphy.com/media/TZ3Y3sUWzrquY/giphy.gif') no-repeat center;
   z-index: 99999; 
 }
 

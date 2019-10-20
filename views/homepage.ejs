@@ -1,18 +1,21 @@
 <% include partials/header.ejs %>
 
 <% var found = "false"; %>
+
+<% if(notes){ %>
+
 <% notes.forEach(function(note){ %>
     <% if( note.author.id.equals(user._id) ){ %>
         <% found = "true"; %>
     <% } %>
 <% }); %>
+<% } %>
 
 <% if( found == "true" ){ %>
     
     <div class="home-container">
         <div class="row">
-            <div class="row">
-                
+
                 <div class="notes-container">
                     <div>
                         <h1 >Welcome back, <%= user.username %> !
@@ -53,10 +56,10 @@
 
                         <div id="grid-container" class="cbp">
                             
-                            <% notes.forEach(function(note){ %>
-                                <% if( note.author.id.equals(user._id) ){ %>
-
-                                    <% if( note.type == "blank" ){ %>
+                            <% for( var i=0; i < notes.length; i++){ %>                            
+                                
+                                <% if( notes[i].author.id.equals(user._id) ){ %>    
+                                    <% if( notes[i].type == "blank" ){ %>
 
                                         <div class="cbp-item blank">
                                             <div class="cbp-caption" style="float: left;">
@@ -66,20 +69,28 @@
                                                 <div class="cbp-caption-activeWrap">
                                                     <div class="cbp-l-caption-alignLeft">
                                                         <div class="cbp-l-caption-body">
-                                                            <div class="cbp-l-caption-title"><%- note.title %></div>
-                                                            <div class="cbp-l-caption-desc"><%- note.description %></div>
+                                                            <div class="cbp-l-caption-title"><%- notes[i].title %></div>
+                                                            <div class="cbp-l-caption-desc"><%- notes[i].description %></div>
                                                         </div>
                                                     </div>
                                                     <div class="formatting">
+                                                        <span class="share">
+                                                                <% console.log( "notes[i].id" ) %>
+                                                                <% console.log( notes[i].id ) %>
+                                                            <a href="#shareNoteModal" class="noteShare" data-note="<%- notes[i].id%>" data-toggle="modal">
+                                                                share                                   
+                                                                
+                                                            </a>            
+                                                        </span>
                                                         <span id="delete">
-                                                            <form id="delete-form" action="/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
+                                                            <form id="delete-form" action="/<%= user._id %>/notes/<%= notes[i]._id %>?_method=DELETE" method="POST">
                                                                 <button >
                                                                     <i class="fa fa-trash"></i>
                                                                 </button>
                                                             </form>                                    
                                                         </span>
                                                         <span id="edit">
-                                                            <a href="/<%= user._id %>/notes/<%= note._id %>/edit">
+                                                            <a href="/<%= user._id %>/notes/<%= notes[i]._id %>/edit">
                                                                 <i class="fa fa-edit"></i>
                                                             </a>            
                                                         </span>
@@ -88,224 +99,16 @@
                                             </div>
                                         </div>
 
-                                    <% } else if( note.type == "lecture" ){ %>
-
-                                        <div class="cbp-item lecture">
-                                            <div class="cbp-caption" style="float: left;">
-                                                <div class="cbp-caption-defaultWrap">
-                                                    <img src="/images/lecture.jpg" alt="">
-                                                </div>
-                                                <div class="cbp-caption-activeWrap">
-                                                    <div class="cbp-l-caption-alignLeft">
-                                                        <div class="cbp-l-caption-body">
-                                                            <div class="cbp-l-caption-title"><%- note.title %></div>
-                                                            <div class="cbp-l-caption-desc"><%- note.description %></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="formatting">
-                                                        <span id="delete">
-                                                            <form id="delete-form" action="/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
-                                                                <button >
-                                                                    <i class="fa fa-trash"></i>
-                                                                </button>
-                                                            </form>                                    
-                                                        </span>
-                                                        <span id="edit">
-                                                            <a href="/<%= user._id %>/notes/<%= note._id %>/edit">
-                                                                <i class="fa fa-edit"></i>
-                                                            </a>            
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    <% } else if( note.type == "to-do" ){ %>
-
-                                        <div class="cbp-item to-do">
-                                            <div class="cbp-caption" style="float: left;">
-                                                <div class="cbp-caption-defaultWrap">
-                                                    <img src="/images/todo.jpg" alt="">
-                                                </div>
-                                                <div class="cbp-caption-activeWrap">
-                                                    <div class="cbp-l-caption-alignLeft">
-                                                        <div class="cbp-l-caption-body">
-                                                            <div class="cbp-l-caption-title">TO-DO LIST!</div>
-                                                            <% note.todos.forEach(function(todo){ %>
-                                                                <li class="cbp-l-caption-desc"><%= todo %></li>
-                                                            <% }) %>
-                                                        </div>
-                                                    </div>
-                                                    <div class="formatting">
-                                                        <span id="delete">
-                                                            <form id="delete-form" action="/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
-                                                                <button >
-                                                                    <i class="fa fa-trash"></i>
-                                                                </button>
-                                                            </form>                                    
-                                                        </span>
-                                                        <span id="edit">
-                                                            <a href="/<%= user._id %>/notes/<%= note._id %>/edit">
-                                                                <i class="fa fa-edit"></i>
-                                                            </a>            
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        
-                                        
-                                        </div>
-
-                                    <% } else if( note.type == "meeting" ){ %>
-
-                                        <div class="cbp-item meeting">
-                                            <div class="cbp-caption" style="float: left;">
-                                                <div class="cbp-caption-defaultWrap">
-                                                    <img src="/images/meeting.jpg" alt="">
-                                                </div>
-                                                <div class="cbp-caption-activeWrap">
-                                                    <div class="cbp-l-caption-alignLeft">
-                                                        <div class="cbp-l-caption-body">
-                                                            <div class="cbp-l-caption-title"><%- note.title %></div>
-                                                            <div class="cbp-l-caption-desc"><%- note.meetingDate %></div>
-                                                            <div class="cbp-l-caption-desc"><%- note.meetingAgenda %></div>
-                                                            <div class="cbp-l-caption-desc"><%- note.meetingAttendees %></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="formatting">
-                                                        <span id="delete">
-                                                            <form id="delete-form" action="/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
-                                                                <button >
-                                                                    <i class="fa fa-trash"></i>
-                                                                </button>
-                                                            </form>                                    
-                                                        </span>
-                                                        <span id="edit">
-                                                            <a href="/<%= user._id %>/notes/<%= note._id %>/edit">
-                                                                <i class="fa fa-edit"></i>
-                                                            </a>            
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    <% } else if( note.type == "planner" ){ %>
-
-                                        <div class="cbp-item planner">
-                                            <div class="cbp-caption" style="float: left;">
-                                                <div class="cbp-caption-defaultWrap">
-                                                    <img src="/images/planner.jpg" alt="">
-                                                </div>
-                                                <div class="cbp-caption-activeWrap">
-                                                    <div class="cbp-l-caption-alignLeft">
-                                                        <div class="cbp-l-caption-body">
-                                                            <div class="cbp-l-caption-title"><%- note.title %></div>
-                                                            <div class="cbp-l-caption-desc"><%- note.description %></div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="formatting">
-                                                        <span id="delete">
-                                                            <form id="delete-form" action="/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
-                                                                <button >
-                                                                    <i class="fa fa-trash"></i>
-                                                                </button>
-                                                            </form>                                    
-                                                        </span>
-                                                        <span id="edit">
-                                                            <a href="/<%= user._id %>/notes/<%= note._id %>/edit">
-                                                                <i class="fa fa-edit"></i>
-                                                            </a>            
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    <% } else if( note.type == "daily-reflection" ){ %>
-
-                                        <div class="cbp-item daily-reflection">
-                                            <div class="cbp-caption" style="float: left;">
-                                                <div class="cbp-caption-defaultWrap">
-                                                    <img src="/images/daily-reflection.jpg" alt="">
-                                                </div>
-                                                <div class="cbp-caption-activeWrap">
-                                                    <div class="cbp-l-caption-alignLeft">
-                                                        <div class="cbp-l-caption-body">
-                                                            <div class="cbp-l-caption-title">DAILY REFLECTION...</div>
-
-                                                            <% var reflections = ["What went well today?!", "What didn't go as planned?!", "What can be improved upon?!", "What's on your mind?!"] %>
-                                                            <% for(var i=0; i < note.dailyReflection.length; i++){ %>
-                                                                <div class="cbp-l-caption-desc"><li><%= reflections[i] %></li></div>
-                                                                <div class="cbp-l-caption-desc"><%= note.dailyReflection[i] %></div>
-                                                            <% } %>
-                                                        </div>
-                                                    </div>
-                                                    <div class="formatting">
-                                                        <span id="delete">
-                                                            <form id="delete-form" action="/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
-                                                                <button >
-                                                                    <i class="fa fa-trash"></i>
-                                                                </button>
-                                                            </form>                                    
-                                                        </span>
-                                                        <span id="edit">
-                                                            <a href="/<%= user._id %>/notes/<%= note._id %>/edit">
-                                                                <i class="fa fa-edit"></i>
-                                                            </a>            
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    <% } else if( note.type == "meal-planner" ){ %>
-
-                                        <div class="cbp-item meal-planner">
-                                            <div class="cbp-caption" style="float: left;">
-                                                <div class="cbp-caption-defaultWrap">
-                                                    <img src="/images/meal-planner.jpg" alt="">
-                                                </div>
-                                                <div class="cbp-caption-activeWrap">
-                                                    <div class="cbp-l-caption-alignLeft">
-                                                        <div class="cbp-l-caption-body">
-                                                            <div class="cbp-l-caption-title">MEAL PLANNER...</div>
-                                                            <div class="cbp-l-caption-title"><%= note.date %></div>
-                                                            <% for(var i=0; i < note.meal1.length; i++){ %>
-                                                                <div class="cbp-l-caption-desc">
-                                                                    <%= note.meal1[i] %>
-                                                                    <%= note.meal2[i] %> 
-                                                                    <%= note.meal3[i] %> 
-                                                                </div>
-                                                            <% } %>
-                                                        </div>
-                                                    </div>
-                                                    <div class="formatting">
-                                                        <span id="delete">
-                                                            <form id="delete-form" action="/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
-                                                                <button >
-                                                                    <i class="fa fa-trash"></i>
-                                                                </button>
-                                                            </form>                                    
-                                                        </span>
-                                                        <span id="edit">
-                                                            <a href="/<%= user._id %>/notes/<%= note._id %>/edit">
-                                                                <i class="fa fa-edit"></i>
-                                                            </a>            
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
 
                                     <% } %>
 
+                                    
                                 <% } %>
-                            <% }); %>
+
+                            <% }; %>
                         </div> 
                     </section>   
                 </div>  
-            </div>
         </div>
     </div>
  
@@ -362,6 +165,59 @@
         </div>
     </div>
 <% } %> 
+<form action="/<%= user._id %>/notes/share" method="GET">
+    <div class="modal" id="shareNoteModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <!-- Header -->
+                <div class="m-header">
+                    <!-- Close button -->
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 id="myModalLabel"> Share Notes! </h4>
+                    <br />
+                </div>
+
+                <!-- Body -->
+                <div class="inputs">
+
+                    <!-- Receiver Email-ID -->
+                    <div class="form-group input-group">
+                        <label for="receiverEmail" class="sr-only">Email-ID</label>
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                        <input type="text" class="form-control" id="receiverEmail" name="shareUser[receiverEmail]" placeholder="Enter the Receiver's Email-ID" maxlength="30" required>
+                    </div>
+
+                    <!-- Receiver Name -->
+                    <div class="form-group input-group">
+                        <label for="receiverName" class="sr-only">Name</label>
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                        <input type="text" class="form-control" id="receiverName" name="shareUser[receiverName]" placeholder="Enter the Receiver's Name" maxlength="30" required>
+                    </div>
+
+                    <!-- Note ID -->
+                    <div class="form-group input-group note-id-input">
+                    </div>
+
+                    <div class="form-group input-group">
+                        <label for="receiverMsg" class="sr-only">Message for Receiver</label>
+                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                        <input type="text" class="form-control" id="receiverMsg" name="shareUser[receiverMsg]" placeholder="Any other message..." maxlength="300">
+                    </div>
+
+                </div>
+
+                <!-- Footer -->
+                <div class="footer">
+                    <button type="submit" class="btn" name="form" value="share">
+                        Share
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
 
 <% include partials/footer.ejs %>
 

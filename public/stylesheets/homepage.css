@@ -8,12 +8,6 @@
 .notes-container {
     text-align: center;
 }
-/* .notes-container div{
-  margin-left: 10%;
-}
-.notes-container h1{
-  text-align: left;
-} */
 .notes-container h1 a{
   right: 10%;
   color: #000;
@@ -24,26 +18,32 @@
 #delete{
     float: left; 
 }
-ul{
-    list-style: none;
-}
-.allNotes li{
-    text-align: left;
-    float: left; 
-    width: 100%;
-    max-width: 100%;
-    font-size: 10px;
-    line-height: 1.5em;
-    border-left-width: 90px;
-    border-color: #CA3DD9;
-    color: #CA3DD9;
-    background-color: #FBEFFF;
-
-    margin-bottom: 10px;
-}
 .allNotes li div{
     padding-left: 40px; 
     height: 1px;
+}
+.allNotes .cbp{
+  margin-bottom: 50px;
+}
+.allNotes .cbp-caption-activeWrap .cbp-l-caption-title{
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 600;
+  margin-bottom: 3px;
+}
+.allNotes .to-do li{
+  background: transparent;
+  color: #FFF;
+  margin-bottom: 1px;
+}
+.allNotes .daily-reflection .cbp-l-caption-desc li{
+  background: transparent;
+  color: #FFF;
+  margin-bottom: 0;
+}
+.allNotes .daily-reflection .cbp-l-caption-desc{
+  font-size: 10px;
+  margin-bottom: 10px;
 }
 .cbp-caption-activeWrap{
   position: relative;
@@ -122,7 +122,6 @@ span:hover a{
 .no-notes button:focus {
 	animation: borderPulse 700ms ease-out, hoverShine 400ms;
 }
-
 @keyframes borderPulse {
   0% {
     box-shadow: 0px 0px 0px 0px rgba(63, 36, 20,1);
@@ -131,15 +130,6 @@ span:hover a{
     box-shadow: 0px 0px 0px 35px rgba(63, 36, 20,0);
   }
 }
-/* @keyframes borderPulse {
-  0% {
-    box-shadow: inset 0px 0px 0px 10px rgba(63, 36, 20,.4), 0px 0px 0px 0px rgba(63, 36, 20,1);
-  }
-  100% {
-    box-shadow: inset 0px 0px 0px 3px rgba(63, 36, 20,.2), 0px 0px 0px 35px rgba(63, 36, 20,0);
-  }
-} */
-
 @keyframes hoverShine {
 	0%{
 		background-image: linear-gradient(135deg, rgba(255,255,255,.4) 0%, rgba(255,255,255,0) 50%, rgba(255,255,255,0) 100%);
@@ -161,7 +151,6 @@ span:hover a{
   outline: none;
   margin-top: 20px;
   margin-bottom: 20px;
-  /* background-color: rgba(114,190,35,0.8); */
 } 
 .no-notes .btn:hover{
   border: 1px solid rgb(63, 36, 20);
@@ -169,50 +158,12 @@ span:hover a{
   background-color: rgb(255,255,255);
   outline: none;
 }
-
-/* <div id="grid-container" class="cbp cbp-caption-active cbp-caption-minimal cbp-ready cbp-cols-2" style="height: 280px;"><div class="cbp-wrapper-outer"><div class="cbp-wrapper"> */
-
-/* .allNotes .cbp,
-.allNotes .cbp-wrapper-outer,
-.allNotes .cbp-wrapper,
-.allNotes .cbp-item{
-  width: 334px;
-  max-width: 334px;
-} */
-/* .allNotes .cbp-caption-activeWrap,
-.allNotes .cbp-caption-defaultWrap{
-  width: 334px;
-  height: 334px;
-  max-width: 334px;
-  max-height: 250px;
-} */
-
-.allNotes .cbp{
-  margin-bottom: 50px;
+.no-notes .notes-buttons{
+  max-width: 10px;
 }
-.allNotes .cbp-caption-activeWrap .cbp-l-caption-title{
-  text-align: center;
-  text-transform: uppercase;
-  font-weight: 600;
-  margin-bottom: 3px;
+.no-notes a:hover{
+  text-decoration: none;
 }
-
-.allNotes .to-do li{
-  background: transparent;
-  color: #FFF;
-  margin-bottom: 1px;
-}
-
-.allNotes .daily-reflection .cbp-l-caption-desc li{
-  background: transparent;
-  color: #FFF;
-  margin-bottom: 0;
-}
-.allNotes .daily-reflection .cbp-l-caption-desc{
-  font-size: 10px;
-  margin-bottom: 10px;
-}
-
 .tool {
   /* cursor: help; */
   position: relative;
@@ -272,16 +223,9 @@ span:hover a{
   transition: all .65s cubic-bezier(.84,-0.18,.31,1.26);
 }
 @media (max-width: 760px) {
-.tool::after { 
+  .tool::after { 
       font-size: .75em;
       margin-left: -5em;
       width: 10em; 
-}
-}
-
-.no-notes .notes-buttons{
-  max-width: 10px;
-}
-.no-notes a:hover{
-  text-decoration: none;
+  }
 }

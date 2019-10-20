@@ -5,7 +5,6 @@ var NoteSchema = new mongoose.Schema({
   type: {
           type: String,
   },
-  
   title:{
           type: String,
           // required: true
@@ -38,27 +37,6 @@ var NoteSchema = new mongoose.Schema({
   meetingStatus: [{
     type: String,
   }],
-  // meetingTable: [{
-  //   meetingAction: [{
-  //     type: String,
-  //   }],
-  //   meetingAssignee: [{
-  //     type: String,
-  //   }],
-  //   meetingStatus: [{
-  //     type: String,
-  //   }]
-  // }],
-  // meetingAttendees: {
-  //   type: String,
-  // },
-  // meetingAction: {
-  //   type: String,
-  // },
-  // meetingAssignee: {
-  //   type: String,
-  // },
-
 
   eventTitle: [{
     type: String,

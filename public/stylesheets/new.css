@@ -547,10 +547,6 @@ input#title{
 .planner-section{
     margin-top: 100px;
 }
-.planner-section .btn{
-    margin-top: 300px;
-}
-
 .mbsc-grid .mbsc-col-md-8{
     min-height: 400px;
 }
@@ -626,7 +622,7 @@ input#title{
 .mbsc-ios .mbsc-event-list {
     background: rgba(58, 33, 19, 0.1);
 }
-.planner-section input#title {
+/* .planner-section input#title {
     max-width: 100%;
     padding: 5px;
     margin-top: 30px;
@@ -642,7 +638,7 @@ input#title{
     height: 50px;
     font-size: 40px;
     font-weight: 800;
-}
+} */
 .mbsc-wdg .mbsc-ltr .mbsc-wdg-c{
     outline: none;
     border-radius: 0;

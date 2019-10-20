@@ -13,22 +13,27 @@ var express                = require("express"),
     passport               = require("passport"),
     LocalStrategy          = require("passport-local"),
     passportLocalMongoose  = require("passport-local-mongoose"),
+    multer                 = require('multer'),
+    sgMail                 = require('@sendgrid/mail');
+    // $                      = require("jquery"),
     middleware             = require("./middleware"),
     db                     = require('./database.js'), // Connecting database
     User                   = require("./models/user"),
-    Note                   = require("./models/notes"),
-    multer                 = require('multer');
-    var $ = require("jquery");
-// var storage = multer.diskStorage({
-//     destination: function(req, file, cb) {
-//         cb(null, './public/uploads/'); // Make sure this folder exists
-//     },
-//     filename: function(req, file, cb) {
-//         var ext = file.originalname.split('.').pop();
-//         cb(null, file.fieldname + '-' + Date.now() + '.' + ext);
-//     }
-// }),
-// upload = multer({ storage: storage }).single('image');
+    Note                   = require("./models/notes");
+ 
+// var jsdom = require("jsdom");
+// var window = jsdom.jsdom().createWindow();
+// var $ = require("jquery")( window );
+// var $ = require('jquery')(require("jsdom").jsdom().parentWindow);
+// var jsdom = require("jsdom");
+// const { JSDOM } = jsdom;
+// const { window } = new JSDOM();
+// const { document } = (new JSDOM('')).window;
+// global.document = document;
+// // var $ = require("jquery")(window);
+// window.$ = require('jquery')(window);
+
+sgMail.setApiKey('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');
 
 var storage = multer.diskStorage({
     filename: function(req, file, callback) {
@@ -88,7 +93,7 @@ app.use(function(req, res, next){
 
 // LANDING PAGE 
 app.get("/", function(req, res){   
-    // res.send("Landing Page");
+
     res.render("landing");
 });
 
@@ -149,7 +154,10 @@ app.post("/", async function(req, res, next){
             }else if(emailUser) {
                 // CHECK FOR SAME EMAIL
                 // console.log('The Email is already in use :/')
-                req.flash('error', 'The Email is already in use :/');
+                if(emailUser == ''){
+                    req.flash('error', 'Please enter a valid email id! ');
+                }else
+                    req.flash('error', 'The Email is already in use :/');
                 res.redirect('/');
             }
             else {
@@ -378,10 +386,16 @@ app.get("/:id/notes", middleware.isAuthenticated, async function(req, res){
             console.log(error);
             req.flash("error", "Something went wrong! User not found!" );
         }else{
-            // console.log("req.params");
+            // console.log("req.params user");
             // console.log(req.params);
             Note.find(req.params.note_id, function(error, allNotes){
+                // console.log("req.params notes");
                 // console.log(req.params);
+
+                // console.log("user");
+                // console.log(user);
+                // console.log("notes");
+                // console.log(allNotes);
 
                 if(error){
                     req.flash("error", "Something went wrong! Notes not found!" );
@@ -399,6 +413,79 @@ app.get("/:id/notes", middleware.isAuthenticated, async function(req, res){
     //         res.render("homepage", {notes:allNotes});            
     //     }
     // });
+});
+
+app.get("/:id/notes/share", function(req, res){
+    var shareUser = req.query.shareUser;
+    if(shareUser){
+        console.log(shareUser);
+
+        Note.findById(req.query.shareUser.noteid, function(error, note){
+            if(error){
+                console.log(error);
+            }else{
+                console.log("in else");
+                console.log(note);
+                console.log(note.author.username);
+        
+                var msgToReciever;
+
+                if(note.type === 'blank'){
+                    msgToReciever = {
+                        to: 	 'anushkarvp1999@gmail.com',
+                        from: 	 'v.anushka786@gmail.com',
+                        subject: 'Notes from QuickNotes!',
+                        // text: 	 'something!',
+                            
+                        html: 	'Hi, ' + shareUser.receiverName + '!' +
+                                '<br>'	+ 
+                                note.author.username + ' shared their notes with you!' + 
+                                '<br>'	+ 
+                                '<h4>Notes Details!</h4>' + 
+                                '<h3>' + note.title + '</h3>' + 
+                                'p' + note.description + '</p>' + 
+                                '<br>'	+ 
+                                '<br>'	+ 
+                                '<p>Join QuickNotes today to enjoy making notes for free!'
+                                
+                    };
+                }
+
+                var msgToUser = {
+                    to: 	 'v.anushka786@gmail.com',
+                    from: 	 'QuickNotes@gmail.com',
+                    subject: 'Notes shared with ' + shareUser.receiverName,
+                    // text: 	 'something!',
+                    html: 	'Hi, ' + note.author.username +
+                            '<br>'	+ 
+                            'Your notes have been shared with ' + shareUser.receiverName + 
+                            '<br>'	+ 
+                            '<h4>Notes Details!</h4>' +
+                            '<h3>' + note.title + '</h3>' + 
+                            'p' + note.description + '</p>' + 
+                            '<br>'	+ 
+                            '<br>'	+ 
+                            '<p>Keep using QuickNotes!' 
+                            // '<br>' +
+                            // '<h2>Customer Details</h2>' +
+                            // '<br>' +
+                            // '<b>Customer Name: ' + user.username +
+                            // '<br>' +
+                            // '<b>Customer Email: ' + customer.email +
+                            // '<br>' +
+                            // '<b>Contact Number: ' + customer.Number +
+                            // '<br>' +
+                            // '<b>Message: ' + customer.message
+                            
+                };
+                sgMail.send(msgToReciever);
+                sgMail.send(msgToUser);		
+                res.send("share 1")            
+            }
+        });
+    
+     }
+    //  res.send("share 2");
 });
 // app.get("/:id/notes", middleware.isAuthenticated, async function(req, res){
 

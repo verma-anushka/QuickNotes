@@ -1,6 +1,5 @@
 <% include partials/header.ejs %>
 
-
 <div class="home-slider">
     <div class="load">
         <!-- image -->
@@ -8,19 +7,16 @@
 
     <div class="content">
         <div class="principal">
-            <!-- <div class="jumbotron" id="myContainer"> -->
-                <h1>Online Notes App</h1>
-                <p>Make notes</p>
-                <p>Easy to use</p>
-                <button type="button" class="signUpButton arrow" data-target="#signupModal" data-toggle="modal">
-                    Sign-Up<!-- <i class="fa fa-user-plus"></i> -->
-                </button>
-            <!-- </div> -->
+            <h1>QUICK NOTES</h1>
+            <p>Make notes online</p>
+            <p>Easy to use app!</p>
+            <button type="button" class="signUpButton arrow" data-target="#signupModal" data-toggle="modal">
+                Sign-Up<!-- <i class="fa fa-user-plus"></i> -->
+            </button>
         </div>
     </div>
 
 </div>
-
 
 <!-- SIGNUP -->
 <form action="/" method="POST" id="signupForm" class="signupForm">
@@ -43,28 +39,28 @@
                     <div class="form-group input-group">
                         <label for="username" class="sr-only">Username</label>
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                        <input type="text" class="form-control" id="username" name="username" placeholder="Username" maxlength="30">
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Username" maxlength="30" required>
                     </div>
 
                     <!-- Email Address -->
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
                         <label for="email" class="sr-only">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" maxlength="50">
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" maxlength="50" required>
                     </div>
 
                     <!-- Password -->
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                         <label for="password" class="sr-only">Password</label>
-                        <input type="password" class="form-control" id="password" name="password" placeholder="Choose a password" maxlength="30">
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Choose a password" maxlength="30" required>
                     </div>
 
                     <!-- Confirm Password -->
                     <div class="form-group input-group">
                         <span class="input-group-addon"><i class="fa fa-lock"></i></span>
                         <label for="password2" class="sr-only">Confirm Password</label>
-                        <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm password" maxlength="30">
+                        <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm password" maxlength="30" required>
                     </div>
                 </div>
 
@@ -73,18 +69,16 @@
                     <button type="submit" class="signUpButton arrow" name="form" value="signUp">
                         Sign Up<!-- <i class="fa fa-user-plus"></i> -->
                     </button>
+                    <br /><br />
                     <p>
                         Already have an account?! 
-                        <a href="">
-                            Login!
-                        </a>
+                        <a href="#loginModal" data-toggle="modal" data-dismiss="modal">Login!</a>
                     </p>
-                    <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> -->
                 </div>
 
             </div>
         </div>
     </div>
-</form>
+</form>  
 
 <% include partials/footer.ejs %>

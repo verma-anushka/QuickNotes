@@ -13,29 +13,7 @@ $(function () {
       preventSet,
       now = new Date(),
       btn = '<a class="mbsc-btn mbsc-btn-outline mbsc-btn-danger md-delete-btn mbsc-ios">Delete</a>',
-      myData = [
-      //   {
-      //     start: new Date(now.getFullYear(), now.getMonth(), 8, 13),
-      //     end: new Date(now.getFullYear(), now.getMonth(), 8, 13, 30),
-      //     text: 'Lunch @ Butcher\'s' + btn,
-      //     color: '#26c57d'
-      // }, {
-      //     start: new Date(now.getFullYear(), now.getMonth(), now.getDate(), 15),
-      //     end: new Date(now.getFullYear(), now.getMonth(), now.getDate(), 16),
-      //     text: 'General orientation' + btn,
-      //     color: '#fd966a'
-      // }, {
-      //     start: new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1, 18),
-      //     end: new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1, 22),
-      //     text: 'Dexter BD' + btn,
-      //     color: '#37bbe4'
-      // }, {
-      //     start: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 10, 30),
-      //     end: new Date(now.getFullYear(), now.getMonth(), now.getDate() + 1, 11, 30),
-      //     text: 'Stakeholder mtg.' + btn,
-      //     color: '#d00f0f'
-      // }
-    ];
+      myData = [];
 
   function navigate(inst, val) {
       if (inst) {
@@ -152,34 +130,5 @@ $(function () {
   $('#showAddEventPopup').click(function () {
       popupInst.show();
   });
-
-//   var title = $("#demo-add-event-popup input").attr('name');
-//   console.log( title );
-
-//   title.append($('#eventText').val());
-//   console.log(title);
-
-//   $(function() {
-//     // By default deny the submit
-//     var allowSubmit = false;
-
-//     $(".planner-form").on("submit", function(event) {
-
-//         if (!allowSubmit) {
-//             event.preventDefault();
-
-//             // Your code logic in here (maybe form validation or something)
-//             // Then you set allowSubmit to true so this code is bypassed
-//             console.log("save!");
-
-//             allowSubmit = true;
-//         }
-
-//     });
-// });
-//   $('.planner-btn').click(function () {
-//       console.log("save!");
-//     // popupInst.show();
-// });
 
 });

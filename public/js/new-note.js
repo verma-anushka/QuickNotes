@@ -54,7 +54,6 @@ $(document).ready(function(){
                             '<span class="to-do-span"><i class="fa fa-trash"></i></span> '+                      
                             '<input class="form-control to-do-input" type="text" name="note[todos]" value="' + input + '" placeholder="Add Do List" >' +
                             '</li>');
-
       // $('.to-do-ul').append('<span class="to-do-span"><i class="fa fa-trash"></i></span> '+                      
       //                       '<input class="form-control to-do-input" type="text" name="note[todos]" value="' + input + '" placeholder="Add Do List" >' );
 
@@ -67,7 +66,6 @@ $(document).ready(function(){
     $('.to-do-input').fadeToggle(1000);
   });
 
-
   // MEETING NOTES
   $('#btnAdd').click(function(){
     $("#tblData tbody").append(
@@ -79,19 +77,17 @@ $(document).ready(function(){
         $(".btnDelete").bind("click", Delete);
   });  
 
-
   $('.btnDelete').click(function Delete(){
-    console.log("delete1");
     var par = $(this).parent().parent(); //tr
     par.remove();
   });
   
   function Delete(){
-    console.log("delete2");
     var par = $(this).parent().parent(); //tr
     par.remove();
   }; 
 
+  // ON-CLICK ANIMATIONS
   $(".blank").click(function() {
     $(".to-do-section").css({ "display": "none" });
     $(".lecture-section").css({ "display": "none" });

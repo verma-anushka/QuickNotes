@@ -44,34 +44,23 @@
             singlePageInlineCallback: function(url, element) {
                 // to update singlePageInline content use the following method: this.updateSinglePageInline(yourContent)
                 var t = this;
-    
-                // $.ajax({
-                //         url: url,
-                //         type: 'GET',
-                //         dataType: 'html',
-                //         timeout: 10000
-                //     })
-                //     .done(function(result) {
-    
-                //         t.updateSinglePageInline(result);
-    
-                //     })
-                //     .fail(function() {
-                //         t.updateSinglePageInline('AJAX Error! Please refresh the page!');
-                //     });
+
             },
         });
 
-        // console.log(user.username);
-        // $(document).ready(function(){
-        //     $("img").click(function(){
-        //         // Change src attribute of image
-        //         $(this).attr("src", "images/card-front.jpg");
-        //     });    
-        // });
+        $('.noteShare').click(function(){
+            console.log( $(".noteShare").data("note") );
+            var input = $(".noteShare").data("note");
+            $('.note-id-input').html('');
+            console.log( $('.note-id-input').val() );
+            $('.note-id-input').append('<label for="noteid" class="sr-only">Email-ID</label>' +     
+                                       '<span class="input-group-addon"><i class="fa fa-user"></i></span>' +       
+                                       '<input class="form-control" type="text" id="noteid" name="shareUser[noteid]" value="' + input + '" >'
+                                        );
+        });
 
         $('.btnDelete').click(function Delete(){
-            console.log("delete1");
+            // console.log("delete1");
             var par = $(this).parent().parent(); //tr
             par.remove();
           });
