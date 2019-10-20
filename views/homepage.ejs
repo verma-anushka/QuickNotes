@@ -74,8 +74,6 @@
                                                 </div>
                                                 <div class="formatting">
                                                     <span class="share">
-                                                        <% console.log( "note.id" ) %>
-                                                        <% console.log( note.id ) %>
                                                         <a href="#shareNoteModal" class="noteShare" data-note="<%- note.id %>" data-toggle="modal" >
                                                             <i class="fas fa-share-alt"></i>
                                                         </a>            
@@ -112,6 +110,11 @@
                                                     </div>
                                                 </div>
                                                 <div class="formatting">
+                                                    <span class="share">
+                                                        <a href="#shareNoteModal" class="noteShare" data-note="<%- note.id %>" data-toggle="modal" >
+                                                            <i class="fas fa-share-alt"></i>
+                                                        </a>            
+                                                    </span>
                                                     <span id="delete">
                                                         <form id="delete-form" action="/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
                                                             <button >
@@ -146,6 +149,11 @@
                                                     </div>
                                                 </div>
                                                 <div class="formatting">
+                                                    <span class="share">
+                                                        <a href="#shareNoteModal" class="noteShare" data-note="<%- note.id %>" data-toggle="modal" >
+                                                            <i class="fas fa-share-alt"></i>
+                                                        </a>            
+                                                    </span>
                                                     <span id="delete">
                                                         <form id="delete-form" action="/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
                                                             <button >
@@ -179,9 +187,35 @@
                                                         <div class="cbp-l-caption-desc"><%- note.meetingDate %></div>
                                                         <div class="cbp-l-caption-desc"><%- note.meetingAgenda %></div>
                                                         <div class="cbp-l-caption-desc"><%- note.meetingAttendees %></div>
+                                                        <div class="cbp-l-caption-desc">
+                                                                <table id="tblData">          
+                                                                    <thead>
+                                                                        <tr>
+                                                                            <th>Action Item</th>
+                                                                            <th>Assignee</th>
+                                                                            <th>Status</th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody>
+                                                                        <% for(var i=0; i < note.meetingAction.length; i++){ %>
+                                                                            <tr >
+                                                                                <td><%= note.meetingAction[i] %></td>
+                                                                                <td><%= note.meetingAssignee[i] %></td>
+                                                                                <td><%= note.meetingStatus[i] %></td>
+                                                                            </tr>
+                                                                        <% } %>
+                                            
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
                                                     </div>
                                                 </div>
                                                 <div class="formatting">
+                                                    <span class="share">
+                                                        <a href="#shareNoteModal" class="noteShare" data-note="<%- note.id %>" data-toggle="modal" >
+                                                            <i class="fas fa-share-alt"></i>
+                                                        </a>            
+                                                    </span>
                                                     <span id="delete">
                                                         <form id="delete-form" action="/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
                                                             <button >
@@ -211,9 +245,16 @@
                                                     <div class="cbp-l-caption-body">
                                                         <div class="cbp-l-caption-title"><%- note.title %></div>
                                                         <div class="cbp-l-caption-desc"><%- note.description %></div>
+
+                                                        
                                                     </div>
                                                 </div>
                                                 <div class="formatting">
+                                                    <span class="share">
+                                                        <a href="#shareNoteModal" class="noteShare" data-note="<%- note.id %>" data-toggle="modal" >
+                                                            <i class="fas fa-share-alt"></i>
+                                                        </a>            
+                                                    </span>
                                                     <span id="delete">
                                                         <form id="delete-form" action="/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
                                                             <button >
@@ -242,15 +283,21 @@
                                                 <div class="cbp-l-caption-alignLeft">
                                                     <div class="cbp-l-caption-body">
                                                         <div class="cbp-l-caption-title">DAILY REFLECTION...</div>
-            
                                                         <% var reflections = ["What went well today?!", "What didn't go as planned?!", "What can be improved upon?!", "What's on your mind?!"] %>
                                                         <% for(var i=0; i < note.dailyReflection.length; i++){ %>
-                                                            <div class="cbp-l-caption-desc"><li><%= reflections[i] %></li></div>
-                                                            <div class="cbp-l-caption-desc"><%= note.dailyReflection[i] %></div>
+                                                            <div class="cbp-l-caption-desc">
+                                                                <li><%= reflections[i] %></li>
+                                                                <%= note.dailyReflection[i] %>
+                                                            </div>
                                                         <% } %>
                                                     </div>
                                                 </div>
                                                 <div class="formatting">
+                                                    <span class="share">
+                                                        <a href="#shareNoteModal" class="noteShare" data-note="<%- note.id %>" data-toggle="modal" >
+                                                            <i class="fas fa-share-alt"></i>
+                                                        </a>            
+                                                    </span>
                                                     <span id="delete">
                                                         <form id="delete-form" action="/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
                                                             <button >
@@ -280,16 +327,37 @@
                                                     <div class="cbp-l-caption-body">
                                                         <div class="cbp-l-caption-title">MEAL PLANNER...</div>
                                                         <div class="cbp-l-caption-title"><%= note.date %></div>
-                                                        <% for(var i=0; i < note.meal1.length; i++){ %>
-                                                            <div class="cbp-l-caption-desc">
-                                                                <%= note.meal1[i] %>
-                                                                <%= note.meal2[i] %> 
-                                                                <%= note.meal3[i] %> 
-                                                            </div>
-                                                        <% } %>
+                                                        <% var days = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"] %>
+                                                        <div class="cbp-l-caption-desc">
+                                                            <table id="tblData">          
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th></th>
+                                                                        <th><pre>BREAKFAST</pre></th>
+                                                                        <th><pre>  LUNCH</pre></th>
+                                                                        <th><pre>  DINNER</pre></th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <% for(var i=0; i < note.meal1.length; i++){ %>
+                                                                        <tr>
+                                                                            <td class="day"><%= days[i] %></td>
+                                                                            <td><%= note.meal1[i] %></td>
+                                                                            <td><%= note.meal2[i] %></td>
+                                                                            <td><%= note.meal3[i] %></td>
+                                                                        </tr>
+                                                                    <% } %>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="formatting">
+                                                    <span class="share">
+                                                        <a href="#shareNoteModal" class="noteShare" data-note="<%- note.id %>" data-toggle="modal" >
+                                                            <i class="fas fa-share-alt"></i>
+                                                        </a>            
+                                                    </span>
                                                     <span id="delete">
                                                         <form id="delete-form" action="/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
                                                             <button >

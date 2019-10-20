@@ -428,18 +428,17 @@ app.get("/:id/notes/share", function(req, res){
                 console.log(note);
                 console.log(note.author.username);
         
-                var msgToReciever;
+                var msgToReciever = {};
+                var msgToUser = {};
 
-                if(note.type === 'blank'){
+                if(note.type === 'blank' || note.type === 'lecture'){
                     msgToReciever = {
                         to: 	 'anushkarvp1999@gmail.com',
                         from: 	 'v.anushka786@gmail.com',
                         subject: 'Notes from QuickNotes!',
-                        // text: 	 'something!',
-                            
                         html: 	'Hi, ' + shareUser.receiverName + '!' +
                                 '<br>'	+ 
-                                note.author.username + ' shared their notes with you!' + 
+                                note.author.username + ' just shared their notes with you!' + 
                                 '<br>'	+ 
                                 '<h4>Notes Details!</h4>' + 
                                 '<h3>' + note.title + '</h3>' + 
@@ -447,37 +446,164 @@ app.get("/:id/notes/share", function(req, res){
                                 '<br>'	+ 
                                 '<br>'	+ 
                                 '<p>Join QuickNotes today to enjoy making notes for free!'
-                                
+                    };
+                    msgToUser = {
+                        to: 	 'v.anushka786@gmail.com',
+                        from: 	 'QuickNotes@gmail.com',
+                        subject: 'Notes shared with ' + shareUser.receiverName,
+                        html: 	'Hi, ' + note.author.username +
+                                '<br>'	+ 
+                                'Your notes have been shared with ' + shareUser.receiverName + 
+                                '<br>'	+ 
+                                '<h4>Notes Details!</h4>' +
+                                '<h3>' + note.title + '</h3>' + 
+                                '<p>' + note.description + '</p>' + 
+                                '<br>'	+ 
+                                '<br>'	+ 
+                                '<p>Keep using QuickNotes!' 
+                    };
+                }else if(note.type === 'to-do'){
+                    msgToReciever = {
+                        to: 	 'anushkarvp1999@gmail.com',
+                        from: 	 'v.anushka786@gmail.com',
+                        subject: 'Notes from QuickNotes!',
+                        html: 	'Hi, ' + shareUser.receiverName + '!' +
+                                '<br>'	+ 
+                                note.author.username + ' just shared their notes with you!' + 
+                                '<br>'	+ 
+                                '<h4>Notes Details!</h4>' + 
+                                '<h3>' + note.title + '</h3>' + 
+                                note.todos.forEach(function(todo){ '<li>' + todo + '</li>' }) +
+                                '<br>'	+ 
+                                '<br>'	+ 
+                                '<p>Join QuickNotes today to enjoy making notes for free!'
+                    };
+                    msgToUser = {
+                        to: 	 'v.anushka786@gmail.com',
+                        from: 	 'QuickNotes@gmail.com',
+                        subject: 'Notes shared with ' + shareUser.receiverName,
+                        html: 	'Hi, ' + note.author.username +
+                                '<br>'	+ 
+                                'Your notes have been shared with ' + shareUser.receiverName + 
+                                '<br>'	+ 
+                                '<h4>Notes Details!</h4>' +
+                                '<h3>' + note.title + '</h3>' + 
+                                note.todos.forEach(function(todo){ '<li>' + todo + '</li>' }) +
+                                '<br>'	+ 
+                                '<br>'	+ 
+                                '<p>Keep using QuickNotes!' 
+                    };
+                }else if(note.type === 'meeting'){
+                    msgToReciever = {
+                        to: 	 'anushkarvp1999@gmail.com',
+                        from: 	 'v.anushka786@gmail.com',
+                        subject: 'Notes from QuickNotes!',
+                        html: 	'Hi, ' + shareUser.receiverName + '!' +
+                                '<br>'	+ 
+                                note.author.username + ' just shared their notes with you!' + 
+                                '<br>'	+ 
+                                '<h4>Notes Details!</h4>' + 
+                                '<h3>' + note.title + '</h3>' + 
+                                '<p>' + note.meetingDate + '</p>' +
+                                '<p>' + note.meetingAgenda + '</p>' +
+                                '<p>' + note.meetingAttendees + '</p>' +
+                                '<br>'	+ 
+                                '<br>'	+ 
+                                '<p>Join QuickNotes today to enjoy making notes for free!'
+                    };
+                    msgToUser = {
+                        to: 	 'v.anushka786@gmail.com',
+                        from: 	 'QuickNotes@gmail.com',
+                        subject: 'Notes shared with ' + shareUser.receiverName,
+                        html: 	'Hi, ' + note.author.username +
+                                '<br>'	+ 
+                                'Your notes have been shared with ' + shareUser.receiverName + 
+                                '<br>'	+ 
+                                '<h4>Notes Details!</h4>' +
+                                '<h3>' + note.title + '</h3>' + 
+                                '<h3>' + note.title + '</h3>' + 
+                                '<p>' + note.meetingDate + '</p>' +
+                                '<p>' + note.meetingAgenda + '</p>' +
+                                '<p>' + note.meetingAttendees + '</p>' +
+                                '<br>'	+ 
+                                '<br>'	+ 
+                                '<p>Keep using QuickNotes!' 
+                    };
+                }else if(note.type === 'daily-reflection'){
+
+                    // var reflections = ["What went well today?!", "What didn't go as planned?!", "What can be improved upon?!", "What's on your mind?!"]
+                    msgToReciever = {
+                        to: 	 'anushkarvp1999@gmail.com',
+                        from: 	 'v.anushka786@gmail.com',
+                        subject: 'Notes from QuickNotes!',
+                        html: 	'Hi, ' + shareUser.receiverName + '!' +
+                                '<br>'	+ 
+                                note.author.username + ' just shared their notes with you!' + 
+                                '<br>'	+ 
+                                '<h4>Notes Details!</h4>' + 
+                                '<h3>' + note.title + '</h3>' + 
+                                note.dailyReflection.forEach(function(reflection){ '<li>' + reflection + '</li>' }) +
+                                // for(var i=0, i < note.dailyReflection.length, i++){} +
+                                // '<p><strong>' + reflections[i] + '</strong></p>' +
+                                // '<p>' + note.dailyReflection[i] + '</p>' +
+                                '<br>'	+ 
+                                '<br>'	+ 
+                                '<p>Join QuickNotes today to enjoy making notes for free!'
+                    };
+                    msgToUser = {
+                        to: 	 'v.anushka786@gmail.com',
+                        from: 	 'QuickNotes@gmail.com',
+                        subject: 'Notes shared with ' + shareUser.receiverName,
+                        html: 	'Hi, ' + note.author.username +
+                                '<br>'	+ 
+                                'Your notes have been shared with ' + shareUser.receiverName + 
+                                '<br>'	+ 
+                                '<h4>Notes Details!</h4>' +
+                                '<h3>' + note.title + '</h3>' + 
+                                note.dailyReflection.forEach(function(reflection){ '<li>' + reflection + '</li>' }) +
+                                '<br>'	+ 
+                                '<br>'	+ 
+                                '<p>Keep using QuickNotes!' 
+                    };
+                }else if(note.type === 'meal-planner'){
+                    msgToReciever = {
+                        to: 	 'anushkarvp1999@gmail.com',
+                        from: 	 'v.anushka786@gmail.com',
+                        subject: 'Notes from QuickNotes!',
+                        html: 	'Hi, ' + shareUser.receiverName + '!' +
+                                '<br>'	+ 
+                                note.author.username + ' just shared their notes with you!' + 
+                                '<br>'	+ 
+                                '<h4>Notes Details!</h4>' + 
+                                '<h3>' + note.title + '</h3>' + 
+                                // <% for(var i=0; i < note.meal1.length; i++){ %>
+                                //     <div class="cbp-l-caption-desc">
+                                //         <%= note.meal1[i] %>
+                                //         <%= note.meal2[i] %> 
+                                //         <%= note.meal3[i] %> 
+                                //     </div>
+                                // <% } %> +
+                                '<br>'	+ 
+                                '<br>'	+ 
+                                '<p>Join QuickNotes today to enjoy making notes for free!'
+                    };
+                    msgToUser = {
+                        to: 	 'v.anushka786@gmail.com',
+                        from: 	 'QuickNotes@gmail.com',
+                        subject: 'Notes shared with ' + shareUser.receiverName,
+                        html: 	'Hi, ' + note.author.username +
+                                '<br>'	+ 
+                                'Your notes have been shared with ' + shareUser.receiverName + 
+                                '<br>'	+ 
+                                '<h4>Notes Details!</h4>' +
+                                '<h3>' + note.title + '</h3>' + 
+                                // note.dailyReflection.forEach(function(reflection){ '<li>' + reflection + '</li>' }) +
+                                '<br>'	+ 
+                                '<br>'	+ 
+                                '<p>Keep using QuickNotes!' 
                     };
                 }
 
-                var msgToUser = {
-                    to: 	 'v.anushka786@gmail.com',
-                    from: 	 'QuickNotes@gmail.com',
-                    subject: 'Notes shared with ' + shareUser.receiverName,
-                    // text: 	 'something!',
-                    html: 	'Hi, ' + note.author.username +
-                            '<br>'	+ 
-                            'Your notes have been shared with ' + shareUser.receiverName + 
-                            '<br>'	+ 
-                            '<h4>Notes Details!</h4>' +
-                            '<h3>' + note.title + '</h3>' + 
-                            'p' + note.description + '</p>' + 
-                            '<br>'	+ 
-                            '<br>'	+ 
-                            '<p>Keep using QuickNotes!' 
-                            // '<br>' +
-                            // '<h2>Customer Details</h2>' +
-                            // '<br>' +
-                            // '<b>Customer Name: ' + user.username +
-                            // '<br>' +
-                            // '<b>Customer Email: ' + customer.email +
-                            // '<br>' +
-                            // '<b>Contact Number: ' + customer.Number +
-                            // '<br>' +
-                            // '<b>Message: ' + customer.message
-                            
-                };
                 sgMail.send(msgToReciever);
                 sgMail.send(msgToUser);		
                 res.send("share 1")            
