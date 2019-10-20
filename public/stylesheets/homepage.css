@@ -51,7 +51,7 @@
 .formatting{
   margin: 0 auto;
   position: absolute;
-  left: 40%;
+  left: 35%;
   bottom: 5%;
 }
 span button,
@@ -67,16 +67,30 @@ span a{
     display: inline-block;
     transition: 0.5s linear;
 }
-span button{
-  margin-right: 20px;
-}
 span a{
-    line-height: 2;
+  float: left;
+  line-height: 2;
+}
+span button{
+  float: left;
+  margin-right: 20px;
+  margin-left: 20px;
 }
 span:hover button,
 span:hover a{
   color: rgb(63, 36, 20);
   background-color: #FFF;
+}
+#shareNoteModal .fa,
+#shareNoteModal .fas{
+  height: 14px;
+  width: 14px;
+}
+#shareNoteModal .input-group-addon i{
+  text-align: center;
+}
+#shareNoteModal input[type="text"]:read-only{
+  background-color: rgba(63, 36, 20, 0.25);
 }
 .no-notes{
   text-align: center;

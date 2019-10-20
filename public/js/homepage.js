@@ -48,16 +48,30 @@
             },
         });
 
-        $('.noteShare').click(function(){
-            console.log( $(".noteShare").data("note") );
-            var input = $(".noteShare").data("note");
+
+        $(".share").click(function(){
+            //to get the content  
+            var input = $(this).children("a").data("note");
+            console.log( input );
             $('.note-id-input').html('');
             console.log( $('.note-id-input').val() );
-            $('.note-id-input').append('<label for="noteid" class="sr-only">Email-ID</label>' +     
-                                       '<span class="input-group-addon"><i class="fa fa-user"></i></span>' +       
-                                       '<input class="form-control" type="text" id="noteid" name="shareUser[noteid]" value="' + input + '" >'
-                                        );
+            $('.note-id-input').append('<label for="noteid" class="sr-only">Note ID</label>' +     
+                                       '<span class="input-group-addon"><i class="fas fa-id-card"></i></span>' +       
+                                       '<input class="form-control" type="text" id="noteid" name="shareUser[noteid]" value="' + input + '" readonly="readonly">'
+                                      );
+
+            // alert(input);
         });
+        // $('.noteShare').click(function(){
+        //     console.log( $("a.noteShare") );
+        //     var input = $("a.noteShare").data("note");
+        //     $('.note-id-input').html('');
+        //     console.log( $('.note-id-input').val() );
+        //     $('.note-id-input').append('<label for="noteid" class="sr-only">Note ID</label>' +     
+        //                                '<span class="input-group-addon"><i class="fa fa-user"></i></span>' +       
+        //                                '<input class="form-control" type="text" id="noteid" name="shareUser[noteid]" value="' + input + '" >'
+        //                               );
+        // });
 
         $('.btnDelete').click(function Delete(){
             // console.log("delete1");

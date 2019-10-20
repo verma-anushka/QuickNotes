@@ -443,7 +443,7 @@ app.get("/:id/notes/share", function(req, res){
                                 '<br>'	+ 
                                 '<h4>Notes Details!</h4>' + 
                                 '<h3>' + note.title + '</h3>' + 
-                                'p' + note.description + '</p>' + 
+                                '<p>' + note.description + '</p>' + 
                                 '<br>'	+ 
                                 '<br>'	+ 
                                 '<p>Join QuickNotes today to enjoy making notes for free!'
