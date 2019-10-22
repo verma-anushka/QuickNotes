@@ -17,13 +17,15 @@
         <div class="row">
 
             <div class="notes-container">
-                <div>
+                <div class="col-md-offset-1 col-md-10 col-sm-6">
                     <h1 >Welcome back, <%= user.username %> !
-                        <a href="/<%= user._id %>/notes/new"><i class="fa fa-plus"></i></a>
+                        <a class="pull-right" href="/<%= user._id %>/notes/new"><i class="fa fa-plus"></i></a>
                     </h1>
                 </div>
             </div>
+        </div>
 
+        <div class="row">
             <div id="filters-container" class="cbp-l-filters-alignCenter">
                 <div data-filter="*" class="cbp-filter-item-active cbp-filter-item">
                     ALL NOTES<div class="cbp-filter-counter"></div>
@@ -187,27 +189,28 @@
                                                         <div class="cbp-l-caption-desc"><%- note.meetingDate %></div>
                                                         <div class="cbp-l-caption-desc"><%- note.meetingAgenda %></div>
                                                         <div class="cbp-l-caption-desc"><%- note.meetingAttendees %></div>
+                                                        <br />
+                                                        <hr />
                                                         <div class="cbp-l-caption-desc">
-                                                                <table id="tblData">          
-                                                                    <thead>
-                                                                        <tr>
-                                                                            <th>Action Item</th>
-                                                                            <th>Assignee</th>
-                                                                            <th>Status</th>
+                                                            <table id="tblData">          
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th><pre>ACTION ITEM</pre>
+                                                                        <th><pre>   ASSIGNEE</pre>
+                                                                        <th><pre>   STATUS</pre>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody>
+                                                                    <% for(var i=0; i < note.meetingAction.length; i++){ %>
+                                                                        <tr >
+                                                                            <td><%= note.meetingAction[i] %></td>
+                                                                            <td><%= note.meetingAssignee[i] %></td>
+                                                                            <td><%= note.meetingStatus[i] %></td>
                                                                         </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                        <% for(var i=0; i < note.meetingAction.length; i++){ %>
-                                                                            <tr >
-                                                                                <td><%= note.meetingAction[i] %></td>
-                                                                                <td><%= note.meetingAssignee[i] %></td>
-                                                                                <td><%= note.meetingStatus[i] %></td>
-                                                                            </tr>
-                                                                        <% } %>
-                                            
-                                                                    </tbody>
-                                                                </table>
-                                                            </div>
+                                                                    <% } %>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="formatting">
@@ -287,7 +290,7 @@
                                                         <% for(var i=0; i < note.dailyReflection.length; i++){ %>
                                                             <div class="cbp-l-caption-desc">
                                                                 <li><%= reflections[i] %></li>
-                                                                <%= note.dailyReflection[i] %>
+                                                                <%- note.dailyReflection[i] %>
                                                             </div>
                                                         <% } %>
                                                     </div>

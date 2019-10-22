@@ -15,7 +15,6 @@
                             Hi, <%= user.username%>
                         </div> -->
                         <div class="form-group">
-                            <!-- <p> -->
                             <!-- <% if(user.image === "https://previews.123rf.com/images/tanyastock/tanyastock1803/tanyastock180300490/97923644-user-icon-avatar-login-sign-circle-button-with-soft-color-gradient-background-vector-.jpg"){%>
                                     Add profile image!
                             <% } else{ %>
@@ -30,7 +29,6 @@
                                     Choose a file...
                                 </span>
                             </label>
-                            <!-- </p> -->
                         </div>
                     </div>
                     <div class="col-md-7 inputs">
@@ -65,7 +63,7 @@
                         </div>
                         <div class="form-group">
                             <label for="contact">Contact</label>
-                            <input class="form-control" type="number" id="contact" name="user[contact]" placeholder="Contact Number" value="<%= user.contact%>">
+                            <input class="form-control" type="number" id="contact" name="user[contact]" placeholder="Contact Number" value="<%= user.contact%>" min="1000000000" max="9999999999">
                         </div>
                         <div class="form-group">
                             <label for="bio">Bio</label>

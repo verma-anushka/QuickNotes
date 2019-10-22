@@ -9,11 +9,21 @@
     text-align: center;
 }
 .notes-container h1 a{
-  right: 10%;
-  color: #000;
+  /* right: 10%; */
+  height: 34px;
+  width: 34px;
+  border-radius: 50%;
+  background-color: rgb(63, 36, 20);
+  color: #FFF;
+  padding: 5px;
+  font-size: 24px;
 }
-.notes-container textarea {
-    text-align: left;
+.notes-container h1 a:hover{
+  color: rgb(63, 36, 20);
+  background-color: #FFF;
+  border: rgb(63, 36, 20) 1px solid;
+  padding: 5px;
+  font-size: 24px;
 }
 #delete{
     float: left; 
@@ -36,14 +46,16 @@
   color: #FFF;
   margin-bottom: 1px;
 }
-.allNotes .meal-planner pre{
+.allNotes .meal-planner pre,
+.allNotes .meeting pre{
   background: transparent;
-  color: #FFF;
+  color: #EEE;
   border: none;
   outline: none;
   margin-bottom: 0;
 }
-.allNotes .meal-planner td{
+.allNotes .meal-planner td,
+.allNotes .meeting td{
   text-align: center;
 }
 .allNotes .daily-reflection .cbp-l-caption-desc li{

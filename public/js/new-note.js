@@ -62,6 +62,13 @@ $(document).ready(function(){
     }
   });
 
+  $('to-do-input-edit').on('keypress',function(event){
+
+    if(event.which == '13'){
+      event.preventDefault();
+    }
+    });
+
   $('.fa-plus').click(function(){
     $('.to-do-input').fadeToggle(1000);
   });

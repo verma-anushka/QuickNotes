@@ -20,7 +20,6 @@ var UserSchema = new mongoose.Schema({
     lastName: {
                 type: String, 
                 default: ""
-
               },
     gender:   { 
                 type: String,
@@ -29,7 +28,6 @@ var UserSchema = new mongoose.Schema({
               },
     contact:  { 
                 type: Number,
-                default: ""
               },       
     image:    {
                 type: String, 

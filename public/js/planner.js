@@ -1,7 +1,8 @@
+
 mobiscroll.settings = {
   lang: 'en',                                  // Specify language like: lang: 'pl' or omit setting to use default
-  
-  theme: 'ios'                                 // Specify theme like: theme: 'ios' or omit setting to use default
+  theme: 'mobiscroll' 
+//   theme: 'ios'                                 // Specify theme like: theme: 'ios' or omit setting to use default
 };
 
 $(function () {

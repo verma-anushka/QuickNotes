@@ -19,7 +19,14 @@ var express                = require("express"),
     middleware             = require("./middleware"),
     db                     = require('./database.js'), // Connecting database
     User                   = require("./models/user"),
-    Note                   = require("./models/notes");
+    Note                   = require("./models/notes"),
+    // mobiscroll             = require('mobiscroll');
+    // mobiscroll             = require('@mobiscroll/jquery-lite');
+
+// import mobiscroll from '@mobiscroll/jquery-lite';
+// mobiscroll.settings = {
+//     theme: 'mobiscroll'
+// };
  
 // var jsdom = require("jsdom");
 // var window = jsdom.jsdom().createWindow();
@@ -33,7 +40,7 @@ var express                = require("express"),
 // // var $ = require("jquery")(window);
 // window.$ = require('jquery')(window);
 
-sgMail.setApiKey('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');
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 var storage = multer.diskStorage({
     filename: function(req, file, callback) {
@@ -418,19 +425,15 @@ app.get("/:id/notes", middleware.isAuthenticated, async function(req, res){
 app.get("/:id/notes/share", function(req, res){
     var shareUser = req.query.shareUser;
     if(shareUser){
-        console.log(shareUser);
-
         Note.findById(req.query.shareUser.noteid, function(error, note){
             if(error){
+                req.flash("error", "Something went wrong! Note not found" );                
                 console.log(error);
+                return res.redirect("back");
             }else{
-                console.log("in else");
-                console.log(note);
-                console.log(note.author.username);
-        
+                // console.log(note);
                 var msgToReciever = {};
                 var msgToUser = {};
-
                 if(note.type === 'blank' || note.type === 'lecture'){
                     msgToReciever = {
                         to: 	 'anushkarvp1999@gmail.com',
@@ -463,6 +466,11 @@ app.get("/:id/notes/share", function(req, res){
                                 '<p>Keep using QuickNotes!' 
                     };
                 }else if(note.type === 'to-do'){
+                    var todoList = '';
+                    note.todos.forEach(function(todo){ 
+                        todoList = todoList + todo;
+                        todoList = todoList + '<br />';
+                    });
                     msgToReciever = {
                         to: 	 'anushkarvp1999@gmail.com',
                         from: 	 'v.anushka786@gmail.com',
@@ -473,7 +481,7 @@ app.get("/:id/notes/share", function(req, res){
                                 '<br>'	+ 
                                 '<h4>Notes Details!</h4>' + 
                                 '<h3>' + note.title + '</h3>' + 
-                                note.todos.forEach(function(todo){ '<li>' + todo + '</li>' }) +
+                                '<p>' + todoList + '</p>' +
                                 '<br>'	+ 
                                 '<br>'	+ 
                                 '<p>Join QuickNotes today to enjoy making notes for free!'
@@ -488,10 +496,10 @@ app.get("/:id/notes/share", function(req, res){
                                 '<br>'	+ 
                                 '<h4>Notes Details!</h4>' +
                                 '<h3>' + note.title + '</h3>' + 
-                                note.todos.forEach(function(todo){ '<li>' + todo + '</li>' }) +
+                                '<p>' + todoList + '</p>' +
                                 '<br>'	+ 
                                 '<br>'	+ 
-                                '<p>Keep using QuickNotes!' 
+                                '<p>Keep using QuickNotes!</p>' 
                     };
                 }else if(note.type === 'meeting'){
                     msgToReciever = {
@@ -504,9 +512,9 @@ app.get("/:id/notes/share", function(req, res){
                                 '<br>'	+ 
                                 '<h4>Notes Details!</h4>' + 
                                 '<h3>' + note.title + '</h3>' + 
-                                '<p>' + note.meetingDate + '</p>' +
-                                '<p>' + note.meetingAgenda + '</p>' +
-                                '<p>' + note.meetingAttendees + '</p>' +
+                                '<p>Date & Time: ' + note.meetingDate + '</p>' +
+                                '<p>Agenda: ' + note.meetingAgenda + '</p>' +
+                                '<p>Attendees: ' + note.meetingAttendees + '</p>' +
                                 '<br>'	+ 
                                 '<br>'	+ 
                                 '<p>Join QuickNotes today to enjoy making notes for free!'
@@ -521,17 +529,14 @@ app.get("/:id/notes/share", function(req, res){
                                 '<br>'	+ 
                                 '<h4>Notes Details!</h4>' +
                                 '<h3>' + note.title + '</h3>' + 
-                                '<h3>' + note.title + '</h3>' + 
-                                '<p>' + note.meetingDate + '</p>' +
-                                '<p>' + note.meetingAgenda + '</p>' +
-                                '<p>' + note.meetingAttendees + '</p>' +
+                                '<p>Date & Time: ' + note.meetingDate + '</p>' +
+                                '<p>Agenda: ' + note.meetingAgenda + '</p>' +
+                                '<p>Attendees: ' + note.meetingAttendees + '</p>' +
                                 '<br>'	+ 
                                 '<br>'	+ 
                                 '<p>Keep using QuickNotes!' 
                     };
                 }else if(note.type === 'daily-reflection'){
-
-                    // var reflections = ["What went well today?!", "What didn't go as planned?!", "What can be improved upon?!", "What's on your mind?!"]
                     msgToReciever = {
                         to: 	 'anushkarvp1999@gmail.com',
                         from: 	 'v.anushka786@gmail.com',
@@ -542,10 +547,14 @@ app.get("/:id/notes/share", function(req, res){
                                 '<br>'	+ 
                                 '<h4>Notes Details!</h4>' + 
                                 '<h3>' + note.title + '</h3>' + 
-                                note.dailyReflection.forEach(function(reflection){ '<li>' + reflection + '</li>' }) +
-                                // for(var i=0, i < note.dailyReflection.length, i++){} +
-                                // '<p><strong>' + reflections[i] + '</strong></p>' +
-                                // '<p>' + note.dailyReflection[i] + '</p>' +
+                                '<h4>What went well today?!</h4>' +
+                                '<p>' + note.dailyReflection[0] + '</p>' +
+                                "<h4>What didn't go as planned?!</h4>" +
+                                '<p>' + note.dailyReflection[1] + '</p>' +
+                                '<h4>What can be improved upon?!</h4>' +
+                                '<p>' + note.dailyReflection[2] + '</p>' +
+                                "<h4>What's on your mind?!</h4>" +
+                                '<p>' + note.dailyReflection[3] + '</p>' +
                                 '<br>'	+ 
                                 '<br>'	+ 
                                 '<p>Join QuickNotes today to enjoy making notes for free!'
@@ -560,7 +569,14 @@ app.get("/:id/notes/share", function(req, res){
                                 '<br>'	+ 
                                 '<h4>Notes Details!</h4>' +
                                 '<h3>' + note.title + '</h3>' + 
-                                note.dailyReflection.forEach(function(reflection){ '<li>' + reflection + '</li>' }) +
+                                '<h4>What went well today?!</h4>' +
+                                '<p>' + note.dailyReflection[0] + '</p>' +
+                                "<h4>What didn't go as planned?!</h4>" +
+                                '<p>' + note.dailyReflection[1] + '</p>' +
+                                '<h4>What can be improved upon?!</h4>' +
+                                '<p>' + note.dailyReflection[2] + '</p>' +
+                                "<h4>What's on your mind?!</h4>" +
+                                '<p>' + note.dailyReflection[3] + '</p>' +
                                 '<br>'	+ 
                                 '<br>'	+ 
                                 '<p>Keep using QuickNotes!' 
@@ -576,13 +592,60 @@ app.get("/:id/notes/share", function(req, res){
                                 '<br>'	+ 
                                 '<h4>Notes Details!</h4>' + 
                                 '<h3>' + note.title + '</h3>' + 
-                                // <% for(var i=0; i < note.meal1.length; i++){ %>
-                                //     <div class="cbp-l-caption-desc">
-                                //         <%= note.meal1[i] %>
-                                //         <%= note.meal2[i] %> 
-                                //         <%= note.meal3[i] %> 
-                                //     </div>
-                                // <% } %> +
+                                '<table id="tblData">' +          
+                                    '<thead>' +
+                                        '<tr>' +
+                                            '<th></th>' +
+                                            '<th>Breakfast</th>' +
+                                            '<th>Lunch</th>' + 
+                                            '<th>Dinner</th>' +
+                                       ' </tr>' +
+                                    '</thead>' +
+                                    '<tbody>' +
+                                        '<tr>' +
+                                            '<td class="day"><strong>Sunday</strong></td>' +
+                                            '<td>' + note.meal1[0] + '</td>' +
+                                            '<td>' + note.meal2[0] + '</td>' +
+                                            '<td>' + note.meal3[0] + '</td>' +
+                                        '</tr>' +
+                                        '<tr>' +
+                                            '<td class="day"><strong>Monday</strong></td>' +
+                                            '<td>' + note.meal1[1] + '</td>' +
+                                            '<td>' + note.meal2[1] + '</td>' +
+                                            '<td>' + note.meal3[1] + '</td>' +
+                                        '</tr>' +
+                                        '<tr>' +
+                                            '<td class="day"><strong>Tuesday</strong></td>' +
+                                            '<td>' + note.meal1[2] + '</td>' +
+                                            '<td>' + note.meal2[2] + '</td>' +
+                                            '<td>' + note.meal3[2] + '</td>' +
+                                        '</tr>' +
+                                        '<tr>' +
+                                            '<td class="day"><strong>Wednesday</strong></td>' +
+                                            '<td>' + note.meal1[3] + '</td>' +
+                                            '<td>' + note.meal2[3] + '</td>' +
+                                            '<td>' + note.meal3[3] + '</td>' +
+                                        '</tr>' +
+                                        '<tr>' +
+                                            '<td class="day"><strong>Thursday</strong></td>' +
+                                            '<td>' + note.meal1[4] + '</td>' +
+                                            '<td>' + note.meal2[4] + '</td>' +
+                                            '<td>' + note.meal3[4] + '</td>' +
+                                        '</tr>' +
+                                        '<tr>' +
+                                            '<td class="day"><strong>Friday</strong></td>' +
+                                            '<td>' + note.meal1[5] + '</td>' +
+                                            '<td>' + note.meal2[5] + '</td>' +
+                                            '<td>' + note.meal3[5] + '</td>' +
+                                        '</tr>' +
+                                        '<tr>' +
+                                            '<td class="day"><strong>Saturday</strong></td>' +
+                                            '<td>' + note.meal1[6] + '</td>' +
+                                            '<td>' + note.meal2[6] + '</td>' +
+                                            '<td>' + note.meal3[6] + '</td>' +
+                                        '</tr>' +
+                                    '</tbody>' +
+                                '</table>' +
                                 '<br>'	+ 
                                 '<br>'	+ 
                                 '<p>Join QuickNotes today to enjoy making notes for free!'
@@ -597,21 +660,86 @@ app.get("/:id/notes/share", function(req, res){
                                 '<br>'	+ 
                                 '<h4>Notes Details!</h4>' +
                                 '<h3>' + note.title + '</h3>' + 
-                                // note.dailyReflection.forEach(function(reflection){ '<li>' + reflection + '</li>' }) +
+                                '<table id="tblData">' +          
+                                    '<thead>' +
+                                        '<tr>' +
+                                            '<th></th>' +
+                                            '<th>Breakfast</th>' +
+                                            '<th>Lunch</th>' + 
+                                            '<th>Dinner</th>' +
+                                       ' </tr>' +
+                                    '</thead>' +
+                                    '<tbody>' +
+                                        '<tr>' +
+                                            '<td class="day"><strong>Sunday</strong></td>' +
+                                            '<td>' + note.meal1[0] + '</td>' +
+                                            '<td>' + note.meal2[0] + '</td>' +
+                                            '<td>' + note.meal3[0] + '</td>' +
+                                        '</tr>' +
+                                        '<tr>' +
+                                            '<td class="day"><strong>Monday</strong></td>' +
+                                            '<td>' + note.meal1[1] + '</td>' +
+                                            '<td>' + note.meal2[1] + '</td>' +
+                                            '<td>' + note.meal3[1] + '</td>' +
+                                        '</tr>' +
+                                        '<tr>' +
+                                            '<td class="day"><strong>Tuesday</strong></td>' +
+                                            '<td>' + note.meal1[2] + '</td>' +
+                                            '<td>' + note.meal2[2] + '</td>' +
+                                            '<td>' + note.meal3[2] + '</td>' +
+                                        '</tr>' +
+                                        '<tr>' +
+                                            '<td class="day"><strong>Wednesday</strong></td>' +
+                                            '<td>' + note.meal1[3] + '</td>' +
+                                            '<td>' + note.meal2[3] + '</td>' +
+                                            '<td>' + note.meal3[3] + '</td>' +
+                                        '</tr>' +
+                                        '<tr>' +
+                                            '<td class="day"><strong>Thursday</strong></td>' +
+                                            '<td>' + note.meal1[4] + '</td>' +
+                                            '<td>' + note.meal2[4] + '</td>' +
+                                            '<td>' + note.meal3[4] + '</td>' +
+                                        '</tr>' +
+                                        '<tr>' +
+                                            '<td class="day"><strong>Friday</strong></td>' +
+                                            '<td>' + note.meal1[5] + '</td>' +
+                                            '<td>' + note.meal2[5] + '</td>' +
+                                            '<td>' + note.meal3[5] + '</td>' +
+                                        '</tr>' +
+                                        '<tr>' +
+                                            '<td class="day"><strong>Saturday</strong></td>' +
+                                            '<td>' + note.meal1[6] + '</td>' +
+                                            '<td>' + note.meal2[6] + '</td>' +
+                                            '<td>' + note.meal3[6] + '</td>' +
+                                        '</tr>' +
+                                    '</tbody>' +
+                                '</table>' +
                                 '<br>'	+ 
                                 '<br>'	+ 
                                 '<p>Keep using QuickNotes!' 
                     };
                 }
-
-                sgMail.send(msgToReciever);
-                sgMail.send(msgToUser);		
-                res.send("share 1")            
+                sgMail.send(msgToReciever, (error, result) =>{
+                    if (error) {
+                        req.flash("error", "Email not sent!" );                
+                        console.log(error);
+                    }
+                    else {
+                        sgMail.send(msgToUser, (error, result) =>{
+                            if (error) {
+                                req.flash("error", "Email not sent!" );                
+                                console.log(error);
+                            }
+                            else {
+                                req.flash("success", "Email Sent!" );    
+                                return res.redirect('/' + req.params.id + '/notes');
+                            };	
+                        });
+                    }
+                });
             }
         });
-    
      }
-    //  res.send("share 2");
 });
 // app.get("/:id/notes", middleware.isAuthenticated, async function(req, res){
 
@@ -642,6 +770,7 @@ app.post("/:id/notes", middleware.isAuthenticated, function(req,res){
             
             req.flash("error", "Something went wrong!" );
             console.log(error);
+            return res.redirect("back");
         }else{           
             Note.create(req.body.note, function(error, note){
                 if(error){
@@ -657,7 +786,6 @@ app.post("/:id/notes", middleware.isAuthenticated, function(req,res){
                     // console.log("note");
                     // console.log(note);
                     user.save();
-                    // console.log("Note create else 2");
 
                     req.flash("success", "Successfully added note!" );
                     res.redirect("/" + req.params.id + "/notes" );
@@ -723,6 +851,7 @@ app.delete("/:id/notes/:note_id", middleware.isAuthenticated, function(req, res)
         if(error){
             console.log(error);
             req.flash("error", "Something went wrong! User not found!" );
+            return res.redirect("back");
         }else{
             Note.findByIdAndRemove(req.params.note_id, function(error){
                 if(error){
