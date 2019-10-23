@@ -52,7 +52,7 @@ $(document).ready(function(){
       var input = $(this).val();
       $('.to-do-ul').append('<li class="to-do-li">' +
                             '<span class="to-do-span"><i class="fa fa-trash"></i></span> '+                      
-                            '<input class="form-control to-do-input" type="text" name="note[todos]" value="' + input + '" placeholder="Add Do List" >' +
+                            '<input class="form-control to-dos" type="text" name="note[todos]" value="' + input + '" >' +
                             '</li>');
       // $('.to-do-ul').append('<span class="to-do-span"><i class="fa fa-trash"></i></span> '+                      
       //                       '<input class="form-control to-do-input" type="text" name="note[todos]" value="' + input + '" placeholder="Add Do List" >' );
@@ -62,12 +62,13 @@ $(document).ready(function(){
     }
   });
 
-  $('to-do-input-edit').on('keypress',function(event){
+  $('.to-do-ul').on('keypress',function(event){
 
     if(event.which == '13'){
       event.preventDefault();
     }
-    });
+    
+  });
 
   $('.fa-plus').click(function(){
     $('.to-do-input').fadeToggle(1000);

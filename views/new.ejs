@@ -113,7 +113,7 @@
         </div>
 
         <!-- TODO LIST -->
-        <div class="col-md-offset-2 col-md-9 to-do-section" style="display: none;">
+        <div class="col-md-offset-2 col-md-9 to-do-section">
             <form action="/<%= user._id %>/notes" method="POST">
                 <div class="to-do-container">
                     <h1 >TO-DO LIST<i class="fa fa-plus"></i></h1>
@@ -123,10 +123,11 @@
                         <input class="form-control" id="title" type="text" name="note[title]" value="TO-DO LIST">
                     </div>
                     <div class="form-group">
+                        <input type="text" class="form-control to-do-input" placeholder="ADD TO-DO ITEMS...">
                         <ul class="to-do-ul">
-                            <li class="to-do-li">
+                            <!-- <li class="to-do-li">
                                 <input class="form-control to-do-input" type="text" name="note[todos]" placeholder="ADD TO-DO ITEMS...">
-                            </li>
+                            </li> -->
                         </ul>
                     </div>
                 </div>
@@ -208,7 +209,7 @@
         </div>
 
         <!-- SCHEDULE PLANNER -->
-        <div class="col-md-offset-2 col-md-9 planner-section" style="display: none;">
+        <!-- <div class="col-md-offset-2 col-md-9 planner-section" style="display: none;">
             <h1>SCHEDULE PLANNER</h1>
             <div mbsc-page class="demo-add-delete-event">
                 <form action="/<%= user._id %>/notes" method="POST" class="planner-form">
@@ -267,7 +268,7 @@
                     </div>
                 </form>    
             </div>        
-        </div>
+        </div> -->
 
         <!-- DAILY REFLECTION -->
         <div class="col-md-offset-2 col-md-9 daily-reflection-section" style="display: none;">
