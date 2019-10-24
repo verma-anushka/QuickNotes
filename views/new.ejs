@@ -224,13 +224,12 @@
             <div id='calendar'></div>
                         
             <div id="calendar-popup">
-                <form action="/<%= user._id %>/notes" method="POST" class="planner-form">
+                <form action="/<%= user._id %>/notes" method="POST" class="planner-form" id="event-form">
                     <input type="text" name="note[type]" value="planner" style="display: none;" >
                     <div class="form-group title-container" style="display: none;">
                         <label for="title" class="sr-only"></label>
                         <input class="form-control" id="title" type="text" name="note[title]" value="Scheduler">
                     </div> 
-                    <!-- <form id="event-form"> -->
                     <div class='calender_popup_title'>
                         <i class="fa fa-calendar" aria-hidden="true"></i>
                         Add Event
@@ -261,14 +260,14 @@
                             <div class="form-group input-group">
                                 <span class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
                                 <label for="event-location">Location:</label>
-                                <input type="text" class="form-control" id="event-location" name="note[eventLocation]" required>
+                                <input type="text" class="form-control" id="event-location" name="note[eventLocation]">
                             </div>
                         </li>
                         <li>
                             <div class="form-group input-group">
                                 <span class="input-group-addon"><i class="fa fa-info-circle" aria-hidden="true"></i></span>
-                                <label for="event-description">Description:</label>
-                                <textarea class="form-control" id="event-description" name="note[eventDescription]" required></textarea>
+                                <label for="event-details">Description:</label>
+                                <textarea class="form-control" id="event-details" name="note[eventDescription]"></textarea>
                             </div>
                         </li>
                         <div class="button">
@@ -306,7 +305,7 @@
                     <div class="bottom-prong-lt"></div>
                 </div> -->
             </div>
-            <!-- <div class='modle' id='simplemodal'>
+            <div class='modle' id='simplemodal'>
                 <div class='modle-continer'>
                     <form id="edit-form">
                 
@@ -336,11 +335,10 @@
                     </div>
                     </form>
                 </div>
-            </div> -->
+            </div>
                         
             <div id='search_result'>result</div>
             <!-- <button class='btn btn-primary'>Add Events</button> -->
-                <!-- </form>     -->
             <!-- </div>         -->
         </div>
 
