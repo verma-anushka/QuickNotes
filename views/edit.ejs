@@ -141,62 +141,7 @@
                     <form action="/<%= user_id %>/notes/<%= note._id %>?_method=PUT" method="POST" class="planner-form">
                         <input type="text" name="note[type]" value="planner" style="display: none;" >
                         
-                        <div class="mbsc-grid md-add-event-demo">
-                            <div class="mbsc-row mbsc-no-padding">
-                                <div class="mbsc-col-md-4 mbsc-col-12">
-                                    <div id="demo-add-event-month"></div>
-                                    <div class="mbsc-btn-group-block">
-                                        <a id="showAddEventPopup" class="btn">Edit Event</a>
-                                    </div>
-                                </div>
-                                <div class="mbsc-col-md-8 mbsc-col-12 md-col-right">
-                                    <div id="demo-add-event-day"></div>
-                                    <button class="btn" type="submit">Save</button>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="demo-add-event-popup" class="md-add-event-popup">
-                            <div>
-                                <div class="form-group title-container">
-                                    <label for="title" class="sr-only"></label>
-                                    <input class="form-control" id="title" type="text" name="note[eventTitle]" value="<%= note.eventTitle %>" maxlength="80">
-                                </div>
-                                <div class="form-group">
-                                    <label for="description" class="sr-only"></label>
-                                    <input class="form-control" id="description" type="text" name="note[eventDescription]" value="<%= note.eventDescription %>">
-                                </div> 
-                            </div>
-                            <div class="mbsc-form-group">
-                                <div class="form-group">
-                                    <label for="eventDate">
-                                        Starts
-                                        <input mbsc-input id="eventDate" name="note[eventStart]" value="<%= note.eventStart %>">
-                                    </label>
-                                    <label>
-                                        Ends
-                                        <input mbsc-input id="endInput" name="note[eventEnd]" value="<%= note.eventEnd %>">
-                                    </label>
-                                </div>
-                                <div class="form-group">
-                                    <label>
-                                        Show as busy
-                                        <% if( note.eventAvailability == "false" ){%>
-                                            <input mbsc-segmented type="radio" name="note[eventAvailability]" value="false" checked>
-                                        <% } else { %>
-                                            <input mbsc-segmented type="radio" name="note[eventAvailability]" value="false" >
-                                        <% } %>
-                                    </label>
-                                    <label>
-                                        Show as free
-                                        <% if( note.eventAvailability == "true" ){%>
-                                            <input mbsc-segmented type="radio" name="note[eventAvailability]" value="true" checked>
-                                        <% } else { %>
-                                            <input mbsc-segmented type="radio" name="note[eventAvailability]" value="true" >
-                                        <% } %>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
+                        
                     </form>    
                 </div>        
             </div>

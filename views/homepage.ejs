@@ -238,6 +238,7 @@
             
                                 <% } else if( note.type == "planner" ){ %>
             
+                                    <% console.log(note) %>
                                     <div class="cbp-item planner">
                                         <div class="cbp-caption" style="float: left;">
                                             <div class="cbp-caption-defaultWrap">
@@ -247,9 +248,7 @@
                                                 <div class="cbp-l-caption-alignLeft">
                                                     <div class="cbp-l-caption-body">
                                                         <div class="cbp-l-caption-title"><%- note.title %></div>
-                                                        <div class="cbp-l-caption-desc"><%- note.description %></div>
-
-                                                        
+                                                        <div class="cbp-l-caption-desc"><%- note.description %></div>                     
                                                     </div>
                                                 </div>
                                                 <div class="formatting">
