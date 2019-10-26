@@ -19,14 +19,7 @@ var express                = require("express"),
     middleware             = require("./middleware"),
     db                     = require('./database.js'), // Connecting database
     User                   = require("./models/user"),
-    Note                   = require("./models/notes"),
-    // mobiscroll             = require('mobiscroll');
-    // mobiscroll             = require('@mobiscroll/jquery-lite');
-
-// import mobiscroll from '@mobiscroll/jquery-lite';
-// mobiscroll.settings = {
-//     theme: 'mobiscroll'
-// };
+    Note                   = require("./models/notes");
  
 // var jsdom = require("jsdom");
 // var window = jsdom.jsdom().createWindow();
@@ -67,7 +60,6 @@ var app = express();
 app.set("view engine", "ejs");
 // app.set("view engine", "js");
 app.use(express.static(__dirname + "/public"));
-// app.use(express.static(__dirname + "/js"));
 app.use(methodOverride("_method"));
 app.use(flash());
 

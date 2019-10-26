@@ -1,3 +1,11 @@
+// var Note                   = require("../../models/notes");
+// console.log(notes);
+
+function loadNews() {
+console.log(a);
+  // doSomethingElseWithB(b);
+}
+
 var events = []
 events=parselocalstorage('events')
 var renderPopup = function (jsEvent, start, end, calEvent) {
@@ -96,7 +104,7 @@ var renderPopup = function (jsEvent, start, end, calEvent) {
     });
   }
 
-  var topPosition = (calEvent ? jsEvent.originalEvent.pageY : $selectedElmt.offset().top) - $popup.height() - 15;
+  var topPosition = (calEvent ? jsEvent.originalEvent.pageY : $selectedElmt.offset().top) - $popup.height() - 5;
 
   if((topPosition <= window.pageYOffset)
     && !((topPosition + $popup.height()) > window.innerHeight)) {
@@ -147,19 +155,31 @@ $(document).ready(function() {
       
     },
     eventRender: function(event, element) {
-            element.append( `<span class='I_delete'><i class="fa fa-remove fa-2x"></i></span>` );
-            element.append( `<span class='I_edit'><i class="fa fa-edit fa-2x"></i></span>` );
+      
+      if($("#planner-section").hasClass('planner-section-edit')){
+        element.append( `<span class='I_edit'><i class="fa fa-edit"></i></span>` );
+        element.append( `<a href="#deleteEventModal" data-toggle="modal"><span class='I_delete'><i class="fa fa-remove"></i></span></a>` );
+      }
+           element.css({
+             'min-height' : '20px',
+             'height' : 'auto'
+           });
             element.find(".I_delete").click(function() {
             $('#calendar-popup').hide();
-            if(confirm('Are you sure want to delete event?')) {
-             $('#calendar').fullCalendar('removeEvents',event._id);
-            var index=events.map(function(x){ return x.id; }).indexOf(event.id);
-            events.splice(index,1);
-            localStorage.setItem('events', JSON.stringify(events));
-           
-            events=parselocalstorage('events')   
+              
+            $('#delete-event').show();
 
-       }
+            $(".delete-btn").click(function() {
+              console.log("clicked");
+            // if(confirm('are you sure want to delete event?')) {
+               $('#calendar').fullCalendar('removeEvents',event._id);
+              var index=events.map(function(x){ return x.id; }).indexOf(event.id);
+              events.splice(index,1);
+              localStorage.setItem('events', JSON.stringify(events));
+
+              events=parselocalstorage('events')   
+
+       });
             });
         element.find(".I_edit").click(function() {
             $('#calendar-popup').hide();
@@ -226,33 +246,36 @@ $(document).ready(function() {
     }
   });
 
-  $('#event-form').on('submit', function(e) {
-    e.preventDefault();
+//   $('#event-form').on('submit', function(e) {
+    
+//     e.preventDefault();
+//     // e.stopPropagation();
+//     $form = $(e.currentTarget);
 
-    $form = $(e.currentTarget);
+//     $title = $form.find('input#event-title');
+//     $location = $form.find('input#event-location');
+//     $details = $form.find('textarea#event-details');
+//  $ID = '_' + Math.random().toString(36).substr(2, 9)
+//     events.push({
+//       id:$ID,
+//       title: $title.val(),
+//       start: $form.find('input#event-start').val(),
+//       end: $form.find('input#event-end').val(),
+//       location: $location.val(),
+//       details: $details.val()
+//     });
 
-    $title = $form.find('input#event-title');
-    $location = $form.find('input#event-location');
-    $details = $form.find('textarea#event-details');
- $ID = '_' + Math.random().toString(36).substr(2, 9)
-    events.push({
-      id:$ID,
-      title: $title.val(),
-      start: $form.find('input#event-start').val(),
-      end: $form.find('input#event-end').val(),
-      location: $location.val(),
-      details: $details.val()
-    });
+//     // console.log(events);
+//     $title.val('');
+//     $location.val('');
+//     $details.val('');
 
-    $title.val('');
-    $location.val('');
-    $details.val('');
+//     $form.parent().blur().hide();
+//    localStorage.setItem('events', JSON.stringify(events));
+//     $('#calendar').fullCalendar('refetchEvents');
 
-    $form.parent().blur().hide();
-   localStorage.setItem('events', JSON.stringify(events));
-    $('#calendar').fullCalendar('refetchEvents');
+//   });
 
-  });
 
   
 
@@ -289,16 +312,8 @@ var str=	localStorage.getItem('events');
       console.log('what is in aarrr1',events)
 if(events.length===0){
   events.push(
-  {id:1,title: 'event1', start: year + '-' + month + '-' + today + 'T07:00', end: year + '-' + month + '-' + today + 'T10:00', location: 'The Moon', details: 'There will be cheese'},
-  {id:2,title: 'event2', start: year + '-' + month + '-' + tomorrow + 'T03:00', end: year + '-' + month + '-' + tomorrow + 'T08:00', location: 'The Moon', details: 'There will be cheese'},
-  {id:3,title: 'event3', start: year + '-' + month + '-' + yesterday + 'T20:00', end: year + '-' + month + '-' + today + 'T05:00', location: 'The Moon', details: 'There will be cheese'}
 );
 }
-/*events.push(
-  {title: 'event1', start: year + '-' + month + '-' + today + 'T07:00', end: year + '-' + month + '-' + today + 'T10:00', location: 'The Moon', details: 'There will be cheese'},
-  {title: 'event2', start: year + '-' + month + '-' + tomorrow + 'T03:00', end: year + '-' + month + '-' + tomorrow + 'T08:00', location: 'The Moon', details: 'There will be cheese'},
-  {title: 'event3', start: year + '-' + month + '-' + yesterday + 'T20:00', end: year + '-' + month + '-' + today + 'T05:00', location: 'The Moon', details: 'There will be cheese'}
-);*/
 
   		localStorage.setItem('events', JSON.stringify(events));
 
@@ -380,8 +395,14 @@ if(events.length===0){
     });
     $('body').click(function(e) {
         if (!$(e.target).is("input, .close")) {
-            $('.dialog').removeClass('open');
+            // $('.dialog').removeClass('open');
+            $('#eventModal').modal('toggle');
         }
+    });
+
+    $('.submit_btn').click(function(){
+      console.log( $form.find('input#event-start').val() );
+
     });
     initDialog();
 

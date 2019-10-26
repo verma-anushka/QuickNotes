@@ -5,6 +5,7 @@
 <% if(notes){ %>
 
 <% notes.forEach(function(note){ %>
+    <% console.log(note) %>
     <% if( note.author.id.equals(user._id) ){ %>
         <% found = "true"; %>
     <% } %>
@@ -186,9 +187,9 @@
                                                 <div class="cbp-l-caption-alignLeft">
                                                     <div class="cbp-l-caption-body">
                                                         <div class="cbp-l-caption-title"><%- note.title %></div>
-                                                        <div class="cbp-l-caption-desc"><%- note.meetingDate %></div>
-                                                        <div class="cbp-l-caption-desc"><%- note.meetingAgenda %></div>
-                                                        <div class="cbp-l-caption-desc"><%- note.meetingAttendees %></div>
+                                                        <div class="cbp-l-caption-desc">Meeting Date: <span class="pull-right"><%- note.meetingDate %></span></div>
+                                                        <div class="cbp-l-caption-desc">Meeting Agenda: <span class="pull-right"><%- note.meetingAgenda %></span></div>
+                                                        <div class="cbp-l-caption-desc">Meeting Attendees:<span class="pull-right"><%- note.meetingAttendees %></span></div>
                                                         <br />
                                                         <hr />
                                                         <div class="cbp-l-caption-desc">
@@ -238,8 +239,7 @@
             
                                 <% } else if( note.type == "planner" ){ %>
             
-                                    <% console.log(note) %>
-                                    <div class="cbp-item planner">
+                                    <!-- <div class="cbp-item planner">
                                         <div class="cbp-caption" style="float: left;">
                                             <div class="cbp-caption-defaultWrap">
                                                 <img src="/images/planner.jpg" alt="">
@@ -272,7 +272,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
             
                                 <% } else if( note.type == "daily-reflection" ){ %>
             
@@ -328,7 +328,10 @@
                                                 <div class="cbp-l-caption-alignLeft">
                                                     <div class="cbp-l-caption-body">
                                                         <div class="cbp-l-caption-title">MEAL PLANNER...</div>
-                                                        <div class="cbp-l-caption-title"><%= note.date %></div>
+                                                        <div class="cbp-l-caption-desc">
+                                                            Week Start:
+                                                            <span class="pull-right"><%= note.weekStart %></span>
+                                                        </div>
                                                         <% var days = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"] %>
                                                         <div class="cbp-l-caption-desc">
                                                             <table id="tblData">          

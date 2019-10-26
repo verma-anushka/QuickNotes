@@ -20,7 +20,7 @@ var NoteSchema = new mongoose.Schema({
 
   // MEETING 
   meetingDate: {
-    type: Date,
+    type: String,
   },
   meetingAgenda: {
     type: String,
@@ -79,6 +79,9 @@ var NoteSchema = new mongoose.Schema({
   meal3: [{
     type: String,
   }],
+  weekStart: {
+    type: String
+  },
   
   date: {
           type: Date,

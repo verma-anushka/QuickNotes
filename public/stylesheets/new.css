@@ -544,7 +544,7 @@ input#title{
 
 /* PLANNER SECTION */
 .planner-section{
-    margin-top: 100px;
+    margin-top: 80px;
 }
 .planner-section .fc-left h2{
     color: rgb(58, 33, 19);
@@ -576,6 +576,7 @@ input#title{
 }
 .planner-section .site-header {
     margin: 1.1em 18em;
+    margin-bottom: 1.5em;
     position: absolute;
     top: -4%;
     width: 50%;
@@ -648,7 +649,16 @@ input#title{
     -webkit-transform-origin: left center;
             transform-origin: left center;
 }
-  
+div.fc-scroller.fc-day-grid-container{
+    height: auto !important;
+}
+div.fc-row.fc-week.fc-widget-content{
+    height: auto !important;
+}
+/* div.fc-view-container{
+    margin-bottom: 100px;
+} */
+
 #calendar-popup {
     display: none;
     position: absolute;
@@ -973,7 +983,7 @@ background: #5555;
     font-style: italic;
   }
 
-table {
+/* table {
     width: 100%;
     height: 50%;
     box-sizing: border-box;
@@ -981,7 +991,7 @@ table {
     border-collapse: collapse;
     border-spacing: 0;
     font-size: 1em;
-}
+} */
 /* DAILY REFLECTION */
 .daily-reflection-section .input-group{
     display: block;

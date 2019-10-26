@@ -103,7 +103,7 @@
                     <label for="title" class="sr-only"></label>
                     <input class="form-control" id="title" type="text" name="note[title]" placeholder="Notes Title" maxlength="50">
                 </div> 
-                <textarea class="js--trumbowyg" name="note[description]" placeholder="Start typing here..." style="text-align: left;">
+                <textarea class="js--trumbowyg" name="note[description]" value="Notes" placeholder="Start typing here..." style="text-align: left;">
                     &lt;placeholder&gt;Start typing here...&lt;/placeholder&gt;
                 </textarea>
                 <div class="form-group">
@@ -143,8 +143,8 @@
                 <input type="text" name="note[type]" value="lecture" style="display: none;">
                 <div class="form-group">
                     <label for="title" class="sr-only"></label>
-                    <input class="form-control" id="title" type="text" name="note[title]" placeholder="Lecture Title" maxlength="50">
-                </div> 
+                    <input class="form-control" id="title" type="text" name="note[title]" value="Lecture Notes" placeholder="Lecture Title" maxlength="50">
+                </div>  
                 <textarea class="js--trumbowyg" name="note[description]">
                     &lt;strong&gt;Course:&lt;/strong&gt;
                     &lt;br /&gt;
@@ -157,16 +157,16 @@
         </div>
 
         <!-- MEETING NOTE -->
-        <div class="col-md-offset-2 col-md-9 meeting-section" style="display: none;">
+        <div class="col-md-offset-2 col-md-9 meeting-section">
             <form action="/<%= user._id %>/notes" method="POST" >
                 <input type="text" name="note[type]" value="meeting"  style="display: none;" >                
                 <div class="form-group title-container">
                     <label for="title" class="sr-only"></label>
-                    <input class="form-control" id="title" type="text" name="note[title]" placeholder="Meeting Title" maxlength="80">
+                    <input class="form-control" id="title" type="text" name="note[title]" value="Meeting Notes" placeholder="Meeting Title" maxlength="80">
                 </div>           
                 <div class="form-group">
-                    <label for="meetingDate">Date & Time: </label>
-                    <input class="form-control" id="meetingDate" type="text" name="note[meetingDate]" placeholder="Date and Time of the meeting">
+                    <label for="meetingDate">Date: </label>
+                    <input class="form-control" id="meetingDate" type="date" name="note[meetingDate]" placeholder="Meeting Date">
                 </div>
                 <div class="form-group">                
                     <label for="meetingAgenda">Agenda:</label>
@@ -209,9 +209,8 @@
         </div>
 
         <!-- SCHEDULE PLANNER -->
-        <div class="col-md-offset-1 col-md-10 planner-section">
+        <!-- <div class=" col-md-12 planner-section" id="planner-section">
             <h1>SCHEDULE PLANNER</h1>
-            <!-- <div mbsc-page class="demo-add-delete-event"> -->
             <div class="site-header autocomplete">
                 <div class="input-wrapper">
                     <input type="text" placeholder="Search" class="search-field">
@@ -222,14 +221,78 @@
             </div>
             
             <div id='calendar'></div>
-                        
-            <div id="calendar-popup">
-                <form action="/<%= user._id %>/notes" method="POST" class="planner-form" id="event-form">
+              
+                <form action="/<%= user._id %>/notes" method="POST" id="eventForm" class="eventForm">
+
                     <input type="text" name="note[type]" value="planner" style="display: none;" >
                     <div class="form-group title-container" style="display: none;">
                         <label for="title" class="sr-only"></label>
                         <input class="form-control" id="title" type="text" name="note[title]" value="Scheduler">
                     </div> 
+
+                    <div class="modal" id="eventModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+            
+                                <div class="m-header">
+                                    <button class="close" data-dismiss="modal">&times;</button>
+                                    <h4 id="myModalLabel"> Add Event </h4>
+                                    <br />
+                                </div>
+            
+                                <div class="inputs">
+            
+                                    <ul>
+                                        <li>
+                                            <div class="form-group input-group">
+                                                <span class="input-group-addon"><i class="fa fa-bell-o" aria-hidden="true"></i></span>
+                                                <label for="event-start">From:</label>
+                                                <input type="datetime-local" class="form-control" id="event-start" name="note[eventStart]" required>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="form-group input-group">
+                                                    <span class="input-group-addon"><i class="fa fa-bell-slash" aria-hidden="true"></i></span>
+                                                <label for="event-end">To:</label>
+                                                <input type="datetime-local" class="form-control" id="event-end" name="note[eventEnd]" required>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="form-group input-group">
+                                                <span class="input-group-addon"><i class="fa fa-calendar-minus-o" aria-hidden="true"></i></span>
+                                                <label for="event-title">Event Name:</label>
+                                                <input type="text" class="form-control" id="event-title" name="note[eventTitle]" required>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="form-group input-group">
+                                                <span class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                                                <label for="event-location">Location:</label>
+                                                <input type="text" class="form-control" id="event-location" name="note[eventLocation]">
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="form-group input-group">
+                                                <span class="input-group-addon"><i class="fa fa-info-circle" aria-hidden="true"></i></span>
+                                                <label for="event-details">Description:</label>
+                                                <textarea class="form-control" id="event-details" name="note[eventDescription]"></textarea>
+                                            </div>
+                                        </li>
+                                        <div class="button">
+                                            <input type="submit" class='form-control btn submit_btn'/>
+                                        </div>
+                                    </ul>
+                                
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            
+                <div id="calendar-popup">
+
+                <form id="event-form">
                     <div class='calender_popup_title'>
                         <i class="fa fa-calendar" aria-hidden="true"></i>
                         Add Event
@@ -271,7 +334,7 @@
                             </div>
                         </li>
                         <div class="button">
-                            <!-- <a href="#" class='form-control submit_btn'>Save</a> -->
+                            <a class='form-control btn submit_btn'>Submit</a>
                             <input type="submit" class='form-control btn submit_btn'/>
                         </div>
                     </ul>
@@ -300,11 +363,35 @@
                     
                 </div>
                         
-                <!-- <div class="prong">
+                <div class="prong">
                     <div class="bottom-prong-dk"></div>
                     <div class="bottom-prong-lt"></div>
-                </div> -->
+                </div>
+                </div>
+
+            <div id="delete-event">
+                <div class="modal" id="deleteEventModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+        
+                            <div class="m-header">
+                                <button class="close" data-dismiss="modal">&times;</button>
+                                <h5 id="myModalLabel"> Do you wish to delete the event?! </h5>
+                                <br/>
+                            </div>
+        
+                            <div class="footer">
+                                                        <a href="#" class="delete-btn">
+            
+                                <button type="submit" class="btn" name="form" value="delete" data-dismiss="modal">Yes!</button></a>
+                                <button class="btn" data-dismiss="modal">No!</button>        
+                            </div>
+                        </div>
+                    </div>
+        
+                </div>
             </div>
+
             <div class='modle' id='simplemodal'>
                 <div class='modle-continer'>
                     <form id="edit-form">
@@ -338,9 +425,7 @@
             </div>
                         
             <div id='search_result'>result</div>
-            <!-- <button class='btn btn-primary'>Add Events</button> -->
-            <!-- </div>         -->
-        </div>
+        </div> -->
 
         <!-- DAILY REFLECTION -->
         <div class="col-md-offset-2 col-md-9 daily-reflection-section" style="display: none;">
@@ -399,7 +484,7 @@
                 </div>
                 <div class="form-group">
                     <label id="dateLabel" for="date">Week Start Date:</label>
-                    <input class="form-control" id="date" type="date" name="note[date]" maxlength="80">
+                    <input class="form-control" id="date" type="date" name="note[weekStart]" maxlength="80">
                 </div>           
                 <table id="tblData">          
                     <thead>
@@ -464,5 +549,9 @@
 
     </div>
 </div>
+<!-- 
+<script type="text/javascript">
+   var a = "<%= note.type%>";
+</script> -->
 
 <% include partials/footer.ejs %>

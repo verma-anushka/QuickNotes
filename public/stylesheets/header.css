@@ -4,13 +4,16 @@ html{
   
 }
 body {
+  position:relative;
   font-family: 'Arvo', serif;
   background-attachment: fixed;
   background-size: cover;
   background: hsl(270, 30, 5);
   color: #FFF;
+  min-height:100%; 
+  padding:0; 
+  margin:0; 
 }
-
 /* .preloader {
   position: absolute;
   top: 0;
