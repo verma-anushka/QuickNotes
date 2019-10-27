@@ -299,7 +299,7 @@
                     <input type="text" name="note[type]" value="daily-reflection" style="display: none;">
                     <div class="form-group title-container">
                         <label id="dateLabel" for="date">Date:</label>
-                        <input class="form-control" id="date" type="date" name="note[date]" value="<%= note.date %>" maxlength="80">
+                        <input class="form-control" id="date" type="date" name="note[startDate]" value="<%= note.startDate %>">
                     </div> 
                     <% var reflections = ["What went well today?!", "What didn't go as planned?!", "What can be improved upon?!", "What's on your mind?!"] %>
                     <% var icons = ['fas fa-grin-beam', 'fas fa-meh', 'fas fa-meh-rolling-eyes', 'fas fa-graduation-cap'] %>
@@ -326,7 +326,7 @@
                     
                     <div class="form-group title-container">
                         <label id="dateLabel" for="date">Week Start Date:</label>
-                        <input class="form-control" id="date" type="date" name="note[date]" value="<%= note.weekStart %>" maxlength="80">
+                        <input class="form-control" id="date" type="date" name="note[startDate]" value="<%= note.startDate %>" maxlength="80">
                     </div>         
                     <table id="tblData">          
                         <thead>

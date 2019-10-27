@@ -285,6 +285,10 @@
                                                 <div class="cbp-l-caption-alignLeft">
                                                     <div class="cbp-l-caption-body">
                                                         <div class="cbp-l-caption-title">DAILY REFLECTION...</div>
+                                                        <div class="cbp-l-caption-desc">
+                                                            Date:
+                                                            <span class="pull-right"><%= note.startDate %></span>
+                                                        </div>
                                                         <% var reflections = ["What went well today?!", "What didn't go as planned?!", "What can be improved upon?!", "What's on your mind?!"] %>
                                                         <% for(var i=0; i < note.dailyReflection.length; i++){ %>
                                                             <div class="cbp-l-caption-desc">
@@ -330,7 +334,7 @@
                                                         <div class="cbp-l-caption-title">MEAL PLANNER...</div>
                                                         <div class="cbp-l-caption-desc">
                                                             Week Start:
-                                                            <span class="pull-right"><%= note.weekStart %></span>
+                                                            <span class="pull-right"><%= note.startDate %></span>
                                                         </div>
                                                         <% var days = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"] %>
                                                         <div class="cbp-l-caption-desc">

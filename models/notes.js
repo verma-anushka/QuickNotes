@@ -71,16 +71,16 @@ var NoteSchema = new mongoose.Schema({
 
   // MEAL PLANNER
   meal1: [{
-    type: String,
+    type: String
   }],
   meal2: [{
-    type: String,
+    type: String
   }],
   meal3: [{
-    type: String,
-  }],
-  weekStart: {
     type: String
+  }],
+  startDate: {
+    type: String //Date
   },
   
   date: {

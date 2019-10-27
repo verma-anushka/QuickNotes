@@ -52,14 +52,34 @@
                             <label for="lastName">Last Name</label>
                             <input class="form-control" type="text" id="lastName" name="user[lastName]" placeholder="Last Name" value="<%= user.lastName%>">
                         </div>
+                        <!-- <br /> -->
                         <div class="form-group">
-                            <label for="gender">Gender</label>
-                            <select class="form-control" name="user[gender]" id="gender" value="<%= user.gender%>" placeholder="Gender">
-                                <!-- <option selected="true" disabled="disabled"> Choose </option> -->
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                                <option name="none" value="none">Prefer not to say</option>
-                            </select>
+                            <label for="" class="gender">Gender:</label>
+                            <div class="gender">
+                            <% if (user.gender === "male") {%>
+                                <label class="radio-inline male" for="radio">
+                                <input type="radio" value="male"  id="radio" name="user[gender]" checked>Male</label>
+                            <% } else{ %>
+                                <label class="radio-inline male" for="radio">
+                                <input type="radio" value="male" id="radio"  name="user[gender]" >Male</label>
+                            <% }  %>
+
+                            <% if (user.gender === "female") {%>
+                                <label class="radio-inline female" for="radio">
+                                <input type="radio" value="female"  id="radio" name="user[gender]" checked>Female</label>
+                            <% } else{ %>
+                                <label class="radio-inline female" for="radio">
+                                <input type="radio" value="female"  id="radio" name="user[gender]" >Female</label>
+                            <% }  %>
+
+                            <% if (user.gender === "none") {%>
+                                <label class="radio-inline none" for="radio">
+                                <input type="radio" class="none" id="radio" value="none" name="user[gender]" checked>Prefer not to say</label>
+                            <% } else{ %>
+                                <label class="radio-inline none" for="radio">
+                                <input type="radio" value="none" id="radio" name="user[gender]" >Prefer not to say</label>
+                            <% }  %>
+                        </div>
                         </div>
                         <div class="form-group">
                             <label for="contact">Contact</label>
@@ -82,4 +102,18 @@
         </div>
     </div>
 </div>
+
+
+<!-- <script>
+
+        var sel = document.getElementById('gender'); 
+        console.log( "sel.value" );
+        console.log( sel.value );
+
+        var opt = sel.options[sel.selectedIndex];
+
+        console.log( "opt" );
+        console.log( opt.value );
+        console.log( opt.text );
+    </script> -->
 <% include partials/footer.ejs %>
