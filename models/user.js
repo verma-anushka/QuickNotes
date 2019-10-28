@@ -23,8 +23,6 @@ var UserSchema = new mongoose.Schema({
               },
     gender:   { 
                 type: String,
-                // enum: ["male", "female", "prefer not to say"],
-                // default: "prefer not to say"
               },
     contact:  { 
                 type: Number,
@@ -48,16 +46,14 @@ var UserSchema = new mongoose.Schema({
     password2: { 
                 type: String, 
                 // required: true 
-                },
-    notes: [
-                {
-                    type: mongoose.Schema.Types.ObjectId,
-                    ref: "Note" 
-                }
+               },
+    notes: [   {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "Note" 
+               }
               ],
     resetPasswordToken: String,
-    resetPasswordExpires: Date
-                         
+    resetPasswordExpires: Date                      
 });
 
 UserSchema.plugin(passportLocalMongoose);

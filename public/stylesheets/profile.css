@@ -103,7 +103,6 @@
     overflow: hidden;
     box-sizing: border-box;
 }
-
 .user-profile label.radio-inline,.user-profile label.radio-inline:before,.user-profile label.radio-inline:after {
     position: absolute;
     top: 0;
@@ -111,8 +110,6 @@
     left: 0;
     right: 0;
 }
-
-
 .user-profile label.radio-inline {
     display: inline-block;
     width: 10vw;
@@ -179,7 +176,6 @@
     background: #EA4335;
     box-shadow: none;
 } */
-
 .user-profile .form-control[disabled]{
     background-color: rgba(238, 238, 238, 0.75);
 }

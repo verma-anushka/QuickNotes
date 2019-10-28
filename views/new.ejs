@@ -157,7 +157,7 @@
         </div>
 
         <!-- MEETING NOTE -->
-        <div class="col-md-offset-2 col-md-9 meeting-section">
+        <div class="col-md-offset-2 col-md-9 meeting-section" style="display: none;">
             <form action="/<%= user._id %>/notes" method="POST" >
                 <input type="text" name="note[type]" value="meeting"  style="display: none;" >                
                 <div class="form-group title-container">
@@ -292,54 +292,6 @@
             
                 <div id="calendar-popup">
 
-                <form id="event-form">
-                    <div class='calender_popup_title'>
-                        <i class="fa fa-calendar" aria-hidden="true"></i>
-                        Add Event
-                    </div>
-                    <ul>
-                        <li>
-                            <div class="form-group input-group">
-                                <span class="input-group-addon"><i class="fa fa-bell-o" aria-hidden="true"></i></span>
-                                <label for="event-start">From:</label>
-                                <input type="datetime-local" class="form-control" id="event-start" name="note[eventStart]" required>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="form-group input-group">
-                                    <span class="input-group-addon"><i class="fa fa-bell-slash" aria-hidden="true"></i></span>
-                                <label for="event-end">To:</label>
-                                <input type="datetime-local" class="form-control" id="event-end" name="note[eventEnd]" required>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="form-group input-group">
-                                <span class="input-group-addon"><i class="fa fa-calendar-minus-o" aria-hidden="true"></i></span>
-                                <label for="event-title">Event Name:</label>
-                                <input type="text" class="form-control" id="event-title" name="note[eventTitle]" required>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="form-group input-group">
-                                <span class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
-                                <label for="event-location">Location:</label>
-                                <input type="text" class="form-control" id="event-location" name="note[eventLocation]">
-                            </div>
-                        </li>
-                        <li>
-                            <div class="form-group input-group">
-                                <span class="input-group-addon"><i class="fa fa-info-circle" aria-hidden="true"></i></span>
-                                <label for="event-details">Description:</label>
-                                <textarea class="form-control" id="event-details" name="note[eventDescription]"></textarea>
-                            </div>
-                        </li>
-                        <div class="button">
-                            <a class='form-control btn submit_btn'>Submit</a>
-                            <input type="submit" class='form-control btn submit_btn'/>
-                        </div>
-                    </ul>
-                </form>
-                            
                 <div id="event">
                     <header></header>
                     <ul>
@@ -363,11 +315,7 @@
                     
                 </div>
                         
-                <div class="prong">
-                    <div class="bottom-prong-dk"></div>
-                    <div class="bottom-prong-lt"></div>
-                </div>
-                </div>
+            </div>
 
             <div id="delete-event">
                 <div class="modal" id="deleteEventModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -392,38 +340,6 @@
                 </div>
             </div>
 
-            <div class='modle' id='simplemodal'>
-                <div class='modle-continer'>
-                    <form id="edit-form">
-                
-                    <div class='modal-header'>
-                        <span class='close-btn' id='close-btnid'>&times</span>
-                    <h2>Edit Event</h2>
-                    </div>
-                    <div class='modal-body'>
-                
-                    <lable for='eventname'>Event Name</lable>
-                    <input type='text' name='eventname' id='eventname' class='form-control'>
-                    <lable for='location'>Location</lable>
-                    <input type='text' name='location' id='location' class='form-control'>
-                    
-                    <label for="event-start">From</label><input id="eventstart" type="datetime-local" name="start" class='form-control'/>
-                    
-                    <label for="event-end">To</label>
-                        <input id="eventend" type="datetime-local" name="end" class='form-control'/>
-                    <label for="event-details">Details</label>
-                    <textarea id="eventdetails" type='text' name="details"  class='form-control'></textarea>
-                    
-                    </div>
-                    <div class='modal-footer'>
-                    <button type='submit' class='btn btn-info'>save</button>
-                    <button class='btn btn-dafault'>cancel</button>
-                    
-                    </div>
-                    </form>
-                </div>
-            </div>
-                        
             <div id='search_result'>result</div>
         </div> -->
 

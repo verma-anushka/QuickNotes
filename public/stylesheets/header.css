@@ -1,7 +1,7 @@
+/* GENERAL SETTINGS */
 html{
   position: relative;
   min-height: 100%;
-  
 }
 body {
   position:relative;
@@ -14,6 +14,16 @@ body {
   padding:0; 
   margin:0; 
 }
+::-moz-selection { 
+  background: rgb(58, 33, 19, 0.85); 
+  color: #FFF;
+}
+::selection {
+  background: rgb(58, 33, 19, 0.85); 
+  color: #FFF;
+}
+
+/* PRELOADER */
 /* .preloader {
   position: absolute;
   top: 0;
@@ -25,7 +35,6 @@ body {
   align-items: center;
   justify-content: center;
 } */
-
 #loading{
   position:fixed;
   width: 100%;
@@ -34,7 +43,7 @@ body {
   z-index: 99999; 
 }
 
-/* Navigation Bar */
+/* NAV BAR */
 .navbar-custom {
   background-color: #3a2113;
   border-color: #ac926b;
@@ -150,7 +159,7 @@ body {
   color: #c0c0c0;
 }
 
-/* FLASH MSGS */
+/* FLASH MESSAGES */
 .container{
   margin-bottom: none;
 }
@@ -183,6 +192,8 @@ body {
     opacity: 0;
   }
 }
+
+/* MODAL */
 .modal {
   text-align: center;
   padding: 0!important;
@@ -203,8 +214,8 @@ body {
   text-align: center;
   padding: 20px 20px 20px 20px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  -webkit-animation-name: modal-animation; /* Chrome, Safari, Opera */
-  -webkit-animation-duration: 0.5s; /* Chrome, Safari, Opera */
+  -webkit-animation-name: modal-animation;
+  -webkit-animation-duration: 0.5s; 
   animation-name: modal-animation;
   animation-duration: 0.5s;
 }
@@ -238,24 +249,6 @@ body {
   color: #3a2113;
   border-radius: 50%;
 }
-/* .modal .m-header .close{
-  border: none;
-  display: inline-block;
-  padding: 8px 16px;
-  vertical-align: middle;
-  overflow: hidden;
-  text-decoration: none;
-  color: inherit;
-  background-color: inherit;
-  text-align: center;
-  cursor: pointer;
-  white-space: nowrap;
-}
-.topright {
-  position: absolute;
-  right: 0;
-  top: 0
-} */
 .modal .inputs{
   margin-bottom: 25px;
   outline: none;
@@ -277,25 +270,8 @@ body {
 .modal .input-group i{
   color: #FFF;
 }
-.modal input[type=text] {
-
-  outline: none;
-  border-radius: 0;
-  border-left: none;
-  border-top: 2px solid #3a2113;
-  border-right: 1px solid rgb(58, 33, 19, 0.6);
-  border-bottom: 1px solid rgb(58, 33, 19, 0.6);
-}
-.modal input[type=password] {
-  
-  border-radius: 0;
-  border-left: none;
-  outline: none;
-  border-top: 2px solid #3a2113;
-  border-right: 1px solid rgb(58, 33, 19, 0.6);
-  border-bottom: 1px solid rgb(58, 33, 19, 0.6);
-
-}
+.modal input[type=text],
+.modal input[type=password],
 .modal input[type=email] {
   border-radius: 0;
   border-left: none;
@@ -303,7 +279,6 @@ body {
   border-top: 2px solid #3a2113;
   border-right: 1px solid rgb(58, 33, 19, 0.6);
   border-bottom: 1px solid rgb(58, 33, 19, 0.6);
-
 }
 .modal input[type=text]:focus,
 .modal input[type=email]:focus,
@@ -317,9 +292,15 @@ body {
   border-bottom: 1px solid rgb(58, 33, 19, 0.6);
 }
 .modal .checkbox{
-  height: 30px;
+  height: 10px;
 }
-.modal .btn{
+.modal .checkbox .forgot{
+  cursor: pointer;
+}
+.modal .body{
+  margin-bottom: 30px;
+}
+/* .modal .btn{
   text-transform: uppercase;
   background-color: #3a2113;
   color: #FFF;
@@ -337,4 +318,75 @@ body {
   height: 18px;
   width: 18px;
   color: #FFF;
+} */
+
+/* LOGIN BUTTON */
+.loginButton{
+  border-radius: 5px;
+  display: inline-block;
+  font-family: "Montserrat", "Trebuchet MS", Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  text-transform: uppercase;
+  padding-top: 12px;
+  padding-left: 25px;
+  padding-right: 40px;
+  padding-bottom: 12px;
+  text-align: center;
+  color: #FFF;
+  background-color: rgb(63, 36, 20);
+  outline: none;
+  border: none;
+  transition: .2s;
+}
+.loginButton:before,
+.loginButton:after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  padding-top: inherit;
+  padding-bottom: inherit;
+  padding-right: 20px;
+  content: "\00a0";
+  font-family: 'FontAwesome', sans-serif;
+  text-align: center;
+  transition: .2s;
+  transform-origin: 50% 60%;
+}
+.loginButton:before {
+  background:  fadeout(#000, 90%);
+}
+.loginButton:hover {
+  background: darken(rgb(63, 36, 20), 10%);
+}
+.loginButton:active,
+.loginButton:focus {
+  background: darken(rgb(63, 36, 20), 30%);
+  outline: none;
+}
+.arrow {
+  background: rgb(63, 36, 20);   
+}
+.arrow:hover {
+  background: darken(rgb(63, 36, 20), 10%);
+}
+.arrow:active,
+.arrow:focus {
+  background: darken(rgb(63, 36, 20), 30%);
+}
+.arrow:after {
+  content: "\F054";
+}
+.arrow:hover:after {
+  -webkit-animation: bounceright .3s alternate ease infinite;
+  animation: bounceright .3s alternate ease infinite;
+}
+@-webkit-keyframes bounceright {
+from { -webkit-transform: translateX(0); }
+to   { -webkit-transform: translateX(3px); }
+}
+@keyframes bounceright {
+from { transform: translateX(0); }
+to   { transform: translateX(3px); }
 }

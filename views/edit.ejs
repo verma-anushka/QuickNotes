@@ -74,7 +74,7 @@
 
         <% } else if( note.type == "meeting" ){%>
 
-            <div class="col-md-offset-2 col-md-9 meeting-section" >
+            <div class="col-md-offset-2 col-md-9 meeting-section" style="display: none;">
 
                 <form action="/<%= user_id %>/notes/<%= note._id %>?_method=PUT" method="POST">
     
@@ -135,162 +135,145 @@
 
         <% } else if( note.type == "planner" ){%>
 
-            <!-- <div class=" col-md-12 planner-section planner-section-edit" id="planner-section">
-                <h1>SCHEDULE PLANNER</h1>
-                <div class="site-header autocomplete">
-                    <div class="input-wrapper">
-                        <input type="text" placeholder="Search" class="search-field">
-                        <span class="close">Cancel</span>
-                        <div class="focus-background"></div>
-                    </div>
-                    <div class="dialog"></div>
-                </div>
-                
-                <div id='calendar'></div>
-                            
-                <div id="calendar-popup">
-                    <form action="/<%= user_id %>/notes/<%= note._id %>?_method=PUT" method="POST" class="planner-form">
-                        <input type="text" name="note[type]" value="planner" style="display: none;" >
-                        <div class="form-group title-container" style="display: none;">
-                            <label for="title" class="sr-only"></label>
-                            <input class="form-control" id="title" type="text" name="note[title]" value="Scheduler">
-                        </div> 
-                        <div class='calender_popup_title'>
-                            <i class="fa fa-calendar" aria-hidden="true"></i>
-                            Add Event
+                <!-- <div class=" col-md-12 planner-section" id="planner-section">
+                    <h1>SCHEDULE PLANNER</h1>
+                    <div class="site-header autocomplete">
+                        <div class="input-wrapper">
+                            <input type="text" placeholder="Search" class="search-field">
+                            <span class="close">Cancel</span>
+                            <div class="focus-background"></div>
                         </div>
-                        <ul>
-                            <li>
-                                <div class="form-group input-group">
-                                    <span class="input-group-addon"><i class="fa fa-bell-o" aria-hidden="true"></i></span>
-                                    <label for="event-start">From:</label>
-                                    <input type="datetime-local" class="form-control" id="event-start" name="note[eventStart]" required>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="form-group input-group">
-                                    <span class="input-group-addon"><i class="fa fa-bell-slash" aria-hidden="true"></i></span>
-                                    <label for="event-end">To:</label>
-                                    <input type="datetime-local" class="form-control" id="event-end" name="note[eventEnd]" required>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="form-group input-group">
-                                    <span class="input-group-addon"><i class="fa fa-calendar-minus-o" aria-hidden="true"></i></span>
-                                    <label for="event-title">Event Name:</label>
-                                    <input type="text" class="form-control" id="event-title" name="note[eventTitle]" required>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="form-group input-group">
-                                    <span class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
-                                    <label for="event-location">Location:</label>
-                                    <input type="text" class="form-control" id="event-location" name="note[eventLocation]">
-                                </div>
-                            </li>
-                            <li>
-                                <div class="form-group input-group">
-                                    <span class="input-group-addon"><i class="fa fa-info-circle" aria-hidden="true"></i></span>
-                                    <label for="event-details">Description:</label>
-                                    <textarea class="form-control" id="event-details" name="note[eventDescription]"></textarea>
-                                </div>
-                            </li>
-                            <div class="button">
-                                <input type="submit" class='form-control btn submit_btn'/>
-                            </div>
-                        </ul>
-                    </form>
-                                
-                    <div id="event">
-                        <header></header>
-                        <ul>
-                            <li class="start-time"> 
-                                <p>Start at:</p>
-                                <time></time>
-                            </li>
-                            <li class="end-time">
-                                <p>End:</p>
-                                <time></time>
-                            </li>
-                            <li>
-                                <p><i class="fa fa-map-marker" aria-hidden="true"></i>Location:</p>
-                                <p class="location"></p>
-                            </li>
-                            <li>
-                                <p><i class="fa fa-info" aria-hidden="true"></i>Description:</p>
-                                <p class="details"></p>
-                            </li>
-                        </ul>
-                        
+                        <div class="dialog"></div>
                     </div>
-                            
-                    <div class="prong">
-                        <div class="bottom-prong-dk"></div>
-                        <div class="bottom-prong-lt"></div>
-                    </div>
-                </div>
-    
-    
-                <div id="delete-event">
-                    <div class="modal" id="deleteEventModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                            <div class="modal-content">
-            
-                                <div class="m-header">
-                                    <button class="close" data-dismiss="modal">&times;</button>
-                                    <h5 id="myModalLabel"> Do you wish to delete the event?! </h5>
-                                    <br/>
-                                </div>
-            
-                                <div class="footer">
-                                    <a href="#" class="delete-btn">                
-                                    <button type="submit" class="btn" name="form" value="delete" data-dismiss="modal">Yes!</button></a>
-                                    <button class="btn" data-dismiss="modal">No!</button>        
+                    
+                    <div id='calendar'></div>
+                      
+                    <form action="/<%= user_id %>/notes/<%= note._id %>?_method=PUT" method="POST" id="eventForm" class="eventForm">
+        
+                            <input type="text" name="note[type]" value="planner" style="display: none;" >
+                            <div class="form-group title-container" style="display: none;">
+                                <label for="title" class="sr-only"></label>
+                                <input class="form-control" id="title" type="text" name="note[title]" value="Scheduler">
+                            </div> 
+        
+                            <div class="modal" id="eventModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                    
+                                        <div class="m-header">
+                                            <button class="close" data-dismiss="modal">&times;</button>
+                                            <h4 id="myModalLabel"> Add Event </h4>
+                                            <br />
+                                        </div>
+                    
+                                        <div class="inputs">
+                    
+                                            <ul>
+                                                <li>
+                                                    <div class="form-group input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-bell-o" aria-hidden="true"></i></span>
+                                                        <label for="event-start">From:</label>
+                                                        <input type="datetime-local" class="form-control" id="event-start" name="note[eventStart]" value="<%= note.eventStart %>">
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="form-group input-group">
+                                                            <span class="input-group-addon"><i class="fa fa-bell-slash" aria-hidden="true"></i></span>
+                                                        <label for="event-end">To:</label>
+                                                        <input type="datetime-local" class="form-control" id="event-end" name="note[eventEnd]" value="<%= note.eventEnd %>">
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="form-group input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-calendar-minus-o" aria-hidden="true"></i></span>
+                                                        <label for="event-title">Event Name:</label>
+                                                        <input type="text" class="form-control" id="event-title" name="note[eventTitle]" value="<%= note.eventTitle %>">
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="form-group input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                                                        <label for="event-location">Location:</label>
+                                                        <input type="text" class="form-control" id="event-location" name="note[eventLocation]" value="<%= note.eventLocation %>">
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <div class="form-group input-group">
+                                                        <span class="input-group-addon"><i class="fa fa-info-circle" aria-hidden="true"></i></span>
+                                                        <label for="event-details">Description:</label>
+                                                        <textarea class="form-control" id="event-details" name="note[eventDescription]"><%= note.eventDescription %></textarea>
+                                                    </div>
+                                                </li>
+                                                <div class="button">
+                                                    <input type="submit" class='form-control btn submit_btn'/>
+                                                </div>
+                                            </ul>
+                                        
+                                        </div>
+        
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-            
-                    </div>
-                </div>
-    
-                <div class='modle' id='simplemodal'>
-                    <div class='modle-continer'>
-                        <form id="edit-form">
-                    
-                        <div class='modal-header'>
-                            <span class='close-btn' id='close-btnid'>&times</span>
-                        <h2>Edit Event</h2>
-                        </div>
-                        <div class='modal-body'>
-                    
-                        <lable for='eventname'>Event Name</lable>
-                        <input type='text' name='eventname' id='eventname' class='form-control'>
-                        <lable for='location'>Location</lable>
-                        <input type='text' name='location' id='location' class='form-control'>
-                        
-                        <label for="event-start">From</label><input id="eventstart" type="datetime-local" name="start" class='form-control'/>
-                        
-                        <label for="event-end">To</label>
-                            <input id="eventend" type="datetime-local" name="end" class='form-control'/>
-                        <label for="event-details">Details</label>
-                        <textarea id="eventdetails" type='text' name="details"  class='form-control'></textarea>
-                        
-                        </div>
-                        <div class='modal-footer'>
-                        <button type='submit' class='btn btn-info'>save</button>
-                        <button class='btn btn-dafault'>cancel</button>
-                        
-                        </div>
                         </form>
-                    </div>
-                </div>
+                    
+                        <div id="calendar-popup">
+        
+                        <div id="event">
+                            <header></header>
+                            <ul>
+                                <li class="start-time"> 
+                                    <p>Start at:</p>
+                                    <time></time>
+                                </li>
+                                <li class="end-time">
+                                    <p>End:</p>
+                                    <time></time>
+                                </li>
+                                <li>
+                                    <p><i class="fa fa-map-marker" aria-hidden="true"></i>Location:</p>
+                                    <p class="location"></p>
+                                </li>
+                                <li>
+                                    <p><i class="fa fa-info" aria-hidden="true"></i>Description:</p>
+                                    <p class="details"></p>
+                                </li>
+                            </ul>
                             
-                <div id='search_result'>result</div>
-                <div class="row">
-                    <button class="btn" type="submit" style="display: inline-block;">Save</button>
-                </div> 
-            </div>         -->
-
+                        </div>
+                                
+                        <div class="prong">
+                            <div class="bottom-prong-dk"></div>
+                            <div class="bottom-prong-lt"></div>
+                        </div>
+                        </div>
+        
+                    <div id="delete-event">
+                        <div class="modal" id="deleteEventModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                
+                                    <div class="m-header">
+                                        <button class="close" data-dismiss="modal">&times;</button>
+                                        <h5 id="myModalLabel"> Do you wish to delete the event?! </h5>
+                                        <br/>
+                                    </div>
+                
+                                    <div class="footer">
+                                                                <a href="#" class="delete-btn">
+                    
+                                        <button type="submit" class="btn" name="form" value="delete" data-dismiss="modal">Yes!</button></a>
+                                        <button class="btn" data-dismiss="modal">No!</button>        
+                                    </div>
+                                </div>
+                            </div>
+                
+                        </div>
+                    </div>
+        
+                    <div id='search_result'>result</div>
+                </div> -->
+        
+        
         <% } else if( note.type == "daily-reflection" ){%>
 
             <div class="col-md-offset-1 col-md-10 daily-reflection-section">

@@ -1,7 +1,10 @@
+/* GENERAL SETTINGS */
 *{
     margin: 0;
     padding: 0;
 }
+
+/* BACKGROUND IMAGES */
 .home-slider{
     position: relative;
     background-repeat: no repeat;
@@ -67,28 +70,25 @@
         background-image: url("../images/bg5.jpg");
     }
 }
+
+/* SIGNUP FORM (BUTTON) */
 .signUpButton{
     border-radius: 5px;
     display: inline-block;
     font-family: "Montserrat", "Trebuchet MS", Helvetica, sans-serif;
     -webkit-font-smoothing: antialiased;
     position: relative;
-    /* padding: .8em 1.4em;
-    padding-right: 4.7em; */
     text-transform: uppercase;
     padding-top: 12px;
     padding-left: 25px;
     padding-right: 40px;
     padding-bottom: 12px;
-    /* margin-bottom: 14px; */
     text-align: center;
-
     color: #FFF;
     background-color: rgb(63, 36, 20);
     outline: none;
     border: none;
     transition: .2s;
-    
 }
 .signUpButton:before,
 .signUpButton:after {
@@ -101,7 +101,6 @@
     padding-right: 20px;
     content: "\00a0";
     font-family: 'FontAwesome', sans-serif;
-    /* font-size: 1.2em; */
     text-align: center;
     transition: .2s;
     transform-origin: 50% 60%;

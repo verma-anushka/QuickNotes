@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>QuickNotes</title>
 
-    <!-- LINKING THE REQD. STYLESHEETS -->
+    <!-- CUSTOM STYLESHEETS -->
     <link rel="stylesheet" href="/stylesheets/header.css">
     <link rel="stylesheet" href="/stylesheets/landing.css">
     <link rel="stylesheet" href="/stylesheets/homepage.css">
@@ -16,23 +16,24 @@
     <link rel="stylesheet" href="/stylesheets/profile.css">
     <link rel="stylesheet" href="/stylesheets/footer.css">
 
+    <!-- PLUGINS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.css">
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0-beta.2/css/bootstrap.css"> -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/trix/0.9.7/trix.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/>
-    <link href="https://fonts.googleapis.com/css?family=Arvo&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Arvo&display=swap">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css">
     <link rel="stylesheet" href="/stylesheets/cubeportfolio.min.css">
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
   
 </head>
+
 <body onload="myFunction()">
 
     <!-- PRELOADER -->
     <!-- <div class="preloader"></div> -->
     <div id="loading" class="loading"></div>
+    <!-- // PRELOADER -->
+
 
     <!-- NAVBAR -->
     <nav role="navigation" class="navbar navbar-custom navbar-fixed-top">
@@ -45,6 +46,8 @@
                 <% } else { %>
                     <a href="/" class="navbar-brand">QuickNotes</a>
                 <% } %>
+
+                <!-- HAMBURGER -->
                 <button type="button" class="navbar-toggle" data-target="#navbarCollapse" data-toggle="collapse">
                     <span class="sr-only">Toggle Navigation</span>
                     <span class="icon-bar"></span>
@@ -55,6 +58,7 @@
 
             <!-- LINKS -->
             <div class="navbar-collapse collapse" id="navbarCollapse" >
+
                 <!-- LEFT LINKS -->
                 <ul class="nav navbar-nav">
                     <% if(user){ %>
@@ -74,8 +78,11 @@
                     <% } %>
                 </ul>
             </div>
+
         </div>
     </nav>
+    <!-- // NAVBAR -->
+
 
     <!-- FLASH MESSAGES -->
     <div class="container">
@@ -97,32 +104,34 @@
         <% } %>
 
     </div>
+    <!-- // FLASH MESSAGES -->
  
+
     <!-- LOGIN FORM -->
     <form action="/" method="POST" id="loginForm" class="loginForm">
         <div class="modal" id="loginModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
 
-                    <!-- Header -->
+                    <!-- MODAL HEADER -->
                     <div class="m-header">
-                        <!-- Close button -->
+                        <!-- CLOSE BUTTON -->
                         <button class="close" data-dismiss="modal">&times;</button>
                         <h4 id="myModalLabel"> Login </h4>
                         <br />
                     </div>
 
-                    <!-- Body -->
+                    <!-- MODAL BODY -->
                     <div class="inputs">
 
-                        <!-- Username -->
+                        <!-- USERNAME -->
                         <div class="form-group input-group">
                             <label for="username" class="sr-only">Username</label>
                             <span class="input-group-addon"><i class="fa fa-user"></i></span>
                             <input type="text" class="form-control username" id="username" name="username" placeholder="Username" maxlength="30" required>
                         </div>
 
-                        <!-- Password -->
+                        <!-- PASSWORD -->
                         <div class="form-group input-group" >
                             <label for="password" class="sr-only">Password</label>
                             <span class="input-group-addon"><i class="fa fa-lock"></i></span>
@@ -131,61 +140,61 @@
                     </div>
 
                     <div class="checkbox">
-                        <!-- Remember Me -->
-                        <label class="pull-left">
+                        <!-- REMEMBER ME -->
+                        <!-- <label class="pull-left">
                             <input type="checkbox" name="rememberMe" id="rememberMe">
                             Remember Me
-                        </label> 
+                        </label>  -->
                         
-                        <!-- Forgot Password -->
-                        <a class="pull-right forgot" style="cursor: pointer" data-dismiss="modal" data-target="#forgotPasswordModal" data-toggle="modal">
+                        <!-- FORGOT PASSWORD -->
+                        <a class="pull-right forgot" data-dismiss="modal" data-target="#forgotPasswordModal" data-toggle="modal">
                             Forgot Password?!
                         </a>
                     </div>
                     
-                    <!-- Footer -->
+                    <!-- MODAL FOOTER -->
                     <div class="footer">
-                        <button type="submit" class="btn loginButton" name="form" value="login">
-                            Login
-                            <i class="fa fa-angle-double-right"></i>
-                            <!-- <i class="fa fa-sign-in-alt"></i> -->
-                        </button>
+                        <button type="submit" class="loginButton arrow" name="form" value="login">Login</button>
+                        <br /><br />
                         <p>
-                            Don't have an account?! 
-                            <a href="">
-                                Sign-Up!
-                            </a>
+                            Don't have an account?!
+                            <a href="#signupModal" data-toggle="modal" data-dismiss="modal">Sign-Up!</a>
                         </p>
                     </div>
+
                 </div>
             </div>
         </div>
     </form>
+    <!-- // LOGIN FORM -->
 
-    <!-- LOGOUT -->
+
+    <!-- LOGOUT FORM -->
     <form action="/" method="POST" id="logoutForm" class="logoutForm">
         <div class="modal" id="logoutModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
 
-                    <!-- Header -->
+                    <!-- MODAL HEADER -->
                     <div class="m-header">
-                        <!-- Close button -->
+                        <!-- CLOSE BUTTON -->
                         <button class="close" data-dismiss="modal">&times;</button>
                         <h5 id="myModalLabel"> Do you wish to logout?! </h5>
                         <br/>
                     </div>
 
-                    <!-- Footer -->
+                    <!-- MODAL FOOTER -->
                     <div class="footer">
-                        <!-- <i class="fas fa-sign-out-alt"></i> -->
                         <button type="submit" class="btn" name="form" value="logout">Yes!</button>
                         <button class="btn" data-dismiss="modal">No!</button>        
                     </div>
+
                 </div>
             </div>
         </div>
     </form>
+    <!-- // LOGOUT FORM -->
+
 
     <!-- FORGOT PASSWORD FORM -->
     <form method="POST" id="forgotPasswordForm">
@@ -193,7 +202,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
 
-                    <!-- Header -->
+                    <!-- MODAL HEADER -->
                     <div class="m-header">
                         <!-- Close button -->
                         <button class="close" data-dismiss="modal">&times;</button>
@@ -201,10 +210,9 @@
                         <br />
                     </div>
 
-                    <!-- Body -->
-                    <div>
-
-                        <!-- Email Address -->
+                    <!-- MODAL BODY -->
+                    <div class="body">
+                        <!-- EMAIL ADDRESS -->
                         <h6 id="myModalLabel"> Enter Email address:  </h6>
                         <div class="form-group input-group">
                             <label for="email" class="sr-only">Email</label>
@@ -213,7 +221,7 @@
                         </div>
                     </div>
                     
-                    <!-- Footer -->
+                    <!-- MODAL FOOTER -->
                     <div class="footer">
                         <button type="submit" class="btn" name="form" value="forgotPassword">Reset</button>
                     </div>
@@ -222,6 +230,6 @@
             </div>
         </div>
     </form>
+    <!-- // FORGOT PASSWORD FORM -->
 
-    
             
