@@ -1,108 +1,131 @@
 <% include ../partials/header %>
 
+<!-- NOTES CONTAINER -->
 <div class="container edit">
     <div class="row">
 
         <% if( note.type == "blank" ){ %>
 
+            <!-- BLANK NOTES -->
             <div class="col-md-offset-2 col-md-8 blank-section">
                 <form action="/<%= user_id %>/notes/<%= note._id %>?_method=PUT" method="POST">
-                    <!-- <h1 >NOTES...</h1> -->
+                    <!-- NOTE TYPE -->
                     <input type="text" name="note[type]" value="blank" style="display: none;">
+                    <!-- NOTE TITLE -->
                     <div class="form-group">
                         <label for="title" class="sr-only"></label>
                         <input class="form-control" id="title" type="text" name="note[title]" placeholder="Notes Title" value="<%= note.title %>" maxlength="50">
                     </div> 
+                    <!-- NOTE DESCRIPTION -->
                     <div class="form-group">
                         <textarea class="js--trumbowyg" name="note[description]" placeholder="Start typing here..." style="text-align: left;">
                             <%= note.description %>
                         </textarea>
                     </div>
-                    <div class="row form-group">
-                        <button class="btn" type="submit">Save</button>
-                    </div> 
+                    <!-- SUBMIT BUTTON -->
+                    <div class="form-group button-container">
+                        <button type="submit" class="button save">Save</button>
+                    </div>
                 </form>           
             </div>
+            <!-- // BLANK NOTES -->
 
         <% } else if( note.type == "to-do" ){%>
 
+            <!-- TODO LIST -->
             <div class="col-md-offset-1 col-md-10 to-do-section">  
                 <form action="/<%= user_id %>/notes/<%= note._id %>?_method=PUT" method="POST">
                     <div class="to-do-container to-do-container-edit">
                         <h1 >TO DO LIST<i class="fa fa-plus"></i></h1>
+                         <!-- NOTE TYPE -->
                         <input type="text" name="note[type]" value="to-do" style="display: none;">
+                        <!-- NOTE TITLE -->
+                        <div class="form-group" style="display: none;">
+                            <label for="title" class="sr-only"></label>
+                            <input class="form-control" id="title" type="text" name="note[title]" value="<%= note.title %>">
+                        </div>
+                        <!-- TO-DOs -->
                         <div class="form-group">
                             <input type="text" class="form-control to-do-input" placeholder="ADD TO-DO ITEMS...">
                             <ul class="to-do-ul">
                                 <% note.todos.forEach(function(todo){ %>
                                 <li class="to-do-li">
                                     <span class="to-do-span" style="float: left;"><i class="fa fa-trash"></i></span>
-                                    <input class="form-control to-do-input-edit" type="text" name="note[todos]" value="<%= todo %>">
+                                    <input class="form-control to-do-input-edit" type="text" name="note[todos]" value="<%- todo %>">
                                 </li> 
                                 <% }) %>
                             </ul>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <button class="btn">Save!</button>
+                    <!-- SUBMIT BUTTON -->
+                    <div class="form-group button-container">
+                        <button type="submit" class="button save">Save</button>
                     </div>
                 </form>
             </div>
+            <!-- // TODO LIST -->
             
         <% } else if( note.type == "lecture" ){%>
 
+            <!-- LECTURE NOTES -->
             <div class="col-md-offset-2 col-md-9 lecture-section" >
                 <form action="/<%= user_id %>/notes/<%= note._id %>?_method=PUT" method="POST">
+                    <h1>TO-DO LIST<i class="fa fa-plus"></i></h1>
+                    <!-- NOTE TYPE -->
                     <input type="text" name="note[type]" value="lecture" style="display: none;">
-                    <div class="form-group">
+                    <!-- NOTE TITLE -->
+                    <div class="form-group" style="display: none;">
                         <label for="title" class="sr-only"></label>
-                        <input class="form-control" id="title" type="text" name="note[title]" placeholder="Lecture Title" value="<%= note.title %>" maxlength="50">
+                        <input class="form-control" id="title" type="text" name="note[title]" placeholder="Lecture Notes" value="<%= note.title %>" maxlength="50">
                     </div> 
-                    <!-- <br /> -->
+                    <!-- NOTE DESCRIPTION -->
                     <div class="form-group">
                         <textarea class="js--trumbowyg" name="note[description]">
                             <%= note.description %>
                         </textarea>
                     </div> 
-
-                    <div class="row">
-                        <button class="btn" type="submit">Save</button>
+                    <!-- SUBMIT BUTTON -->
+                    <div class="form-group button-container">
+                        <button type="submit" class="button save">Save</button>
                     </div> 
                 </form>               
             </div>
+            <!-- // LECTURE NOTES -->
 
         <% } else if( note.type == "meeting" ){%>
 
-            <div class="col-md-offset-2 col-md-9 meeting-section" style="display: none;">
-
+            <!-- MEETING NOTE -->
+            <div class="col-md-offset-2 col-md-9 meeting-section">
                 <form action="/<%= user_id %>/notes/<%= note._id %>?_method=PUT" method="POST">
-    
-                    <!-- <h1>MEETING NOTES</h1> -->
+                    <!-- NOTE TYPE -->
                     <input type="text" name="note[type]" value="meeting" style="display: none;">
-                    
+                    <!-- NOTE TITLE -->
                     <div class="form-group title-container">
                         <label for="title" class="sr-only"></label>
                         <input class="form-control" id="title" type="text" name="note[title]" placeholder="Meeting Title" value="<%= note.title %>" maxlength="80">
-                    </div>           
+                    </div>          
+                    <!-- MEETING DATE --> 
                     <div class="form-group">
                         <label for="meetingDate">Date: </label>
                         <input class="form-control" id="meetingDate" type="date" name="note[meetingDate]" value="<%= note.meetingDate %>">
                     </div>
+                    <!-- MEETING AGENDA -->
                     <div class="form-group">                
                         <label for="meetingAgenda">Agenda:</label>
                         <textarea class="form-control" id="meetingAgenda" name="note[meetingAgenda]"><%= note.meetingAgenda %></textarea>
                     </div>
+                    <!-- MEETING ATTENDEES -->
                     <div class="form-group">
                         <label for="meetingAttendees">Attendees:</label>
                         <textarea class="form-control" id="meetingAttendees" name="note[meetingAttendees]"><%= note.meetingAttendees %></textarea>
                     </div>
+
+                    <!-- MEETING DETAILS -->
                     <table id="tblData">          
                         <thead>
                             <tr>
                                 <th>
-                                    <div>
-                                        <a id="btnAdd"><i class="fa fa-plus"></i></a>
-                                    </div>
+                                    <div><a id="btnAdd"><i class="fa fa-plus"></i></a></div>
                                     Action Item
                                 </th>
                                 <th>Assignee</th>
@@ -110,31 +133,31 @@
                             </tr>
                         </thead>
                         <tbody>
-
                             <% for(var i=0; i < note.meetingAction.length; i++){ %>
                                 <tr >
                                     <td>
-                                        <!-- <span class="btnDelete"><i class="fa fa-trash"></i></span> -->
+                                        <span class="btnDelete"><i class="fa fa-trash"></i></span>
                                         <input type='text' name='note[meetingAction]' value="<%= note.meetingAction[i] %>" />
                                     </td>
                                     <td><input type='text' name='note[meetingAssignee]' value="<%= note.meetingAssignee[i] %>" /></td>
                                     <td><input type='text' name='note[meetingStatus]' value="<%= note.meetingStatus[i] %>" /></td>
                                 </tr>
                             <% } %>
-
                         </tbody>
                     </table>
     
-                    <div class="row">
-                        <button class="btn" type="submit">Save</button>
-                    </div> 
-    
+                    <!-- SUBMIT BUTTON -->
+                    <div class="form-group button-container">
+                        <button type="submit" class="button save">Save</button>
+                    </div>
                 </form>
             </div>
+            <!-- // MEETING NOTE -->
 
         <% } else if( note.type == "planner" ){%>
 
-                <!-- <div class=" col-md-12 planner-section" id="planner-section">
+            <!-- SCHEDULE PLANNER -->
+            <!-- <div class=" col-md-12 planner-section" id="planner-section">
                     <h1>SCHEDULE PLANNER</h1>
                     <div class="site-header autocomplete">
                         <div class="input-wrapper">
@@ -271,18 +294,26 @@
         
                     <div id='search_result'>result</div>
                 </div> -->
-        
+            <!-- // SCHEDULE PLANNER -->
         
         <% } else if( note.type == "daily-reflection" ){%>
 
+            <!-- DAILY REFLECTION -->
             <div class="col-md-offset-1 col-md-10 daily-reflection-section">
                 <form action="/<%= user_id %>/notes/<%= note._id %>?_method=PUT" method="POST">
-                    <h1 >DAILY REFLECTION...</h1>
+                    <!-- NOTE TYPE -->
                     <input type="text" name="note[type]" value="daily-reflection" style="display: none;">
+                    <!-- NOTE TITLE -->
+                    <div class="form-group title-container">
+                        <label for="title" class="sr-only"></label>
+                        <input class="form-control" id="title" type="text" name="note[title]" value="<%= note.title %>" placeholder="Daily Reflection">
+                    </div>
+                    <!-- DATE -->
                     <div class="form-group title-container">
                         <label id="dateLabel" for="date">Date:</label>
                         <input class="form-control" id="date" type="date" name="note[startDate]" value="<%= note.startDate %>">
                     </div> 
+                    <!-- NOTE DESCRIPTION -->
                     <% var reflections = ["What went well today?!", "What didn't go as planned?!", "What can be improved upon?!", "What's on your mind?!"] %>
                     <% var icons = ['fas fa-grin-beam', 'fas fa-meh', 'fas fa-meh-rolling-eyes', 'fas fa-graduation-cap'] %>
                     <% for(var i=0; i < note.dailyReflection.length; i++){ %>
@@ -293,24 +324,34 @@
                             <textarea class="form-control" id="dailyReflection" name="note[dailyReflection]" style="text-align: left;"><%= note.dailyReflection[i] %></textarea>
                         </div>
                     <% } %>
-                    <div class="form-group">
-                        <button class="btn" type="submit">Save</button>
-                    </div> 
+                    <!-- SUBMIT BUTTON -->
+                    <div class="form-group button-container">
+                        <button type="submit" class="button save">Save</button>
+                    </div>
                 </form>           
             </div>
+            <!-- // DAILY REFLECTION -->
 
         <% } else if( note.type == "meal-planner" ){%>
 
+            <!-- MEAL PLANNER -->
             <div class="col-md-offset-1 col-md-10 meal-planner-section">
                 <form action="/<%= user_id %>/notes/<%= note._id %>?_method=PUT" method="POST">
-                    <h1 >MEAL PLANNER...</h1>
+                    <!-- NOTE TYPE -->
                     <input type="text" name="note[type]" value="meal-planner"  style="display: none;" >
-                    
+                    <!-- NOTE TITLE -->
                     <div class="form-group title-container">
+                        <label for="title" class="sr-only"></label>
+                        <input class="form-control" id="title" type="text" name="note[title]" value="<%= note.title %>" placeholder="Meal Planner">
+                    </div>
+                    <!-- WEEK DATE -->
+                    <div class="form-group">
                         <label id="dateLabel" for="date">Week Start Date:</label>
                         <input class="form-control" id="date" type="date" name="note[startDate]" value="<%= note.startDate %>" maxlength="80">
-                    </div>         
-                    <table id="tblData">          
+                    </div>     
+                    <!-- NOTE DESCRIPTION -->    
+                    <table id="tblData"> 
+                        <!-- MEAL -->         
                         <thead>
                             <tr>
                                 <th></th>
@@ -319,6 +360,7 @@
                                 <th>Dinner</th>
                             </tr>
                         </thead>
+                        <!-- WEEK DAYS -->
                         <tbody>
                             <% var days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'] %>
                             <% for(var i=0; i < note.meal1.length; i++){ %>
@@ -331,17 +373,17 @@
                             <% } %>
                         </tbody>
                     </table>
-                    <div class="form-group">
-                        <button class="btn" type="submit">Save</button>
-                    </div> 
+                    <!-- SUBMIT BUTTON -->
+                    <div class="form-group button-container">
+                        <button type="submit" class="button save">Save</button>
+                    </div>
                 </form>
             </div>
+            <!-- // MEAL PLANNER -->
 
         <% } %>
-
-        <!-- <a href="/<%= user_id %>/notes"> <= </a> -->
-
     </div>
 </div>
+<!-- // NOTES CONTAINER -->
 
 <% include ../partials/footer %>

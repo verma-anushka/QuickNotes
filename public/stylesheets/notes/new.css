@@ -124,6 +124,7 @@ input#title{
     height: 50px;
     font-size: 40px;
     font-weight: 800;
+    text-transform: uppercase;
 }
 
 
@@ -371,6 +372,7 @@ input#title{
     height: 22px;
     width: 22px;
     border-radius: 50%;
+    padding-top: 0.4%;
 }
 .meeting-section thead th a,
 .meal-planner-section thead th a{

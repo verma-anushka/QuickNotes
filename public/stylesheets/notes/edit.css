@@ -1,3 +1,4 @@
+/* ADDITIONAL STYLING */
 .edit{
     text-align: center;
     margin-left: none;
@@ -18,6 +19,7 @@
     height: 50px;
     font-size: 40px;
     font-weight: 800;
+    text-transform: uppercase;
 }
 .to-do-container-edit span{
     float: left;
@@ -25,7 +27,6 @@
 .to-do-container-edit input[type=text]:first-child{
     width: 100%;
 }
-
 .edit .meal-planner-section input#date{
     margin-bottom: 15px;
 }

@@ -182,7 +182,7 @@
                 <!-- NOTE TITLE -->
                 <div class="form-group">
                     <label for="title" class="sr-only"></label>
-                    <input class="form-control" id="title" type="text" name="note[title]" value="Lecture Notes" placeholder="Lecture Title" maxlength="50">
+                    <input class="form-control" id="title" type="text" name="note[title]" value="Lecture Notes" placeholder="Lecture Notes" maxlength="50">
                 </div>
                 <!-- NOTE DESCRIPTION -->
                 <textarea class="js--trumbowyg" name="note[description]">
@@ -208,19 +208,19 @@
                 <!-- NOTE TITLE -->
                 <div class="form-group title-container">
                     <label for="title" class="sr-only"></label>
-                    <input class="form-control" id="title" type="text" name="note[title]" value="Meeting Notes" placeholder="Meeting Title" maxlength="80">
+                    <input class="form-control" id="title" type="text" name="note[title]" value="Meeting Title" placeholder="Meeting Title" maxlength="80">
                 </div>
-                <!-- NOTE DATE -->
+                <!-- MEETING DATE -->
                 <div class="form-group">
                     <label for="meetingDate">Date: </label>
                     <input class="form-control" id="meetingDate" type="date" name="note[meetingDate]" placeholder="Meeting Date">
                 </div>
-                <!-- NOTE AGENDA -->
+                <!-- MEETING AGENDA -->
                 <div class="form-group">
                     <label for="meetingAgenda">Agenda:</label>
                     <textarea class="form-control" id="meetingAgenda" name="note[meetingAgenda]" placeholder="What's the meeting agenda?!"></textarea>
                 </div>
-                <!-- NOTE ATTENDEES -->
+                <!-- MEETING ATTENDEES -->
                 <div class="form-group">
                     <label for="meetingAttendees">Attendees:</label>
                     <textarea class="form-control" id="meetingAttendees" name="note[meetingAttendees]"
@@ -400,13 +400,12 @@
         <!-- DAILY REFLECTION -->
         <div class="col-md-offset-2 col-md-9 daily-reflection-section" style="display: none;">
             <form action="/<%= user._id %>/notes" method="POST">
-                <h1>DAILY REFLECTION...</h1>
                 <!-- NOTE TYPE -->
                 <input type="text" name="note[type]" value="daily-reflection" style="display: none;">
                 <!-- NOTE TITLE -->
-                <div class="form-group title-container" style="display: none;">
+                <div class="form-group title-container">
                     <label for="title" class="sr-only"></label>
-                    <input class="form-control" id="title" type="text" name="note[title]" value="DAILY REFLECTION">
+                    <input class="form-control" id="title" type="text" name="note[title]" value="DAILY REFLECTION" placeholder="Daily Reflection">
                 </div>
                 <!-- DATE -->
                 <div class="form-group">
@@ -457,13 +456,12 @@
         <!-- MEAL PLANNER -->
         <div class="col-md-offset-2 col-md-9 meal-planner-section" style="display: none;">
             <form action="/<%= user._id %>/notes" method="POST">
-                <h1>MEAL PLANNER...</h1>
                 <!-- NOTE TYPE -->
                 <input type="text" name="note[type]" value="meal-planner" style="display: none;">
                 <!-- NOTE TITLE -->
-                <div class="form-group title-container" style="display: none;">
+                <div class="form-group title-container">
                     <label for="title" class="sr-only"></label>
-                    <input class="form-control" id="title" type="text" name="note[title]" value="Meal Planner">
+                    <input class="form-control" id="title" type="text" name="note[title]" value="Meal Planner" placeholder="Meal Planner">
                 </div>
                 <!-- WEEK DATE -->
                 <div class="form-group">
@@ -520,7 +518,6 @@
                             <td><input type='text' name='note[meal2]' /></td>
                             <td><input type='text' name='note[meal3]' /></td>
                         </tr>
-
                         <tr>
                             <td class="day">Saturday</td>
                             <td><input type='text' name='note[meal1]' /></td>
