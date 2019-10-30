@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 var passportLocalMongoose = require("passport-local-mongoose");
 
-// Schema Structure
+// USER SCHEMA STRUCTURE
 var UserSchema = new mongoose.Schema({
     username: { 
                 type: String, 
@@ -41,11 +41,9 @@ var UserSchema = new mongoose.Schema({
               },
     password: { 
                 type: String, 
-                // required: true 
               },
     password2: { 
                 type: String, 
-                // required: true 
                },
     notes: [   {
                 type: mongoose.Schema.Types.ObjectId,
@@ -58,5 +56,5 @@ var UserSchema = new mongoose.Schema({
 
 UserSchema.plugin(passportLocalMongoose);
 
-// Model Compilation
+// MODEL COMPILATION
 module.exports = mongoose.model("User", UserSchema);

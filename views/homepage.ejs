@@ -1,508 +1,85 @@
 <% include partials/header.ejs %>
 
-<% var found = "false"; %>
+<div class="home-slider">
 
-<% if(notes){ %>
+    <!-- BACKGROUND IMAGES -->
+    <div class="load">
+        <!-- IMAGES -->
+    </div>
 
-<% notes.forEach(function(note){ %>
-    <% console.log(note) %>
-    <% if( note.author.id.equals(user._id) ){ %>
-        <% found = "true"; %>
-    <% } %>
-<% }); %>
-<% } %>
-
-<% if( found == "true" ){ %>
-    
-    <div class="home-container">
-        <div class="row">
-
-            <div class="notes-container">
-                <div class="col-md-offset-1 col-md-10 col-sm-6">
-                    <h1 >Welcome back, <%= user.username %> !
-                        <a class="pull-right" href="/<%= user._id %>/notes/new"><i class="fa fa-plus"></i></a>
-                    </h1>
-                </div>
-            </div>
-        </div>
-
-        <div class="row">
-            <div id="filters-container" class="cbp-l-filters-alignCenter">
-                <div data-filter="*" class="cbp-filter-item-active cbp-filter-item">
-                    ALL NOTES<div class="cbp-filter-counter"></div>
-                </div> /
-                <div data-filter=".blank" class="cbp-filter-item">
-                    BLANK<div class="cbp-filter-counter"></div>
-                </div> /
-                <div data-filter=".to-do" class="cbp-filter-item">
-                    TO-DO LIST<div class="cbp-filter-counter"></div>
-                </div> /
-                <div data-filter=".lecture" class="cbp-filter-item">
-                    LECTURE<div class="cbp-filter-counter"></div>
-                </div> /
-                <div data-filter=".meeting" class="cbp-filter-item">
-                    MEETING<div class="cbp-filter-counter"></div>
-                </div> /
-                <div data-filter=".planner" class="cbp-filter-item">
-                    PLANNER<div class="cbp-filter-counter"></div>
-                </div> /
-                <div data-filter=".daily-reflection" class="cbp-filter-item">
-                    DAILY REFLECTION<div class="cbp-filter-counter"></div>
-                </div> /
-                <div data-filter=".meal-planner" class="cbp-filter-item">
-                    MEAL PLANNER<div class="cbp-filter-counter"></div>
-                </div>
-            </div>
-
-            <div class="col-md-offset-1 col-md-10 col-sm-6 allNotes">
-                <section id="works" class="page-content">
-                    <div id="grid-container" class="cbp">
-                    
-                        <% notes.forEach(function(note){ %>
-                            
-                            <% if( note.author.id.equals(user._id) ){ %>    
-                                <% if( note.type == "blank" ){ %>
-            
-                                    <div class="cbp-item blank">
-                                        <div class="cbp-caption" style="float: left;">
-                                            <div class="cbp-caption-defaultWrap">
-                                                <img src="/images/blank.jpg" alt="">
-                                            </div>
-                                            <div class="cbp-caption-activeWrap">
-                                                <div class="cbp-l-caption-alignLeft">
-                                                    <div class="cbp-l-caption-body">
-                                                        <div class="cbp-l-caption-title"><%- note.title %></div>
-                                                        <div class="cbp-l-caption-desc"><%- note.description %></div>
-                                                    </div>
-                                                </div>
-                                                <div class="formatting">
-                                                    <span class="share">
-                                                        <a href="#shareNoteModal" class="noteShare" data-note="<%- note.id %>" data-toggle="modal" >
-                                                            <i class="fas fa-share-alt"></i>
-                                                        </a>            
-                                                    </span>
-                                                    <span id="delete">
-                                                        <form id="delete-form" action="/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
-                                                            <button >
-                                                                <i class="fa fa-trash"></i>
-                                                            </button>
-                                                        </form>                                    
-                                                    </span>
-                                                    <span id="edit">
-                                                        <a href="/<%= user._id %>/notes/<%= note._id %>/edit">
-                                                            <i class="fa fa-edit"></i>
-                                                        </a>            
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-            
-                                <% } else if( note.type == "lecture" ){ %>
-            
-                                    <div class="cbp-item lecture">
-                                        <div class="cbp-caption" style="float: left;">
-                                            <div class="cbp-caption-defaultWrap">
-                                                <img src="/images/lecture.jpg" alt="">
-                                            </div>
-                                            <div class="cbp-caption-activeWrap">
-                                                <div class="cbp-l-caption-alignLeft">
-                                                    <div class="cbp-l-caption-body">
-                                                        <div class="cbp-l-caption-title"><%- note.title %></div>
-                                                        <div class="cbp-l-caption-desc"><%- note.description %></div>
-                                                    </div>
-                                                </div>
-                                                <div class="formatting">
-                                                    <span class="share">
-                                                        <a href="#shareNoteModal" class="noteShare" data-note="<%- note.id %>" data-toggle="modal" >
-                                                            <i class="fas fa-share-alt"></i>
-                                                        </a>            
-                                                    </span>
-                                                    <span id="delete">
-                                                        <form id="delete-form" action="/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
-                                                            <button >
-                                                                <i class="fa fa-trash"></i>
-                                                            </button>
-                                                        </form>                                    
-                                                    </span>
-                                                    <span id="edit">
-                                                        <a href="/<%= user._id %>/notes/<%= note._id %>/edit">
-                                                            <i class="fa fa-edit"></i>
-                                                        </a>            
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-            
-                                <% } else if( note.type == "to-do" ){ %>
-            
-                                    <div class="cbp-item to-do">
-                                        <div class="cbp-caption" style="float: left;">
-                                            <div class="cbp-caption-defaultWrap">
-                                                <img src="/images/todo.jpg" alt="">
-                                            </div>
-                                            <div class="cbp-caption-activeWrap">
-                                                <div class="cbp-l-caption-alignLeft">
-                                                    <div class="cbp-l-caption-body">
-                                                        <div class="cbp-l-caption-title">TO-DO LIST!</div>
-                                                        <% note.todos.forEach(function(todo){ %>
-                                                            <li class="cbp-l-caption-desc"><%= todo %></li>
-                                                        <% }) %>
-                                                    </div>
-                                                </div>
-                                                <div class="formatting">
-                                                    <span class="share">
-                                                        <a href="#shareNoteModal" class="noteShare" data-note="<%- note.id %>" data-toggle="modal" >
-                                                            <i class="fas fa-share-alt"></i>
-                                                        </a>            
-                                                    </span>
-                                                    <span id="delete">
-                                                        <form id="delete-form" action="/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
-                                                            <button >
-                                                                <i class="fa fa-trash"></i>
-                                                            </button>
-                                                        </form>                                    
-                                                    </span>
-                                                    <span id="edit">
-                                                        <a href="/<%= user._id %>/notes/<%= note._id %>/edit">
-                                                            <i class="fa fa-edit"></i>
-                                                        </a>            
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    
-                                    
-                                    </div>
-            
-                                <% } else if( note.type == "meeting" ){ %>
-            
-                                    <div class="cbp-item meeting">
-                                        <div class="cbp-caption" style="float: left;">
-                                            <div class="cbp-caption-defaultWrap">
-                                                <img src="/images/meeting.jpg" alt="">
-                                            </div>
-                                            <div class="cbp-caption-activeWrap">
-                                                <div class="cbp-l-caption-alignLeft">
-                                                    <div class="cbp-l-caption-body">
-                                                        <div class="cbp-l-caption-title"><%- note.title %></div>
-                                                        <div class="cbp-l-caption-desc">Meeting Date: <span class="pull-right"><%- note.meetingDate %></span></div>
-                                                        <div class="cbp-l-caption-desc">Meeting Agenda: <span class="pull-right"><%- note.meetingAgenda %></span></div>
-                                                        <div class="cbp-l-caption-desc">Meeting Attendees:<span class="pull-right"><%- note.meetingAttendees %></span></div>
-                                                        <br />
-                                                        <hr />
-                                                        <div class="cbp-l-caption-desc">
-                                                            <table id="tblData">          
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th><pre>ACTION ITEM</pre>
-                                                                        <th><pre>   ASSIGNEE</pre>
-                                                                        <th><pre>   STATUS</pre>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <% for(var i=0; i < note.meetingAction.length; i++){ %>
-                                                                        <tr >
-                                                                            <td><%= note.meetingAction[i] %></td>
-                                                                            <td><%= note.meetingAssignee[i] %></td>
-                                                                            <td><%= note.meetingStatus[i] %></td>
-                                                                        </tr>
-                                                                    <% } %>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="formatting">
-                                                    <span class="share">
-                                                        <a href="#shareNoteModal" class="noteShare" data-note="<%- note.id %>" data-toggle="modal" >
-                                                            <i class="fas fa-share-alt"></i>
-                                                        </a>            
-                                                    </span>
-                                                    <span id="delete">
-                                                        <form id="delete-form" action="/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
-                                                            <button >
-                                                                <i class="fa fa-trash"></i>
-                                                            </button>
-                                                        </form>                                    
-                                                    </span>
-                                                    <span id="edit">
-                                                        <a href="/<%= user._id %>/notes/<%= note._id %>/edit">
-                                                            <i class="fa fa-edit"></i>
-                                                        </a>            
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-            
-                                <% } else if( note.type == "planner" ){ %>
-            
-                                    <!-- <div class="cbp-item planner">
-                                        <div class="cbp-caption" style="float: left;">
-                                            <div class="cbp-caption-defaultWrap">
-                                                <img src="/images/planner.jpg" alt="">
-                                            </div>
-                                            <div class="cbp-caption-activeWrap">
-                                                <div class="cbp-l-caption-alignLeft">
-                                                    <div class="cbp-l-caption-body">
-                                                        <div class="cbp-l-caption-title"><%- note.title %></div>
-                                                        <div class="cbp-l-caption-desc"><%- note.description %></div>                     
-                                                    </div>
-                                                </div>
-                                                <div class="formatting">
-                                                    <span class="share">
-                                                        <a href="#shareNoteModal" class="noteShare" data-note="<%- note.id %>" data-toggle="modal" >
-                                                            <i class="fas fa-share-alt"></i>
-                                                        </a>            
-                                                    </span>
-                                                    <span id="delete">
-                                                        <form id="delete-form" action="/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
-                                                            <button >
-                                                                <i class="fa fa-trash"></i>
-                                                            </button>
-                                                        </form>                                    
-                                                    </span>
-                                                    <span id="edit">
-                                                        <a href="/<%= user._id %>/notes/<%= note._id %>/edit">
-                                                            <i class="fa fa-edit"></i>
-                                                        </a>            
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
-            
-                                <% } else if( note.type == "daily-reflection" ){ %>
-            
-                                    <div class="cbp-item daily-reflection">
-                                        <div class="cbp-caption" style="float: left;">
-                                            <div class="cbp-caption-defaultWrap">
-                                                <img src="/images/daily-reflection.jpg" alt="">
-                                            </div>
-                                            <div class="cbp-caption-activeWrap">
-                                                <div class="cbp-l-caption-alignLeft">
-                                                    <div class="cbp-l-caption-body">
-                                                        <div class="cbp-l-caption-title">DAILY REFLECTION...</div>
-                                                        <div class="cbp-l-caption-desc">
-                                                            Date:
-                                                            <span class="pull-right"><%= note.startDate %></span>
-                                                        </div>
-                                                        <% var reflections = ["What went well today?!", "What didn't go as planned?!", "What can be improved upon?!", "What's on your mind?!"] %>
-                                                        <% for(var i=0; i < note.dailyReflection.length; i++){ %>
-                                                            <div class="cbp-l-caption-desc">
-                                                                <li><%= reflections[i] %></li>
-                                                                <%- note.dailyReflection[i] %>
-                                                            </div>
-                                                        <% } %>
-                                                    </div>
-                                                </div>
-                                                <div class="formatting">
-                                                    <span class="share">
-                                                        <a href="#shareNoteModal" class="noteShare" data-note="<%- note.id %>" data-toggle="modal" >
-                                                            <i class="fas fa-share-alt"></i>
-                                                        </a>            
-                                                    </span>
-                                                    <span id="delete">
-                                                        <form id="delete-form" action="/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
-                                                            <button >
-                                                                <i class="fa fa-trash"></i>
-                                                            </button>
-                                                        </form>                                    
-                                                    </span>
-                                                    <span id="edit">
-                                                        <a href="/<%= user._id %>/notes/<%= note._id %>/edit">
-                                                            <i class="fa fa-edit"></i>
-                                                        </a>            
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-            
-                                <% } else if( note.type == "meal-planner" ){ %>
-            
-                                    <div class="cbp-item meal-planner">
-                                        <div class="cbp-caption" style="float: left;">
-                                            <div class="cbp-caption-defaultWrap">
-                                                <img src="/images/meal-planner.jpg" alt="">
-                                            </div>
-                                            <div class="cbp-caption-activeWrap">
-                                                <div class="cbp-l-caption-alignLeft">
-                                                    <div class="cbp-l-caption-body">
-                                                        <div class="cbp-l-caption-title">MEAL PLANNER...</div>
-                                                        <div class="cbp-l-caption-desc">
-                                                            Week Start:
-                                                            <span class="pull-right"><%= note.startDate %></span>
-                                                        </div>
-                                                        <% var days = ["SUNDAY", "MONDAY", "TUESDAY", "WEDNESDAY", "THURSDAY", "FRIDAY", "SATURDAY"] %>
-                                                        <div class="cbp-l-caption-desc">
-                                                            <table id="tblData">          
-                                                                <thead>
-                                                                    <tr>
-                                                                        <th></th>
-                                                                        <th><pre>BREAKFAST</pre></th>
-                                                                        <th><pre>  LUNCH</pre></th>
-                                                                        <th><pre>  DINNER</pre></th>
-                                                                    </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    <% for(var i=0; i < note.meal1.length; i++){ %>
-                                                                        <tr>
-                                                                            <td class="day"><%= days[i] %></td>
-                                                                            <td><%= note.meal1[i] %></td>
-                                                                            <td><%= note.meal2[i] %></td>
-                                                                            <td><%= note.meal3[i] %></td>
-                                                                        </tr>
-                                                                    <% } %>
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="formatting">
-                                                    <span class="share">
-                                                        <a href="#shareNoteModal" class="noteShare" data-note="<%- note.id %>" data-toggle="modal" >
-                                                            <i class="fas fa-share-alt"></i>
-                                                        </a>            
-                                                    </span>
-                                                    <span id="delete">
-                                                        <form id="delete-form" action="/<%= user._id %>/notes/<%= note._id %>?_method=DELETE" method="POST">
-                                                            <button >
-                                                                <i class="fa fa-trash"></i>
-                                                            </button>
-                                                        </form>                                    
-                                                    </span>
-                                                    <span id="edit">
-                                                        <a href="/<%= user._id %>/notes/<%= note._id %>/edit">
-                                                            <i class="fa fa-edit"></i>
-                                                        </a>            
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-            
-                                <% } %>
-            
-                                
-                            <% } %>
-            
-                        <% }); %>
-                    </div> 
-
-                </section>   
-            </div>  
+    <!-- CONTENT -->
+    <div class="content">
+        <div class="principal">
+            <h1>QUICK NOTES</h1>
+            <p>Make notes online</p>
+            <p>Easy to use app!</p>
+            <button type="button" class="signUpButton arrow" data-target="#signupModal" data-toggle="modal">Sign-Up</button>
         </div>
     </div>
- 
-<% } else{ %>
-    <div class="no-notes">
-        <div class="hero-image">
-            <div class="col-md-offset-2 col-md-8 no-notes-container">
-                <h1>Hello, <%= user.username %> !</h1>
-                <div class="thumbnail">
-                    <div class="img-container">
-                        <img class="avatar" src="<%= user.image%>" alt="Avatar">
-                    </div>
-                </div>
-                <h3>You haven't created any notes yet!</h3>
-                <a href="/<%= user._id %>/notes/new" class="btn">Create Now!</a>
-                <br />
-                <a class="notes-buttons" href="/<%= user._id %>/notes/new">
-                    <button class="pulse-button-hover tool" data-tip="Blank Note" tabindex="1">
-                        <i class="fa fa-sticky-note"></i>
-                    </button>
-                </a>
-                <a href="/<%= user._id %>/notes/new">
-                    <button class="pulse-button-hover tool" data-tip="To-Do List" tabindex="2">
-                        <i class="fa fa-clipboard-list"></i>
-                    </button>
-                </a>
-                <a href="/<%= user._id %>/notes/new">
-                    <button class="pulse-button-hover tool" data-tip="Lecture Note" tabindex="3">
-                        <i class="fa fa-file-word"></i>
-                    </button>
-                </a>
-                <a href="/<%= user._id %>/notes/new">
-                    <button class="pulse-button-hover tool" data-tip="Meeting Note" tabindex="4">
-                        <i class="fa fa-handshake"></i>
-                    </button>
-                </a>
-                <a href="/<%= user._id %>/notes/new">
-                    <button class="pulse-button-hover tool schedule" data-tip="Schedule Planner" tabindex="5">
-                        <i class="fa fa-calendar-alt"></i>
-                    </button>
-                </a>
-                <a href="/<%= user._id %>/notes/new">
-                    <button class="pulse-button-hover tool daily" data-tip="Daily Reflection" tabindex="6">
-                        <i class="fas fa-cloud-sun"></i>
-                    </button>
-                </a>
-                <a href="/<%= user._id %>/notes/new">
-                    <button class="pulse-button-hover tool" data-tip="Meal Planner" tabindex="7"> 
-                        <i class="fas fa-utensils"></i>
-                    </button>
-                </a>
-                
-            </div>
-        </div>
-    </div>
-<% } %> 
-<form action="/<%= user._id %>/notes/share" method="GET">
-    <div class="modal" id="shareNoteModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+
+</div>
+
+<!-- SIGNUP FORM -->
+<form action="/" method="POST" id="signupForm" class="signupForm">
+    <div class="modal" id="signupModal" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
 
-                <!-- Header -->
+                <!-- MODAL HEADER -->
                 <div class="m-header">
-                    <!-- Close button -->
+                    <!-- CLOSE BUTTON -->
                     <button class="close" data-dismiss="modal">&times;</button>
-                    <h4 id="myModalLabel"> Share Notes! </h4>
+                    <h4 class="myModalLabel"> Sign Up </h4>
                     <br />
                 </div>
 
-                <!-- Body -->
+                <!-- MODAL BODY -->
                 <div class="inputs">
 
-                    <!-- Receiver Email-ID -->
+                    <!-- USERNAME -->
                     <div class="form-group input-group">
-                        <label for="receiverEmail" class="sr-only">Email-ID</label>
-                        <span class="input-group-addon"><i class="fas fa-envelope"></i></span>
-                        <input type="email" class="form-control" id="receiverEmail" name="shareUser[receiverEmail]" placeholder="Enter the Receiver's Email-ID" maxlength="30" required>
-                    </div>
-
-                    <!-- Receiver Name -->
-                    <div class="form-group input-group">
-                        <label for="receiverName" class="sr-only">Name</label>
+                        <label for="username" class="sr-only">Username</label>
                         <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                        <input type="text" class="form-control" id="receiverName" name="shareUser[receiverName]" placeholder="Enter the Receiver's Name" maxlength="30" required>
+                        <input type="text" class="form-control" id="username" name="username" placeholder="Username" maxlength="30" required>
                     </div>
 
-                    <!-- Note ID -->
-                    <div class="form-group input-group note-id-input">
-                    </div>
-
+                    <!-- EMAIL ADDRESS -->
                     <div class="form-group input-group">
-                        <label for="receiverMsg" class="sr-only">Message for Receiver</label>
-                        <span class="input-group-addon"><i class="fas fa-comment-dots"></i></span>
-                        <input type="text" class="form-control" id="receiverMsg" name="shareUser[receiverMsg]" placeholder="Any other message..." maxlength="300">
+                        <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                        <label for="email" class="sr-only">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" maxlength="50" required>
                     </div>
 
+                    <!-- PASSWORD -->
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        <label for="password" class="sr-only">Password</label>
+                        <input type="password" class="form-control" id="password" name="password" placeholder="Choose a password" maxlength="30" required>
+                    </div>
+
+                    <!-- CONFIRM PASSWORD -->
+                    <div class="form-group input-group">
+                        <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                        <label for="password2" class="sr-only">Confirm Password</label>
+                        <input type="password" class="form-control" id="password2" name="password2" placeholder="Confirm password" maxlength="30" required>
+                    </div>
                 </div>
 
-                <!-- Footer -->
+                <!-- MODAL FOOTER -->
                 <div class="footer">
-                    <button type="submit" class="btn" name="form" value="share">
-                        Share
-                    </button>
+                    <button type="submit" class="signUpButton arrow" name="form" value="signUp">Sign Up</button>
+                    <br /><br />
+                    <p>
+                        Already have an account?! 
+                        <a href="#loginModal" data-toggle="modal" data-dismiss="modal">Login!</a>
+                    </p>
                 </div>
+
             </div>
         </div>
     </div>
-</form>
+</form>  
+<!-- // SIGNUP FORM -->
 
 
 <% include partials/footer.ejs %>
-

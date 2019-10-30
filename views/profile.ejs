@@ -2,13 +2,13 @@
 <div class="user-profile">
     <div class="hero-image">
         <div class="container">
-            <div class="row">               
-                <form action="/<%= user._id %>/profile/profileImg" method="POST" enctype="multipart/form-data">     
+            <div class="row">
+                <form action="/<%= user._id %>/profile/profileImg" method="POST" enctype="multipart/form-data">
                     <div class="col-md-offset-1 col-md-4 profile">
                         <div class="thumbnail">
                             <div class="img-container">
                                 <img class="avatar" src="<%= user.image%>" alt="Avatar">
-                                
+
                             </div>
                         </div>
                         <!-- <div class="caption">
@@ -21,9 +21,10 @@
                                     Change profile image!
                             <% } %> -->
                             <br />
-                            <label for="image" >
+                            <label for="image">
                                 <input type="file" id="image" name="image" accept="image/*" capture class="hidden">
-                                <img src="http://macgroup.org/blog/wp-content/uploads/2011/10/iphone-camera-icon-150x150.jpg" alt="">        
+                                <img src="http://macgroup.org/blog/wp-content/uploads/2011/10/iphone-camera-icon-150x150.jpg"
+                                    alt="">
                                 <br />
                                 <span id="filename">
                                     Choose a file...
@@ -38,55 +39,66 @@
                         </div>
                         <div class="form-group">
                             <label for="username">Username </label>
-                            <input class="form-control" type="text" id="username" name="user[username]" placeholder="Username" value="<%= user.username%>" disabled>
+                            <input class="form-control" type="text" id="username" name="user[username]"
+                                placeholder="Username" value="<%= user.username%>" disabled>
                         </div>
                         <div class="form-group">
                             <label for="email">Email</label>
-                            <input class="form-control" type="email" id="email" name="user[email]" placeholder="email" value="<%= user.email%>" disabled>
+                            <input class="form-control" type="email" id="email" name="user[email]" placeholder="email"
+                                value="<%= user.email%>" disabled>
                         </div>
                         <div class="form-group">
                             <label for="firstName">First Name</label>
-                            <input class="form-control" type="text" id="firstName" name="user[firstName]" placeholder="First Name" value="<%= user.firstName%>">
+                            <input class="form-control" type="text" id="firstName" name="user[firstName]"
+                                placeholder="First Name" value="<%= user.firstName%>">
                         </div>
                         <div class="form-group">
                             <label for="lastName">Last Name</label>
-                            <input class="form-control" type="text" id="lastName" name="user[lastName]" placeholder="Last Name" value="<%= user.lastName%>">
+                            <input class="form-control" type="text" id="lastName" name="user[lastName]"
+                                placeholder="Last Name" value="<%= user.lastName%>">
                         </div>
                         <div class="form-group">
                             <label for="" class="gender">Gender:</label>
                             <div class="gender">
-                            <% if (user.gender === "male") {%>
+                                <% if (user.gender === "male") {%>
                                 <label class="radio-inline male" for="radio">
-                                <input type="radio" value="male"  id="radio" name="user[gender]" checked>Male</label>
-                            <% } else{ %>
+                                    <input type="radio" value="male" id="radio" name="user[gender]" checked>Male</label>
+                                <% } else{ %>
                                 <label class="radio-inline male" for="radio">
-                                <input type="radio" value="male" id="radio"  name="user[gender]" >Male</label>
-                            <% }  %>
+                                    <input type="radio" value="male" id="radio" name="user[gender]">Male</label>
+                                <% }  %>
 
-                            <% if (user.gender === "female") {%>
+                                <% if (user.gender === "female") {%>
                                 <label class="radio-inline female" for="radio">
-                                <input type="radio" value="female"  id="radio" name="user[gender]" checked>Female</label>
-                            <% } else{ %>
+                                    <input type="radio" value="female" id="radio" name="user[gender]"
+                                        checked>Female</label>
+                                <% } else{ %>
                                 <label class="radio-inline female" for="radio">
-                                <input type="radio" value="female"  id="radio" name="user[gender]" >Female</label>
-                            <% }  %>
+                                    <input type="radio" value="female" id="radio" name="user[gender]">Female</label>
+                                <% }  %>
 
-                            <% if (user.gender === "none") {%>
+                                <% if (user.gender === "none") {%>
                                 <label class="radio-inline none" for="radio">
-                                <input type="radio" class="none" id="radio" value="none" name="user[gender]" checked>Prefer not to say</label>
-                            <% } else{ %>
+                                    <input type="radio" class="none" id="radio" value="none" name="user[gender]"
+                                        checked>Prefer not to say</label>
+                                <% } else{ %>
                                 <label class="radio-inline none" for="radio">
-                                <input type="radio" value="none" id="radio" name="user[gender]" >Prefer not to say</label>
-                            <% }  %>
-                        </div>
+                                    <input type="radio" value="none" id="radio" name="user[gender]">Prefer not to
+                                    say</label>
+                                <% }  %>
+                            </div>
                         </div>
                         <div class="form-group">
                             <label for="contact">Contact</label>
-                            <input class="form-control" type="number" id="contact" name="user[contact]" placeholder="Contact Number" value="<%= user.contact%>" min="1000000000" max="9999999999">
+                            <input class="form-control" type="number" id="contact" name="user[contact]"
+                                placeholder="Contact Number" value="<%= user.contact%>" min="1000000000"
+                                max="9999999999">
                         </div>
                         <div class="form-group">
                             <label for="bio">Bio</label>
-                            <textarea class="form-control bio" id="bio" name="user[bio]" placeholder="Tell us about yourself!" rows="10" maxlength="500"><%= user.bio%></textarea>
+                            <textarea class="form-control bio" id="bio" name="user[bio]"
+                                placeholder="Tell us about yourself!" rows="10"
+                                maxlength="500"><%= user.bio%></textarea>
                         </div>
                         <div class="row">
                             <div class="col-md-offset-5 col-md-2">
@@ -102,17 +114,4 @@
     </div>
 </div>
 
-
-<!-- <script>
-
-        var sel = document.getElementById('gender'); 
-        console.log( "sel.value" );
-        console.log( sel.value );
-
-        var opt = sel.options[sel.selectedIndex];
-
-        console.log( "opt" );
-        console.log( opt.value );
-        console.log( opt.text );
-    </script> -->
 <% include partials/footer.ejs %>

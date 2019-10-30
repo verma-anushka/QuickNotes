@@ -90,10 +90,10 @@ app.use(function(req, res, next){
     next();
 });
 
-// LANDING PAGE 
+// HOMEPAGE 
 app.get("/", function(req, res){   
 
-    res.render("landing");
+    res.render("homepage");
 });
 
 // passport.use(new RememberMeStrategy(
@@ -139,7 +139,7 @@ app.post("/", async function(req, res, next){
             for(var i=0; i< errors.length; i++){
                 req.flash('error', errors[i] );     
             }
-            res.render('landing', {errors, username, email, password, password2});
+            res.render('homepage', {errors, username, email, password, password2});
         } else {
             // EMAIL & USERNAME CHECK
             var emailUser = await User.findOne({email: email});
@@ -170,7 +170,7 @@ app.post("/", async function(req, res, next){
                     if(err){
                         // console.log(err);
                         req.flash("error", "Something went wrong!");            
-                        res.render("landing");
+                        res.render("homepage");
                     }
                     passport.authenticate("local")(req, res, function(){
                         // console.log(user);
@@ -197,7 +197,7 @@ app.post("/", async function(req, res, next){
             if (err) { 
                 // console.log(err);
                 req.flash("error",  "Something went wrong!");            
-                return res.render("landing");
+                return res.render("homepage");
             }
             if (!user) { 
                 // console.log( "user" + user);     
@@ -218,7 +218,7 @@ app.post("/", async function(req, res, next){
                 if (err) { 
                     // console.log(err);
                     req.flash("error", "Something went wrong!");            
-                    return res.render("landing");
+                    return res.render("homepage");
                 }
                 req.flash("success", "Successfully Logged in!"); 
                 // console.log("user");
@@ -278,7 +278,7 @@ app.post("/", async function(req, res, next){
                              'If you did not request this, please ignore this email; your password will remain unchanged.\n'
                 };
                 smtpTransport.sendMail(mailOptions, function (err) {
-                    // console.log('mail sent');
+                    // console.log('Email sent');
                     req.flash('success', 'An e-mail has been sent to ' + user.email + ' with further instructions.');
                     done(err, 'done');
                 });
@@ -325,13 +325,17 @@ app.post('/reset/:token', function (req, res) {
     async.waterfall([
         function (done) {
             User.findOne({ resetPasswordToken: req.params.token, resetPasswordExpires: { $gt: Date.now() } }, function (err, user) {
-                
                 if (!user) {
                     req.flash('error', 'Password reset token invalid or expired. Please try again');
                     return res.redirect('back');
                 }
-                if (req.body.password === req.body.confirm) {
-
+                if(req.body.password.length < 4){
+                    req.flash("error", "Password length should be atleast 4 characters");
+                    return res.redirect('back');
+                } else if (req.body.password !== req.body.confirm) {
+                    req.flash("error", "Passwords do not match.");
+                    return res.redirect('back');
+                } else {
                     user.setPassword(req.body.password, function (err) {
                         user.resetPasswordToken = undefined;
                         user.resetPasswordExpires = undefined;
@@ -341,9 +345,6 @@ app.post('/reset/:token', function (req, res) {
                             });
                         });
                     })
-                } else {
-                    req.flash("error", "Passwords do not match.");
-                    return res.redirect('back');
                 }
             });
 
@@ -362,18 +363,19 @@ app.post('/reset/:token', function (req, res) {
                 to:      user.email,
                 from:    'v.anushka786@mail.com',
                 subject: 'Your password has been changed',
-                text:    'Hello,\n\n' +
+                text:    'Confirmation Mail!\n\n' +
                          'This is a confirmation that the password for your account ' + user.email + ' has been changed.\n'
             };
 
             smtpTransport.sendMail(mailOptions, function (err) {
-                // console.log("mail sent");
+                console.log("mail sent");
                 req.flash('success', 'Password successfully changed!');
                 done(err);
             });
         }
     ], function (err) {
-        res.redirect('/' + user._id + '/notes');
+        res.redirect('/');
+        // res.redirect('/' + user._id + '/notes');
     });
 });
 
@@ -400,7 +402,7 @@ app.get("/:id/notes", middleware.isAuthenticated, async function(req, res){
                     req.flash("error", "Something went wrong! Notes not found!" );
                     console.log(error);
                 }else{
-                    res.render("homepage", {user: user, notes: allNotes});
+                    res.render("note/all-notes", {user: user, notes: allNotes});
                 }
             });
         }
@@ -409,7 +411,7 @@ app.get("/:id/notes", middleware.isAuthenticated, async function(req, res){
     //     if(error){
     //         console.log(error);
     //     }else{
-    //         res.render("homepage", {notes:allNotes});            
+    //         res.render("note/all-notes", {notes:allNotes});            
     //     }
     // });
 });
@@ -745,7 +747,7 @@ app.get("/:id/notes/share", function(req, res){
 //                     req.flash("error", "Something went wrong! Notes not found!" );
 //                     console.log(error);
 //                 }else{
-//                     res.render("homepage", {user: user, notes:allNotes});            
+//                     res.render("note/all-notes", {user: user, notes:allNotes});            
 //                 }
 //             });
 //         }
@@ -799,7 +801,7 @@ app.get("/:id/notes/new", middleware.isAuthenticated, function(req, res){
                     req.flash("error", "Something went wrong! Notes not found!" );
                     console.log(error);
                 }else{
-                    res.render("new", {user: user, note: note});
+                    res.render("note/new", {user: user, note: note});
                 }
             });
         }
@@ -814,7 +816,7 @@ app.get("/:id/notes/:note_id/edit", middleware.isAuthenticated, function(req, re
         if(error){
             res.redirect("back");
         }else{
-            res.render("edit", {user_id: req.params.id, note: foundNote}); 
+            res.render("note/edit", {user_id: req.params.id, note: foundNote}); 
         }
     });
    

@@ -1,0 +1,576 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700');
+@import url("https://use.fontawesome.com/releases/v5.8.1/css/all.css");
+
+/* SIDEBAR */
+#body-row {
+    margin-left:0;
+    margin-right:0;
+    float: left;
+}
+#sidebar-container {
+    position:fixed;
+    left:0;
+    top:20%; 
+    height: 364px;
+    margin: auto 0;
+    background-image: linear-gradient(to right, rgb(0, 0, 0), rgba(58, 33, 19, 0.9));
+    filter: drop-shadow(7px 7px 4px rgba(58, 33, 19, 0.5));
+    border-radius: 5px;
+    padding: 0;
+    /* -webkit-transition: ease-in-out 0.5s;
+    transition: ease-in-out 0.5s; */
+}
+/* SIDEBAR SIZES */
+.sidebar-expanded {
+    width: 150px;
+}
+.sidebar-collapsed {
+    width: 60px;
+}
+/* MENU ITEM */
+#sidebar-container .list-group a {
+    height: 50px;
+    color: white;
+    border: none;
+    padding: 8px 5px;
+    background-image: linear-gradient(to right, rgb(22, 9, 1), rgba(58, 33, 19, 0.9));
+}
+#sidebar-container .list-group a:hover {
+  background:#121213;
+  -webkit-transition: background 0.5s;
+  transition: background 0.5s;
+}
+#sidebar-container .fa {
+    padding-top: 2.5px;
+    padding-bottom: 5px;
+    font-size: 26px;
+    text-align: center;
+    color: #FFF;
+    border: none;
+}
+#sidebar-container #collapse-text{
+    font-size: 20px;
+}
+#sidebar-container .new-note-dropdown {
+    font-size: 18px;
+    padding-right: 0;
+}
+/* SUBMENU ITEM */
+#sidebar-container .list-group .sidebar-submenu a {
+    height: 45px;
+    background-image: linear-gradient(to right, rgb(22, 9, 1), rgba(58, 33, 19, 0.9));  
+}
+.sidebar-submenu {
+    font-size: 0.9rem;
+}
+/* SEPARATORS */
+.sidebar-separator-title {
+    background-color: #3a2113;
+    height: 35px;
+}
+.sidebar-separator {
+    background-color: #3a2113;
+    height: 25px;
+}
+.logo-separator {
+    background-color: #3a2113;    
+    height: 60px;
+}
+#sidebar-container .fa-clipboard{
+    padding-left: 3px;
+}
+#sidebar-container .note i::before{
+    font-size: 20px;
+}
+#sidebar-container .note .div{
+    text-align: center;
+}
+/* CLOSED SUBMENU */
+#sidebar-container .list-group .list-group-item[aria-expanded="false"] .submenu-icon::after{
+    content: " \f0da";
+    font-family: 'FontAwesome';
+    display: inline;
+    text-align: right;
+    padding-left: 1px;
+}
+/* OPENED SUBMENU ICON */
+#sidebar-container .list-group .list-group-item[aria-expanded="true"] .submenu-icon::after {
+  content: " \f0da";
+  font-family: 'FontAwesome';
+  display: inline;
+  text-align: right;
+  padding-left: 1px;
+}
+.show-text{
+    display: none !important;
+}
+/* SIDEBAR END */
+
+
+/* ALL NOTES */
+input#title{
+    max-width: 100%;
+    padding: 5px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    outline: none;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    height: 50px;
+    font-size: 40px;
+    font-weight: 800;
+}
+
+
+/* BLANK NOTE */
+.blank-section{
+  margin-top: 80px;
+}
+.blank-section textarea{
+  text-align: left;
+}
+/* BLANK NOTE END*/
+
+
+/* TO-DO LIST */
+.to-do-container .completed {
+    color: gray;
+    text-decoration: line-through;
+}
+.to-do-container {
+    margin: 50px auto;
+    margin-top: 150px;
+    width: 400px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
+}
+.to-do-container h1 {
+    background-color: rgba(58, 33, 19, 0.85);
+    margin: 0;
+    padding: 10px;
+    color:white;
+    text-align: center;
+    font-weight: 700;
+    font-size: 30px;
+}
+.to-do-container span{
+    float: left;
+}
+.to-do-container .fa-plus {
+    padding-right: 7px;
+    margin-top: 5px;
+    text-align: center;
+    font-size: 24px;
+    float: right;
+}
+.to-do-container .fa-plus:hover {
+    cursor: pointer;
+}
+.to-do-container input[type=text]{
+    width: 81%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-size: 25px;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    outline: none;
+}
+.to-do-container input[type=text]:first-child{
+    width: 100%;
+}
+.to-do-container input[type=text]:focus {
+    border: none;
+    box-shadow: none;
+    outline: none;
+}
+.to-do-container input[type=text]::placeholder{
+    text-align: center;
+    font-size: large;
+}
+.to-do-container ul {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+}
+.to-do-container li {
+    background-color: #fff;
+    height: 40px;
+    line-height: 40px;
+    cursor: pointer;
+}
+.to-do-container li:nth-child(2n-1){
+    background-color: rgb(175, 134, 115);
+}
+.to-do-container li:nth-child(2n){
+    background-color:#FFF;
+}
+.to-do-container span {
+    width: 0px;
+    color: #fff;
+    background-color: #e74c3c;
+    display: inline-block;
+    text-align: center;
+    margin-right: 20px;
+    transition: 0.5s linear;
+    opacity: 0;
+}
+.to-do-container li:hover span {
+    width: 40px;
+    transition: 0.5s linear;
+    opacity: 1.0;
+}
+.to-do-section .btn{
+    text-transform: uppercase;
+    background-color: #3a2113;
+    color: #FFF;
+    padding-top: 12px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-bottom: 14px;
+}
+.to-do-section .btn:hover{
+    background-color: rgba(58, 33, 19, 0.8);
+    color: #FFF;
+}
+.to-do-section .btn i{
+    margin-left: 3px;
+    height: 18px;
+    width: 18px;
+    color: #FFF;
+}
+/* TO-DO LIST END */
+
+
+/* LECTURE NOTES */
+.lecture-section{
+    margin-top: 80px; 
+}
+.lecture-section textarea{
+    margin-top: 8px; 
+}
+/* LECTURE NOTES END*/
+
+
+/* MEETING & MEAL PLANNER SECTION */
+.meeting-section,
+.meal-planner-section,
+.daily-reflection-section{
+  margin-top: 90px;
+}
+.meeting-section div.title-container{
+    height: 60px;
+}
+.meeting-section label{
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 18px;
+    color: #333;
+    height: 30px;
+    width: 130px;   
+    text-align: left;
+    clear: both;
+    float:left;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.meeting-section .inputs{
+    outline: none;
+    border: none;
+}
+.meeting-section input#meetingDate,
+.meeting-section input#title,
+.meeting-section textarea {
+    height: 30px;
+    width: 78%;
+    max-width: 100%;
+    border: none;
+    float: left;
+    text-align: left;
+    padding: 5px;
+    margin-top: 10px;
+    margin-left: 10px;
+    outline: none;
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+}
+.meeting-section textarea#meetingAttendees {
+    margin-bottom: 20px;
+}
+.meeting-section input#title {
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+    height: 50px;
+    font-size: 40px;
+    font-weight: 800;
+}
+.meeting-section input#meetingDate:focus,
+.meeting-section input#title:focus,
+.meeting-section textarea:focus {
+    border-radius: 0;
+    border: none;
+    box-shadow: none;
+    outline: none;
+}
+.meeting-section table,
+.meal-planner-section table {
+	width: 800px;
+    border-collapse: collapse;
+    margin-bottom: 30px;
+    overflow: hidden;
+    position: relative;
+	box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+.meal-planner-section table{
+    width: 900px;
+}
+.meeting-section table tbody tr:nth-child(odd),
+.meal-planner-section table tbody tr:nth-child(odd) {
+    background: rgba(122, 120, 120, 0.1);
+}
+.meeting-section table tbody tr:nth-child(even),
+.meal-planner-section table tbody tr:nth-child(even) {
+    background-color: rgba(58, 33, 19, 0.5);
+}
+.meeting-section th,
+.meeting-section td,
+.meal-planner-section th,
+.meal-planner-section td {
+    padding-left: 0;
+	color: #FFF;
+}
+.meeting-section tr,
+.meeting-section td,
+.meal-planner-section tr,
+.meal-planner-section td {
+    padding-left: 0;
+	color: #000;
+}
+.meeting-section th,
+.meal-planner-section th {
+	text-align: left;
+}
+.meeting-section thead th,
+.meal-planner-section thead th {
+    padding: 15px;
+    text-align: center;
+    text-transform: uppercase;
+	background-color: rgb(58, 33, 19);
+}
+.meeting-section thead tr th div,
+.meal-planner-section thead tr th div{
+	background: #FFF;
+    position: absolute;
+    height: 22px;
+    width: 22px;
+    border-radius: 50%;
+}
+.meeting-section thead th a,
+.meal-planner-section thead th a{
+	color: rgb(58, 33, 19) ;
+}
+.meeting-section span {
+    float: left;
+    width: 0px;
+    color: #fff;
+    background-color: #e74c3c;
+    text-align: center;
+    margin-left: 0px;
+    transition: 0.5s linear;
+    opacity: 0;
+}
+.meeting-section tbody tr:hover span,
+.meal-planner-section tbody tr:hover span {
+    float: left;
+    width: 40px;
+    transition: 0.5s linear;
+    opacity: 1.0;
+}
+.meeting-section tbody tr:hover,
+.meal-planner-section tbody tr:hover {
+	background-color: rgba(255,255,255,0.3);
+}
+.meeting-section tbody td,
+.meal-planner-section tbody td {
+    border-right: 0.5px double rgba(58, 33, 19, 0.5);
+    border-bottom: 0.5px solid rgba(58, 33, 19, 0.5);
+    position: relative;
+}
+.meeting-section tbody td input,
+.meal-planner-section tbody td input{
+    margin: 0;
+    width: 82%;
+    background: transparent;
+    outline: none;
+    border: none;
+}
+.meeting-section tbody td:hover::before,
+.meal-planner-section tbody td:hover::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -9999px;
+    bottom: -9999px;
+    background-color: rgba(255,255,255,0.9);
+    z-index: -1;
+}
+.meal-planner-section #date{
+    height: 20px;
+    width: 520px;
+    max-width: 100%;
+    border: none;
+    float: left;
+    text-align: right;
+    padding: 15px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 15px;
+    box-shadow: none;
+}
+.meal-planner-section #dateLabel{
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 18px;
+    color: #333;
+    height: 20px;
+    width: 250px;   
+    text-align: left;
+    clear: both;
+    float:left;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 15px;
+}
+/* MEETING & MEAL PLANNER SECTION */
+
+
+/* DAILY REFLECTION SECTION */
+.daily-reflection-section .input-group{
+    display: block;
+}
+.daily-reflection-section label{
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 18px;
+    color: #333;
+    height: 30px;
+    width: 38%;   
+    text-align: left;
+    clear: both;
+    float:left;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+.daily-reflection-section label i{
+    color: rgb(58, 33, 19);
+}
+.daily-reflection-section textarea,
+.daily-reflection-section input#date{
+    height: 30px;
+    width: 55%;
+    max-width: 100%;
+    border: none;
+    box-shadow: none;
+    float: left;
+    text-align: right;
+    padding: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-left: 10px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+.daily-reflection-section input#date{
+    margin-bottom: 1%;
+}
+.daily-reflection-section textarea:hover,
+.daily-reflection-section textarea:focus{
+    border: none;
+    box-shadow: none;
+}
+.daily-reflection-section .submit-btn{
+    text-align: justify;
+}
+.daily-reflection-section .btn{
+    margin-top: 2%;
+}
+/* DAILY REFLECTION SECTION END */
+
+.btn{
+    text-transform: uppercase;
+    background-color: #3a2113;
+    color: #FFF;
+    padding-top: 12px;
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-bottom: 14px;
+}
+
+/* BUTTON */
+.container .button-container{
+    text-align: center;
+    margin-top: 5%;
+}
+.container .button {
+    display: inline-block;
+    font-family: "Montserrat", "Trebuchet MS", Helvetica, sans-serif;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    padding: .8em 1.4em;
+    padding-right: 4.1em;
+    background: rgba(58, 33, 19, 0.85);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    transition: .2s;
+    text-transform: uppercase;
+    min-width: 11em;
+  }
+.container .button::before,
+.container .button::after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    padding-top: inherit;
+    padding-bottom: inherit;
+    width: 2.8em;
+    content: "\00a0";
+    font-family: 'FontAwesome', sans-serif;
+    font-size: 1.1em;
+    text-align: center;
+    transition: .2s;
+    transform-origin: 50% 60%;
+}
+.container .button::before {
+    background: rgba(0, 0, 0, 0.29999999999999998);
+}
+.container .button:hover {
+    background: rgba(58, 33, 19, 0.75);
+}
+.container .button:active,
+.container .button:focus {
+    background: rgb(58, 33, 19);
+    outline: none;
+}
+.container .save::after {
+    content: '\f0c7';
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+}
+.container .save:hover::after {
+    -webkit-animation: none;
+    -webkit-transform: scale(1.3);
+    animation: none;
+    transform: scale(1.3);
+}
+/* BUTTON END */
