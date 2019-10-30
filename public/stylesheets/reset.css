@@ -1,0 +1,103 @@
+@import url("https://use.fontawesome.com/releases/v5.8.1/css/all.css");
+
+.reset{
+    margin-top: 100px;
+}
+.reset h2{
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+}
+.reset .row {
+    margin-right: 0;
+    margin-left: 0;
+}
+.reset label{
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-size: 18px;
+    color: #333;
+    height: 20px;
+    width: 200px;   
+    text-align: left;
+    clear: both;
+    float:left;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 15px;
+}
+.reset input[type=password]{
+    height: 20px;
+    width: 415px;
+    max-width: 100%;
+    border: none;
+    box-shadow: none;
+    float: left;
+    text-align: right;
+    padding: 15px;
+    margin-top: 10px;
+    margin-left: 10px;
+}
+.reset input[type=password]:focus{
+    color: #000;
+    border: none;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset, 0 0 8px rgba(58, 33, 19, 0.6);
+    outline: none;
+}
+.reset .button-container{
+    text-align: center;
+    margin-top: 5%;
+}
+.button {
+    display: inline-block;
+    font-family: "Montserrat", "Trebuchet MS", Helvetica, sans-serif;
+    font-weight: 700;
+    -webkit-font-smoothing: antialiased;
+    position: relative;
+    padding: .8em 1.4em;
+    padding-right: 4.1em;
+    background: rgba(58, 33, 19, 0.85);
+    border: none;
+    border-radius: 5px;
+    color: white;
+    transition: .2s;
+    text-transform: uppercase;
+    min-width: 11em;
+  }
+.button::before,
+.button::after {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    padding-top: inherit;
+    padding-bottom: inherit;
+    width: 2.8em;
+    content: "\00a0";
+    font-family: 'FontAwesome', sans-serif;
+    font-size: 1.1em;
+    text-align: center;
+    transition: .2s;
+    transform-origin: 50% 60%;
+}
+.button::before {
+    background: rgba(0, 0, 0, 0.29999999999999998);
+}
+.button:hover {
+    background: rgba(58, 33, 19, 0.75);
+}
+.button:active,
+.button:focus {
+    background: rgb(58, 33, 19);
+    outline: none;
+}
+.update::after {
+    content: '\f591';
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+}
+.update:hover::after {
+    -webkit-animation: none;
+    -webkit-transform: scale(1.3);
+    animation: none;
+    transform: scale(1.3);
+}
