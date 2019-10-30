@@ -126,7 +126,35 @@ input#title{
     font-weight: 800;
     text-transform: uppercase;
 }
-
+@keyframes size-animation {
+    0%{
+        opacity: 1;
+    }
+    75%{
+        opacity: 0.5;
+    }
+    100%{
+        opacity: 0;
+    }  
+}
+@keyframes o {
+    0%{
+        transform: scale(0.1);
+        opacity: 0.2;
+    }
+    25%{
+        opacity: 0.4;
+    }
+    50%{
+        opacity: 0.8;
+    }
+    75%{
+        opacity: 0.9;
+    }
+    100%{
+        opacity: 1;
+    }  
+}
 
 /* BLANK NOTE */
 .blank-section{
@@ -372,7 +400,7 @@ input#title{
     height: 22px;
     width: 22px;
     border-radius: 50%;
-    padding-top: 0.4%;
+    padding-top: 0.25%;
 }
 .meeting-section thead th a,
 .meal-planner-section thead th a{

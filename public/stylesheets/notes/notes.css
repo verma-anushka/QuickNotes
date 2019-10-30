@@ -1,15 +1,16 @@
+/* USER NOTES */
 .home-container{
-    margin-top: 70px;
+  margin-top: 70px;
 }
 .home-container .row{
   margin-right: 0;
   margin-left: 0;
 }
+/* HEADER MESSAGE */
 .notes-container {
-    text-align: center;
+  text-align: center;
 }
 .notes-container h1 a{
-  /* right: 10%; */
   height: 34px;
   width: 34px;
   border-radius: 50%;
@@ -25,9 +26,7 @@
   padding: 5px;
   font-size: 24px;
 }
-#delete{
-    float: left; 
-}
+/* NOTES */
 .allNotes li div{
     padding-left: 40px; 
     height: 1px;
@@ -71,11 +70,15 @@
 .cbp-caption-activeWrap{
   position: relative;
 }
+/* FORMATTING */
 .formatting{
   margin: 0 auto;
   position: absolute;
   left: 35%;
   bottom: 5%;
+}
+#delete{
+  float: left; 
 }
 span button,
 span a{
@@ -94,6 +97,9 @@ span a{
   float: left;
   line-height: 2;
 }
+span a:focus{
+  color: #FFF;
+}
 span button{
   float: left;
   margin-right: 20px;
@@ -104,22 +110,14 @@ span:hover a{
   color: rgb(63, 36, 20);
   background-color: #FFF;
 }
-#shareNoteModal .fa,
-#shareNoteModal .fas{
-  height: 14px;
-  width: 14px;
-}
-#shareNoteModal .input-group-addon i{
-  text-align: center;
-}
-#shareNoteModal input[type="text"]:read-only{
-  background-color: rgba(63, 36, 20, 0.25);
-}
+/* USER NOTES */
+
+/* NO NOTES */
 .no-notes{
   text-align: center;
 }
 .no-notes .hero-image{
-  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)), url("../images/extra.jpg");
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)), url("../../images/extra.jpg");
   height: 550px;
   background-repeat: no-repeat;
   background-size: 100% 50%;
@@ -201,6 +199,7 @@ span:hover a{
 .no-notes a:hover{
   text-decoration: none;
 }
+/* TOOLTIPS */
 .tool {
   /* cursor: help; */
   position: relative;
@@ -266,3 +265,88 @@ span:hover a{
       width: 10em; 
   }
 }
+/* NO NOTES END */
+
+/* SHARE NOTES MODAL */
+#shareNoteModal .fa,
+#shareNoteModal .fas{
+  height: 14px;
+  width: 14px;
+}
+#shareNoteModal .input-group-addon i{
+  text-align: center;
+}
+#shareNoteModal input[type="text"]:read-only{
+  background-color: rgba(63, 36, 20, 0.25);
+}
+/* SHARE NOTES BUTTON */
+.shareNotesButton{
+  border-radius: 5px;
+  display: inline-block;
+  font-family: "Montserrat", "Trebuchet MS", Helvetica, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  text-transform: uppercase;
+  padding-top: 12px;
+  padding-left: 25px;
+  padding-right: 40px;
+  padding-bottom: 12px;
+  text-align: center;
+  color: #FFF;
+  background-color: rgb(63, 36, 20);
+  outline: none;
+  border: none;
+  transition: .2s;
+}
+.shareNotesButton:before,
+.shareNotesButton:after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  padding-top: inherit;
+  padding-bottom: inherit;
+  padding-right: 20px;
+  content: "\00a0";
+  font-family: 'FontAwesome', sans-serif;
+  text-align: center;
+  transition: .2s;
+  transform-origin: 50% 60%;
+}
+.shareNotesButton:before {
+  background:  fadeout(#000, 90%);
+}
+.shareNotesButton:hover {
+  background: darken(rgb(63, 36, 20), 10%);
+}
+.shareNotesButton:active,
+.shareNotesButton:focus {
+  background: darken(rgb(63, 36, 20), 30%);
+  outline: none;
+}
+.arrow {
+  background: rgb(63, 36, 20);   
+}
+.arrow:hover {
+  background: darken(rgb(63, 36, 20), 10%);
+}
+.arrow:active,
+.arrow:focus {
+  background: darken(rgb(63, 36, 20), 30%);
+}
+.arrow:after {
+  content: "\F054";
+}
+.arrow:hover:after {
+  -webkit-animation: bounceright .3s alternate ease infinite;
+  animation: bounceright .3s alternate ease infinite;
+}
+@-webkit-keyframes bounceright {
+  from { -webkit-transform: translateX(0); }
+  to   { -webkit-transform: translateX(3px); }
+}
+@keyframes bounceright {
+  from { transform: translateX(0); }
+  to   { transform: translateX(3px); }
+}
+/* SHARE NOTES MODAL END */
