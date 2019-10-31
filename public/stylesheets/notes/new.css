@@ -534,16 +534,6 @@ input#title{
 }
 /* DAILY REFLECTION SECTION END */
 
-.btn{
-    text-transform: uppercase;
-    background-color: #3a2113;
-    color: #FFF;
-    padding-top: 12px;
-    padding-left: 30px;
-    padding-right: 30px;
-    margin-bottom: 14px;
-}
-
 /* BUTTON */
 .container .button-container{
     text-align: center;

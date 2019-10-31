@@ -300,11 +300,11 @@ body {
 .modal .body{
   margin-bottom: 30px;
 }
-/* .modal .btn{
+.modal .btn{
   text-transform: uppercase;
   background-color: #3a2113;
   color: #FFF;
-  padding-top: 12px;
+  padding-top: 7px;
   padding-left: 30px;
   padding-right: 30px;
   margin-bottom: 14px;
@@ -318,7 +318,7 @@ body {
   height: 18px;
   width: 18px;
   color: #FFF;
-} */
+}
 
 /* LOGIN BUTTON */
 .loginButton{

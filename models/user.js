@@ -51,9 +51,11 @@ var UserSchema = new mongoose.Schema({
                }
               ],
     resetPasswordToken: String,
-    resetPasswordExpires: Date                      
+    resetPasswordExpires: Date      
+                    
 });
 
+// AUTHENTICATION
 UserSchema.plugin(passportLocalMongoose);
 
 // MODEL COMPILATION
