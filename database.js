@@ -1,6 +1,6 @@
 var mongoose = require("mongoose");
 
-// mongoose.connect("mongodb://localhost:27017/notes", { useNewUrlParser: true, useUnifiedTopology: true });
+// DATABASE
 mongoose.set('useFindAndModify', false);
 mongoose.connect("mongodb://localhost:27017/notes", {
     useCreateIndex: true,
