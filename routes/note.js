@@ -8,7 +8,7 @@ var express                = require("express"),
     Note                   = require("../models/notes");
     middleware             = require("../middleware");
 
-// NOTES SHARE
+// NOTES SHARE (SENDGRID)
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 // NOTES HOMEPAGE
