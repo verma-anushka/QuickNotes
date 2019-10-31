@@ -1,9 +1,11 @@
 $(document).ready(function(){
+
+    // DISPLAY FILE NAME
     $('input[type="file"]').change(function(e){
         var fileName = e.target.files[0].name;
         if( fileName ){
             $('span#filename').text(fileName);
-            console.log( $('span#filename').text());
+            // console.log( $('span#filename').text());
         }else{
             $('span#filename').text("Choose a file...");
         }  

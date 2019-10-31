@@ -1,14 +1,18 @@
 <% include partials/header.ejs %>
+
 <div class="user-profile">
     <div class="hero-image">
         <div class="container">
             <div class="row">
+
+                <!-- USER PROFILE FORM -->
                 <form action="/<%= user._id %>/profile/profileImg" method="POST" enctype="multipart/form-data">
+
+                    <!-- USER PROFILE IMAGE -->
                     <div class="col-md-offset-1 col-md-4 profile">
                         <div class="thumbnail">
                             <div class="img-container">
                                 <img class="avatar" src="<%= user.image%>" alt="Avatar">
-
                             </div>
                         </div>
                         <!-- <div class="caption">
@@ -21,6 +25,8 @@
                                     Change profile image!
                             <% } %> -->
                             <br />
+
+                            <!-- UPLOAD NEW IMAGE -->
                             <label for="image">
                                 <input type="file" id="image" name="image" accept="image/*" capture class="hidden">
                                 <img src="http://macgroup.org/blog/wp-content/uploads/2011/10/iphone-camera-icon-150x150.jpg"
@@ -32,31 +38,44 @@
                             </label>
                         </div>
                     </div>
+                    <!-- // USER PROFILE IMAGE -->
+
+                    <!-- USER INPUTS -->
                     <div class="col-md-7 inputs">
                         <div class="header">
                             <h1>My Profile</h1>
                             <i class="fa fa-id-card pull-right"></i>
                         </div>
+
+                        <!-- USERNAME -->
                         <div class="form-group">
                             <label for="username">Username </label>
                             <input class="form-control" type="text" id="username" name="user[username]"
                                 placeholder="Username" value="<%= user.username%>" disabled>
                         </div>
+
+                        <!-- EMAIL ID -->
                         <div class="form-group">
                             <label for="email">Email</label>
                             <input class="form-control" type="email" id="email" name="user[email]" placeholder="email"
                                 value="<%= user.email%>" disabled>
                         </div>
+
+                        <!-- FIRST NAME -->
                         <div class="form-group">
                             <label for="firstName">First Name</label>
                             <input class="form-control" type="text" id="firstName" name="user[firstName]"
                                 placeholder="First Name" value="<%= user.firstName%>">
                         </div>
+
+                        <!-- LAST NAME -->
                         <div class="form-group">
                             <label for="lastName">Last Name</label>
                             <input class="form-control" type="text" id="lastName" name="user[lastName]"
                                 placeholder="Last Name" value="<%= user.lastName%>">
                         </div>
+
+                        <!-- GENDER -->
                         <div class="form-group">
                             <label for="" class="gender">Gender:</label>
                             <div class="gender">
@@ -88,27 +107,40 @@
                                 <% }  %>
                             </div>
                         </div>
+
+                        <!-- CONTACT NUMBER -->
                         <div class="form-group">
                             <label for="contact">Contact</label>
                             <input class="form-control" type="number" id="contact" name="user[contact]"
                                 placeholder="Contact Number" value="<%= user.contact%>" min="1000000000"
                                 max="9999999999">
                         </div>
+
+                        <!-- ABOUT -->
                         <div class="form-group">
                             <label for="bio">Bio</label>
                             <textarea class="form-control bio" id="bio" name="user[bio]"
                                 placeholder="Tell us about yourself!" rows="10"
                                 maxlength="500"><%= user.bio%></textarea>
                         </div>
+
+                        <!-- SUBMIT BUTTON -->
                         <div class="row">
                             <div class="col-md-offset-5 col-md-2">
-                                <div class="form-group submit">
-                                    <button class="btn">Submit</button>
+                                <div class="form-group button-container">
+                                    <button type="submit" class="button save">Save</button>
                                 </div>
+                                <!-- <div class="form-group submit">
+                                    <button class="btn">Submit</button>
+                                </div> -->
                             </div>
                         </div>
                     </div>
+                    <!-- // USER INPUTS -->
+
                 </form>
+                <!-- // USER PROFILE FORM -->
+
             </div>
         </div>
     </div>
