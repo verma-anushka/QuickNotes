@@ -75,6 +75,7 @@ router.get("/:id/notes/share", function(req, res){
                                 '<p>' + note.description + '</p>' + 
                                 '<br>'	+ 
                                 '<br>'	+ 
+                                shareUser.receiverMsg +
                                 '<p>Keep using QuickNotes!' 
                     };
                 }else if(note.type === 'to-do'){
@@ -97,6 +98,7 @@ router.get("/:id/notes/share", function(req, res){
                                 '<p>' + todoList + '</p>' +
                                 '<br>'	+ 
                                 '<br>'	+ 
+                                shareUser.receiverMsg +
                                 '<p>Join QuickNotes today to enjoy making notes for free!'
                     };
                     msgToUser = {
@@ -112,6 +114,7 @@ router.get("/:id/notes/share", function(req, res){
                                 '<p>' + todoList + '</p>' +
                                 '<br>'	+ 
                                 '<br>'	+ 
+                                shareUser.receiverMsg +
                                 '<p>Keep using QuickNotes!</p>' 
                     };
                 }else if(note.type === 'meeting'){
@@ -131,6 +134,7 @@ router.get("/:id/notes/share", function(req, res){
                                 '<p>Attendees: ' + note.meetingAttendees + '</p>' +
                                 '<br>'	+ 
                                 '<br>'	+ 
+                                shareUser.receiverMsg +
                                 '<p>Join QuickNotes today to enjoy making notes for free!'
                     };
                     msgToUser = {
@@ -148,6 +152,7 @@ router.get("/:id/notes/share", function(req, res){
                                 '<p>Attendees: ' + note.meetingAttendees + '</p>' +
                                 '<br>'	+ 
                                 '<br>'	+ 
+                                shareUser.receiverMsg +
                                 '<p>Keep using QuickNotes!' 
                     };
                 }else if(note.type === 'daily-reflection'){
@@ -162,6 +167,7 @@ router.get("/:id/notes/share", function(req, res){
                                 '<br>'	+ 
                                 '<h4>Notes Details!</h4>' + 
                                 '<h3>' + note.title + '</h3>' + 
+                                '<h4>' + note.startDate + '</h4>' + 
                                 '<h4>What went well today?!</h4>' +
                                 '<p>' + note.dailyReflection[0] + '</p>' +
                                 "<h4>What didn't go as planned?!</h4>" +
@@ -172,6 +178,7 @@ router.get("/:id/notes/share", function(req, res){
                                 '<p>' + note.dailyReflection[3] + '</p>' +
                                 '<br>'	+ 
                                 '<br>'	+ 
+                                shareUser.receiverMsg +
                                 '<p>Join QuickNotes today to enjoy making notes for free!'
                     };
                     msgToUser = {
@@ -184,6 +191,7 @@ router.get("/:id/notes/share", function(req, res){
                                 '<br>'	+ 
                                 '<h4>Notes Details!</h4>' +
                                 '<h3>' + note.title + '</h3>' + 
+                                '<h4>' + note.startDate + '</h4>' + 
                                 '<h4>What went well today?!</h4>' +
                                 '<p>' + note.dailyReflection[0] + '</p>' +
                                 "<h4>What didn't go as planned?!</h4>" +
@@ -194,6 +202,7 @@ router.get("/:id/notes/share", function(req, res){
                                 '<p>' + note.dailyReflection[3] + '</p>' +
                                 '<br>'	+ 
                                 '<br>'	+ 
+                                shareUser.receiverMsg +
                                 '<p>Keep using QuickNotes!' 
                     };
                 }else if(note.type === 'meal-planner'){
@@ -208,6 +217,7 @@ router.get("/:id/notes/share", function(req, res){
                                 '<br>'	+ 
                                 '<h4>Notes Details!</h4>' + 
                                 '<h3>' + note.title + '</h3>' + 
+                                '<h4>' + note.startDate + '</h4>' + 
                                 '<table id="tblData">' +          
                                     '<thead>' +
                                         '<tr>' +
@@ -264,6 +274,7 @@ router.get("/:id/notes/share", function(req, res){
                                 '</table>' +
                                 '<br>'	+ 
                                 '<br>'	+ 
+                                shareUser.receiverMsg +
                                 '<p>Join QuickNotes today to enjoy making notes for free!'
                     };
                     msgToUser = {
@@ -276,6 +287,7 @@ router.get("/:id/notes/share", function(req, res){
                                 '<br>'	+ 
                                 '<h4>Notes Details!</h4>' +
                                 '<h3>' + note.title + '</h3>' + 
+                                '<h4>' + note.startDate + '</h4>' + 
                                 '<table id="tblData">' +          
                                     '<thead>' +
                                         '<tr>' +
@@ -332,6 +344,7 @@ router.get("/:id/notes/share", function(req, res){
                                 '</table>' +
                                 '<br>'	+ 
                                 '<br>'	+ 
+                                shareUser.receiverMsg +
                                 '<p>Keep using QuickNotes!' 
                     };
                 }
