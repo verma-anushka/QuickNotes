@@ -65,6 +65,11 @@ app.use("/", noteRoutes);
 
 
 // PORT SETTINGS
+var url=process.env.DATABASEURL || "mongodb://localhost:27017/notes";
+mongoose.connect(url, { useNewUrlParser: true })
+        .then(() => console.log(`Database connected`))
+        .catch(err => console.log(`Database connection error: ${err.message}`));
+
 app.set('port', process.env.PORT || 3000);
 app.listen(app.get('port'), function(){
     console.log('Server listening on port', app.get('port'));
