@@ -104,6 +104,77 @@
 .show-text{
     display: none !important;
 }
+/* TOOLTIPS */
+#sidebar-container .tool {
+    /* cursor: help; */
+    position: relative;
+}
+#sidebar-container .tool::before,
+#sidebar-container .tool::after {
+    top: 10%;
+    left: 50%;
+    opacity: 0;
+    position: absolute;
+    z-index: -100;
+}
+#sidebar-container .tool:hover::before,
+#sidebar-container .tool:focus::before,
+#sidebar-container .tool:hover::after,
+#sidebar-container .tool:focus::after {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    z-index: 100; 
+}
+#sidebar-container .tool::before {
+    border-style: solid;
+    border-width: 0 0.75em 1em 0.75em;
+    border-color:  transparent transparent rgb(255, 255, 255) transparent;
+    bottom: 1%;
+    content: "";
+    margin-bottom: 0;
+    margin-left: -0.5em;
+    transition: all .65s cubic-bezier(.84,-0.18,.31,1.26), opacity .65s .5s;
+    transform:  scale(.6) translateY(-90%);
+} 
+#sidebar-container .tool:hover::before,
+#sidebar-container .tool:focus::before {
+    transition: all .65s cubic-bezier(.84,-0.18,.31,1.26) .2s;
+}
+#sidebar-container .tool::after {
+    text-align: center;
+    color: rgb(63, 36, 20);
+    border-radius: .25em;
+    bottom: 100%;
+    background: #fff;
+    content: attr(data-tip);
+    margin-left: -3.5em;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    transition: all .65s cubic-bezier(.84,-0.18,.31,1.26) .2s;
+    transform:  scale(.6) translateY(50%);  
+    width: 7.5em;
+    height: 2em;
+    top: 100%;
+}
+#sidebar-container .daily-reflection .tool::before,
+#sidebar-container .meal-planner .tool::before{
+    bottom: -40%;
+}
+#sidebar-container .daily-reflection .tool::after,
+#sidebar-container .meal-planner .tool::after{
+    top: 140%;
+}
+#sidebar-container .tool:hover::after,
+#sidebar-container .tool:focus::after  {
+    transition: all .65s cubic-bezier(.84,-0.18,.31,1.26);
+}
+@media (max-width: 760px) {
+    .tool::after { 
+        font-size: .75em;
+        margin-left: -5em;
+        width: 10em; 
+    }
+}
 /* SIDEBAR END */
 
 
