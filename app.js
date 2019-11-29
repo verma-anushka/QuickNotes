@@ -17,6 +17,7 @@ var express                = require("express"),
 
 var app = express();
 
+
 // DATABASE
 // var db = require('./database.js');
 
@@ -68,15 +69,6 @@ app.use("/", indexRoutes);
 app.use("/", userRoutes);
 app.use("/", noteRoutes);
 
-
-// PORT SETTINGS
-var url=process.env.DATABASEURL || "mongodb://localhost:27017/notes";
-mongoose.connect(url, { useCreateIndex: true,
-                        useNewUrlParser: true,
-                        useUnifiedTopology: true
-                     })
-        .then(() => console.log(`Database connected`))
-        .catch(err => console.log(`Database connection error: ${err.message}`));
 
 app.set('port', process.env.PORT || 3000);
 app.listen(app.get('port'), function(){

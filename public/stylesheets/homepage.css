@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,,800,900);
+
 /* GENERAL SETTINGS */
 *{
     margin: 0;
@@ -28,7 +30,6 @@
     transform: translate(-50%, -50%);
     position: absolute;
     letter-spacing: 2px;
-    text-align: center;
 }
 .home-slider h1{
     font-size: 50px;
@@ -70,6 +71,207 @@
         background-image: url("../images/bg5.jpg");
     }
 }
+
+/* HEADING */
+.wrapper {
+	margin-top: -80px;
+	width: 700px;
+	text-align: center;
+}
+.wrapper h1 {
+	color: #fff;
+	font-size: 82px;
+	font-family: 'Raleway', sans-serif;
+	text-transform: uppercase;
+	font-weight: 700;
+	background: linear-gradient(to right, rgba(0,0,0,0.1) 1%, rgb(116,75,45,0.1) 5%, #fff 10%, rgb(200,200,200) 90%);
+	background-size: auto auto;
+	background-clip: border-box;
+	background-size: 200% auto;
+	color: #fff;
+	background-clip: text;
+	/* text-fill-color: transparent; */
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	animation: textclip 1.5s linear infinite;
+	display: inline-block;
+}
+@keyframes textclip {
+	to {
+		background-position: 200% center;
+	}
+}
+
+/* ALL NOTES */
+.content .main{
+    margin: auto;
+}
+.sb-container {
+	position: relative;
+	width: 100px;
+	height: 300px;
+	margin: 30px auto 0 auto;
+}
+.sb-container div {
+    position: absolute;
+	top: 0;
+	left: 0; 
+	width: 130px;
+	background: #fff;
+	height: 300px;
+	box-shadow: 
+		-1px -1px 3px rgba(0,0,0,0.2);
+	cursor: pointer;
+	text-align: center;
+	background:  linear-gradient(rgba(63,36,20,.5), rgba(63,36,20,.5)), url(../images/cartboard.jpg) repeat center center;
+	
+	-webkit-transform-origin: 25% 90%;
+	-moz-transform-origin: 25% 90%;
+	-o-transform-origin: 25% 90%;
+	-ms-transform-origin: 25% 90%;
+	transform-origin: 25% 90%;
+	
+	-webkit-backface-visibility: hidden;
+	-moz-backface-visibility: hidden;
+	-ms-backface-visibility: hidden;
+	-o-backface-visibility: hidden;
+	backface-visibility: hidden;
+	
+	-webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+.sb-container div:nth-child(even){
+	background-position: top left;
+}
+.sb-container div:nth-child(1){
+	box-shadow: -1px -1px 3px rgba(0,0,0,0.2), 1px 1px 1px rgba(0,0,0,0.1);
+}
+.sb-container div:nth-child(2){
+	box-shadow: -1px -1px 3px rgba(0,0,0,0.2), 2px 2px 1px rgba(0,0,0,0.2);
+}
+.sb-container div:nth-child(3){
+	box-shadow: -1px -1px 3px rgba(0,0,0,0.2), 3px 3px 2px rgba(0,0,0,0.3);
+}
+.sb-container div:nth-child(4){
+	box-shadow: -1px -1px 3px rgba(0,0,0,0.2), 4px 4px 4px rgba(0,0,0,0.4);
+}
+.sb-container div:nth-child(5){
+	box-shadow: -1px -1px 3px rgba(0,0,0,0.2), 5px 5px 6px rgba(0,0,0,0.5);
+}
+.sb-container div:nth-child(6){
+	box-shadow: -1px -1px 3px rgba(0,0,0,0.2), 6px 6px 8px rgba(0,0,0,0.6);
+}
+.sb-container div:nth-child(7){
+	box-shadow: -1px -1px 3px rgba(0,0,0,0.2), 7px 7px 10px rgba(0,0,0,0.7);
+}
+.sb-container div:after{
+	content: '';
+	position: absolute;
+	bottom: 15px;
+	left: 15px;
+	width: 20px;
+	height: 20px;
+	border-radius: 50%;
+	background: #dddddd;
+	background: -moz-linear-gradient(-45deg, #dddddd 0%, #rgb(63,36,20) 48%, #889396 100%);
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#dddddd), color-stop(48%,#rgb(63,36,20)), color-stop(100%,#889396));
+	background: -webkit-linear-gradient(-45deg, #dddddd 0%,#rgb(63,36,20) 48%,#889396 100%);
+	background: -o-linear-gradient(-45deg, #dddddd 0%,rgb(63,36,20) 48%,#889396 100%);
+	background: -ms-linear-gradient(-45deg, #dddddd 0%,rgb(63,36,20) 48%,#889396 100%);
+	background: linear-gradient(135deg, #dddddd 0%,rgb(63,36,20) 48%,#889396 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dddddd', endColorstr='#889396',GradientType=1 );
+	box-shadow: -1px -1px 1px rgba(0,0,0,0.7), 1px 1px 1px rgba(255,255,255,0.1);
+}
+.sb-container div h4{
+
+	color: rgba(255,255,255,0.9);
+	text-shadow: 1px 1px 1px rgba(0,0,0,0.2);
+	font-weight: 700;
+	font-size: 16px;
+	text-transform: uppercase;
+	border-top: 1px dashed rgba(0,0,0,0.1);
+	border-bottom: 1px dashed rgba(0,0,0,0.1);
+	margin: 5px;
+	padding: 5px;
+	
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+.sb-container div h4{
+	background: rgba(0,0,0,0.2);
+	box-shadow: 0 1px 1px rgba(255,255,255,0.1);
+}
+/* .sb-container div h5{
+	white-space: nowrap;
+	text-align: left;
+    margin: 0;
+    padding: 0 8px; 
+	position: absolute;
+	line-height: 50px;
+	top: 5%;
+	left: -25%;
+	text-shadow: -1px -1px 1px rgba(255,255,255,0.1);
+	text-transform: uppercase;
+	
+	-webkit-transform: rotate(-90deg) translateX(-157%) translateY(73px);
+	-moz-transform: rotate(-90deg) translateX(-157%) translateY(73px);
+	-o-transform: rotate(-90deg) translateX(-157%) translateY(73px);
+	-ms-transform: rotate(-90deg) translateX(-157%) translateY(73px);
+	transform: rotate(-90deg) translateX(-157%) translateY(73px);
+	
+	-webkit-transform-origin: 0 0;
+	-moz-transform-origin: 0 0;
+	-o-transform-origin: 0 0;
+	-ms-transform-origin: 0 0;
+	transform-origin: 0 0;
+	
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+} */
+.sb-container span.daily{
+    font-size: 15px;
+}
+span.sb-icon{
+	display: block;
+	height: 70px;
+	width: 70px;
+	margin: 20px auto;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+span.sb-icon:before {
+	font-family: 'Font Awesome\ 5 Free';
+	font-style: normal;
+	font-weight: 900;
+	/* speak: none; */
+	display: block;
+	text-decoration: inherit;
+	text-align: center;
+	text-shadow: 1px 1px 1px rgba(127, 127, 127, 0.3); 
+	line-height: 64px;
+	width: 100%;
+	font-size: 60px;
+	color: rgba(63,36,20,0.8);
+	text-shadow: 1px 1px 1px rgba(255,255,255,0.3);
+}
+.icon-blank:before { content: "\f249"; }
+.icon-to-do:before { content: "\f46d"; }
+.icon-lecture:before { content: "\f1c2"; }
+.icon-meeting:before { content: "\f2b5"; }
+.icon-daily-reflection:before { content: "\f6c4"; }
+.icon-meal-planner:before { content: "\f2e7"; }
+
 
 /* SIGNUP FORM (BUTTON) */
 .signUpButton{
