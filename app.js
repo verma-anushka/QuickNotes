@@ -12,19 +12,12 @@ var express                = require("express"),
     LocalStrategy          = require("passport-local"),
     passportLocalMongoose  = require("passport-local-mongoose"),
     middleware             = require("./middleware"),
-    path = require("path"),
-    favicon = require('serve-favicon');
+    path                   = require("path"),
+    favicon                = require('serve-favicon');
 
 var app = express();
+var db = require('./database.js');
 
-// DATABASE SETTINGS
-var url=process.env.DATABASEURL || "mongodb://localhost:27017/notes";
-mongoose.connect(url, { useCreateIndex: true,
-                        useNewUrlParser: true,
-                        useUnifiedTopology: true
-                     })
-        .then(() => console.log(`Database connected`))
-        .catch(err => console.log(`Database connection error: ${err.message}`));
 
 // MODELS
 var User = require("./models/user");
