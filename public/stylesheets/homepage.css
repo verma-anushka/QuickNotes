@@ -172,9 +172,9 @@
 	height: 20px;
 	border-radius: 50%;
 	background: #dddddd;
-	background: -moz-linear-gradient(-45deg, #dddddd 0%, #rgb(63,36,20) 48%, #889396 100%);
-	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#dddddd), color-stop(48%,#rgb(63,36,20)), color-stop(100%,#889396));
-	background: -webkit-linear-gradient(-45deg, #dddddd 0%,#rgb(63,36,20) 48%,#889396 100%);
+	background: -moz-linear-gradient(-45deg, #dddddd 0%, rgb(63,36,20) 48%, #889396 100%);
+	background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#dddddd), color-stop(48%,rgb(63,36,20)), color-stop(100%,#889396));
+	background: -webkit-linear-gradient(-45deg, #dddddd 0%,rgb(63,36,20) 48%,#889396 100%);
 	background: -o-linear-gradient(-45deg, #dddddd 0%,rgb(63,36,20) 48%,#889396 100%);
 	background: -ms-linear-gradient(-45deg, #dddddd 0%,rgb(63,36,20) 48%,#889396 100%);
 	background: linear-gradient(135deg, #dddddd 0%,rgb(63,36,20) 48%,#889396 100%);
