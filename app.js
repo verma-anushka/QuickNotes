@@ -10,6 +10,7 @@ var express                = require("express"),
     methodOverride         = require("method-override"),
     passport               = require("passport"),
     LocalStrategy          = require("passport-local"),
+    FacebookStrategy       = require('passport-facebook'),
     GoogleStrategy         = require("passport-google-oauth20"),
     passportLocalMongoose  = require("passport-local-mongoose"),
     middleware             = require("./middleware"),
@@ -92,6 +93,12 @@ var StrategyCallback = function (accessToken, refreshToken, profile, cb) {
         })
     })
 }
+
+passport.use(new FacebookStrategy({
+    clientID: process.env.FB_CLIENT_ID,
+    clientSecret: process.env.FB_CLIENT_SECRET,
+    callbackURL: 'http://localhost:3000/login/facebook/return'
+}, StrategyCallback));
 
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID,
