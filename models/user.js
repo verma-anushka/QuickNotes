@@ -9,9 +9,9 @@ var UserSchema = new mongoose.Schema({
                 required: true 
               },
     email:    { 
-                type: String, 
-                unique: true,
-                required: true 
+                type: String
+                // unique: true,
+                // required: true 
               },
     firstName: {
                 type: String, 
@@ -50,6 +50,9 @@ var UserSchema = new mongoose.Schema({
                 ref: "Note" 
                }
               ],
+    token:    {
+                type: String,
+              },
     resetPasswordToken: String,
     resetPasswordExpires: Date      
                     

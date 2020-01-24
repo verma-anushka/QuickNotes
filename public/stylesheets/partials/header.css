@@ -320,6 +320,7 @@ body {
   color: #FFF;
 }
 
+
 /* LOGIN BUTTON */
 .loginButton{
   border-radius: 5px;
@@ -389,4 +390,65 @@ to   { -webkit-transform: translateX(3px); }
 @keyframes bounceright {
 from { transform: translateX(0); }
 to   { transform: translateX(3px); }
+}
+
+/* .loginForm .auth{
+  padding: 20px;
+  text-align: center;
+}
+.loginForm .icon {
+  margin-left: 1em;
+  margin-bottom: 3em;
+}   
+.loginForm .facebook_button {
+  color: white;
+  background-color: #3b5998;
+  border-radius: 2em;
+}
+.loginForm .google_button {
+  color: white;
+  background-color: #DD4B39;
+  border-radius: 2em;
+}
+.loginForm .facebook_icon_div {
+  background-color: #3b5998;
+} */
+
+.social-login a {
+  border: 1px solid #DDDDDD;
+  border-radius: 50%;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  /* margin: 0 5px; */
+  height: 55px;
+  width: 55px;
+  color: #333;
+  font-size: 14px;
+  text-decoration: none;
+}
+.social-login a:hover {
+  text-decoration: none;
+}
+/* .social-login a i {
+
+} */
+.social-login .facebook-icon {
+  color: white;
+  background-color: #3b5998;
+}
+.social-login .google-icon {
+  color: white;
+  background-color: #DD4B39;
+}
+
+.social-login p {
+  margin-bottom: -10px;
+  margin-top: 12px;
+}
+.social-login hr {
+  margin-top: 0px;
+  margin-bottom: 20px;
+  border: 0;
+  border-top: 1.2px solid #bbb;
 }

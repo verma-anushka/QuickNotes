@@ -10,6 +10,7 @@ var express                = require("express"),
     methodOverride         = require("method-override"),
     passport               = require("passport"),
     LocalStrategy          = require("passport-local"),
+    GoogleStrategy         = require("passport-google-oauth20"),
     passportLocalMongoose  = require("passport-local-mongoose"),
     middleware             = require("./middleware"),
     path                   = require("path"),
@@ -42,8 +43,8 @@ app.use(flash());
 // PASSPORT CONFIGURATION
 app.use(require("express-session")({
     secret: "anything",
-    resave: false,
-    saveUninitialized: false
+    resave: true,
+    saveUninitialized: true
 }));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -60,6 +61,43 @@ app.use(function(req, res, next){
     res.locals.success = req.flash("success");
     next();
 });
+
+app.use(require('morgan')('combined'));
+app.use(require('cookie-parser')());
+
+var StrategyCallback = function (accessToken, refreshToken, profile, cb) {
+    process.nextTick(function () {
+        // console.log(profile);
+        User.findOne({ username: profile.displayName }).exec(function (err, UserFromFacebook) {
+            if (err) {
+                return cb(err);
+            }
+            if (UserFromFacebook) {
+                return cb(null, UserFromFacebook);
+            } else {
+                var NewUser = new User();
+                // NewUser.firstName = profile.displayName;
+                NewUser.username = profile.displayName;
+                // NewUser.email = profile.email;
+                NewUser.token = accessToken;
+                // console.log(NewUser);
+                NewUser.save(function (err) {
+                    if (err) {
+                        console.log(err);
+                    }
+                })
+
+                return cb(null, NewUser);
+            }
+        })
+    })
+}
+
+passport.use(new GoogleStrategy({
+    clientID: process.env.GOOGLE_CLIENT_ID,
+    clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+    callbackURL: "http://localhost:3000/google/auth/callback"
+}, StrategyCallback));
 
 
 // ROUTES

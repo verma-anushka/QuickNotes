@@ -57,6 +57,31 @@
 </head>
 
 <body onload="myFunction()">
+        
+    <script>
+        window.fbAsyncInit = function() {
+            FB.init({
+                appId      : '459015551680779',
+                cookie     : true,
+                xfbml      : true,
+                version    : 'v5.0'
+            });
+                
+            FB.AppEvents.logPageView();   
+                
+        };
+    
+        (function(d, s, id){
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) {return;}
+            js = d.createElement(s); js.id = id;
+            js.src = "https://connect.facebook.net/en_US/sdk.js";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v5.0&appId=459015551680779&autoLogAppEvents=1"></script>
 
     <!-- PRELOADER -->
     <!-- <div class="preloader"></div> -->
@@ -150,6 +175,33 @@
                     </div>
 
                     <!-- MODAL BODY -->
+                    <div class="social-login">
+
+                        <a href="/login/facebook" class="social facebook-icon"><i class="fab fa-facebook-f fa-2x"></i></a>
+                        <a href="/login/google" class="social google-icon"><i class="fab fa-google-plus-g fa-2x"></i></a>
+
+                        <p>or</p>
+                        <hr />
+                        <!-- <div class="row">
+                            <div class="col-md-6">
+                                <button class="form-control facebook_button">
+                                            <a class="auth-content" href="/login/facebook">
+                                                Sign In with Facebook Account
+                                                <i class="fab fa-facebook fa-lg icon" aria-hidden="true"></i>
+                                            </a>
+                                </button>
+                            </div>
+                            <div class="col-md-6">
+                                <button class="form-control google_button">
+                                            <a class="auth-content" href="/login/google"> 
+                                                Sign In with Google Account
+                                                <i class="fab fa-google fa-lg icon" aria-hidden="true"></i>
+                                            </a>
+                                </button>
+                            </div>
+                        </div> -->
+                    </div>
+                    
                     <div class="inputs">
 
                         <!-- USERNAME -->
@@ -213,6 +265,33 @@
                     </div>
 
                     <!-- MODAL BODY -->
+                    <div class="social-login">
+
+                        <a href="/login/facebook" class="social facebook-icon"><i class="fab fa-facebook-f fa-2x"></i></a>
+                        <a href="/login/google" class="social google-icon"><i class="fab fa-google-plus-g fa-2x"></i></a>
+
+                        <p>or</p>
+                        <hr />
+                        <!-- <div class="row">
+                            <div class="col-md-6">
+                                <button class="form-control facebook_button">
+                                            <a class="auth-content" href="/login/facebook">
+                                                Sign In with Facebook Account
+                                                <i class="fab fa-facebook fa-lg icon" aria-hidden="true"></i>
+                                            </a>
+                                </button>
+                            </div>
+                            <div class="col-md-6">
+                                <button class="form-control google_button">
+                                            <a class="auth-content" href="/login/google"> 
+                                                Sign In with Google Account
+                                                <i class="fab fa-google fa-lg icon" aria-hidden="true"></i>
+                                            </a>
+                                </button>
+                            </div>
+                        </div> -->
+                    </div>
+        
                     <div class="inputs">
 
                         <!-- USERNAME -->

@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 
 // DATABASE SETTINGS
-var url=process.env.DATABASEURL || "mongodb://localhost:27017/notes";
+var url= "mongodb://localhost:27017/notes";
 mongoose.connect(url, { useCreateIndex: true,
                         useNewUrlParser: true,
                         useUnifiedTopology: true

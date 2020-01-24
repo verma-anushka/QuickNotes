@@ -36,7 +36,7 @@ async function signUp(req, res, next){
             res.render('homepage', {errors, username, email, password, password2});
         } else {
             // EMAIL & USERNAME CHECK
-            var emailUser = await User.findOne({email: email});
+            // var emailUser = await User.findOne({email: email});
             var usernameUser = await User.findOne({username: username});
 
             if(usernameUser) {
@@ -49,8 +49,9 @@ async function signUp(req, res, next){
                 // console.log('The Email is already in use :/')
                 if(emailUser == ''){
                     req.flash('error', 'Please enter a valid email id! ');
-                }else
-                    req.flash('error', 'The Email is already in use :/');
+                }
+                // else
+                    // req.flash('error', 'The Email is already in use :/');
                 res.redirect('/');
             }
             else {
@@ -109,6 +110,22 @@ function login(req, res, next){
         next();
     }
 }
+
+// FACEBOOK AUTHENTICATION
+router.get('/login/facebook/return', passport.authenticate('facebook', { 
+    failureRedirect: '/login', 
+    successRedirect: '/' }
+));
+
+router.get('/login/facebook', passport.authenticate('facebook', { scope: ['email'] }));
+
+// GOOGLE
+router.get('/login/google', passport.authenticate('google', { scope: ['profile'] }));
+
+router.get('/google/auth/callback', passport.authenticate('google', { failureRedirect: '/login' }), function (req, res) {
+    res.redirect('/');
+});
+
 
 function forgotPassword(req, res, next){
     if(req.body.form == 'forgotPassword'){
